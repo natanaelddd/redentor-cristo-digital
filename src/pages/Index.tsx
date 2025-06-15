@@ -146,7 +146,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <img src="https://images.unsplash.com/photo-1507692049482-4336f7384a56?q=80&w=1974&auto=format&fit=crop" alt="Comunidade da igreja" className="rounded-lg shadow-lg w-full h-auto object-cover aspect-square" />
+                <img src="/lovable-uploads/326e9cbc-61c9-469a-a8fe-76d7ead588bd.png" alt="Pastor pregando na Igreja Missionária Cristo Redentor" className="rounded-lg shadow-lg w-full h-auto object-cover aspect-square" />
               </div>
               <div className="text-left">
                 <h2 className="text-3xl md:text-5xl font-bold mb-6 font-heading">Sobre Nós</h2>
