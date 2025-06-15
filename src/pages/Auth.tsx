@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -90,7 +89,7 @@ const AuthPage = () => {
       email: values.email,
       password: values.password,
       options: {
-        emailRedirectTo: window.location.origin,
+        emailRedirectTo: 'https://preview--redentor-cristo-digital.lovable.app/',
       },
     });
     if (error) {
