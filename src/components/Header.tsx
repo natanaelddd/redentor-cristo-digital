@@ -15,24 +15,20 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 z-50 w-full border-b bg-transparent backdrop-blur-sm supports-[backdrop-filter]:bg-transparent/60">
-      <div className="container mx-auto flex h-24 items-center justify-between px-4 relative">
-        <Link to="/" className="flex items-center gap-2">
-          <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-12 w-12" />
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-start">
+        <Link to="/">
+          <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-16 w-16 sm:h-20 sm:w-20" />
         </Link>
-
-        {/* Menu Trigger */}
-        <div className="flex">
-          <Button 
-            variant="outline" 
-            onClick={() => setMobileMenuOpen(true)} 
-            className="rounded-full bg-white/90 text-primary hover:bg-white px-6 py-2 shadow-sm"
-          >
-            <span>MENU</span>
-            <Menu className="h-5 w-5 ml-2" />
-          </Button>
-        </div>
-      </div>
+        <Button 
+          variant="outline" 
+          onClick={() => setMobileMenuOpen(true)} 
+          className="rounded-full bg-white/90 text-primary hover:bg-white px-6 py-3 shadow-md"
+        >
+          <span>MENU</span>
+          <Menu className="h-5 w-5 ml-2" />
+        </Button>
+      </header>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
@@ -40,7 +36,7 @@ export const Header = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="absolute top-4 right-4 text-white hover:bg-white/10 hover:text-white" 
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:bg-white/10 hover:text-white" 
             onClick={() => setMobileMenuOpen(false)}
           >
             <X className="h-8 w-8" />
@@ -60,6 +56,6 @@ export const Header = () => {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 };
