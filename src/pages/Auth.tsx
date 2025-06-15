@@ -65,7 +65,10 @@ const AuthPage = () => {
 
   const handleSignIn = async (values: z.infer<typeof signInSchema>) => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword(values);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: values.email,
+      password: values.password,
+    });
     if (error) {
       toast.error(error.message || "Ocorreu um erro ao fazer login.");
     } else {
