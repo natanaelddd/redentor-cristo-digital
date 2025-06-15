@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -101,7 +100,7 @@ const Index = () => {
               <CarouselNext className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-primary border-none w-12 h-12" />
             </Carousel>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-white text-foreground p-4 flex justify-between items-center z-10 text-xs sm:text-sm">
+          <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 bg-white text-foreground p-4 flex justify-between items-center z-10 text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-lg">
             {/* Left Part */}
             <div className="flex items-center gap-2 sm:gap-4 uppercase font-medium">
               <span>Sunday Services</span>
