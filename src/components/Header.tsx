@@ -15,39 +15,28 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
+    <header className="sticky top-0 z-50 w-full border-b bg-transparent backdrop-blur-sm supports-[backdrop-filter]:bg-transparent/60 absolute">
+      <div className="container mx-auto flex h-24 items-center justify-between px-4 relative">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-10 w-10" />
-          <span className="font-bold hidden sm:inline-block font-heading">Igreja Missionária Cristo Redentor</span>
+          <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-12 w-12" />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((link) => (
-            <a 
-              key={link.title} 
-              href={link.href} 
-              className="relative group text-sm font-medium text-muted-foreground transition-colors hover:text-primary uppercase tracking-wider"
-            >
-              {link.title}
-              <span className="absolute bottom-[-2px] left-0 w-full h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-center"></span>
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile Navigation Trigger */}
-        <div className="md:hidden">
-          <Button variant="outline" size="icon" onClick={() => setMobileMenuOpen(true)}>
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Abrir menu</span>
+        {/* Menu Trigger */}
+        <div className="flex">
+          <Button 
+            variant="outline" 
+            onClick={() => setMobileMenuOpen(true)} 
+            className="rounded-full bg-white/90 text-primary hover:bg-white px-6 py-2 shadow-sm"
+          >
+            <span>MENU</span>
+            <Menu className="h-5 w-5 ml-2" />
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center md:hidden animate-in fade-in-0 duration-300">
+        <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center animate-in fade-in-0 duration-300">
           <Button 
             variant="ghost" 
             size="icon" 
