@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,6 +8,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { EventsSection } from "@/components/sections/EventsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ReadingPlansSection } from "@/components/sections/ReadingPlansSection";
 
 // Helper para formatar o conteúdo do site em um objeto chave-valor
 const formatSiteContent = (content: any[] | null) => {
@@ -28,17 +28,20 @@ const Index = () => {
         { data: siteContent, error: siteContentError },
         { data: navLinks, error: navLinksError },
         { data: events, error: eventsError },
+        { data: readingPlans, error: readingPlansError },
       ] = await Promise.all([
         supabase.from("hero_slides").select("*").order("order").eq('is_active', true),
         supabase.from("site_content").select("*"),
         supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
         supabase.from("events").select("*").order("order").eq('is_active', true),
+        supabase.from("reading_plans").select("*").order("created_at", { ascending: false }),
       ]);
 
       if (heroSlidesError) throw new Error(heroSlidesError.message);
       if (siteContentError) throw new Error(siteContentError.message);
       if (navLinksError) throw new Error(navLinksError.message);
       if (eventsError) throw new Error(eventsError.message);
+      if (readingPlansError) throw new Error(readingPlansError.message);
 
       // Dados dos eventos que esqueci de inserir na migração anterior
       const staticEvents = [
@@ -73,6 +76,7 @@ const Index = () => {
         siteContent: formatSiteContent(siteContent),
         navLinks,
         events: (events && events.length > 0) ? events : staticEvents,
+        readingPlans,
       };
     },
   });
@@ -98,6 +102,7 @@ const Index = () => {
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />
         <EventsSection events={pageData?.events} />
+        <ReadingPlansSection plans={pageData?.readingPlans} />
         <ContactSection />
       </main>
       <Footer navLinks={pageData?.navLinks} siteContent={pageData?.siteContent} />
