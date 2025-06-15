@@ -1,32 +1,18 @@
 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import { User } from '@supabase/supabase-js';
-import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { AdminSidebar } from '@/components/admin/AdminSidebar';
 
 const AdminPage = () => {
+  const { session, loading } = useAuth();
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        navigate('/auth');
-      } else {
-        setUser(user);
-      }
-      setLoading(false);
-    };
-    getUser();
-  }, [navigate]);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate('/');
-  };
+    if (!loading && !session) {
+      navigate('/auth');
+    }
+  }, [session, loading, navigate]);
 
   if (loading) {
     return (
@@ -36,20 +22,16 @@ const AdminPage = () => {
     );
   }
 
-  if (!user) {
+  if (!session) {
     return null;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-950 p-4">
-      <div className="w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold mb-4">Painel de Administração</h1>
-        <p className="mb-6 text-muted-foreground">Bem-vindo, {user.email}!</p>
-        <p className="mb-8">Esta é a sua área de administração. Em breve, você poderá gerenciar o conteúdo do site aqui.</p>
-        <Button onClick={handleLogout} className="w-full">
-          Sair
-        </Button>
-      </div>
+    <div className="flex min-h-screen bg-background">
+      <AdminSidebar />
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <Outlet />
+      </main>
     </div>
   );
 };
