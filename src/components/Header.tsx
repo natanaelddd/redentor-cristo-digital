@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-const navLinks = [
-  { title: "Início", href: "#" },
-  { title: "Sobre Nós", href: "#sobre" },
-  { title: "Nossos Cultos", href: "#eventos" },
-  { title: "Contato", href: "#contato" },
-];
+type NavLink = {
+  title: string;
+  href: string;
+};
 
-export const Header = () => {
+interface HeaderProps {
+  navLinks?: NavLink[];
+  logoUrl?: string;
+}
+
+export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-start">
         <Link to="/">
-          <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-16 w-16 sm:h-20 sm:w-20" />
+          {logoUrl && <img src={logoUrl} alt="Logo" className="h-16 w-16 sm:h-20 sm:w-20" />}
         </Link>
         <Button 
           variant="outline" 
@@ -30,7 +33,6 @@ export const Header = () => {
         </Button>
       </header>
 
-      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center animate-in fade-in-0 duration-300">
           <Button 
