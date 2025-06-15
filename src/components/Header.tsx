@@ -15,7 +15,7 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-transparent backdrop-blur-sm supports-[backdrop-filter]:bg-transparent/60 absolute">
+    <header className="absolute top-0 z-50 w-full border-b bg-transparent backdrop-blur-sm supports-[backdrop-filter]:bg-transparent/60">
       <div className="container mx-auto flex h-24 items-center justify-between px-4 relative">
         <Link to="/" className="flex items-center gap-2">
           <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-12 w-12" />
