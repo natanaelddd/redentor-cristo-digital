@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, MapPin, Church } from "lucide-react";
+import { Calendar, MapPin, Church, ArrowRight, ArrowDown, MessageCircle } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -100,6 +100,44 @@ const Index = () => {
               <CarouselPrevious className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-primary border-none w-12 h-12" />
               <CarouselNext className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-primary border-none w-12 h-12" />
             </Carousel>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 bg-white text-foreground p-4 flex justify-between items-center z-10 text-xs sm:text-sm">
+            {/* Left Part */}
+            <div className="flex items-center gap-2 sm:gap-4 uppercase font-medium">
+              <span>Sunday Services</span>
+              <div className="hidden md:flex items-center gap-2 sm:gap-4">
+                  <span className="text-muted-foreground">|</span>
+                  <span>9am</span>
+                  <span className="text-muted-foreground">|</span>
+                  <span>11am</span>
+                  <span className="text-muted-foreground">|</span>
+                  <span>5pm</span>
+              </div>
+              <span className="text-muted-foreground">|</span>
+              <a href="#" className="flex items-center gap-1">
+                <span>Watch Online</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* Middle Part - Marquee */}
+            <div className="flex-1 mx-8 overflow-hidden hidden lg:block">
+              <div className="flex animate-marquee">
+                <p className="whitespace-nowrap uppercase font-medium px-4">MAY - DONATE TO MIRACLES IN MAY - DONATE TO MIRACLES IN MAY -&nbsp;</p>
+                <p className="whitespace-nowrap uppercase font-medium px-4" aria-hidden="true">MAY - DONATE TO MIRACLES IN MAY - DONATE TO MIRACLES IN MAY -&nbsp;</p>
+              </div>
+            </div>
+
+            {/* Right Part */}
+            <div className="flex items-center gap-4">
+              <a href="#sobre" className="hidden lg:flex items-center gap-1 uppercase font-medium">
+                <span>Scroll Down</span>
+                <ArrowDown className="h-4 w-4" />
+              </a>
+              <Button size="icon" className="rounded-full bg-foreground text-background hover:bg-foreground/90 w-10 h-10">
+                <MessageCircle className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </section>
 
