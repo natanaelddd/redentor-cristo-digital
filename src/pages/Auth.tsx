@@ -50,9 +50,15 @@ const AuthPage = () => {
   });
 
   useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        navigate('/');
+      }
+    });
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === 'SIGNED_IN') {
+      (_event, session) => {
+        if (session) {
           navigate("/");
         }
       }

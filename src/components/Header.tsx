@@ -1,8 +1,10 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 type NavLink = {
   title: string;
@@ -16,6 +18,14 @@ interface HeaderProps {
 
 export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { session, loading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setMobileMenuOpen(false);
+    navigate("/");
+  };
 
   return (
     <>
@@ -55,6 +65,34 @@ export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
                 {link.title}
               </a>
             ))}
+            {!loading && (
+              session ? (
+                <>
+                  <Link
+                    to="/admin"
+                    className="text-2xl font-medium text-white transition-colors hover:text-primary uppercase tracking-wider"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="text-2xl font-medium text-white transition-colors hover:text-primary uppercase tracking-wider flex items-center justify-center"
+                  >
+                    <LogOut className="h-6 w-6 mr-2" />
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="text-2xl font-medium text-white transition-colors hover:text-primary uppercase tracking-wider"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Admin
+                </Link>
+              )
+            )}
           </nav>
         </div>
       )}
