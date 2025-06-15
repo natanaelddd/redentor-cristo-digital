@@ -7,23 +7,23 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { title: "Início", href: "#" },
   { title: "Sobre", href: "#sobre" },
-  { title: "Eventos", href: "#eventos" },
+  { title: "Cultos", href: "#eventos" },
   { title: "Contato", href: "#contato" },
 ];
 
 export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link to="/" className="flex items-center gap-2">
           <img src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png" alt="Logo" className="h-10 w-10" />
-          <span className="font-bold hidden sm:inline-block">Igreja Missionária Cristo Redentor</span>
+          <span className="font-bold hidden sm:inline-block font-heading">Igreja Missionária Cristo Redentor</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
+        <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
-            <a key={link.title} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+            <a key={link.title} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary uppercase tracking-wider">
               {link.title}
             </a>
           ))}
