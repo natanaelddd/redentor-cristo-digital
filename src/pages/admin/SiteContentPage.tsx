@@ -54,7 +54,7 @@ export const SiteContentPage = () => {
       const defaultValues = siteContent.reduce((acc, item) => {
         acc[item.section_key] = item.content_value || "";
         return acc;
-      }, {} as Record<string, string | null>);
+      }, {} as Record<string, string>);
       form.reset(defaultValues);
     }
   }, [siteContent, form]);
@@ -68,7 +68,7 @@ export const SiteContentPage = () => {
         })
         .map(([key, value]) => ({
           section_key: key,
-          content_value: value,
+          content_value: value as string,
         }));
       
       if (updates.length === 0) {
@@ -145,7 +145,7 @@ export const SiteContentPage = () => {
                   <FormField
                     key={item.id}
                     control={form.control}
-                    name={item.section_key}
+                    name={item.section_key as keyof FormValues}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="capitalize">{item.section_key.replace(/_/g, ' ')}</FormLabel>
