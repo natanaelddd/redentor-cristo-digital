@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -43,6 +44,28 @@ const Index = () => {
       if (eventsError) throw new Error(eventsError.message);
       if (readingPlansError) throw new Error(readingPlansError.message);
 
+      // Dados estáticos para o hero quando não há dados no banco
+      const staticHeroSlides = [
+        {
+          id: '1',
+          category: 'Bem-vindos',
+          title: 'Igreja Missionária Cristo Redentor',
+          description: 'Um lugar de fé, esperança e amor no coração de Ribeirão Preto. Venha fazer parte da nossa família!',
+          button_text: 'Conheça mais',
+          order: 1,
+          is_active: true
+        },
+        {
+          id: '2',
+          category: 'Comunidade',
+          title: 'Faça Parte da Nossa Família',
+          description: 'Conecte-se com Deus e com uma comunidade acolhedora que caminha junto na fé.',
+          button_text: 'Junte-se a nós',
+          order: 2,
+          is_active: true
+        }
+      ];
+
       // Dados dos eventos que esqueci de inserir na migração anterior
       const staticEvents = [
         {
@@ -72,7 +95,7 @@ const Index = () => {
       ];
 
       return {
-        heroSlides,
+        heroSlides: (heroSlides && heroSlides.length > 0) ? heroSlides : staticHeroSlides,
         siteContent: formatSiteContent(siteContent),
         navLinks,
         events: (events && events.length > 0) ? events : staticEvents,
