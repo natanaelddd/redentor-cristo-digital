@@ -60,26 +60,27 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     return (
         <section
           id="#"
-          className="relative h-screen bg-cover bg-center text-white flex items-center justify-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop')" }}
+          className="relative h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
+          style={{ 
+            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop')" 
+          }}
         >
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <div className="relative container mx-auto px-4 w-full">
-            <Carousel setApi={setApi} className="w-full max-w-5xl mx-auto" opts={{ loop: true }}>
+          <div className="relative container mx-auto px-4 w-full z-10">
+            <Carousel setApi={setApi} className="w-full max-w-7xl mx-auto" opts={{ loop: true }}>
               <CarouselContent>
                 {displaySlides.map((item) => (
                   <CarouselItem key={item.id}>
-                    <div className="p-4">
-                      <div className="bg-background/90 backdrop-blur-sm text-foreground p-8 md:p-16 rounded-2xl shadow-2xl relative">
-                        <div className="flex justify-between items-start mb-4">
-                          <p className="text-sm uppercase tracking-widest text-muted-foreground">{item.category}</p>
+                    <div className="flex items-center justify-center min-h-[80vh]">
+                      <div className="text-center text-white max-w-4xl mx-auto px-4">
+                        <div className="flex justify-center items-center mb-6">
+                          <p className="text-sm uppercase tracking-[0.2em] text-white/80 font-medium">{item.category}</p>
                           {displaySlides.length > 1 && (
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 ml-8">
                               {Array.from({ length: count }).map((_, i) => (
                                 <button
                                   key={i}
                                   onClick={() => api?.scrollTo(i)}
-                                  className={`h-2 w-2 rounded-full transition-all ${current === i ? 'bg-primary w-4' : 'bg-muted'}`}
+                                  className={`h-1 rounded-full transition-all duration-300 ${current === i ? 'bg-white w-8' : 'bg-white/40 w-4'}`}
                                 >
                                   <span className="sr-only">Slide {i + 1}</span>
                                 </button>
@@ -87,12 +88,31 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                             </div>
                           )}
                         </div>
-                        <div className="min-h-[180px] md:min-h-[150px]">
-                          <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-primary-foreground">{item.title}</h2>
-                          <p className="text-lg text-muted-foreground mb-8 max-w-2xl">{item.description}</p>
-                        </div>
-                        <div className="flex">
-                          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8">{item.button_text}</Button>
+                        
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading mb-6 leading-tight">
+                          {item.title}
+                        </h1>
+                        
+                        <p className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                          {item.description}
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                          <Button 
+                            size="lg" 
+                            className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-3 font-medium text-base transition-all duration-300 hover:scale-105"
+                          >
+                            {item.button_text}
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                          
+                          <Button 
+                            variant="outline" 
+                            size="lg"
+                            className="border-white text-white hover:bg-white hover:text-black rounded-full px-8 py-3 font-medium text-base transition-all duration-300"
+                          >
+                            Assista Online
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -101,45 +121,48 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
               </CarouselContent>
               {displaySlides.length > 1 && (
                 <>
-                  <CarouselPrevious className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-primary border-none w-12 h-12" />
-                  <CarouselNext className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-primary border-none w-12 h-12" />
+                  <CarouselPrevious className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-sm w-12 h-12" />
+                  <CarouselNext className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-sm w-12 h-12" />
                 </>
               )}
             </Carousel>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-white text-foreground p-4 flex justify-between items-center z-10 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 sm:gap-4 uppercase font-medium">
-              <span>{siteContent.sunday_services_title || 'Cultos Dominicais'}</span>
-              <div className="hidden md:flex items-center gap-2 sm:gap-4">
+          
+          {/* Bottom Bar */}
+          <div className="absolute bottom-0 left-0 right-0 bg-white text-foreground z-20">
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div className="flex items-center gap-4 text-sm font-medium uppercase tracking-wide">
+                  <span className="text-primary font-bold">Cultos Dominicais</span>
                   <span className="text-muted-foreground">|</span>
                   <span>{siteContent.sunday_services_time_1 || '9h'}</span>
                   <span className="text-muted-foreground">|</span>
                   <span>{siteContent.sunday_services_time_2 || '11h'}</span>
                   <span className="text-muted-foreground">|</span>
                   <span>{siteContent.sunday_services_time_3 || '19h'}</span>
-              </div>
-              <span className="text-muted-foreground">|</span>
-              <a href={siteContent.watch_online_link || '#'} className="flex items-center gap-1">
-                <span>{siteContent.watch_online_text || 'Assista Online'}</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
+                </div>
 
-            <div className="flex-1 mx-8 overflow-hidden hidden lg:block">
-              <div className="flex animate-marquee">
-                <p className="whitespace-nowrap uppercase font-medium px-4">FAÇA PARTE DA NOSSA FAMÍLIA - IGREJA CRISTO REDENTOR - FAÇA PARTE DA NOSSA FAMÍLIA -&nbsp;</p>
-                <p className="whitespace-nowrap uppercase font-medium px-4" aria-hidden="true">FAÇA PARTE DA NOSSA FAMÍLIA - IGREJA CRISTO REDENTOR - FAÇA PARTE DA NOSSA FAMÍLIA -&nbsp;</p>
-              </div>
-            </div>
+                <div className="hidden lg:flex flex-1 mx-8 overflow-hidden">
+                  <div className="flex animate-marquee whitespace-nowrap">
+                    <span className="text-sm font-medium uppercase tracking-wide px-4">
+                      FAÇA PARTE DA NOSSA FAMÍLIA - IGREJA CRISTO REDENTOR - FAÇA PARTE DA NOSSA FAMÍLIA -&nbsp;
+                    </span>
+                    <span className="text-sm font-medium uppercase tracking-wide px-4" aria-hidden="true">
+                      FAÇA PARTE DA NOSSA FAMÍLIA - IGREJA CRISTO REDENTOR - FAÇA PARTE DA NOSSA FAMÍLIA -&nbsp;
+                    </span>
+                  </div>
+                </div>
 
-            <div className="flex items-center gap-4">
-              <a href="#sobre" className="hidden lg:flex items-center gap-1 uppercase font-medium">
-                <span>Scroll Down</span>
-                <ArrowDown className="h-4 w-4" />
-              </a>
-              <Button size="icon" className="rounded-full bg-foreground text-background hover:bg-foreground/90 w-10 h-10">
-                <MessageCircle className="h-5 w-5" />
-              </Button>
+                <div className="flex items-center gap-4">
+                  <a href="#sobre" className="hidden lg:flex items-center gap-2 text-sm font-medium uppercase tracking-wide hover:text-primary transition-colors">
+                    <span>Scroll Down</span>
+                    <ArrowDown className="h-4 w-4" />
+                  </a>
+                  <Button size="icon" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 w-10 h-10 transition-all duration-300 hover:scale-110">
+                    <MessageCircle className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>

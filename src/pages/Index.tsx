@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -106,22 +105,22 @@ const Index = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 p-4 gap-4">
-        <header className="flex justify-between items-center">
-          <Skeleton className="h-20 w-20 rounded-full" />
-          <Skeleton className="h-12 w-28 rounded-full" />
+      <div className="flex flex-col min-h-screen bg-gray-50">
+        <header className="flex justify-between items-center p-4">
+          <Skeleton className="h-16 w-16 rounded-full" />
+          <Skeleton className="h-10 w-32 rounded-full" />
         </header>
-        <main className="flex-grow space-y-4">
-          <Skeleton className="h-screen w-full rounded-2xl" />
+        <main className="flex-grow">
+          <Skeleton className="h-screen w-full" />
         </main>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 font-body p-2 sm:p-4">
+    <div className="flex flex-col min-h-screen bg-white font-body">
       <Header navLinks={pageData?.navLinks} logoUrl={pageData?.siteContent.logo_url} />
-      <main className="flex-grow rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+      <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />
         <EventsSection events={pageData?.events} />
