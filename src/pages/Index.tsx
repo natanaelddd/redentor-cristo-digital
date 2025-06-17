@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -48,7 +49,7 @@ const Index = () => {
         {
           id: '1',
           category: 'Bem-vindos',
-          title: 'Igreja Missionária Cristo Redentor',
+          title: 'Igreja Missionária do Cristo Redentor',
           description: 'Um lugar de fé, esperança e amor no coração de Ribeirão Preto. Venha fazer parte da nossa família!',
           button_text: 'Conheça mais',
           order: 1,

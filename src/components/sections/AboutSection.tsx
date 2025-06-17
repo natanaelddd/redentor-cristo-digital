@@ -21,7 +21,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl transform rotate-1"></div>
                   <img 
                     src={siteContent.about_us_image || 'https://images.unsplash.com/photo-1594794617141-2d7f99b22223?q=80&w=2070&auto=format&fit=crop'} 
-                    alt="Pastor pregando na Igreja Missionária Cristo Redentor" 
+                    alt="Pastor pregando na Igreja Missionária do Cristo Redentor" 
                     className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" 
                   />
                 </div>
@@ -39,10 +39,10 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
                   
                   <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                     <p>
-                      {siteContent.about_us_p1 || 'A Igreja Missionária Cristo Redentor é uma comunidade de fé dedicada a compartilhar o amor de Deus e servir nossa cidade de Ribeirão Preto com excelência e propósito.'}
+                      {siteContent.about_us_p1 || 'A Igreja Missionária do Cristo Redentor é uma comunidade de fé dedicada a compartilhar o amor de Deus e servir nossa cidade de Ribeirão Preto com excelência e propósito, localizada no bairro Cristo Redentor.'}
                     </p>
                     <p>
-                      {siteContent.about_us_p2 || 'Nosso compromisso é criar um ambiente acolhedor onde cada pessoa possa crescer espiritualmente e encontrar seu propósito em Cristo, impactando vidas através do amor e da verdade.'}
+                      {siteContent.about_us_p2 || 'Nosso compromisso é criar um ambiente acolhedor onde cada pessoa possa crescer espiritualmente e encontrar seu propósito em Cristo, impactando vidas através do amor e da verdade em nossa comunidade local.'}
                     </p>
                   </div>
                   
