@@ -33,56 +33,48 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
       button_text: 'Conheça mais',
       order: 1,
       is_active: true
-    },
-    {
-      id: '2',
-      category: 'Comunidade',
-      title: 'Faça Parte da Nossa Família',
-      description: 'Conecte-se com Deus e com uma comunidade acolhedora que caminha junto na fé.',
-      button_text: 'Junte-se a nós',
-      order: 2,
-      is_active: true
     }
   ];
 
   const slidesToUse = slides && slides.length > 0 ? slides : defaultSlides;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-black/20"></div>
-      
+    <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
       {/* Background image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop')`
         }}
       ></div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
-        <div className="max-w-4xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 text-center text-white pt-24">
+        <div className="max-w-5xl mx-auto">
           {slidesToUse.map((slide, index) => (
             <div key={slide.id} className={index === 0 ? "block" : "hidden"}>
-              <p className="text-primary-200 text-sm md:text-base uppercase tracking-[0.3em] font-medium mb-6 opacity-90">
+              <p className="text-primary text-sm md:text-base uppercase tracking-[0.4em] font-light mb-8 opacity-90">
                 {slide.category}
               </p>
               
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 font-heading leading-tight">
-                {slide.title}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-12 leading-tight tracking-tight">
+                IGREJA<br />
+                <span className="font-serif italic">Missionária</span><br />
+                DO CRISTO<br />
+                <span className="text-primary">REDENTOR</span>
               </h1>
               
-              <p className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-16 text-gray-300 leading-relaxed max-w-2xl mx-auto font-light">
                 {slide.description}
               </p>
               
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-4 text-lg font-medium transition-all duration-300 hover:scale-105 shadow-xl"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-black rounded-none px-12 py-4 text-base font-light uppercase tracking-[0.2em] transition-all duration-300"
               >
                 {slide.button_text}
-                <ArrowRight className="ml-3 h-5 w-5" />
+                <ArrowRight className="ml-3 h-4 w-4" />
               </Button>
             </div>
           ))}
@@ -91,8 +83,8 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
       
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full p-1">
-          <div className="w-1 h-3 bg-white/60 rounded-full mx-auto animate-pulse"></div>
+        <div className="w-px h-16 bg-white/30">
+          <div className="w-px h-4 bg-white/60 animate-pulse"></div>
         </div>
       </div>
     </section>

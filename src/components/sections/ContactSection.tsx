@@ -10,14 +10,14 @@ export const ContactSection = () => {
              <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.4285847436847!2d-47.8388!3d-20.7962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9bf0c5b7c8b45%3A0x1234567890abcdef!2sAv.%20Pedro%20Abrah%C3%A3o%20Alem%20Neto%2C%20520%20-%20Cristo%20Redentor%2C%20Ribeir%C3%A3o%20Preto%20-%20SP%2C%2014063-145!5e0!3m2!1spt-BR!2sbr!4v1640995200000!5m2!1spt-BR!2sbr"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.539326!2d-47.8380982!3d-21.1109492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b995f65d6b6223%3A0x50bba25ba98fe3a4!2sIgreja%20Mission%C3%A1ria!5e0!3m2!1spt-BR!2sbr!4v1640995200000!5m2!1spt-BR!2sbr"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
                     allowFullScreen={true}
                     loading="lazy"
                     className="rounded-lg shadow-lg"
-                    title="Mapa de Localização da Igreja"
+                    title="Mapa de Localização da Igreja Missionária do Cristo Redentor"
                   ></iframe>
                 </div>
                 <div className="text-left">

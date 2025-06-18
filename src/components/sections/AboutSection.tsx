@@ -13,31 +13,31 @@ interface AboutSectionProps {
 
 export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
     return (
-        <section id="sobre" className="py-20 md:py-32 bg-white">
+        <section id="sobre" className="py-32 bg-white">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div className="order-2 lg:order-1">
                 <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl transform rotate-1"></div>
                   <img 
                     src={siteContent.about_us_image || 'https://images.unsplash.com/photo-1594794617141-2d7f99b22223?q=80&w=2070&auto=format&fit=crop'} 
                     alt="Pastor pregando na Igreja Missionária do Cristo Redentor" 
-                    className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" 
+                    className="w-full h-[600px] object-cover" 
                   />
+                  <div className="absolute inset-0 bg-black/10"></div>
                 </div>
               </div>
               
               <div className="order-1 lg:order-2">
                 <div className="max-w-xl">
-                  <p className="text-primary text-sm uppercase tracking-[0.2em] font-medium mb-4">
+                  <p className="text-primary text-sm uppercase tracking-[0.4em] font-light mb-8">
                     Sobre Nós
                   </p>
                   
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 font-heading leading-tight">
+                  <h2 className="text-4xl md:text-5xl font-light mb-12 leading-tight tracking-tight">
                     {siteContent.about_us_heading || 'Nossa História'}
                   </h2>
                   
-                  <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <div className="space-y-8 text-lg text-gray-600 leading-relaxed font-light">
                     <p>
                       {siteContent.about_us_p1 || 'A Igreja Missionária do Cristo Redentor é uma comunidade de fé dedicada a compartilhar o amor de Deus e servir nossa cidade de Ribeirão Preto com excelência e propósito, localizada no bairro Cristo Redentor.'}
                     </p>
@@ -46,10 +46,11 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
                     </p>
                   </div>
                   
-                  <div className="mt-10">
+                  <div className="mt-12">
                     <Button 
+                      variant="outline"
                       size="lg" 
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-3 text-base font-medium transition-all duration-300 hover:scale-105"
+                      className="border-black text-black hover:bg-black hover:text-white rounded-none px-8 py-3 text-sm font-light uppercase tracking-[0.2em] transition-all duration-300"
                     >
                       Conheça Nossa História
                       <ArrowRight className="ml-2 h-4 w-4" />
