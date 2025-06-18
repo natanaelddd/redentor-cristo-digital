@@ -282,36 +282,6 @@ export type Database = {
         }
         Relationships: []
       }
-      reading_plans: {
-        Row: {
-          created_at: string
-          description: string | null
-          id: string
-          image_url: string | null
-          plan_url: string
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          image_url?: string | null
-          plan_url: string
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          image_url?: string | null
-          plan_url?: string
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       site_content: {
         Row: {
           content_value: string | null
