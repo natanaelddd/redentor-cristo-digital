@@ -40,15 +40,15 @@ const Index = () => {
       if (navLinksError) throw new Error(navLinksError.message);
       if (eventsError) throw new Error(eventsError.message);
 
-      // Dados dos eventos que esqueci de inserir na migração anterior
+      // Dados dos eventos padrão
       const staticEvents = [
         {
           id: '1',
           title: 'Culto de Domingo',
           image_url: 'https://images.unsplash.com/photo-1594794617141-2d7f99b22223?q=80&w=2070&auto=format&fit=crop',
           day_of_week: 'Todos os Domingos',
-          time: '19h',
-          description: 'Um tempo de louvor, adoração e palavra de Deus.'
+          time: '9h e 19h',
+          description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
         },
         {
           id: '2',
@@ -56,7 +56,7 @@ const Index = () => {
           image_url: 'https://images.unsplash.com/photo-1543621894-0a345e6b12de?q=80&w=2070&auto=format&fit=crop',
           day_of_week: 'Todas as Quartas',
           time: '20h',
-          description: 'Aprofunde seu conhecimento nas escrituras sagradas.'
+          description: 'Aprofunde seu conhecimento nas escrituras sagradas conosco.'
         },
         {
           id: '3',
@@ -64,14 +64,22 @@ const Index = () => {
           image_url: 'https://images.unsplash.com/photo-1544219454-935243f7737e?q=80&w=2070&auto=format&fit=crop',
           day_of_week: 'Todos os Sábados',
           time: '19h30',
-          description: 'Um encontro dinâmico para os jovens da nossa comunidade.'
+          description: 'Um encontro especial para os jovens da nossa comunidade.'
         }
+      ];
+
+      // Links de navegação padrão
+      const staticNavLinks = [
+        { title: 'INÍCIO', href: '#' },
+        { title: 'SOBRE', href: '#sobre' },
+        { title: 'EVENTOS', href: '#eventos' },
+        { title: 'CONTATO', href: '#contato' }
       ];
 
       return {
         heroSlides,
         siteContent: formatSiteContent(siteContent),
-        navLinks,
+        navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
         events: (events && events.length > 0) ? events : staticEvents,
       };
     },
@@ -79,22 +87,22 @@ const Index = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 p-4 gap-4">
-        <header className="flex justify-between items-center">
-          <Skeleton className="h-20 w-20 rounded-full" />
-          <Skeleton className="h-12 w-28 rounded-full" />
-        </header>
-        <main className="flex-grow space-y-4">
-          <Skeleton className="h-screen w-full rounded-2xl" />
-        </main>
+      <div className="flex flex-col min-h-screen bg-white">
+        <div className="p-8">
+          <div className="flex justify-between items-center mb-8">
+            <Skeleton className="h-16 w-16 rounded-full" />
+            <Skeleton className="h-12 w-32 rounded-full" />
+          </div>
+          <Skeleton className="h-screen w-full" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 font-body p-2 sm:p-4">
+    <div className="flex flex-col min-h-screen bg-white font-body">
       <Header navLinks={pageData?.navLinks} logoUrl={pageData?.siteContent.logo_url} />
-      <main className="flex-grow rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+      <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />
         <EventsSection events={pageData?.events} />

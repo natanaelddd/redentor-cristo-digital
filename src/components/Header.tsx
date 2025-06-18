@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 
 type NavLink = {
   title: string;
@@ -19,26 +19,37 @@ export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-start">
+      <header className="fixed top-8 left-8 right-8 z-50 flex justify-between items-center">
         <Link to="/">
-          {logoUrl && <img src={logoUrl} alt="Logo" className="h-16 w-16 sm:h-20 sm:w-20" />}
+          {logoUrl ? (
+            <img src={logoUrl} alt="Logo Igreja Missionária do Cristo Redentor" className="h-16 w-16 rounded-full object-cover shadow-lg" />
+          ) : (
+            <div className="h-16 w-16 rounded-full bg-white shadow-lg flex items-center justify-center">
+              <span className="text-xl font-bold text-primary">IC</span>
+            </div>
+          )}
         </Link>
+        
         <Button 
           variant="outline" 
           onClick={() => setMobileMenuOpen(true)} 
-          className="rounded-full bg-white/90 text-primary hover:bg-white px-6 py-3 shadow-md"
+          className="rounded-full bg-white/95 backdrop-blur text-black hover:bg-white border-2 border-black px-8 py-3 font-medium tracking-wider"
         >
-          <span>MENU</span>
-          <Menu className="h-5 w-5 ml-2" />
+          <span className="mr-3">MENU</span>
+          <div className="flex flex-col gap-1">
+            <div className="w-4 h-0.5 bg-black"></div>
+            <div className="w-4 h-0.5 bg-black"></div>
+            <div className="w-4 h-0.5 bg-black"></div>
+          </div>
         </Button>
       </header>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center animate-in fade-in-0 duration-300">
+        <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center animate-in fade-in-0 duration-300">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:bg-white/10 hover:text-white" 
+            className="absolute top-8 right-8 text-white hover:bg-white/10 hover:text-white w-12 h-12" 
             onClick={() => setMobileMenuOpen(false)}
           >
             <X className="h-8 w-8" />
@@ -49,7 +60,7 @@ export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
               <a
                 key={link.title}
                 href={link.href}
-                className="text-2xl font-medium text-white transition-colors hover:text-primary uppercase tracking-wider"
+                className="text-3xl font-light text-white transition-colors hover:text-primary uppercase tracking-[0.2em]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.title}
