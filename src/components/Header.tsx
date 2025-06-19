@@ -21,13 +21,11 @@ export const Header = ({ navLinks = [], logoUrl }: HeaderProps) => {
     <>
       <header className="fixed top-8 left-8 right-8 z-50 flex justify-between items-center">
         <Link to="/">
-          {logoUrl ? (
-            <img src={logoUrl} alt="Logo Igreja Missionária do Cristo Redentor" className="h-16 w-16 rounded-full object-cover shadow-lg" />
-          ) : (
-            <div className="h-16 w-16 rounded-full bg-white shadow-lg flex items-center justify-center">
-              <span className="text-xl font-bold text-primary">IC</span>
-            </div>
-          )}
+          <img 
+            src="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" 
+            alt="Logo Igreja Missionária do Cristo Redentor" 
+            className="h-16 w-16 rounded-full object-cover shadow-lg bg-white p-2" 
+          />
         </Link>
         
         <Button 

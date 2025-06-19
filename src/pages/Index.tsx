@@ -40,14 +40,14 @@ const Index = () => {
       if (navLinksError) throw new Error(navLinksError.message);
       if (eventsError) throw new Error(eventsError.message);
 
-      // Dados dos eventos padrão
+      // Dados dos eventos atualizados conforme especificado
       const staticEvents = [
         {
           id: '1',
           title: 'Culto de Domingo',
           image_url: 'https://images.unsplash.com/photo-1594794617141-2d7f99b22223?q=80&w=2070&auto=format&fit=crop',
           day_of_week: 'Todos os Domingos',
-          time: '9h e 19h',
+          time: '19h',
           description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
         },
         {
@@ -60,11 +60,11 @@ const Index = () => {
         },
         {
           id: '3',
-          title: 'Rede de Jovens',
-          image_url: 'https://images.unsplash.com/photo-1544219454-935243f7737e?q=80&w=2070&auto=format&fit=crop',
-          day_of_week: 'Todos os Sábados',
-          time: '19h30',
-          description: 'Um encontro especial para os jovens da nossa comunidade.'
+          title: 'Reunião de Oração',
+          image_url: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop',
+          day_of_week: 'Todas as Sextas',
+          time: '20h',
+          description: 'Um momento especial de oração e comunhão com Deus.'
         }
       ];
 
@@ -101,7 +101,7 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-body">
-      <Header navLinks={pageData?.navLinks} logoUrl={pageData?.siteContent.logo_url} />
+      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" />
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />

@@ -52,7 +52,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
         id: '1',
         category: 'EVENTOS ESPECIAIS',
         title: 'CULTOS DE DOMINGO',
-        description: 'Junte-se a nós todos os domingos para uma experiência de fé, adoração e palavra de Deus.',
+        description: 'Junte-se a nós todos os domingos às 19h para uma experiência de fé, adoração e palavra de Deus.',
         button_text: 'SAIBA MAIS'
       }
     ];
@@ -121,11 +121,11 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
               <span>CULTOS DE DOMINGO</span>
               <div className="hidden md:flex items-center gap-8">
                   <span className="text-gray-400">|</span>
-                  <span>9H</span>
-                  <span className="text-gray-400">|</span>
                   <span>19H</span>
                   <span className="text-gray-400">|</span>
-                  <span>ONLINE</span>
+                  <span>QUARTA - ESTUDO BÍBLICO - 20H</span>
+                  <span className="text-gray-400">|</span>
+                  <span>SEXTA - ORAÇÃO - 20H</span>
               </div>
               <span className="text-gray-400">|</span>
               <a href="#" className="flex items-center gap-2 hover:text-gray-300 transition-colors">
