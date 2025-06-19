@@ -65,6 +65,23 @@ export const BibleReadingSection = () => {
           </div>
         </div>
 
+        {/* Iframe com planos de leitura bíblica */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+          <div className="p-6 bg-gray-100 border-b">
+            <h3 className="text-2xl font-bold text-center">Explore os Planos de Leitura</h3>
+            <p className="text-gray-600 text-center mt-2">Escolha um plano que se adeque à sua jornada espiritual</p>
+          </div>
+          <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+            <iframe
+              src="https://www.bible.com/pt/reading-plans"
+              className="absolute top-0 left-0 w-full h-full border-0"
+              title="Planos de Leitura Bíblica - Bible.com"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </div>
+
         <div className="text-center">
           <Button 
             className="bg-black text-white hover:bg-gray-800 px-8 py-4 text-lg rounded-full"
