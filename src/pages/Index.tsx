@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
+import { BibleReadingSection } from "@/components/sections/BibleReadingSection";
 import { EventsSection } from "@/components/sections/EventsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -105,6 +106,7 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />
+        <BibleReadingSection />
         <EventsSection events={pageData?.events} />
         <ContactSection />
       </main>

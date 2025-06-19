@@ -15,19 +15,11 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           <div className="container mx-auto px-8">
             <div className="grid md:grid-cols-2 gap-20 items-center">
               <div>
-                {siteContent.about_us_image ? (
-                  <img 
-                    src={siteContent.about_us_image} 
-                    alt="Igreja Missionária do Cristo Redentor" 
-                    className="w-full h-[600px] object-cover rounded-none shadow-lg" 
-                  />
-                ) : (
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Igreja Missionária do Cristo Redentor" 
-                    className="w-full h-[600px] object-cover rounded-none shadow-lg" 
-                  />
-                )}
+                <img 
+                  src="/lovable-uploads/7e64d619-a794-49be-a483-0f550f7c02a0.png" 
+                  alt="Igreja Missionária do Cristo Redentor - Ministério de Louvor" 
+                  className="w-full h-[600px] object-cover rounded-none shadow-lg" 
+                />
               </div>
               <div className="text-left space-y-8">
                 <div>
