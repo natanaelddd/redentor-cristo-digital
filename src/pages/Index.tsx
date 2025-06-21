@@ -41,12 +41,12 @@ const Index = () => {
       if (navLinksError) throw new Error(navLinksError.message);
       if (eventsError) throw new Error(eventsError.message);
 
-      // Dados dos eventos atualizados conforme especificado
+      // Dados dos eventos atualizados com as novas imagens
       const staticEvents = [
         {
           id: '1',
           title: 'Culto de Domingo',
-          image_url: 'https://images.unsplash.com/photo-1594794617141-2d7f99b22223?q=80&w=2070&auto=format&fit=crop',
+          image_url: '/lovable-uploads/8f26c45c-7c10-4b49-ae6c-955370e66511.png',
           day_of_week: 'Todos os Domingos',
           time: '19h',
           description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
@@ -54,7 +54,7 @@ const Index = () => {
         {
           id: '2',
           title: 'Estudo Bíblico',
-          image_url: 'https://images.unsplash.com/photo-1543621894-0a345e6b12de?q=80&w=2070&auto=format&fit=crop',
+          image_url: '/lovable-uploads/2ec1f073-a0ea-4dcf-969b-ab19f3b541b4.png',
           day_of_week: 'Todas as Quartas',
           time: '20h',
           description: 'Aprofunde seu conhecimento nas escrituras sagradas conosco.'
