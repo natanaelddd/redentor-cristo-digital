@@ -37,18 +37,20 @@ const ReadingPlan = () => {
     },
     {
       id: 2,
-      title: "Pentecostes: O Fogo que Permanece",
-      image: "/lovable-uploads/7b23b556-cf79-4ce5-a893-4569b7ba6af1.png",
+      title: "Propósito de Vida",
+      image: "https://images.unsplash.com/photo-1519452929597-4ef08f8c4ead?q=80&w=2070&auto=format&fit=crop",
       category: "Pais",
-      description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
-      author: "Beth Moore",
-      duration: "5 dias",
+      description: "Descubra o plano de Deus para sua vida e viva com propósito divino.",
+      author: "Rick Warren",
+      duration: "7 dias",
       readings: [
-        { day: 1, title: "A Promessa do Pai", passage: "Atos 1:4-5", content: "Aguardassem a promessa do Pai, que de mim ouvistes. O Espírito Santo é a promessa cumprida de Deus." },
-        { day: 2, title: "O Derramar do Espírito", passage: "Atos 2:1-4", content: "E todos foram cheios do Espírito Santo e começaram a falar noutras línguas." },
-        { day: 3, title: "Poder para Testemunhar", passage: "Atos 1:8", content: "Recebereis poder ao descer sobre vós o Espírito Santo, e ser-me-eis testemunhas." },
-        { day: 4, title: "Frutos do Espírito", passage: "Gálatas 5:22-23", content: "O fruto do Espírito é: amor, alegria, paz, paciência, benignidade, bondade, fidelidade." },
-        { day: 5, title: "Vida no Espírito", passage: "Romanos 8:14", content: "Todos os que são guiados pelo Espírito de Deus são filhos de Deus." }
+        { day: 1, title: "Feito para um Propósito", passage: "Efésios 2:10", content: "Porque somos feitura sua, criados em Cristo Jesus para as boas obras, as quais Deus preparou para que andássemos nelas." },
+        { day: 2, title: "Planejado por Deus", passage: "Jeremias 29:11", content: "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz e não de mal, para vos dar o fim que esperais." },
+        { day: 3, title: "Servindo ao Reino", passage: "Mateus 6:33", content: "Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas." },
+        { day: 4, title: "Dons e Talentos", passage: "1 Pedro 4:10", content: "Cada um administre aos outros o dom como o recebeu, como bons despenseiros da multiforme graça de Deus." },
+        { day: 5, title: "Missão de Vida", passage: "Marcos 16:15", content: "E disse-lhes: Ide por todo o mundo, pregai o evangelho a toda criatura." },
+        { day: 6, title: "Frutos Eternos", passage: "João 15:16", content: "Não me escolhestes vós a mim, mas eu vos escolhi a vós, e vos nomeei, para que vades e deis fruto." },
+        { day: 7, title: "Legado Duradouro", passage: "2 Timóteo 4:7", content: "Combati o bom combate, acabei a carreira, guardei a fé." }
       ]
     },
     {

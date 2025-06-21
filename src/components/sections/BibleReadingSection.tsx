@@ -19,12 +19,12 @@ export const BibleReadingSection = () => {
     },
     {
       id: 2,
-      title: "Pentecostes: O Fogo que Permanece",
-      image: "/lovable-uploads/7b23b556-cf79-4ce5-a893-4569b7ba6af1.png",
+      title: "Propósito de Vida",
+      image: "https://images.unsplash.com/photo-1519452929597-4ef08f8c4ead?q=80&w=2070&auto=format&fit=crop",
       category: "Pais",
-      description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
-      author: "Beth Moore",
-      duration: "5 dias"
+      description: "Descubra o plano de Deus para sua vida e viva com propósito divino.",
+      author: "Rick Warren",
+      duration: "7 dias"
     },
     {
       id: 3,
