@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -39,7 +38,7 @@ const ReadingPlan = () => {
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
-      image: "https://images.unsplash.com/photo-1518066431052-491bbf4f1ef6?q=80&w=2070&auto=format&fit=crop",
+      image: "/lovable-uploads/a1e5e946-664e-44f1-b527-639019f7dd99.png",
       category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
@@ -227,13 +226,13 @@ const ReadingPlan = () => {
       <main className="flex-grow py-16">
         <div className="container mx-auto px-8 max-w-4xl">
           <div className="mb-8">
-            <Button 
+            <button 
               onClick={handleBackNavigation}
-              className="mb-6 bg-black text-white hover:bg-gray-800 px-6 py-3 text-base font-medium transition-all duration-200 rounded-lg flex items-center gap-3 min-h-[48px] w-auto"
+              className="mb-6 inline-flex items-center gap-3 bg-black text-white hover:bg-gray-800 active:bg-gray-900 px-6 py-3 text-base font-medium transition-all duration-200 rounded-lg cursor-pointer min-h-[48px] focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             >
               <ArrowLeft className="h-5 w-5 flex-shrink-0" />
               <span className="leading-none">Voltar aos Planos</span>
-            </Button>
+            </button>
             
             <div className="relative h-64 rounded-lg overflow-hidden mb-6 shadow-lg">
               <img

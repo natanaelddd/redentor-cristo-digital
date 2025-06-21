@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,7 @@ export const BibleReadingSection = () => {
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
-      image: "https://images.unsplash.com/photo-1518066431052-491bbf4f1ef6?q=80&w=2070&auto=format&fit=crop",
+      image: "/lovable-uploads/a1e5e946-664e-44f1-b527-639019f7dd99.png",
       category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
