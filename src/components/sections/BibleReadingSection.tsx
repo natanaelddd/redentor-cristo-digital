@@ -1,9 +1,78 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Book, ArrowRight } from "lucide-react";
 
 export const BibleReadingSection = () => {
+  const readingPlans = [
+    {
+      id: 1,
+      title: "As Cicatrizes e Marcas da Vida",
+      image: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=2074&auto=format&fit=crop",
+      category: "Mulheres",
+      description: "Um plano focado na cura e restauração através da Palavra."
+    },
+    {
+      id: 2,
+      title: "Pentecostes: O Fogo que Permanece",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
+      category: "Mulheres",
+      description: "Explore o poder do Espírito Santo em sua vida."
+    },
+    {
+      id: 3,
+      title: "Namoro Cristão",
+      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=2074&auto=format&fit=crop",
+      category: "Mulheres",
+      description: "Princípios bíblicos para relacionamentos saudáveis."
+    },
+    {
+      id: 4,
+      title: "O Silêncio que Cura",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+      category: "Homens",
+      description: "Encontre paz e direção através da meditação bíblica."
+    },
+    {
+      id: 5,
+      title: "Casais Abençoados Em Deus",
+      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop",
+      category: "Homens",
+      description: "Fortaleça seu casamento com princípios cristãos."
+    },
+    {
+      id: 6,
+      title: "Em Quem Confiar?",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+      category: "Homens",
+      description: "Desenvolva uma confiança inabalável em Deus."
+    },
+    {
+      id: 7,
+      title: "O que Jesus Postaria?",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Navegue nas redes sociais com sabedoria cristã."
+    },
+    {
+      id: 8,
+      title: "Amigos Verdadeiros",
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Descubra o valor das amizades baseadas em Cristo."
+    },
+    {
+      id: 9,
+      title: "Ar & Crescer",
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2049&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Crescimento espiritual para a nova geração."
+    }
+  ];
+
+  const categories = ["Mulheres", "Homens", "Juventude"];
+
   return (
     <section className="py-32 bg-gray-50">
       <div className="container mx-auto px-8">
@@ -18,68 +87,36 @@ export const BibleReadingSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-center mb-4">
-              <Book className="h-6 w-6 text-primary mr-2" />
-              <h3 className="text-xl font-bold">Leitura Anual</h3>
+        {/* Cards dinâmicos de planos de leitura */}
+        <div className="space-y-16 mb-12">
+          {categories.map((category) => (
+            <div key={category}>
+              <h3 className="text-3xl font-bold mb-8 text-center">{category}</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {readingPlans
+                  .filter((plan) => plan.category === category)
+                  .map((plan) => (
+                    <Card key={plan.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={plan.image}
+                          alt={plan.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
+                          <div className="p-4 text-white">
+                            <h4 className="font-bold text-lg mb-1">{plan.title}</h4>
+                          </div>
+                        </div>
+                      </div>
+                      <CardContent className="p-4">
+                        <p className="text-gray-600 text-sm">{plan.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+              </div>
             </div>
-            <p className="text-gray-600 mb-4">
-              Complete a Bíblia em um ano com planos estruturados e reflexões diárias.
-            </p>
-            <ul className="text-sm text-gray-500 space-y-1">
-              <li>• Leitura cronológica</li>
-              <li>• Antigo e Novo Testamento</li>
-              <li>• Reflexões diárias</li>
-            </ul>
-          </div>
-
-          <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-center mb-4">
-              <Book className="h-6 w-6 text-primary mr-2" />
-              <h3 className="text-xl font-bold">Temas Específicos</h3>
-            </div>
-            <p className="text-gray-600 mb-4">
-              Explore temas como fé, esperança, amor e propósito através das escrituras.
-            </p>
-            <ul className="text-sm text-gray-500 space-y-1">
-              <li>• Fé e confiança</li>
-              <li>• Amor e relacionamentos</li>
-              <li>• Propósito de vida</li>
-            </ul>
-          </div>
-
-          <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-            <div className="flex items-center mb-4">
-              <Book className="h-6 w-6 text-primary mr-2" />
-              <h3 className="text-xl font-bold">Novos na Fé</h3>
-            </div>
-            <p className="text-gray-600 mb-4">
-              Planos especiais para quem está começando sua jornada cristã.
-            </p>
-            <ul className="text-sm text-gray-500 space-y-1">
-              <li>• Fundamentos da fé</li>
-              <li>• Histórias principais</li>
-              <li>• Orientação espiritual</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Iframe com planos de leitura bíblica */}
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="p-6 bg-gray-100 border-b">
-            <h3 className="text-2xl font-bold text-center">Explore os Planos de Leitura</h3>
-            <p className="text-gray-600 text-center mt-2">Escolha um plano que se adeque à sua jornada espiritual</p>
-          </div>
-          <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
-            <iframe
-              src="https://www.bible.com/pt/reading-plans"
-              className="absolute top-0 left-0 w-full h-full border-0"
-              title="Planos de Leitura Bíblica - Bible.com"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
+          ))}
         </div>
 
         <div className="text-center">
@@ -87,7 +124,7 @@ export const BibleReadingSection = () => {
             className="bg-black text-white hover:bg-gray-800 px-8 py-4 text-lg rounded-full"
             onClick={() => window.open('https://www.bible.com/pt/reading-plans', '_blank')}
           >
-            Explorar Planos de Leitura
+            Explorar Mais Planos de Leitura
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <p className="text-sm text-gray-500 mt-4">
