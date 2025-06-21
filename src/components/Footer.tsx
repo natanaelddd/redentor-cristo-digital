@@ -19,35 +19,45 @@ interface FooterProps {
 export const Footer = ({ navLinks = [], siteContent = {} }: FooterProps) => {
   return (
     <footer className="bg-black text-white">
-      <div className="container mx-auto px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
+      <div className="container-elegant section-padding">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 text-center md:text-left">
           
           {/* Column 1: Logo & About */}
-          <div className="flex flex-col items-center md:items-start">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+          <div className="flex flex-col items-center md:items-start space-y-8">
+            <Link to="/" className="flex items-center gap-4">
               {siteContent.logo_url ? (
-                <img src={siteContent.logo_url} alt="Logo" className="h-12 w-12 rounded-full object-cover" />
+                <img src={siteContent.logo_url} alt="Logo" className="h-14 w-14 rounded-full object-cover" />
               ) : (
-                <img src="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" alt="Logo" className="h-12 w-12 rounded-full object-cover" />
+                <img src="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" alt="Logo" className="h-14 w-14 rounded-full object-cover" />
               )}
-              <span className="font-bold text-lg font-heading">
+              <span className="font-heading font-light text-xl">
                 {siteContent.footer_logo_text || 'Igreja Missionária\ndo Cristo Redentor'}
               </span>
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            
+            {/* Logo repetido */}
+            <div className="opacity-20 scale-75">
+              {siteContent.logo_url ? (
+                <img src={siteContent.logo_url} alt="Logo" className="h-14 w-14 rounded-full object-cover" />
+              ) : (
+                <img src="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" alt="Logo" className="h-14 w-14 rounded-full object-cover" />
+              )}
+            </div>
+            
+            <p className="text-elegant text-gray-400">
               {siteContent.footer_about_text || 'Um lugar de fé, esperança e amor no coração do bairro Cristo Redentor em Ribeirão Preto.'}
             </p>
           </div>
 
           {/* Column 2: Links */}
-          <div>
-            <h3 className="font-bold mb-6 uppercase tracking-[0.2em] font-heading text-sm">Links Rápidos</h3>
-            <nav className="flex flex-col gap-3">
+          <div className="space-y-8">
+            <h3 className="font-heading font-light text-lg tracking-wider">Links Rápidos</h3>
+            <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a 
                   key={link.title} 
                   href={link.href} 
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="nav-elegant text-gray-400 hover:text-white transition-colors"
                 >
                   {link.title}
                 </a>
@@ -56,12 +66,12 @@ export const Footer = ({ navLinks = [], siteContent = {} }: FooterProps) => {
           </div>
 
           {/* Column 3: Contact */}
-          <div>
-            <h3 className="font-bold mb-6 uppercase tracking-[0.2em] font-heading text-sm">Contato</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3 justify-center md:justify-start">
-                <MapPin className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-gray-400 leading-relaxed">
+          <div className="space-y-8">
+            <h3 className="font-heading font-light text-lg tracking-wider">Contato</h3>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4 justify-center md:justify-start">
+                <MapPin className="h-5 w-5 text-gray-400 flex-shrink-0 mt-1" />
+                <p className="text-elegant text-gray-400">
                   Av. Pedro Abrahão Alem Neto, 520<br />
                   Cristo Redentor, Ribeirão Preto - SP
                 </p>
@@ -70,33 +80,35 @@ export const Footer = ({ navLinks = [], siteContent = {} }: FooterProps) => {
           </div>
 
           {/* Column 4: Social */}
-          <div>
-            <h3 className="font-bold mb-6 uppercase tracking-[0.2em] font-heading text-sm">Redes Sociais</h3>
-            <div className="flex gap-4 justify-center md:justify-start">
+          <div className="space-y-8">
+            <h3 className="font-heading font-light text-lg tracking-wider">Redes Sociais</h3>
+            <div className="flex gap-6 justify-center md:justify-start">
               <a 
                 href={siteContent.footer_instagram_url || '#'} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
               >
-                <Instagram className="h-6 w-6" />
+                <Instagram className="h-7 w-7" />
                 <span className="sr-only">Instagram</span>
               </a>
               <a 
                 href={siteContent.footer_facebook_url || '#'} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
               >
-                <Facebook className="h-6 w-6" />
+                <Facebook className="h-7 w-7" />
                 <span className="sr-only">Facebook</span>
               </a>
             </div>
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-16 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Igreja Missionária do Cristo Redentor. Todos os direitos reservados.</p>
+        <div className="border-t border-gray-800 mt-20 pt-12 text-center">
+          <p className="text-elegant text-gray-400">
+            &copy; {new Date().getFullYear()} Igreja Missionária do Cristo Redentor. Todos os direitos reservados.
+          </p>
         </div>
       </div>
     </footer>

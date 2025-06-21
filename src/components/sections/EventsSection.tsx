@@ -19,55 +19,55 @@ interface EventsSectionProps {
 
 export const EventsSection = ({ events = [] }: EventsSectionProps) => {
     return (
-        <section id="eventos" className="py-32 bg-gray-50">
-          <div className="container mx-auto px-8">
-            <div className="text-center mb-20">
-              <p className="text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">PROGRAMAÇÃO</p>
-              <h2 className="text-5xl md:text-6xl font-bold font-heading">Nossos Cultos</h2>
+        <section id="eventos" className="section-elegant bg-white">
+          <div className="container-elegant">
+            <div className="text-center mb-20 fade-in">
+              <p className="nav-elegant text-gray-500 mb-6 tracking-wider">PROGRAMAÇÃO</p>
+              <h2 className="font-heading font-light text-gray-900">Nossos Cultos</h2>
             </div>
             
             {events.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                {events.map((event) => (
-                  <Card key={event.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 rounded-none border-none">
+              <div className="grid grid-cols-1 md:grid-cols-3 grid-elegant mb-20">
+                {events.map((event, index) => (
+                  <Card key={event.id} className={`card-elegant overflow-hidden fade-in stagger-${index + 1}`}>
                     {event.image_url && (
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-80 overflow-hidden">
                         <img 
                           src={event.image_url} 
                           alt={event.title} 
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover image-elegant"
                         />
                       </div>
                     )}
-                    <CardHeader className="p-8">
-                      <CardTitle className="font-heading text-2xl mb-4">{event.title}</CardTitle>
-                      <div className="flex items-center text-gray-600 mb-4 space-x-4">
+                    <CardHeader className="p-10">
+                      <CardTitle className="font-heading font-light text-2xl mb-6 text-gray-900">{event.title}</CardTitle>
+                      <div className="flex items-center text-gray-500 mb-6 space-x-6">
                         <div className="flex items-center">
-                          <Calendar className="mr-2 h-5 w-5" />
-                          <span>{event.day_of_week}</span>
+                          <Calendar className="mr-3 h-5 w-5" />
+                          <span className="text-elegant">{event.day_of_week}</span>
                         </div>
                         <div className="flex items-center">
-                          <Clock className="mr-2 h-5 w-5" />
-                          <span>{event.time}</span>
+                          <Clock className="mr-3 h-5 w-5" />
+                          <span className="text-elegant">{event.time}</span>
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="px-8 pb-8">
-                      <p className="text-gray-600 leading-relaxed">{event.description}</p>
+                    <CardContent className="px-10 pb-10">
+                      <p className="text-elegant text-gray-600">{event.description}</p>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             ) : (
-              <div className="text-center text-gray-600 mb-16">
-                <p className="text-lg">Nenhum evento agendado no momento. Volte em breve!</p>
+              <div className="text-center text-gray-600 mb-20">
+                <p className="text-elegant">Nenhum evento agendado no momento. Volte em breve!</p>
               </div>
             )}
             
-            <div className="text-center">
-              <Button size="lg" variant="outline" className="rounded-none px-12 py-4 text-sm tracking-[0.2em] font-medium border-2 border-black text-black hover:bg-black hover:text-white transition-all">
+            <div className="text-center fade-in stagger-4">
+              <button className="button-elegant text-gray-900 hover:bg-gray-900 hover:text-white">
                 TODOS OS EVENTOS
-              </Button>
+              </button>
             </div>
           </div>
         </section>

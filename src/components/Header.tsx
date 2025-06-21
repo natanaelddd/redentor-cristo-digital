@@ -28,31 +28,31 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
   const linksToUse = navLinks.length > 0 ? navLinks : defaultNavLinks;
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="container mx-auto px-8">
-        <div className="flex items-center justify-between py-6">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+      <div className="container-elegant">
+        <div className="flex items-center justify-between py-8">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {logoUrl ? (
-              <img src={logoUrl} alt="Logo" className="h-12 w-12 rounded-full object-cover" />
+              <img src={logoUrl} alt="Logo" className="h-14 w-14 rounded-full object-cover image-elegant" />
             ) : (
-              <div className="h-12 w-12 rounded-full bg-black flex items-center justify-center">
+              <div className="h-14 w-14 rounded-full bg-black flex items-center justify-center">
                 <span className="text-lg font-bold text-white">IC</span>
               </div>
             )}
-            <div className="font-bold text-lg font-heading">
+            <div className="font-heading font-light text-xl">
               Igreja Missionária<br />
-              <span className="text-sm">do Cristo Redentor</span>
+              <span className="text-sm opacity-70 tracking-wider">do Cristo Redentor</span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-12">
             {linksToUse.map((link) => (
               <a
                 key={link.title}
                 href={link.href}
-                className="text-sm font-medium tracking-[0.1em] hover:text-gray-600 transition-colors"
+                className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
               >
                 {link.title}
               </a>
@@ -60,11 +60,9 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
             {showAdminActions && onLogout && (
               <Button
                 onClick={onLogout}
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-2"
+                className="button-elegant text-gray-800 hover:bg-gray-800 hover:text-white"
               >
-                <LogOut className="h-4 w-4" />
+                <LogOut className="h-4 w-4 mr-2" />
                 Sair
               </Button>
             )}
@@ -72,7 +70,7 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -85,13 +83,13 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4">
+          <nav className="md:hidden py-8 border-t border-gray-100">
+            <div className="flex flex-col space-y-6">
               {linksToUse.map((link) => (
                 <a
                   key={link.title}
                   href={link.href}
-                  className="text-sm font-medium tracking-[0.1em] hover:text-gray-600 transition-colors"
+                  className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.title}
@@ -103,11 +101,9 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
                     onLogout();
                     setIsMobileMenuOpen(false);
                   }}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-2 w-fit"
+                  className="button-elegant text-gray-800 hover:bg-gray-800 hover:text-white w-fit"
                 >
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="h-4 w-4 mr-2" />
                   Sair
                 </Button>
               )}
