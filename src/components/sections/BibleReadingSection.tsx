@@ -13,7 +13,7 @@ export const BibleReadingSection = () => {
       id: 1,
       title: "As Cicatrizes e Marcas da Vida",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
-      category: "Mulheres",
+      category: "Pais",
       description: "Um plano focado na cura e restauração através da Palavra de Deus.",
       author: "Priscilla Shirer",
       duration: "7 dias"
@@ -22,7 +22,7 @@ export const BibleReadingSection = () => {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
       image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
-      category: "Mulheres",
+      category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
       duration: "5 dias"
@@ -31,7 +31,7 @@ export const BibleReadingSection = () => {
       id: 3,
       title: "Namoro Cristão",
       image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=2074&auto=format&fit=crop",
-      category: "Mulheres",
+      category: "Pais",
       description: "Princípios bíblicos para relacionamentos saudáveis e honrosos.",
       author: "Joshua Harris",
       duration: "6 dias"
@@ -40,7 +40,7 @@ export const BibleReadingSection = () => {
       id: 4,
       title: "O Silêncio que Cura",
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
-      category: "Homens",
+      category: "Novo na Fé",
       description: "Encontre paz e direção através da meditação e quietude com Deus.",
       author: "Max Lucado",
       duration: "10 dias"
@@ -49,7 +49,7 @@ export const BibleReadingSection = () => {
       id: 5,
       title: "Casais Abençoados Em Deus",
       image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop",
-      category: "Homens",
+      category: "Novo na Fé",
       description: "Fortaleça seu casamento com fundamentos cristãos sólidos.",
       author: "Gary Chapman",
       duration: "14 dias"
@@ -58,7 +58,7 @@ export const BibleReadingSection = () => {
       id: 6,
       title: "Em Quem Confiar?",
       image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2074&auto=format&fit=crop",
-      category: "Homens",
+      category: "Novo na Fé",
       description: "Desenvolva uma confiança inabalável em Deus em todas as circunstâncias.",
       author: "Charles Stanley",
       duration: "8 dias"
@@ -92,7 +92,7 @@ export const BibleReadingSection = () => {
     }
   ];
 
-  const categories = ["Mulheres", "Homens", "Juventude"];
+  const categories = ["Pais", "Novo na Fé", "Juventude"];
 
   const handlePlanClick = (planId: number) => {
     console.log('Navegando para plano:', planId);
