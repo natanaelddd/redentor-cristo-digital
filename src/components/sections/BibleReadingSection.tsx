@@ -1,102 +1,60 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Book, ArrowRight } from "lucide-react";
+import { Book, ArrowRight, Loader2 } from "lucide-react";
+import { useReadingPlans } from "@/hooks/useReadingPlans";
 
 export const BibleReadingSection = () => {
   const navigate = useNavigate();
-  
-  const readingPlans = [
-    {
-      id: 1,
-      title: "As Cicatrizes e Marcas da Vida",
-      image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop",
-      category: "Pais",
-      description: "Um plano focado na cura e restauração através da Palavra de Deus.",
-      author: "Priscilla Shirer",
-      duration: "7 dias"
-    },
-    {
-      id: 2,
-      title: "Propósito de Vida",
-      image: "https://images.unsplash.com/photo-1519452929597-4ef08f8c4ead?q=80&w=2070&auto=format&fit=crop",
-      category: "Pais",
-      description: "Descubra o plano de Deus para sua vida e viva com propósito divino.",
-      author: "Rick Warren",
-      duration: "7 dias"
-    },
-    {
-      id: 3,
-      title: "Namoro Cristão",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
-      category: "Pais",
-      description: "Princípios bíblicos para relacionamentos saudáveis e honrosos.",
-      author: "Joshua Harris",
-      duration: "6 dias"
-    },
-    {
-      id: 4,
-      title: "O Silêncio que Cura",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
-      category: "Novo na Fé",
-      description: "Encontre paz e direção através da meditação e quietude com Deus.",
-      author: "Max Lucado",
-      duration: "10 dias"
-    },
-    {
-      id: 5,
-      title: "Casais Abençoados Em Deus",
-      image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop",
-      category: "Novo na Fé",
-      description: "Fortaleça seu casamento com fundamentos cristãos sólidos.",
-      author: "Gary Chapman",
-      duration: "14 dias"
-    },
-    {
-      id: 6,
-      title: "Em Quem Confiar?",
-      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
-      category: "Novo na Fé",
-      description: "Desenvolva uma confiança inabalável em Deus em todas as circunstâncias.",
-      author: "Charles Stanley",
-      duration: "8 dias"
-    },
-    {
-      id: 7,
-      title: "O que Jesus Postaria?",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2039&auto=format&fit=crop",
-      category: "Juventude",
-      description: "Navegue nas redes sociais com sabedoria e propósito cristão.",
-      author: "Craig Groeschel",
-      duration: "5 dias"
-    },
-    {
-      id: 8,
-      title: "Amigos Verdadeiros",
-      image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?q=80&w=2070&auto=format&fit=crop",
-      category: "Juventude",
-      description: "Descubra o valor das amizades baseadas em princípios cristãos.",
-      author: "Francis Chan",
-      duration: "7 dias"
-    },
-    {
-      id: 9,
-      title: "Ar & Crescer",
-      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2049&auto=format&fit=crop",
-      category: "Juventude",
-      description: "Crescimento espiritual autêntico para a nova geração de cristãos.",
-      author: "Lecrae Moore",
-      duration: "12 dias"
-    }
-  ];
-
-  const categories = ["Pais", "Novo na Fé", "Juventude"];
+  const { data: readingPlans, isLoading, error } = useReadingPlans();
 
   const handlePlanClick = (planId: number) => {
     console.log('Navegando para plano:', planId);
     navigate(`/plano-leitura/${planId}`);
   };
+
+  if (isLoading) {
+    return (
+      <section id="planos-leitura" className="py-32 bg-gray-50">
+        <div className="container mx-auto px-8">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">CRESCIMENTO ESPIRITUAL</p>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 font-heading leading-tight">
+              Planos de Leitura Bíblica
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Cresça em sua jornada espiritual com planos de leitura bíblica estruturados e inspiradores.
+              Conecte-se com a Palavra de Deus de forma consistente e transformadora.
+            </p>
+          </div>
+          
+          <div className="flex justify-center items-center py-16">
+            <Loader2 className="h-8 w-8 animate-spin text-gray-500" />
+            <span className="ml-2 text-gray-600">Carregando planos de leitura...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    console.error('Erro ao carregar planos:', error);
+    return (
+      <section id="planos-leitura" className="py-32 bg-gray-50">
+        <div className="container mx-auto px-8">
+          <div className="text-center">
+            <Book className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Erro ao carregar planos</h2>
+            <p className="text-gray-600">Não foi possível carregar os planos de leitura. Tente novamente mais tarde.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const categories = ["Pais", "Novo na Fé", "Juventude"];
 
   return (
     <section id="planos-leitura" className="py-32 bg-gray-50">
@@ -113,13 +71,16 @@ export const BibleReadingSection = () => {
         </div>
 
         <div className="space-y-16 mb-12">
-          {categories.map((category) => (
-            <div key={category}>
-              <h3 className="text-3xl font-bold mb-8 text-center">{category}</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {readingPlans
-                  .filter((plan) => plan.category === category)
-                  .map((plan) => (
+          {categories.map((category) => {
+            const categoryPlans = readingPlans?.filter((plan) => plan.category === category) || [];
+            
+            if (categoryPlans.length === 0) return null;
+            
+            return (
+              <div key={category}>
+                <h3 className="text-3xl font-bold mb-8 text-center">{category}</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {categoryPlans.map((plan) => (
                     <Card 
                       key={plan.id} 
                       className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group border-0 shadow-md"
@@ -152,9 +113,10 @@ export const BibleReadingSection = () => {
                       </CardContent>
                     </Card>
                   ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center">

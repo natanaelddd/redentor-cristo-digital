@@ -282,6 +282,92 @@ export type Database = {
         }
         Relationships: []
       }
+      reading_plan_days: {
+        Row: {
+          content: string
+          created_at: string | null
+          day_number: number
+          id: number
+          passage: string
+          plan_id: number
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          day_number: number
+          id?: number
+          passage: string
+          plan_id: number
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          day_number?: number
+          id?: number
+          passage?: string
+          plan_id?: number
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reading_plan_days_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "reading_plan_details"
+            referencedColumns: ["plan_id"]
+          },
+        ]
+      }
+      reading_plan_details: {
+        Row: {
+          author: string | null
+          category: string
+          created_at: string | null
+          description: string | null
+          duration: string | null
+          id: number
+          image_url: string | null
+          is_active: boolean | null
+          order_position: number | null
+          plan_id: number
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author?: string | null
+          category: string
+          created_at?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: number
+          image_url?: string | null
+          is_active?: boolean | null
+          order_position?: number | null
+          plan_id: number
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author?: string | null
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: number
+          image_url?: string | null
+          is_active?: boolean | null
+          order_position?: number | null
+          plan_id?: number
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       reading_plans: {
         Row: {
           created_at: string
