@@ -12,71 +12,90 @@ export const BibleReadingSection = () => {
     {
       id: 1,
       title: "As Cicatrizes e Marcas da Vida",
-      image: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=2074&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
       category: "Mulheres",
-      description: "Um plano focado na cura e restauração através da Palavra."
+      description: "Um plano focado na cura e restauração através da Palavra de Deus.",
+      author: "Priscilla Shirer",
+      duration: "7 dias"
     },
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
       image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
       category: "Mulheres",
-      description: "Explore o poder do Espírito Santo em sua vida."
+      description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
+      author: "Beth Moore",
+      duration: "5 dias"
     },
     {
       id: 3,
       title: "Namoro Cristão",
       image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=2074&auto=format&fit=crop",
       category: "Mulheres",
-      description: "Princípios bíblicos para relacionamentos saudáveis."
+      description: "Princípios bíblicos para relacionamentos saudáveis e honrosos.",
+      author: "Joshua Harris",
+      duration: "6 dias"
     },
     {
       id: 4,
       title: "O Silêncio que Cura",
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
       category: "Homens",
-      description: "Encontre paz e direção através da meditação bíblica."
+      description: "Encontre paz e direção através da meditação e quietude com Deus.",
+      author: "Max Lucado",
+      duration: "10 dias"
     },
     {
       id: 5,
       title: "Casais Abençoados Em Deus",
       image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop",
       category: "Homens",
-      description: "Fortaleça seu casamento com princípios cristãos."
+      description: "Fortaleça seu casamento com fundamentos cristãos sólidos.",
+      author: "Gary Chapman",
+      duration: "14 dias"
     },
     {
       id: 6,
       title: "Em Quem Confiar?",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2074&auto=format&fit=crop",
       category: "Homens",
-      description: "Desenvolva uma confiança inabalável em Deus."
+      description: "Desenvolva uma confiança inabalável em Deus em todas as circunstâncias.",
+      author: "Charles Stanley",
+      duration: "8 dias"
     },
     {
       id: 7,
       title: "O que Jesus Postaria?",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2039&auto=format&fit=crop",
       category: "Juventude",
-      description: "Navegue nas redes sociais com sabedoria cristã."
+      description: "Navegue nas redes sociais com sabedoria e propósito cristão.",
+      author: "Craig Groeschel",
+      duration: "5 dias"
     },
     {
       id: 8,
       title: "Amigos Verdadeiros",
       image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
       category: "Juventude",
-      description: "Descubra o valor das amizades baseadas em Cristo."
+      description: "Descubra o valor das amizades baseadas em princípios cristãos.",
+      author: "Francis Chan",
+      duration: "7 dias"
     },
     {
       id: 9,
       title: "Ar & Crescer",
       image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2049&auto=format&fit=crop",
       category: "Juventude",
-      description: "Crescimento espiritual para a nova geração."
+      description: "Crescimento espiritual autêntico para a nova geração de cristãos.",
+      author: "Lecrae Moore",
+      duration: "12 dias"
     }
   ];
 
   const categories = ["Mulheres", "Homens", "Juventude"];
 
   const handlePlanClick = (planId: number) => {
+    console.log('Navegando para plano:', planId);
     navigate(`/plano-leitura/${planId}`);
   };
 
@@ -94,7 +113,6 @@ export const BibleReadingSection = () => {
           </p>
         </div>
 
-        {/* Cards dinâmicos de planos de leitura */}
         <div className="space-y-16 mb-12">
           {categories.map((category) => (
             <div key={category}>
@@ -105,7 +123,7 @@ export const BibleReadingSection = () => {
                   .map((plan) => (
                     <Card 
                       key={plan.id} 
-                      className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                      className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group border-0 shadow-md"
                       onClick={() => handlePlanClick(plan.id)}
                     >
                       <div className="relative h-48 overflow-hidden">
@@ -113,18 +131,24 @@ export const BibleReadingSection = () => {
                           src={plan.image}
                           alt={plan.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          onError={(e) => {
+                            console.log('Erro ao carregar imagem:', plan.image);
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop";
+                          }}
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                          <div className="p-4 text-white">
-                            <h4 className="font-bold text-lg mb-1">{plan.title}</h4>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
+                          <div className="p-4 text-white w-full">
+                            <h4 className="font-bold text-lg mb-1 line-clamp-2">{plan.title}</h4>
+                            <p className="text-sm opacity-90">{plan.duration}</p>
                           </div>
                         </div>
                       </div>
                       <CardContent className="p-4">
-                        <p className="text-gray-600 text-sm">{plan.description}</p>
-                        <div className="mt-3 flex items-center text-black text-sm font-medium">
-                          <span>Começar Leitura</span>
-                          <ArrowRight className="ml-2 h-4 w-4" />
+                        <p className="text-gray-600 text-sm mb-2 line-clamp-2">{plan.description}</p>
+                        <p className="text-xs text-gray-500 mb-3">Por {plan.author}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-black text-sm font-medium">Começar Leitura</span>
+                          <ArrowRight className="h-4 w-4 text-black group-hover:translate-x-1 transition-transform" />
                         </div>
                       </CardContent>
                     </Card>
