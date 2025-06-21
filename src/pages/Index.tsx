@@ -41,7 +41,7 @@ const Index = () => {
       if (navLinksError) throw new Error(navLinksError.message);
       if (eventsError) throw new Error(eventsError.message);
 
-      // Dados dos eventos atualizados com as novas imagens
+      // Dados dos eventos atualizados com a nova imagem para reunião de oração
       const staticEvents = [
         {
           id: '1',
@@ -62,7 +62,7 @@ const Index = () => {
         {
           id: '3',
           title: 'Reunião de Oração',
-          image_url: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop',
+          image_url: '/lovable-uploads/850f1e45-963d-4719-a2ac-7ba152fd8f99.png',
           day_of_week: 'Todas as Sextas',
           time: '20h',
           description: 'Um momento especial de oração e comunhão com Deus.'

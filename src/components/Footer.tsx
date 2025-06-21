@@ -28,9 +28,7 @@ export const Footer = ({ navLinks = [], siteContent = {} }: FooterProps) => {
               {siteContent.logo_url ? (
                 <img src={siteContent.logo_url} alt="Logo" className="h-12 w-12 rounded-full object-cover" />
               ) : (
-                <div className="h-12 w-12 rounded-full bg-white flex items-center justify-center">
-                  <span className="text-lg font-bold text-black">IC</span>
-                </div>
+                <img src="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" alt="Logo" className="h-12 w-12 rounded-full object-cover" />
               )}
               <span className="font-bold text-lg font-heading">
                 {siteContent.footer_logo_text || 'Igreja Missionária\ndo Cristo Redentor'}
