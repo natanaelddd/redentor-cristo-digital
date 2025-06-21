@@ -57,14 +57,6 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
                 {link.title}
               </a>
             ))}
-            {!showAdminActions && (
-              <a
-                href="/admin"
-                className="text-sm font-medium tracking-[0.1em] hover:text-gray-600 transition-colors"
-              >
-                ADMIN
-              </a>
-            )}
             {showAdminActions && onLogout && (
               <Button
                 onClick={onLogout}
@@ -105,15 +97,6 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
                   {link.title}
                 </a>
               ))}
-              {!showAdminActions && (
-                <a
-                  href="/admin"
-                  className="text-sm font-medium tracking-[0.1em] hover:text-gray-600 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  ADMIN
-                </a>
-              )}
               {showAdminActions && onLogout && (
                 <Button
                   onClick={() => {
