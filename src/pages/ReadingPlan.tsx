@@ -38,7 +38,7 @@ const ReadingPlan = () => {
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
-      image: "/lovable-uploads/a1e5e946-664e-44f1-b527-639019f7dd99.png",
+      image: "/lovable-uploads/7b23b556-cf79-4ce5-a893-4569b7ba6af1.png",
       category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
@@ -226,13 +226,21 @@ const ReadingPlan = () => {
       <main className="flex-grow py-16">
         <div className="container mx-auto px-8 max-w-4xl">
           <div className="mb-8">
-            <button 
+            <div 
               onClick={handleBackNavigation}
-              className="mb-6 inline-flex items-center gap-3 bg-black text-white hover:bg-gray-800 active:bg-gray-900 px-6 py-3 text-base font-medium transition-all duration-200 rounded-lg cursor-pointer min-h-[48px] focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className="mb-6 inline-flex items-center gap-3 bg-black text-white hover:bg-gray-800 active:bg-gray-900 px-6 py-3 text-base font-medium transition-all duration-200 rounded-lg cursor-pointer min-h-[48px] focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 select-none"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleBackNavigation();
+                }
+              }}
             >
               <ArrowLeft className="h-5 w-5 flex-shrink-0" />
               <span className="leading-none">Voltar aos Planos</span>
-            </button>
+            </div>
             
             <div className="relative h-64 rounded-lg overflow-hidden mb-6 shadow-lg">
               <img

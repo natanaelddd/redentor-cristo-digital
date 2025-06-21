@@ -20,7 +20,7 @@ export const BibleReadingSection = () => {
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
-      image: "/lovable-uploads/a1e5e946-664e-44f1-b527-639019f7dd99.png",
+      image: "/lovable-uploads/7b23b556-cf79-4ce5-a893-4569b7ba6af1.png",
       category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
