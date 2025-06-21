@@ -100,7 +100,7 @@ export const BibleReadingSection = () => {
   };
 
   return (
-    <section className="py-32 bg-gray-50">
+    <section id="planos-leitura" className="py-32 bg-gray-50">
       <div className="container mx-auto px-8">
         <div className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">CRESCIMENTO ESPIRITUAL</p>

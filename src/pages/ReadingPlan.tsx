@@ -11,7 +11,7 @@ const ReadingPlan = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Dados sincronizados com BibleReadingSection
+  // Dados sincronizados com BibleReadingSection - TODOS os 9 planos completos
   const readingPlans = [
     {
       id: 1,
@@ -63,6 +63,128 @@ const ReadingPlan = () => {
         { day: 5, title: "Honrando a Deus", passage: "1 Coríntios 10:31", content: "Portanto, quer comais, quer bebais ou façais qualquer outra coisa, fazei tudo para a glória de Deus." },
         { day: 6, title: "Preparação para o Casamento", passage: "Gênesis 2:24", content: "Deixará o homem pai e mãe e se unirá à sua mulher, e serão ambos uma carne." }
       ]
+    },
+    {
+      id: 4,
+      title: "O Silêncio que Cura",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+      category: "Homens",
+      description: "Encontre paz e direção através da meditação e quietude com Deus.",
+      author: "Max Lucado",
+      duration: "10 dias",
+      readings: [
+        { day: 1, title: "Aquietando a Alma", passage: "Salmos 46:10", content: "Aquietai-vos e sabei que eu sou Deus. No silêncio encontramos a presença divina." },
+        { day: 2, title: "Ouvindo a Voz de Deus", passage: "1 Reis 19:12", content: "E depois do terremoto um fogo, porém o Senhor não estava no fogo; e depois do fogo uma voz mansa e delicada." },
+        { day: 3, title: "Paz Interior", passage: "Filipenses 4:7", content: "E a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos sentimentos." },
+        { day: 4, title: "Meditação na Palavra", passage: "Salmos 1:2", content: "Antes tem o seu prazer na lei do Senhor, e na sua lei medita de dia e de noite." },
+        { day: 5, title: "Descanso em Deus", passage: "Mateus 11:28", content: "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei." },
+        { day: 6, title: "Confiança no Silêncio", passage: "Isaías 30:15", content: "Porque assim diz o Senhor Jeová, o Santo de Israel: Em vos converterdes e em sossegardes está a vossa salvação." },
+        { day: 7, title: "Adoração Silenciosa", passage: "Habacuque 2:20", content: "Mas o Senhor está no seu santo templo; cale-se diante dele toda a terra." },
+        { day: 8, title: "Esperando em Deus", passage: "Lamentações 3:26", content: "Bom é esperar, e em silêncio, pela salvação do Senhor." },
+        { day: 9, title: "Oração Contemplativa", passage: "Salmos 62:1", content: "A minha alma espera somente em Deus; dele vem a minha salvação." },
+        { day: 10, title: "Renovação no Silêncio", passage: "Isaías 40:31", content: "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias." }
+      ]
+    },
+    {
+      id: 5,
+      title: "Casais Abençoados Em Deus",
+      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop",
+      category: "Homens",
+      description: "Fortaleça seu casamento com fundamentos cristãos sólidos.",
+      author: "Gary Chapman",
+      duration: "14 dias",
+      readings: [
+        { day: 1, title: "O Design de Deus para o Casamento", passage: "Gênesis 2:24", content: "Deixará o homem pai e mãe e se unirá à sua mulher, e serão ambos uma carne." },
+        { day: 2, title: "Amor Sacrificial", passage: "Efésios 5:25", content: "Vós, maridos, amai vossas mulheres, como também Cristo amou a igreja." },
+        { day: 3, title: "Respeito Mútuo", passage: "Efésios 5:33", content: "Cada um de vós ame a sua própria mulher como a si mesmo, e a mulher reverencie o marido." },
+        { day: 4, title: "Comunicação com Amor", passage: "Efésios 4:15", content: "Antes, seguindo a verdade em amor, cresçamos em tudo naquele que é a cabeça, Cristo." },
+        { day: 5, title: "Perdão no Relacionamento", passage: "Colossenses 3:13", content: "Suportando-vos uns aos outros, e perdoando-vos uns aos outros." },
+        { day: 6, title: "Oração em Casal", passage: "Mateus 18:19", content: "Se dois de vós concordarem na terra acerca de qualquer coisa que pedirem, isso lhes será feito." },
+        { day: 7, title: "Servindo Juntos", passage: "Gálatas 5:13", content: "Servi-vos uns aos outros pelo amor." },
+        { day: 8, title: "Paciência e Bondade", passage: "1 Coríntios 13:4", content: "O amor é sofredor, é benigno; o amor não é invejoso." },
+        { day: 9, title: "Unidade em Cristo", passage: "Eclesiastes 4:12", content: "E, se alguém prevalecer contra um, os dois lhe resistirão; e o cordão de três dobras não se quebra." },
+        { day: 10, title: "Honrando o Cônjuge", passage: "1 Pedro 3:7", content: "Igualmente vós, maridos, coabitai com elas com entendimento, dando honra à mulher." },
+        { day: 11, title: "Crescimento Conjunto", passage: "Provérbios 27:17", content: "Ferro com ferro se aguça, assim o homem aguça o rosto do seu amigo." },
+        { day: 12, title: "Proteção do Relacionamento", passage: "Cantares 8:6", content: "Põe-me como selo sobre o teu coração, como selo sobre o teu braço." },
+        { day: 13, title: "Gratidão um pelo outro", passage: "1 Tessalonicenses 5:18", content: "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco." },
+        { day: 14, title: "Legado de Amor", passage: "Salmos 127:3", content: "Eis que os filhos são herança do Senhor, e o fruto do ventre o seu galardão." }
+      ]
+    },
+    {
+      id: 6,
+      title: "Em Quem Confiar?",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2074&auto=format&fit=crop",
+      category: "Homens",
+      description: "Desenvolva uma confiança inabalável em Deus em todas as circunstâncias.",
+      author: "Charles Stanley",
+      duration: "8 dias",
+      readings: [
+        { day: 1, title: "Confiança Absoluta", passage: "Provérbios 3:5-6", content: "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento." },
+        { day: 2, title: "Deus é Fiel", passage: "1 Coríntios 10:13", content: "Não veio sobre vós tentação, senão humana; mas fiel é Deus, que não vos deixará tentar." },
+        { day: 3, title: "Refúgio Seguro", passage: "Salmos 91:2", content: "Direi do Senhor: Ele é o meu Deus, o meu refúgio, a minha fortaleza, e nele confiarei." },
+        { day: 4, title: "Confiança em Tempos Difíceis", passage: "Salmos 23:4", content: "Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo." },
+        { day: 5, title: "Planos de Deus", passage: "Jeremias 29:11", content: "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz." },
+        { day: 6, title: "Força na Fraqueza", passage: "2 Coríntios 12:9", content: "A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza." },
+        { day: 7, title: "Paz que Excede", passage: "Filipenses 4:7", content: "E a paz de Deus, que excede todo o entendimento, guardará os vossos corações." },
+        { day: 8, title: "Esperança Segura", passage: "Hebreus 6:19", content: "A qual temos como âncora da alma, segura e firme, e que penetra até ao interior do véu." }
+      ]
+    },
+    {
+      id: 7,
+      title: "O que Jesus Postaria?",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2039&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Navegue nas redes sociais com sabedoria e propósito cristão.",
+      author: "Craig Groeschel",
+      duration: "5 dias",
+      readings: [
+        { day: 1, title: "Palavras que Edificam", passage: "Efésios 4:29", content: "Nenhuma palavra torpe saia da vossa boca, mas só a que for boa para promover a edificação." },
+        { day: 2, title: "Testemunho Digital", passage: "Mateus 5:16", content: "Assim resplandeça a vossa luz diante dos homens, para que vejam as vossas boas obras." },
+        { day: 3, title: "Verdade e Amor", passage: "Efésios 4:15", content: "Antes, seguindo a verdade em amor, cresçamos em tudo naquele que é a cabeça, Cristo." },
+        { day: 4, title: "Pensamentos Puros", passage: "Filipenses 4:8", content: "Quanto ao mais, irmãos, tudo o que é verdadeiro, tudo o que é honesto, tudo o que é justo." },
+        { day: 5, title: "Influência Positiva", passage: "1 Coríntios 10:31", content: "Portanto, quer comais, quer bebais, ou façais qualquer outra coisa, fazei tudo para glória de Deus." }
+      ]
+    },
+    {
+      id: 8,
+      title: "Amigos Verdadeiros",
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Descubra o valor das amizades baseadas em princípios cristãos.",
+      author: "Francis Chan",
+      duration: "7 dias",
+      readings: [
+        { day: 1, title: "Amor Verdadeiro", passage: "João 15:13", content: "Ninguém tem maior amor do que este, de dar alguém a sua vida pelos seus amigos." },
+        { day: 2, title: "Ferro Afia Ferro", passage: "Provérbios 27:17", content: "Ferro com ferro se aguça, assim o homem aguça o rosto do seu amigo." },
+        { day: 3, title: "Amizade Fiel", passage: "Provérbios 17:17", content: "Em todo o tempo ama o amigo e para a hora da angústia nasce o irmão." },
+        { day: 4, title: "Conselho Sábio", passage: "Provérbios 27:6", content: "Fiéis são as feridas do amigo, mas os beijos do inimigo são enganosos." },
+        { day: 5, title: "Companheirismo na Fé", passage: "Eclesiastes 4:12", content: "E, se alguém prevalecer contra um, os dois lhe resistirão; e o cordão de três dobras não se quebra." },
+        { day: 6, title: "Influências Positivas", passage: "1 Coríntios 15:33", content: "Não erreis: as más conversações corrompem os bons costumes." },
+        { day: 7, title: "Comunhão Cristã", passage: "Hebreus 10:24-25", content: "E consideremo-nos uns aos outros, para nos estimularmos ao amor e às boas obras." }
+      ]
+    },
+    {
+      id: 9,
+      title: "Ar & Crescer",
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2049&auto=format&fit=crop",
+      category: "Juventude",
+      description: "Crescimento espiritual autêntico para a nova geração de cristãos.",
+      author: "Lecrae Moore",
+      duration: "12 dias",
+      readings: [
+        { day: 1, title: "Nascido de Novo", passage: "João 3:3", content: "Jesus respondeu, e disse-lhe: Na verdade, na verdade te digo que aquele que não nascer de novo, não pode ver o reino de Deus." },
+        { day: 2, title: "Crescendo na Graça", passage: "2 Pedro 3:18", content: "Antes crescei na graça e conhecimento de nosso Senhor e Salvador, Jesus Cristo." },
+        { day: 3, title: "Renovação Diária", passage: "2 Coríntios 4:16", content: "Por isso não desfalecemos; mas, ainda que o nosso homem exterior se corrompa, o interior, contudo, se renova de dia em dia." },
+        { day: 4, title: "Transformação", passage: "Romanos 12:2", content: "E não sede conformados com este mundo, mas sede transformados pela renovação do vosso entendimento." },
+        { day: 5, title: "Frutos do Espírito", passage: "Gálatas 5:22-23", content: "Mas o fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança." },
+        { day: 6, title: "Maturidade Espiritual", passage: "1 Coríntios 13:11", content: "Quando eu era menino, falava como menino, sentia como menino, discorria como menino, mas, logo que cheguei a ser homem, acabei com as coisas de menino." },
+        { day: 7, title: "Fundamentos Sólidos", passage: "1 Coríntios 3:11", content: "Porque ninguém pode pôr outro fundamento além do que já está posto, o qual é Jesus Cristo." },
+        { day: 8, title: "Conhecendo a Deus", passage: "Jeremias 9:24", content: "Mas o que se gloriar glorie-se nisto: em me entender e me conhecer, que eu sou o Senhor." },
+        { day: 9, title: "Vida Abundante", passage: "João 10:10", content: "O ladrão não vem senão a roubar, a matar, e a destruir; eu vim para que tenham vida, e a tenham com abundância." },
+        { day: 10, title: "Perseverança", passage: "Filipenses 1:6", content: "Tendo por certo isto mesmo, que aquele que em vós começou a boa obra a aperfeiçoará até ao dia de Jesus Cristo." },
+        { day: 11, title: "Propósito Divino", passage: "Efésios 2:10", content: "Porque somos feitura sua, criados em Cristo Jesus para as boas obras, as quais Deus preparou para que andássemos nelas." },
+        { day: 12, title: "Corrida da Fé", passage: "1 Coríntios 9:24", content: "Não sabeis vós que os que correm no estádio, todos, na verdade, correm, mas um só leva o prêmio? Correi de tal maneira que o alcanceis." }
+      ]
     }
   ];
 
@@ -71,11 +193,8 @@ const ReadingPlan = () => {
   const handleBackNavigation = () => {
     console.log('Voltando para home');
     navigate("/#planos-leitura");
-    // Scroll para a seção de planos após um pequeno delay
     setTimeout(() => {
-      const element = document.getElementById('planos-leitura') || 
-                     document.querySelector('[data-section="planos-leitura"]') ||
-                     document.querySelector('.bible-reading-section');
+      const element = document.getElementById('planos-leitura');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
@@ -102,7 +221,6 @@ const ReadingPlan = () => {
       <Header logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" />
       <main className="flex-grow py-16">
         <div className="container mx-auto px-8 max-w-4xl">
-          {/* Header do plano */}
           <div className="mb-8">
             <Button 
               variant="ghost" 
@@ -147,10 +265,9 @@ const ReadingPlan = () => {
             </div>
           </div>
 
-          {/* Leituras diárias */}
           <div className="space-y-4">
             <h2 className="text-2xl font-bold mb-6">Leituras Diárias</h2>
-            {plan.readings.map((reading) => (
+            {plan.readings?.map((reading) => (
               <Card key={reading.day} className="hover:shadow-md transition-shadow border-l-4 border-l-black">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
@@ -175,7 +292,6 @@ const ReadingPlan = () => {
             ))}
           </div>
 
-          {/* Call to action */}
           <div className="mt-12 text-center">
             <Card className="bg-gradient-to-r from-gray-50 to-gray-100 border-0 shadow-lg">
               <CardContent className="p-8">
