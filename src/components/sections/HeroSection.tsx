@@ -70,20 +70,6 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
             <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
             <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
           </div>
-
-          {/* Curved Shape Top */}
-          <div className="absolute top-0 left-0 w-full h-32 bg-white">
-            <svg className="absolute bottom-0 w-full h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
-              <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,0 Z" fill="url(#gradient1)"/>
-              <defs>
-                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#6366f1"/>
-                  <stop offset="50%" stopColor="#8b5cf6"/>
-                  <stop offset="100%" stopColor="#ec4899"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
           
           <div className="relative container mx-auto px-8 w-full flex items-center justify-center min-h-screen z-10">
             <Carousel setApi={setApi} className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
