@@ -1,5 +1,7 @@
 
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Heart, Users, BookOpen } from "lucide-react";
 
 type SiteContent = {
   [key: string]: string | undefined;
@@ -10,84 +12,133 @@ interface AboutSectionProps {
 }
 
 export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
-    return (
-        <section id="sobre" className="section-elegant bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-          {/* Decorative shapes */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-50 -translate-y-48 translate-x-48"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-100 to-indigo-100 rounded-full opacity-50 translate-y-32 -translate-x-32"></div>
-          
-          {/* Curved top */}
-          <div className="absolute top-0 left-0 w-full">
-            <svg className="w-full h-24" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
-              <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,0 Z" fill="white"/>
-            </svg>
+  return (
+    <section id="sobre" className="relative py-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="container mx-auto px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Content */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <h2 className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight">
+                Nossa{" "}
+                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  História
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                {siteContent?.about_description || 
+                  "Somos uma comunidade de fé comprometida em viver e compartilhar o amor de Cristo. Nosso propósito é ser uma igreja que transforma vidas através da palavra de Deus, do amor genuíno e do serviço ao próximo."}
+              </p>
+              <p className="text-lg text-gray-500 leading-relaxed">
+                Acreditamos que cada pessoa é única e especial aos olhos de Deus, e nossa missão é criar um ambiente onde todos possam crescer espiritualmente e encontrar seu propósito em Cristo.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 rounded-full px-8 py-4 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Saiba Mais Sobre Nós
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-gray-300 text-gray-700 hover:border-purple-600 hover:text-purple-600 rounded-full px-8 py-4 text-base font-medium transition-all duration-300"
+              >
+                Nossa Visão
+              </Button>
+            </div>
           </div>
 
-          <div className="container-elegant relative z-10 pt-32">
-            <div className="grid md:grid-cols-2 gap-20 items-center">
-              <div className="fade-in relative">
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                  <img 
-                    src="/lovable-uploads/7e64d619-a794-49be-a483-0f550f7c02a0.png" 
-                    alt="Igreja Missionária do Cristo Redentor - Ministério de Louvor" 
-                    className="w-full h-[700px] object-cover image-elegant transform hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          {/* Image */}
+          <div className="relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              <img
+                src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png"
+                alt="Nossa Igreja"
+                className="w-full h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
+            
+            {/* Floating card */}
+            <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                  <Heart className="h-6 w-6 text-white" />
                 </div>
-                {/* Floating card */}
-                <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">500+</div>
-                    <div className="text-sm text-gray-600 font-medium">Membros Ativos</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="text-left space-y-12 fade-in stagger-2">
-                <div className="space-y-6">
-                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full">
-                    <p className="text-sm uppercase tracking-wider text-purple-700 font-medium">SOBRE NÓS</p>
-                  </div>
-                  <h2 className="font-heading font-light text-gray-900 text-5xl leading-tight">
-                    {siteContent.about_us_heading || 'Nossa Igreja'}
-                  </h2>
-                  <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
-                </div>
-                
-                <div className="space-y-8">
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {siteContent.about_us_p1 || 'A Igreja Missionária do Cristo Redentor está localizada no bairro Cristo Redentor em Ribeirão Preto, sendo um farol de fé e esperança para nossa comunidade.'}
-                  </p>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {siteContent.about_us_p2 || 'Nossa missão é levar o amor de Cristo a todas as pessoas, oferecendo um ambiente acolhedor onde cada pessoa pode crescer em sua jornada espiritual e encontrar propósito através da palavra de Deus.'}
-                  </p>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-8 pt-8">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">15+</div>
-                    <div className="text-sm text-gray-600">Anos de Ministério</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">3</div>
-                    <div className="text-sm text-gray-600">Cultos por Semana</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">50+</div>
-                    <div className="text-sm text-gray-600">Voluntários</div>
-                  </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Amor & Comunhão</p>
+                  <p className="text-sm text-gray-500">Nossa essência</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Curved bottom */}
-          <div className="absolute bottom-0 left-0 w-full">
-            <svg className="w-full h-24" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
-              <path d="M0,120 C150,20 350,120 600,70 C850,20 1050,120 1200,70 L1200,120 Z" fill="white"/>
-            </svg>
+        {/* Values section */}
+        <div className="mt-32">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-bold font-heading text-gray-900 mb-6">
+              Nossos{" "}
+              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Valores
+              </span>
+            </h3>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Princípios que norteiam nossa caminhada e definem quem somos como comunidade de fé.
+            </p>
           </div>
-        </section>
-    );
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Heart className="h-8 w-8 text-purple-600" />
+              </div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-4">Amor</h4>
+              <p className="text-gray-600 leading-relaxed">
+                O amor de Cristo é o centro de tudo o que fazemos. Amamos a Deus acima de tudo e ao próximo como a nós mesmos.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="h-8 w-8 text-purple-600" />
+              </div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-4">Comunidade</h4>
+              <p className="text-gray-600 leading-relaxed">
+                Somos uma família unida pela fé, onde cada membro é valorizado e tem seu lugar especial no corpo de Cristo.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <BookOpen className="h-8 w-8 text-purple-600" />
+              </div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-4">Palavra</h4>
+              <p className="text-gray-600 leading-relaxed">
+                A Bíblia é nossa base e fundamento. Buscamos viver de acordo com os ensinamentos de Jesus Cristo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Curved shape at bottom */}
+      <div className="absolute bottom-0 left-0 w-full">
+        <svg className="w-full h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
+          <path d="M0,120 C150,20 350,120 600,70 C850,20 1050,120 1200,70 L1200,120 Z" fill="white"/>
+        </svg>
+      </div>
+    </section>
+  );
 };
