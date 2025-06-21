@@ -1,10 +1,13 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Book, ArrowRight } from "lucide-react";
 
 export const BibleReadingSection = () => {
+  const navigate = useNavigate();
+  
   const readingPlans = [
     {
       id: 1,
@@ -73,6 +76,10 @@ export const BibleReadingSection = () => {
 
   const categories = ["Mulheres", "Homens", "Juventude"];
 
+  const handlePlanClick = (planId: number) => {
+    navigate(`/plano-leitura/${planId}`);
+  };
+
   return (
     <section className="py-32 bg-gray-50">
       <div className="container mx-auto px-8">
@@ -96,7 +103,11 @@ export const BibleReadingSection = () => {
                 {readingPlans
                   .filter((plan) => plan.category === category)
                   .map((plan) => (
-                    <Card key={plan.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                    <Card 
+                      key={plan.id} 
+                      className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                      onClick={() => handlePlanClick(plan.id)}
+                    >
                       <div className="relative h-48 overflow-hidden">
                         <img
                           src={plan.image}
@@ -111,6 +122,10 @@ export const BibleReadingSection = () => {
                       </div>
                       <CardContent className="p-4">
                         <p className="text-gray-600 text-sm">{plan.description}</p>
+                        <div className="mt-3 flex items-center text-black text-sm font-medium">
+                          <span>Começar Leitura</span>
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
