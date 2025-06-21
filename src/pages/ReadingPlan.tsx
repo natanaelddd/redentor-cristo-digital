@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,12 +11,17 @@ const ReadingPlan = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Scroll para o topo quando o componente carrega
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Dados sincronizados com BibleReadingSection - TODOS os 9 planos completos
   const readingPlans = [
     {
       id: 1,
       title: "As Cicatrizes e Marcas da Vida",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop",
       category: "Pais",
       description: "Um plano focado na cura e restauração através da Palavra de Deus.",
       author: "Priscilla Shirer",
@@ -34,7 +39,7 @@ const ReadingPlan = () => {
     {
       id: 2,
       title: "Pentecostes: O Fogo que Permanece",
-      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1518066431052-491bbf4f1ef6?q=80&w=2070&auto=format&fit=crop",
       category: "Pais",
       description: "Explore o poder transformador do Espírito Santo em sua jornada de fé.",
       author: "Beth Moore",
@@ -50,7 +55,7 @@ const ReadingPlan = () => {
     {
       id: 3,
       title: "Namoro Cristão",
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=2074&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
       category: "Pais",
       description: "Princípios bíblicos para relacionamentos saudáveis e honrosos.",
       author: "Joshua Harris",
@@ -67,7 +72,7 @@ const ReadingPlan = () => {
     {
       id: 4,
       title: "O Silêncio que Cura",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
       category: "Novo na Fé",
       description: "Encontre paz e direção através da meditação e quietude com Deus.",
       author: "Max Lucado",
@@ -88,7 +93,7 @@ const ReadingPlan = () => {
     {
       id: 5,
       title: "Casais Abençoados Em Deus",
-      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop",
       category: "Novo na Fé",
       description: "Fortaleça seu casamento com fundamentos cristãos sólidos.",
       author: "Gary Chapman",
@@ -113,7 +118,7 @@ const ReadingPlan = () => {
     {
       id: 6,
       title: "Em Quem Confiar?",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2074&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop",
       category: "Novo na Fé",
       description: "Desenvolva uma confiança inabalável em Deus em todas as circunstâncias.",
       author: "Charles Stanley",
@@ -148,7 +153,7 @@ const ReadingPlan = () => {
     {
       id: 8,
       title: "Amigos Verdadeiros",
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?q=80&w=2070&auto=format&fit=crop",
       category: "Juventude",
       description: "Descubra o valor das amizades baseadas em princípios cristãos.",
       author: "Francis Chan",
@@ -223,12 +228,11 @@ const ReadingPlan = () => {
         <div className="container mx-auto px-8 max-w-4xl">
           <div className="mb-8">
             <Button 
-              variant="outline" 
               onClick={handleBackNavigation}
-              className="mb-6 px-6 py-3 text-base font-medium border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200 flex items-center gap-2"
+              className="mb-6 bg-black text-white hover:bg-gray-800 px-6 py-3 text-base font-medium transition-all duration-200 rounded-lg flex items-center gap-3 min-h-[48px] w-auto"
             >
-              <ArrowLeft className="h-5 w-5" />
-              Voltar aos Planos
+              <ArrowLeft className="h-5 w-5 flex-shrink-0" />
+              <span className="leading-none">Voltar aos Planos</span>
             </Button>
             
             <div className="relative h-64 rounded-lg overflow-hidden mb-6 shadow-lg">
