@@ -16,9 +16,9 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
     <section id="sobre" className="relative py-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="container mx-auto px-8 relative z-10">
@@ -28,7 +28,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
             <div className="space-y-6">
               <h2 className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight">
                 Nossa{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   História
                 </span>
               </h2>
@@ -44,7 +44,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 rounded-full px-8 py-4 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white border-0 rounded-full px-8 py-4 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Saiba Mais Sobre Nós
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -52,7 +52,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-2 border-gray-300 text-gray-700 hover:border-purple-600 hover:text-purple-600 rounded-full px-8 py-4 text-base font-medium transition-all duration-300"
+                className="border-2 border-gray-300 text-gray-700 hover:border-orange-600 hover:text-orange-600 rounded-full px-8 py-4 text-base font-medium transition-all duration-300"
               >
                 Nossa Visão
               </Button>
@@ -63,7 +63,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <img
-                src="/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png"
+                src="/lovable-uploads/326e9cbc-61c9-469a-a8fe-76d7ead588bd.png"
                 alt="Nossa Igreja"
                 className="w-full h-96 object-cover"
               />
@@ -73,7 +73,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
             {/* Floating card */}
             <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center">
                   <Heart className="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -90,7 +90,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold font-heading text-gray-900 mb-6">
               Nossos{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 Valores
               </span>
             </h3>
@@ -100,9 +100,9 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Heart className="h-8 w-8 text-purple-600" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-orange-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Heart className="h-8 w-8 text-orange-600" />
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-4">Amor</h4>
               <p className="text-gray-600 leading-relaxed">
@@ -110,9 +110,9 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="h-8 w-8 text-purple-600" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-orange-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="h-8 w-8 text-orange-600" />
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-4">Comunidade</h4>
               <p className="text-gray-600 leading-relaxed">
@@ -120,9 +120,9 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <BookOpen className="h-8 w-8 text-purple-600" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-orange-200 group">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <BookOpen className="h-8 w-8 text-orange-600" />
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-4">Palavra</h4>
               <p className="text-gray-600 leading-relaxed">

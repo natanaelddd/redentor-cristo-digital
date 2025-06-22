@@ -62,14 +62,11 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     return (
         <section
           id="#"
-          className="relative min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white flex items-center justify-center overflow-hidden"
+          className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
+          style={{
+            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png')"
+          }}
         >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-          </div>
           
           <div className="relative container mx-auto px-8 w-full flex items-center justify-center min-h-screen z-10">
             <Carousel setApi={setApi} className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
@@ -79,14 +76,14 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                     <div className="p-8">
                       <div className="bg-white/10 backdrop-blur-md text-white p-16 rounded-3xl shadow-2xl border border-white/20 relative text-center overflow-hidden">
                         {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full opacity-20 -translate-y-16 translate-x-16"></div>
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-400 to-purple-400 rounded-full opacity-20 translate-y-12 -translate-x-12"></div>
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-400 to-red-400 rounded-full opacity-20 -translate-y-16 translate-x-16"></div>
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-400 to-teal-400 rounded-full opacity-20 translate-y-12 -translate-x-12"></div>
                         
                         <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-8 font-medium">{item.category}</p>
                         <h1 className="text-6xl md:text-7xl font-bold font-heading mb-10 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{item.title}</h1>
                         <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">{item.description}</p>
                         
-                        <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 rounded-full px-12 py-6 text-lg tracking-[0.1em] font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <Button size="lg" className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 rounded-full px-12 py-6 text-lg tracking-[0.1em] font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                           {item.button_text}
                           <ArrowRight className="ml-3 h-5 w-5" />
                         </Button>
@@ -135,7 +132,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           {/* Sunday Services Bar */}
           <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md text-white py-6 px-8 flex justify-between items-center z-20 text-sm border-t border-white/10">
             <div className="flex items-center gap-8 uppercase font-medium tracking-wider">
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold">CULTOS DE DOMINGO</span>
+              <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">CULTOS DE DOMINGO</span>
               <div className="hidden md:flex items-center gap-8">
                   <span className="text-gray-400">|</span>
                   <span>19H</span>
@@ -145,7 +142,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                   <span>SEXTA - ORAÇÃO - 20H</span>
               </div>
               <span className="text-gray-400">|</span>
-              <a href="#" className="flex items-center gap-2 hover:text-purple-300 transition-colors">
+              <a href="#" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
                 <span>ASSISTIR ONLINE</span>
                 <ArrowRight className="h-4 w-4" />
               </a>
@@ -164,11 +161,11 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
             </div>
 
             <div className="flex items-center gap-4">
-              <a href="#sobre" className="hidden lg:flex items-center gap-2 uppercase font-medium tracking-wider hover:text-purple-300 transition-colors">
+              <a href="#sobre" className="hidden lg:flex items-center gap-2 uppercase font-medium tracking-wider hover:text-orange-300 transition-colors">
                 <span>Rolar para baixo</span>
                 <ArrowDown className="h-4 w-4" />
               </a>
-              <Button size="icon" className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 w-12 h-12 border-0 shadow-lg">
+              <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 w-12 h-12 border-0 shadow-lg">
                 <MessageCircle className="h-6 w-6" />
               </Button>
             </div>
