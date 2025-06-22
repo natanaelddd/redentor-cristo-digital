@@ -19,10 +19,10 @@ interface EventsSectionProps {
 
 export const EventsSection = ({ events = [] }: EventsSectionProps) => {
     return (
-        <section id="eventos" className="section-elegant bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
+        <section id="eventos" className="section-elegant bg-gradient-to-br from-orange-50 via-white to-red-50 relative overflow-hidden">
           {/* Background decorations */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-30"></div>
-          <div className="absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-br from-indigo-200 to-blue-200 rounded-full opacity-30"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-30"></div>
+          <div className="absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-br from-red-200 to-orange-200 rounded-full opacity-30"></div>
           
           {/* Curved top */}
           <div className="absolute top-0 left-0 w-full">
@@ -33,11 +33,11 @@ export const EventsSection = ({ events = [] }: EventsSectionProps) => {
 
           <div className="container-elegant relative z-10 pt-32">
             <div className="text-center mb-20 fade-in">
-              <div className="inline-block px-6 py-3 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full mb-6">
-                <p className="text-sm uppercase tracking-wider text-purple-700 font-medium">PROGRAMAÇÃO</p>
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-full mb-6">
+                <p className="text-sm uppercase tracking-wider text-orange-700 font-medium">PROGRAMAÇÃO</p>
               </div>
               <h2 className="font-heading font-light text-gray-900 text-5xl mb-6">Nossos Cultos</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mx-auto"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-full mx-auto"></div>
             </div>
             
             {events.length > 0 ? (
@@ -57,20 +57,20 @@ export const EventsSection = ({ events = [] }: EventsSectionProps) => {
                       )}
                       
                       <div className="p-8">
-                        <h3 className="font-heading font-medium text-2xl mb-6 text-gray-900 group-hover:text-purple-600 transition-colors">
+                        <h3 className="font-heading font-medium text-2xl mb-6 text-gray-900 group-hover:text-orange-600 transition-colors">
                           {event.title}
                         </h3>
                         
                         <div className="flex flex-col gap-4 mb-6">
                           <div className="flex items-center text-gray-600">
-                            <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                              <Calendar className="h-5 w-5 text-purple-600" />
+                            <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                              <Calendar className="h-5 w-5 text-orange-600" />
                             </div>
                             <span className="font-medium">{event.day_of_week}</span>
                           </div>
                           <div className="flex items-center text-gray-600">
-                            <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-                              <Clock className="h-5 w-5 text-pink-600" />
+                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                              <Clock className="h-5 w-5 text-red-600" />
                             </div>
                             <span className="font-medium">{event.time}</span>
                           </div>
@@ -78,7 +78,7 @@ export const EventsSection = ({ events = [] }: EventsSectionProps) => {
                         
                         <p className="text-gray-600 leading-relaxed mb-6">{event.description}</p>
                         
-                        <button className="flex items-center text-purple-600 font-medium hover:text-purple-700 transition-colors group-hover:translate-x-2 duration-300">
+                        <button className="flex items-center text-orange-600 font-medium hover:text-orange-700 transition-colors group-hover:translate-x-2 duration-300">
                           Saiba mais
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </button>
@@ -89,15 +89,15 @@ export const EventsSection = ({ events = [] }: EventsSectionProps) => {
               </div>
             ) : (
               <div className="text-center text-gray-600 mb-20 bg-white rounded-3xl p-16 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Calendar className="h-8 w-8 text-purple-600" />
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Calendar className="h-8 w-8 text-orange-600" />
                 </div>
                 <p className="text-lg">Nenhum evento agendado no momento. Volte em breve!</p>
               </div>
             )}
             
             <div className="text-center fade-in stagger-4">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 rounded-full font-medium tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-12 py-4 rounded-full font-medium tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                 TODOS OS EVENTOS
                 <ArrowRight className="ml-3 h-5 w-5 inline" />
               </button>

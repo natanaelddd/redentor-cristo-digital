@@ -4,10 +4,10 @@ import { MapPin, Church, Phone, Clock, Mail, ArrowRight } from "lucide-react";
 
 export const ContactSection = () => {
     return (
-        <section id="contato" className="py-32 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
+        <section id="contato" className="py-32 bg-gradient-to-br from-white to-orange-50 relative overflow-hidden">
           {/* Background decorations */}
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 -translate-y-48 -translate-x-48"></div>
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tr from-indigo-100 to-blue-100 rounded-full opacity-30 translate-y-32 translate-x-32"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-100 to-red-100 rounded-full opacity-30 -translate-y-48 -translate-x-48"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tr from-red-100 to-orange-100 rounded-full opacity-30 translate-y-32 translate-x-32"></div>
           
           {/* Curved top */}
           <div className="absolute top-0 left-0 w-full">
@@ -18,11 +18,11 @@ export const ContactSection = () => {
 
           <div className="container mx-auto px-8 relative z-10 pt-20">
             <div className="text-center mb-20">
-              <div className="inline-block px-6 py-3 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full mb-6">
-                <p className="text-sm uppercase tracking-wider text-purple-700 font-medium">LOCALIZAÇÃO</p>
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-full mb-6">
+                <p className="text-sm uppercase tracking-wider text-orange-700 font-medium">LOCALIZAÇÃO</p>
               </div>
               <h2 className="text-5xl md:text-6xl font-bold font-heading text-gray-900 mb-6">Venha nos Visitar</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mx-auto"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-full mx-auto"></div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -43,7 +43,7 @@ export const ContactSection = () => {
                 {/* Floating location card */}
                 <div className="absolute -bottom-8 left-8 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -62,11 +62,11 @@ export const ContactSection = () => {
                 <div className="space-y-8">
                   <div className="group">
                     <div className="flex items-start space-x-6 p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                      <div className="w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-14 h-14 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                         <MapPin className="h-7 w-7 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-purple-600 transition-colors">Endereço</h4>
+                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-orange-600 transition-colors">Endereço</h4>
                         <p className="text-gray-600 leading-relaxed">
                           Av. Pedro Abrahão Alem Neto, 520<br />
                           Cristo Redentor - Ribeirão Preto, SP<br />
@@ -78,11 +78,11 @@ export const ContactSection = () => {
                   
                   <div className="group">
                     <div className="flex items-start space-x-6 p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                      <div className="w-14 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-14 h-14 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                         <Clock className="h-7 w-7 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-purple-600 transition-colors">Horários dos Cultos</h4>
+                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-orange-600 transition-colors">Horários dos Cultos</h4>
                         <p className="text-gray-600 leading-relaxed">
                           Domingos: 9h e 19h<br />
                           Quartas: 20h (Estudo Bíblico)<br />
@@ -94,11 +94,11 @@ export const ContactSection = () => {
                   
                   <div className="group">
                     <div className="flex items-start space-x-6 p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                      <div className="w-14 h-14 bg-gradient-to-r from-pink-600 to-rose-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-14 h-14 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                         <Church className="h-7 w-7 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-purple-600 transition-colors">Nossa Missão</h4>
+                        <h4 className="font-semibold text-lg mb-3 text-gray-900 group-hover:text-orange-600 transition-colors">Nossa Missão</h4>
                         <p className="text-gray-600 leading-relaxed">
                           Levando o amor de Cristo para a comunidade do Cristo Redentor e região, 
                           oferecendo um ambiente de fé, esperança e transformação.
@@ -110,7 +110,7 @@ export const ContactSection = () => {
 
                 {/* CTA Button */}
                 <div className="pt-8">
-                  <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full font-medium tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
+                  <button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-full font-medium tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
                     Entre em Contato
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </button>
