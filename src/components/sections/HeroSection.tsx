@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
@@ -32,6 +33,20 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = React.useState(0);
     const [count, setCount] = React.useState(0);
 
+    // Array de imagens para o fundo dinâmico
+    const backgroundImages = [
+      "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=3880&q=80", // blue starry night
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3506&q=80", // mountain hit by sun rays
+      "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&auto=format&fit=crop&w=4368&q=80", // forest heat by sunbeam
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=7360&q=80"  // body of water surrounded by trees
+    ];
+
+    // Seleciona uma imagem aleatória a cada renderização
+    const [selectedImage] = React.useState(() => {
+      const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+      return backgroundImages[randomIndex];
+    });
+
     React.useEffect(() => {
         if (!api) {
         return;
@@ -63,7 +78,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           id="#"
           className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=3880&q=80')"
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('${selectedImage}')`
           }}
         >
           
