@@ -68,33 +68,33 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           }}
         >
           
-          <div className="relative container mx-auto px-8 w-full flex items-center justify-center min-h-screen z-10">
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center min-h-screen z-10">
             <Carousel setApi={setApi} className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
               <CarouselContent>
                 {slidesToShow.map((item) => (
                   <CarouselItem key={item.id}>
-                    <div className="p-8">
-                      <div className="bg-white/10 backdrop-blur-md text-white p-16 rounded-3xl shadow-2xl border border-white/20 relative text-center overflow-hidden">
+                    <div className="p-4 sm:p-6 lg:p-8">
+                      <div className="bg-white/10 backdrop-blur-md text-white p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 relative text-center overflow-hidden">
                         {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-400 to-red-400 rounded-full opacity-20 -translate-y-16 translate-x-16"></div>
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-400 to-teal-400 rounded-full opacity-20 translate-y-12 -translate-x-12"></div>
+                        <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-400 to-red-400 rounded-full opacity-20 -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
+                        <div className="absolute bottom-0 left-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-tr from-blue-400 to-teal-400 rounded-full opacity-20 translate-y-10 -translate-x-10 sm:translate-y-12 sm:-translate-x-12"></div>
                         
-                        <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-8 font-medium">{item.category}</p>
-                        <h1 className="text-6xl md:text-7xl font-bold font-heading mb-10 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{item.title}</h1>
-                        <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">{item.description}</p>
+                        <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/80 mb-6 sm:mb-8 font-medium">{item.category}</p>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading mb-8 sm:mb-10 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{item.title}</h1>
+                        <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4">{item.description}</p>
                         
-                        <Button size="lg" className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 rounded-full px-12 py-6 text-lg tracking-[0.1em] font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <Button size="lg" className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 rounded-full px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg tracking-[0.1em] font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                           {item.button_text}
-                          <ArrowRight className="ml-3 h-5 w-5" />
+                          <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5" />
                         </Button>
                         
                         {/* Navigation dots */}
-                        <div className="flex justify-center gap-3 mt-12">
+                        <div className="flex justify-center gap-2 sm:gap-3 mt-8 sm:mt-12">
                           {Array.from({ length: count }).map((_, i) => (
                             <button
                               key={i}
                               onClick={() => api?.scrollTo(i)}
-                              className={`h-3 w-3 rounded-full transition-all duration-300 ${current === i ? 'bg-white w-10 shadow-lg' : 'bg-white/40 hover:bg-white/60'}`}
+                              className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-all duration-300 ${current === i ? 'bg-white w-6 sm:w-10 shadow-lg' : 'bg-white/40 hover:bg-white/60'}`}
                             >
                               <span className="sr-only">Slide {i + 1}</span>
                             </button>
@@ -106,33 +106,33 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                 ))}
               </CarouselContent>
               
-              {/* Custom Navigation Arrows */}
+              {/* Custom Navigation Arrows - Hidden on mobile */}
               <button 
                 onClick={() => api?.scrollPrev()}
-                className="absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 flex items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
+                className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
               >
-                <ChevronLeft className="h-6 w-6 text-white" />
+                <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
               </button>
               <button 
                 onClick={() => api?.scrollNext()}
-                className="absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 flex items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
+                className="hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
               >
-                <ChevronRight className="h-6 w-6 text-white" />
+                <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
               </button>
             </Carousel>
           </div>
 
           {/* Curved Shape Bottom */}
           <div className="absolute bottom-0 left-0 w-full">
-            <svg className="w-full h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
+            <svg className="w-full h-24 sm:h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
               <path d="M0,120 C150,20 350,120 600,70 C850,20 1050,120 1200,70 L1200,120 Z" fill="white"/>
             </svg>
           </div>
 
-          {/* Sunday Services Bar */}
-          <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md text-white py-6 px-8 flex justify-between items-center z-20 text-sm border-t border-white/10">
-            <div className="flex items-center gap-8 uppercase font-medium tracking-wider">
-              <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">CULTOS DE DOMINGO</span>
+          {/* Sunday Services Bar - Responsive */}
+          <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md text-white py-4 sm:py-6 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center z-20 text-xs sm:text-sm border-t border-white/10 gap-4 sm:gap-0">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 uppercase font-medium tracking-wider text-center sm:text-left">
+              <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold text-sm sm:text-base">CULTOS DE DOMINGO</span>
               <div className="hidden md:flex items-center gap-8">
                   <span className="text-gray-400">|</span>
                   <span>19H</span>
@@ -141,14 +141,21 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                   <span className="text-gray-400">|</span>
                   <span>SEXTA - ORAÇÃO - 20H</span>
               </div>
-              <span className="text-gray-400">|</span>
-              <a href="#" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
+              <div className="flex md:hidden items-center gap-4 text-xs">
+                <span>DOM 19H</span>
+                <span className="text-gray-400">|</span>
+                <span>QUA 20H</span>
+                <span className="text-gray-400">|</span>
+                <span>SEX 20H</span>
+              </div>
+              <span className="hidden sm:inline text-gray-400">|</span>
+              <a href="#" className="flex items-center gap-2 hover:text-orange-300 transition-colors text-xs sm:text-sm">
                 <span>ASSISTIR ONLINE</span>
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
               </a>
             </div>
 
-            {/* Scrolling text */}
+            {/* Scrolling text - Hidden on mobile */}
             <div className="flex-1 mx-8 overflow-hidden hidden lg:block">
               <div className="flex animate-marquee">
                 <p className="whitespace-nowrap uppercase font-medium px-4 tracking-wider">
@@ -165,8 +172,8 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                 <span>Rolar para baixo</span>
                 <ArrowDown className="h-4 w-4" />
               </a>
-              <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 w-12 h-12 border-0 shadow-lg">
-                <MessageCircle className="h-6 w-6" />
+              <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 w-10 h-10 sm:w-12 sm:h-12 border-0 shadow-lg">
+                <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </div>
           </div>
