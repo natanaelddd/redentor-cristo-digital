@@ -64,7 +64,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           id="#"
           className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/lovable-uploads/510dc53b-a62d-4953-9368-b33e0abc2d6d.png')"
+            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/lovable-uploads/f2288d2d-f0c1-4e9b-a53c-3c96a51fd7e8.png')"
           }}
         >
           
