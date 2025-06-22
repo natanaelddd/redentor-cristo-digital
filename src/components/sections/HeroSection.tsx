@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
@@ -64,7 +63,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           id="#"
           className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/lovable-uploads/f2288d2d-f0c1-4e9b-a53c-3c96a51fd7e8.png')"
+            backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=3880&q=80')"
           }}
         >
           
