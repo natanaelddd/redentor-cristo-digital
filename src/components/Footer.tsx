@@ -22,7 +22,7 @@ export const Footer = ({
           {/* Column 1: Logo & About */}
           <div className="flex flex-col items-center md:items-start space-y-8">
             <Link to="/" className="flex items-center">
-              {siteContent.logo_url ? <img src={siteContent.logo_url} alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" /> : <img src="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" />}
+              {siteContent.logo_url ? <img src={siteContent.logo_url} alt="Igreja Missionária Cristo Redentor" className="h-20 object-contain" /> : <img src="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" alt="Igreja Missionária Cristo Redentor" className="h-20 object-contain" />}
             </Link>
             
             {/* Logo repetido */}

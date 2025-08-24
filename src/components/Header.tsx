@@ -34,7 +34,7 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
           {/* Logo */}
           <div className="flex items-center">
             {logoUrl ? (
-              <img src={logoUrl} alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" />
+              <img src={logoUrl} alt="Igreja Missionária Cristo Redentor" className="h-20 object-contain" />
             ) : (
               <div className="h-14 w-14 rounded-full bg-black flex items-center justify-center">
                 <span className="text-lg font-bold text-white">IC</span>
