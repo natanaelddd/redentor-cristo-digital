@@ -33,12 +33,12 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = React.useState(0);
     const [count, setCount] = React.useState(0);
 
-    // Array de imagens religiosas para o fundo dinâmico
+    // Array de imagens cristãs para o fundo dinâmico
     const backgroundImages = [
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // igreja cruz silhueta
-      "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=3874&q=80", // cruz contra o céu
-      "https://images.unsplash.com/photo-1520637836862-4d197d17c8a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // interior de igreja
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80"  // cruz dourada pôr do sol
+      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // igreja arquitetura
+      "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // céu com nuvens
+      "https://images.unsplash.com/photo-1544077960-604201fe74bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80", // natureza montanha
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80"  // paisagem serena
     ];
 
     // Seleciona uma imagem aleatória a cada refresh da página
@@ -60,14 +60,14 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
         });
     }, [api, slides]);
 
-    // Dados padrão caso não haja slides
+    // Dados padrão para a Igreja Missionária Cristo Redentor
     const defaultSlides = [
       {
-        id: '1',
-        category: 'EVENTOS ESPECIAIS',
-        title: 'CULTOS DE DOMINGO',
-        description: 'Junte-se a nós todos os domingos às 19h para uma experiência de fé, adoração e palavra de Deus.',
-        button_text: 'SAIBA MAIS'
+        id: "1",
+        category: "BEM-VINDOS",
+        title: "IGREJA MISSIONÁRIA CRISTO REDENTOR",
+        description: "Uma comunidade de fé, esperança e amor no coração de Ribeirão Preto. Venha adorar conosco!",
+        button_text: "CONHEÇA NOSSA IGREJA"
       }
     ];
 
