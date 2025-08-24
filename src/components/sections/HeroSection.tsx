@@ -33,15 +33,15 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = React.useState(0);
     const [count, setCount] = React.useState(0);
 
-    // Array de imagens para o fundo dinâmico
+    // Array de imagens religiosas para o fundo dinâmico
     const backgroundImages = [
-      "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=3880&q=80", // blue starry night
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3506&q=80", // mountain hit by sun rays
-      "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&auto=format&fit=crop&w=4368&q=80", // forest heat by sunbeam
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=7360&q=80"  // body of water surrounded by trees
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // igreja cruz silhueta
+      "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=3874&q=80", // cruz contra o céu
+      "https://images.unsplash.com/photo-1520637836862-4d197d17c8a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // interior de igreja
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80"  // cruz dourada pôr do sol
     ];
 
-    // Seleciona uma imagem aleatória a cada renderização
+    // Seleciona uma imagem aleatória a cada refresh da página
     const [selectedImage] = React.useState(() => {
       const randomIndex = Math.floor(Math.random() * backgroundImages.length);
       return backgroundImages[randomIndex];
