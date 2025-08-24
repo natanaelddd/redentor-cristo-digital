@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
@@ -33,15 +32,15 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = React.useState(0);
     const [count, setCount] = React.useState(0);
 
-    // Array de imagens cristãs para o fundo dinâmico
+    // Imagens específicas para Igreja Cristã
     const backgroundImages = [
-      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // igreja arquitetura
-      "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // céu com nuvens
-      "https://images.unsplash.com/photo-1544077960-604201fe74bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80", // natureza montanha
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80"  // paisagem serena
+      "https://images.unsplash.com/photo-1499652848871-1527a310b13a?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80", // Igreja com cruz
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // Cruz no pôr do sol
+      "https://images.unsplash.com/photo-1520637836862-4d197d17c8a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // Interior de igreja
+      "https://images.unsplash.com/photo-1544733551-1b0bb0f1b77e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80"  // Céu com nuvens
     ];
 
-    // Seleciona uma imagem aleatória a cada refresh da página
+    // Seleciona uma imagem aleatória a cada refresh
     const [selectedImage] = React.useState(() => {
       const randomIndex = Math.floor(Math.random() * backgroundImages.length);
       return backgroundImages[randomIndex];
@@ -60,14 +59,28 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
         });
     }, [api, slides]);
 
-    // Dados padrão para a Igreja Missionária Cristo Redentor
+    // Conteúdo exclusivo da Igreja Missionária Cristo Redentor
     const defaultSlides = [
       {
         id: "1",
-        category: "BEM-VINDOS",
+        category: "BEM-VINDOS À NOSSA IGREJA",
         title: "IGREJA MISSIONÁRIA CRISTO REDENTOR",
-        description: "Uma comunidade de fé, esperança e amor no coração de Ribeirão Preto. Venha adorar conosco!",
+        description: "Uma comunidade cristã comprometida com o amor de Cristo. Venha adorar conosco em Ribeirão Preto!",
         button_text: "CONHEÇA NOSSA IGREJA"
+      },
+      {
+        id: "2", 
+        category: "CULTOS E ADORAÇÃO",
+        title: "VENHA ADORAR CONOSCO",
+        description: "Cultos todos os domingos às 19h. Estudo bíblico às quartas 20h. Oração às sextas 20h.",
+        button_text: "PARTICIPE"
+      },
+      {
+        id: "3",
+        category: "NOSSA MISSÃO",
+        title: "TRANSFORMANDO VIDAS",
+        description: "Levando a palavra de Deus e o amor de Cristo para nossa comunidade em Ribeirão Preto.",
+        button_text: "NOSSA HISTÓRIA"
       }
     ];
 
@@ -78,7 +91,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
           id="#"
           className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('${selectedImage}')`
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('${selectedImage}')`
           }}
         >
           
@@ -89,7 +102,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                   <CarouselItem key={item.id}>
                     <div className="p-4 sm:p-6 lg:p-8">
                       <div className="bg-white/10 backdrop-blur-md text-white p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 relative text-center overflow-hidden">
-                        {/* Decorative elements */}
+                        {/* Elementos decorativos */}
                         <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-400 to-red-400 rounded-full opacity-20 -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
                         <div className="absolute bottom-0 left-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-tr from-blue-400 to-teal-400 rounded-full opacity-20 translate-y-10 -translate-x-10 sm:translate-y-12 sm:-translate-x-12"></div>
                         
@@ -102,13 +115,13 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                           <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5" />
                         </Button>
                         
-                        {/* Navigation dots */}
+                        {/* Pontos de navegação */}
                         <div className="flex justify-center gap-2 sm:gap-3 mt-8 sm:mt-12">
                           {Array.from({ length: count }).map((_, i) => (
                             <button
                               key={i}
                               onClick={() => api?.scrollTo(i)}
-                              className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-all duration-300 ${current === i ? 'bg-white w-6 sm:w-10 shadow-lg' : 'bg-white/40 hover:bg-white/60'}`}
+                              className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-all duration-300 ${current === i ? "bg-white w-6 sm:w-10 shadow-lg" : "bg-white/40 hover:bg-white/60"}`}
                             >
                               <span className="sr-only">Slide {i + 1}</span>
                             </button>
@@ -120,7 +133,7 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                 ))}
               </CarouselContent>
               
-              {/* Custom Navigation Arrows - Hidden on mobile */}
+              {/* Setas de navegação customizadas */}
               <button 
                 onClick={() => api?.scrollPrev()}
                 className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
@@ -136,14 +149,14 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
             </Carousel>
           </div>
 
-          {/* Curved Shape Bottom */}
+          {/* Forma curva inferior */}
           <div className="absolute bottom-0 left-0 w-full">
             <svg className="w-full h-24 sm:h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
               <path d="M0,120 C150,20 350,120 600,70 C850,20 1050,120 1200,70 L1200,120 Z" fill="white"/>
             </svg>
           </div>
 
-          {/* Sunday Services Bar - Responsive */}
+          {/* Barra de informações da igreja */}
           <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md text-white py-4 sm:py-6 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center z-20 text-xs sm:text-sm border-t border-white/10 gap-4 sm:gap-0">
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 uppercase font-medium tracking-wider text-center sm:text-left">
               <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold text-sm sm:text-base">CULTOS DE DOMINGO</span>
@@ -163,27 +176,27 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
                 <span>SEX 20H</span>
               </div>
               <span className="hidden sm:inline text-gray-400">|</span>
-              <a href="#" className="flex items-center gap-2 hover:text-orange-300 transition-colors text-xs sm:text-sm">
-                <span>ASSISTIR ONLINE</span>
+              <a href="#contato" className="flex items-center gap-2 hover:text-orange-300 transition-colors text-xs sm:text-sm">
+                <span>ENTRE EM CONTATO</span>
                 <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
               </a>
             </div>
 
-            {/* Scrolling text - Hidden on mobile */}
+            {/* Texto rolante */}
             <div className="flex-1 mx-8 overflow-hidden hidden lg:block">
               <div className="flex animate-marquee">
                 <p className="whitespace-nowrap uppercase font-medium px-4 tracking-wider">
-                  CONTRIBUA - AJUDE A IGREJA - FAÇA SUA DOAÇÃO - CONTRIBUA - AJUDE A IGREJA -&nbsp;
+                  VENHA CONHECER NOSSA IGREJA - FÉ, ESPERANÇA E AMOR - RIBEIRÃO PRETO -&nbsp;
                 </p>
                 <p className="whitespace-nowrap uppercase font-medium px-4 tracking-wider" aria-hidden="true">
-                  CONTRIBUA - AJUDE A IGREJA - FAÇA SUA DOAÇÃO - CONTRIBUA - AJUDE A IGREJA -&nbsp;
+                  VENHA CONHECER NOSSA IGREJA - FÉ, ESPERANÇA E AMOR - RIBEIRÃO PRETO -&nbsp;
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <a href="#sobre" className="hidden lg:flex items-center gap-2 uppercase font-medium tracking-wider hover:text-orange-300 transition-colors">
-                <span>Rolar para baixo</span>
+                <span>Saiba mais</span>
                 <ArrowDown className="h-4 w-4" />
               </a>
               <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 w-10 h-10 sm:w-12 sm:h-12 border-0 shadow-lg">
