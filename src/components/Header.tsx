@@ -32,18 +32,14 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
       <div className="container-elegant">
         <div className="flex items-center justify-between py-8">
           {/* Logo */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center">
             {logoUrl ? (
-              <img src={logoUrl} alt="Logo" className="h-14 w-14 rounded-full object-cover image-elegant" />
+              <img src={logoUrl} alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" />
             ) : (
               <div className="h-14 w-14 rounded-full bg-black flex items-center justify-center">
                 <span className="text-lg font-bold text-white">IC</span>
               </div>
             )}
-            <div className="font-heading font-light text-xl">
-              Igreja Missionária<br />
-              <span className="text-sm opacity-70 tracking-wider">do Cristo Redentor</span>
-            </div>
           </div>
 
           {/* Desktop Navigation */}

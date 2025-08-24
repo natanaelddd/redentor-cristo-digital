@@ -21,11 +21,8 @@ export const Footer = ({
           
           {/* Column 1: Logo & About */}
           <div className="flex flex-col items-center md:items-start space-y-8">
-            <Link to="/" className="flex items-center gap-4">
-              {siteContent.logo_url ? <img src={siteContent.logo_url} alt="Logo" className="h-14 w-14 rounded-full object-cover" /> : <img src="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" alt="Logo" className="h-14 w-14 rounded-full object-cover" />}
-              <span className="font-heading font-light text-xl">
-                {siteContent.footer_logo_text || 'Igreja Missionária\ndo Cristo Redentor'}
-              </span>
+            <Link to="/" className="flex items-center">
+              {siteContent.logo_url ? <img src={siteContent.logo_url} alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" /> : <img src="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" alt="Igreja Missionária Cristo Redentor" className="h-16 object-contain" />}
             </Link>
             
             {/* Logo repetido */}
