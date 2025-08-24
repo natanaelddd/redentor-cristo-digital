@@ -102,7 +102,7 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-body">
-      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" />
+      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />

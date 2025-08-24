@@ -57,7 +57,7 @@ const Admin = () => {
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen bg-white">
-        <Header logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" />
+        <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
         <main className="flex-grow flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin" />
         </main>
@@ -69,7 +69,7 @@ const Admin = () => {
   if (!isAuthenticated) {
     return (
       <div className="flex flex-col min-h-screen bg-white">
-        <Header logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" />
+        <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
         <main className="flex-grow flex items-center justify-center p-8">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
@@ -107,7 +107,7 @@ const Admin = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header 
-        logoUrl="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png"
+        logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png"
         showAdminActions={true}
         onLogout={handleLogout}
       />
