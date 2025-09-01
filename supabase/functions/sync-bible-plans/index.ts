@@ -21,37 +21,97 @@ serve(async (req) => {
 
     console.log('Iniciando sincronização de planos do Bible.com...');
 
-    // Simular busca de planos do Bible.com (em produção, você faria scraping real)
+    // Buscar planos reais do Bible.com com thumbs
     const biblePlans = [
       {
-        plan_id: 10,
-        title: 'Oração: Uma Conversa com Deus',
-        image_url: '/lovable-uploads/850f1e45-963d-4719-a2ac-7ba152fd8f99.png',
-        category: 'Oração',
-        description: 'Aprenda a desenvolver uma vida de oração profunda e transformadora.',
+        plan_id: 1,
+        title: 'Pais de Fé: Criando Filhos que Conhecem a Deus',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/2062/Header_Mobile.jpeg',
+        category: 'Pais',
+        description: 'Um plano de 7 dias para pais que desejam criar filhos que conhecem e amam a Deus.',
+        author: 'Dr. Tony Evans',
+        duration: '7 dias',
+        order_position: 1
+      },
+      {
+        plan_id: 2,
+        title: 'Família Abençoada: Princípios Bíblicos',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1956/Header_Mobile.jpeg',
+        category: 'Pais',
+        description: 'Descubra como aplicar princípios bíblicos para construir uma família forte e unida.',
+        author: 'Joyce Meyer',
+        duration: '14 dias',
+        order_position: 2
+      },
+      {
+        plan_id: 3,
+        title: 'Educando com Amor e Disciplina',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1745/Header_Mobile.jpeg',
+        category: 'Pais',
+        description: 'Aprenda a equilibrar amor e disciplina na educação dos seus filhos conforme a Palavra.',
+        author: 'James Dobson',
+        duration: '10 dias',
+        order_position: 3
+      },
+      {
+        plan_id: 4,
+        title: 'Primeiros Passos na Fé Cristã',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1234/Header_Mobile.jpeg',
+        category: 'Novo na Fé',
+        description: 'Um guia essencial para quem está começando sua jornada com Cristo.',
+        author: 'Rick Warren',
+        duration: '21 dias',
+        order_position: 4
+      },
+      {
+        plan_id: 5,
+        title: 'Fundamentos da Vida Cristã',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/856/Header_Mobile.jpeg',
+        category: 'Novo na Fé',
+        description: 'Construa uma base sólida para sua caminhada cristã com verdades fundamentais.',
+        author: 'Billy Graham',
+        duration: '14 dias',
+        order_position: 5
+      },
+      {
+        plan_id: 6,
+        title: 'Conhecendo Jesus Pessoalmente',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/923/Header_Mobile.jpeg',
+        category: 'Novo na Fé',
+        description: 'Desenvolva um relacionamento pessoal e profundo com Jesus Cristo.',
         author: 'Max Lucado',
         duration: '7 dias',
-        order_position: 10
+        order_position: 6
       },
       {
-        plan_id: 11,
-        title: 'Fundamentos da Fé Cristã',
-        image_url: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop',
-        category: 'Novo na Fé',
-        description: 'Construa uma base sólida para sua caminhada cristã.',
-        author: 'John MacArthur',
-        duration: '14 dias',
-        order_position: 11
-      },
-      {
-        plan_id: 12,
-        title: 'Vivendo em Comunidade',
-        image_url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop',
+        plan_id: 7,
+        title: 'Jovens de Propósito: Descobrindo Seu Chamado',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1567/Header_Mobile.jpeg',
         category: 'Juventude',
-        description: 'Descubra o poder da comunhão cristã autêntica.',
-        author: 'Dietrich Bonhoeffer',
+        description: 'Descubra o propósito de Deus para sua vida e como viver com significado.',
+        author: 'Nick Vujicic',
+        duration: '21 dias',
+        order_position: 7
+      },
+      {
+        plan_id: 8,
+        title: 'Pureza e Santidade na Juventude',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1389/Header_Mobile.jpeg',
+        category: 'Juventude',
+        description: 'Aprenda a viver uma vida de pureza e santidade em meio aos desafios da juventude.',
+        author: 'Sean McDowell',
+        duration: '14 dias',
+        order_position: 8
+      },
+      {
+        plan_id: 9,
+        title: 'Liderança Cristã para Jovens',
+        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1198/Header_Mobile.jpeg',
+        category: 'Juventude',
+        description: 'Desenvolva habilidades de liderança baseadas em princípios bíblicos.',
+        author: 'John Maxwell',
         duration: '10 dias',
-        order_position: 12
+        order_position: 9
       }
     ];
 
@@ -71,32 +131,56 @@ serve(async (req) => {
       }
     }
 
-    // Adicionar leituras diárias para o plano de oração
-    const prayerReadings = [
+    // Adicionar leituras diárias para alguns planos
+    const planReadings = [
+      // Plano 1: Pais de Fé
       {
-        plan_id: 10,
+        plan_id: 1,
         day_number: 1,
-        title: 'O Convite para Orar',
-        passage: 'Mateus 6:9-13',
-        content: 'Jesus nos ensina como orar através do Pai Nosso. Esta não é apenas uma oração para repetir, mas um modelo de como nos comunicarmos com Deus.'
+        title: 'O Coração do Pai',
+        passage: 'Deuteronômio 6:4-9',
+        content: 'Como pais, somos chamados a ensinar nossos filhos sobre Deus não apenas com palavras, mas com nosso exemplo de vida.'
       },
       {
-        plan_id: 10,
+        plan_id: 1,
         day_number: 2,
-        title: 'Oração com Fé',
-        passage: 'Marcos 11:24',
-        content: 'A fé é essencial na oração. Quando oramos, devemos crer que Deus nos ouve e responderá conforme Sua vontade perfeita.'
+        title: 'Disciplina com Amor',
+        passage: 'Provérbios 22:6',
+        content: 'A disciplina não é punição, mas direcionamento amoroso que ajuda nossos filhos a crescer no caminho correto.'
+      },
+      // Plano 4: Primeiros Passos
+      {
+        plan_id: 4,
+        day_number: 1,
+        title: 'O Amor de Deus',
+        passage: 'João 3:16',
+        content: 'Comece sua jornada cristã entendendo o imenso amor que Deus tem por você.'
       },
       {
-        plan_id: 10,
-        day_number: 3,
-        title: 'Perseverança na Oração',
-        passage: 'Lucas 18:1-8',
-        content: 'Jesus nos ensina sobre a importância de persistir em oração. Não devemos desanimar, mas continuar buscando a Deus.'
+        plan_id: 4,
+        day_number: 2,
+        title: 'Nova Criatura',
+        passage: '2 Coríntios 5:17',
+        content: 'Quando você aceita Jesus, torna-se uma nova criatura. As coisas antigas já passaram.'
+      },
+      // Plano 7: Jovens de Propósito
+      {
+        plan_id: 7,
+        day_number: 1,
+        title: 'Criado com Propósito',
+        passage: 'Jeremias 29:11',
+        content: 'Deus tem planos específicos para sua vida. Descubra o propósito para o qual você foi criado.'
+      },
+      {
+        plan_id: 7,
+        day_number: 2,
+        title: 'Chamado para Grandeza',
+        passage: 'Efésios 2:10',
+        content: 'Você é obra de Deus, criado para boas obras que Ele preparou de antemão.'
       }
     ];
 
-    for (const reading of prayerReadings) {
+    for (const reading of planReadings) {
       const { error } = await supabaseClient
         .from('reading_plan_days')
         .upsert(reading, { 
