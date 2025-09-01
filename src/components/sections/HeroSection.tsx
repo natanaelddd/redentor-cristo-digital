@@ -9,6 +9,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
+import churchExterior from '@/assets/church-exterior.jpg';
+import crossSunset from '@/assets/cross-sunset.jpg';
+import churchInterior from '@/assets/church-interior.jpg';
+import stainedGlass from '@/assets/stained-glass.jpg';
 
 type CarouselItemData = {
   id: string;
@@ -32,12 +36,12 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = React.useState(0);
     const [count, setCount] = React.useState(0);
 
-    // Imagens específicas para Igreja Cristã
+    // Imagens específicas para Igreja Cristã - geradas com IA
     const backgroundImages = [
-      "https://images.unsplash.com/photo-1499652848871-1527a310b13a?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80", // Igreja com cruz
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // Cruz no pôr do sol
-      "https://images.unsplash.com/photo-1520637836862-4d197d17c8a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=3870&q=80", // Interior de igreja
-      "https://images.unsplash.com/photo-1544733551-1b0bb0f1b77e?ixlib=rb-4.0.3&auto=format&fit=crop&w=3869&q=80"  // Céu com nuvens
+      churchExterior,
+      crossSunset,
+      churchInterior,
+      stainedGlass
     ];
 
     // Seleciona uma imagem aleatória a cada refresh
