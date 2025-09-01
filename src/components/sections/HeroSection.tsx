@@ -59,28 +59,28 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
         });
     }, [api, slides]);
 
-    // Conteúdo exclusivo da Igreja Missionária Cristo Redentor
+    // Conteúdo exclusivo da Igreja Missionária Cristo Redentor - Ribeirão Preto
     const defaultSlides = [
       {
         id: "1",
-        category: "BEM-VINDOS À NOSSA IGREJA",
+        category: "COMUNIDADE CRISTÃ EM RIBEIRÃO PRETO",
         title: "IGREJA MISSIONÁRIA CRISTO REDENTOR",
-        description: "Uma comunidade cristã comprometida com o amor de Cristo. Venha adorar conosco em Ribeirão Preto!",
+        description: "Há mais de 20 anos transformando vidas através do amor de Cristo em Ribeirão Preto. Uma família de fé que acolhe a todos.",
         button_text: "CONHEÇA NOSSA IGREJA"
       },
       {
         id: "2", 
         category: "CULTOS E ADORAÇÃO",
         title: "VENHA ADORAR CONOSCO",
-        description: "Cultos todos os domingos às 19h. Estudo bíblico às quartas 20h. Oração às sextas 20h.",
-        button_text: "PARTICIPE"
+        description: "Cultos dominicais às 19h com louvor, palavra e comunhão. Estudo bíblico quartas 20h. Oração sextas 20h.",
+        button_text: "PARTICIPE DOS CULTOS"
       },
       {
         id: "3",
-        category: "NOSSA MISSÃO",
-        title: "TRANSFORMANDO VIDAS",
-        description: "Levando a palavra de Deus e o amor de Cristo para nossa comunidade em Ribeirão Preto.",
-        button_text: "NOSSA HISTÓRIA"
+        category: "MINISTÉRIOS E AÇÕES SOCIAIS",
+        title: "SERVINDO A COMUNIDADE",
+        description: "Através de nossos ministérios alcançamos famílias, jovens e crianças. Ações sociais que demonstram o amor de Cristo.",
+        button_text: "CONHEÇA NOSSOS MINISTÉRIOS"
       }
     ];
 
