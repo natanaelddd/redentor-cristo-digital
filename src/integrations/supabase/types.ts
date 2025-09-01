@@ -7,8 +7,243 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
   public: {
     Tables: {
+      admin_settings: {
+        Row: {
+          created_at: string
+          id: string
+          setting_key: string
+          setting_value: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          setting_key: string
+          setting_value?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          setting_key?: string
+          setting_value?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      asset_requests: {
+        Row: {
+          admin_notes: string | null
+          asset_name: string
+          created_at: string
+          id: string
+          image_url: string | null
+          page_link: string | null
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          asset_name: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          page_link?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          asset_name?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          page_link?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          new_values: Json | null
+          old_values: Json | null
+          record_id: string | null
+          table_name: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          record_id?: string | null
+          table_name?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          record_id?: string | null
+          table_name?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      auth_rate_limits: {
+        Row: {
+          attempt_count: number
+          blocked_until: string | null
+          created_at: string
+          email: string | null
+          first_attempt: string
+          id: string
+          ip_address: unknown
+          last_attempt: string
+        }
+        Insert: {
+          attempt_count?: number
+          blocked_until?: string | null
+          created_at?: string
+          email?: string | null
+          first_attempt?: string
+          id?: string
+          ip_address: unknown
+          last_attempt?: string
+        }
+        Update: {
+          attempt_count?: number
+          blocked_until?: string | null
+          created_at?: string
+          email?: string | null
+          first_attempt?: string
+          id?: string
+          ip_address?: unknown
+          last_attempt?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          name: string
+          order_position: number | null
+          parent_id: string | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          name: string
+          order_position?: number | null
+          parent_id?: string | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          name?: string
+          order_position?: number | null
+          parent_id?: string | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_admin: boolean
+          message: string
+          session_id: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_admin?: boolean
+          message: string
+          session_id: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_admin?: boolean
+          message?: string
+          session_id?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      chat_sessions: {
+        Row: {
+          created_at: string | null
+          id: string
+          last_activity: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          last_activity?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          last_activity?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       data_sources: {
         Row: {
           active: boolean | null
@@ -39,6 +274,42 @@ export type Database = {
           priority?: number | null
           updated_at?: string
           url?: string
+        }
+        Relationships: []
+      }
+      download_logs: {
+        Row: {
+          created_at: string
+          download_type: string
+          id: string
+          ip_address: unknown | null
+          product_id: string
+          product_title: string
+          user_agent: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          download_type?: string
+          id?: string
+          ip_address?: unknown | null
+          product_id: string
+          product_title: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          download_type?: string
+          id?: string
+          ip_address?: unknown | null
+          product_id?: string
+          product_title?: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -216,37 +487,109 @@ export type Database = {
           },
         ]
       }
+      global_theme_settings: {
+        Row: {
+          applied_at: string
+          applied_by: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          theme_id: string
+          theme_name: string
+          theme_variables: Json
+          updated_at: string
+        }
+        Insert: {
+          applied_at?: string
+          applied_by?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          theme_id?: string
+          theme_name?: string
+          theme_variables?: Json
+          updated_at?: string
+        }
+        Update: {
+          applied_at?: string
+          applied_by?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          theme_id?: string
+          theme_name?: string
+          theme_variables?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       hero_slides: {
         Row: {
+          animation_duration: number | null
+          animation_type: string | null
+          background_color: string | null
+          button_color: string | null
+          button_hover_color: string | null
+          button_link: string | null
           button_text: string
           category: string
           created_at: string | null
           description: string | null
+          display_duration: number | null
           id: string
+          image_url: string | null
           is_active: boolean | null
           order: number | null
+          overlay_opacity: number | null
+          subtitle: string | null
+          text_alignment: string | null
+          text_color: string | null
           title: string
           updated_at: string | null
         }
         Insert: {
+          animation_duration?: number | null
+          animation_type?: string | null
+          background_color?: string | null
+          button_color?: string | null
+          button_hover_color?: string | null
+          button_link?: string | null
           button_text: string
           category: string
           created_at?: string | null
           description?: string | null
+          display_duration?: number | null
           id?: string
+          image_url?: string | null
           is_active?: boolean | null
           order?: number | null
+          overlay_opacity?: number | null
+          subtitle?: string | null
+          text_alignment?: string | null
+          text_color?: string | null
           title: string
           updated_at?: string | null
         }
         Update: {
+          animation_duration?: number | null
+          animation_type?: string | null
+          background_color?: string | null
+          button_color?: string | null
+          button_hover_color?: string | null
+          button_link?: string | null
           button_text?: string
           category?: string
           created_at?: string | null
           description?: string | null
+          display_duration?: number | null
           id?: string
+          image_url?: string | null
           is_active?: boolean | null
           order?: number | null
+          overlay_opacity?: number | null
+          subtitle?: string | null
+          text_alignment?: string | null
+          text_color?: string | null
           title?: string
           updated_at?: string | null
         }
@@ -279,6 +622,237 @@ export type Database = {
           order?: number | null
           title?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          created_at: string | null
+          download_count: number | null
+          id: string
+          order_id: string | null
+          price: number
+          product_id: string | null
+          quantity: number
+        }
+        Insert: {
+          created_at?: string | null
+          download_count?: number | null
+          id?: string
+          order_id?: string | null
+          price: number
+          product_id?: string | null
+          quantity: number
+        }
+        Update: {
+          created_at?: string | null
+          download_count?: number | null
+          id?: string
+          order_id?: string | null
+          price?: number
+          product_id?: string | null
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          amount: number
+          created_at: string | null
+          currency: string | null
+          id: string
+          items: Json
+          paypal_order_id: string | null
+          status: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          items: Json
+          paypal_order_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          items?: Json
+          paypal_order_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      product_categories: {
+        Row: {
+          category_id: string
+          created_at: string
+          id: string
+          product_id: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          id?: string
+          product_id: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          id?: string
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "product_categories_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          affiliate_link: string | null
+          category: string | null
+          coming_soon: boolean | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          discount: number | null
+          discount_price: number | null
+          featured: boolean | null
+          free_download_link: string | null
+          id: string
+          image: string | null
+          image_focus_point: Json | null
+          images: string[] | null
+          is_active: boolean | null
+          is_free: boolean | null
+          original_price: number | null
+          payment_link: string | null
+          rating: number | null
+          reviews: number | null
+          shopee_link: string | null
+          slug: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+          youtube_video_url: string | null
+        }
+        Insert: {
+          affiliate_link?: string | null
+          category?: string | null
+          coming_soon?: boolean | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          discount?: number | null
+          discount_price?: number | null
+          featured?: boolean | null
+          free_download_link?: string | null
+          id?: string
+          image?: string | null
+          image_focus_point?: Json | null
+          images?: string[] | null
+          is_active?: boolean | null
+          is_free?: boolean | null
+          original_price?: number | null
+          payment_link?: string | null
+          rating?: number | null
+          reviews?: number | null
+          shopee_link?: string | null
+          slug?: string | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          youtube_video_url?: string | null
+        }
+        Update: {
+          affiliate_link?: string | null
+          category?: string | null
+          coming_soon?: boolean | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          discount?: number | null
+          discount_price?: number | null
+          featured?: boolean | null
+          free_download_link?: string | null
+          id?: string
+          image?: string | null
+          image_focus_point?: Json | null
+          images?: string[] | null
+          is_active?: boolean | null
+          is_free?: boolean | null
+          original_price?: number | null
+          payment_link?: string | null
+          rating?: number | null
+          reviews?: number | null
+          shopee_link?: string | null
+          slug?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          youtube_video_url?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string | null
+          id: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id: string
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          role?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -490,6 +1064,39 @@ export type Database = {
           },
         ]
       }
+      subscriptions: {
+        Row: {
+          created_at: string | null
+          email: string
+          expires_at: string | null
+          id: string
+          mercadopago_subscription_id: string | null
+          plan_type: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          expires_at?: string | null
+          id?: string
+          mercadopago_subscription_id?: string | null
+          plan_type?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          expires_at?: string | null
+          id?: string
+          mercadopago_subscription_id?: string | null
+          plan_type?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       teams: {
         Row: {
           cidade: string | null
@@ -537,7 +1144,43 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_admin_download_logs: {
+        Args: { limit_count?: number }
+        Returns: {
+          created_at: string
+          download_type: string
+          id: string
+          product_id: string
+          product_title: string
+          user_email_anonymized: string
+          user_id_anonymized: string
+        }[]
+      }
+      get_admin_download_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          free: number
+          paid: number
+          premium: number
+          total: number
+        }[]
+      }
+      get_or_create_chat_session: {
+        Args: { requesting_user_id?: string; session_id: string }
+        Returns: string
+      }
+      get_user_role: {
+        Args: { user_id: string }
+        Returns: string
+      }
+      is_admin: {
+        Args: { user_id?: string }
+        Returns: boolean
+      }
+      update_user_role: {
+        Args: { new_role: string; target_user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
@@ -548,21 +1191,25 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
@@ -580,14 +1227,16 @@ export type Tables<
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
@@ -603,14 +1252,16 @@ export type TablesInsert<
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
@@ -626,14 +1277,16 @@ export type TablesUpdate<
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
@@ -641,14 +1294,16 @@ export type Enums<
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
-> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
