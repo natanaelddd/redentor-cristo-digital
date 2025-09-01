@@ -1,14 +1,41 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Book, ArrowRight, Loader2 } from "lucide-react";
+import { Book, ArrowRight, Loader2, RefreshCw } from "lucide-react";
 import { useReadingPlans } from "@/hooks/useReadingPlans";
+import { syncBiblePlans } from "@/utils/syncBiblePlans";
+import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const BibleReadingSection = () => {
   const navigate = useNavigate();
   const { data: readingPlans, isLoading, error } = useReadingPlans();
+  const [isSyncing, setIsSyncing] = useState(false);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const handleSyncPlans = async () => {
+    setIsSyncing(true);
+    const result = await syncBiblePlans();
+    
+    if (result.success) {
+      toast({
+        title: "Planos sincronizados!",
+        description: "Os planos de leitura foram carregados com sucesso.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["reading_plans"] });
+    } else {
+      toast({
+        title: "Erro na sincronização",
+        description: "Não foi possível carregar os planos. Tente novamente.",
+        variant: "destructive",
+      });
+    }
+    
+    setIsSyncing(false);
+  };
 
   const handlePlanClick = (planId: number) => {
     console.log('Navegando para plano:', planId);
@@ -69,6 +96,31 @@ export const BibleReadingSection = () => {
             Conecte-se com a Palavra de Deus de forma consistente e transformadora.
           </p>
         </div>
+
+        {(!readingPlans || readingPlans.length === 0) && (
+          <div className="text-center py-16">
+            <Book className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-4 text-gray-800">Nenhum plano encontrado</h3>
+            <p className="text-gray-600 mb-6">Os planos de leitura ainda não foram carregados.</p>
+            <Button 
+              onClick={handleSyncPlans}
+              disabled={isSyncing}
+              className="bg-black text-white hover:bg-gray-800"
+            >
+              {isSyncing ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Carregando Planos...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Carregar Planos de Leitura
+                </>
+              )}
+            </Button>
+          </div>
+        )}
 
         <div className="space-y-16 mb-12">
           {categories.map((category) => {
