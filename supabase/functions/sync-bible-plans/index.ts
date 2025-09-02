@@ -21,12 +21,12 @@ serve(async (req) => {
 
     console.log('Iniciando sincronização de planos do Bible.com...');
 
-    // Buscar planos reais do Bible.com com thumbs
+    // Planos bíblicos com imagens válidas e únicas
     const biblePlans = [
       {
         plan_id: 1,
         title: 'Pais de Fé: Criando Filhos que Conhecem a Deus',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/2062/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2070&auto=format&fit=crop',
         category: 'Pais',
         description: 'Um plano de 7 dias para pais que desejam criar filhos que conhecem e amam a Deus.',
         author: 'Dr. Tony Evans',
@@ -36,7 +36,7 @@ serve(async (req) => {
       {
         plan_id: 2,
         title: 'Família Abençoada: Princípios Bíblicos',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1956/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1606731834810-fb8f8adfd0e8?q=80&w=2071&auto=format&fit=crop',
         category: 'Pais',
         description: 'Descubra como aplicar princípios bíblicos para construir uma família forte e unida.',
         author: 'Joyce Meyer',
@@ -46,7 +46,7 @@ serve(async (req) => {
       {
         plan_id: 3,
         title: 'Educando com Amor e Disciplina',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1745/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1544717684-d73c53d7df48?q=80&w=2069&auto=format&fit=crop',
         category: 'Pais',
         description: 'Aprenda a equilibrar amor e disciplina na educação dos seus filhos conforme a Palavra.',
         author: 'James Dobson',
@@ -56,7 +56,7 @@ serve(async (req) => {
       {
         plan_id: 4,
         title: 'Primeiros Passos na Fé Cristã',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1234/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop',
         category: 'Novo na Fé',
         description: 'Um guia essencial para quem está começando sua jornada com Cristo.',
         author: 'Rick Warren',
@@ -66,7 +66,7 @@ serve(async (req) => {
       {
         plan_id: 5,
         title: 'Fundamentos da Vida Cristã',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/856/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop',
         category: 'Novo na Fé',
         description: 'Construa uma base sólida para sua caminhada cristã com verdades fundamentais.',
         author: 'Billy Graham',
@@ -76,7 +76,7 @@ serve(async (req) => {
       {
         plan_id: 6,
         title: 'Conhecendo Jesus Pessoalmente',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/923/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2125&auto=format&fit=crop',
         category: 'Novo na Fé',
         description: 'Desenvolva um relacionamento pessoal e profundo com Jesus Cristo.',
         author: 'Max Lucado',
@@ -86,7 +86,7 @@ serve(async (req) => {
       {
         plan_id: 7,
         title: 'Jovens de Propósito: Descobrindo Seu Chamado',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1567/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop',
         category: 'Juventude',
         description: 'Descubra o propósito de Deus para sua vida e como viver com significado.',
         author: 'Nick Vujicic',
@@ -96,7 +96,7 @@ serve(async (req) => {
       {
         plan_id: 8,
         title: 'Pureza e Santidade na Juventude',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1389/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=2070&auto=format&fit=crop',
         category: 'Juventude',
         description: 'Aprenda a viver uma vida de pureza e santidade em meio aos desafios da juventude.',
         author: 'Sean McDowell',
@@ -106,7 +106,7 @@ serve(async (req) => {
       {
         plan_id: 9,
         title: 'Liderança Cristã para Jovens',
-        image_url: 'https://imageproxy.youversionapi.com/320x320/https://s3.amazonaws.com/static-youversionapi-com/images/plan/1198/Header_Mobile.jpeg',
+        image_url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=2070&auto=format&fit=crop',
         category: 'Juventude',
         description: 'Desenvolva habilidades de liderança baseadas em princípios bíblicos.',
         author: 'John Maxwell',
