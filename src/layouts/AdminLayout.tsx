@@ -54,9 +54,26 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   }, [session, profile, isLoading, navigate]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast.success("Logout realizado com sucesso");
-    navigate("/");
+    try {
+      // Clean up auth state
+      localStorage.removeItem('admin_authenticated');
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+          localStorage.removeItem(key);
+        }
+      });
+      
+      // Sign out from Supabase
+      await supabase.auth.signOut({ scope: 'global' });
+      toast.success("Logout realizado com sucesso");
+      
+      // Force page reload for clean state
+      window.location.href = "/auth";
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Force logout anyway
+      window.location.href = "/auth";
+    }
   };
 
   if (isLoading || !session || !profile || profile.role !== "admin") {
