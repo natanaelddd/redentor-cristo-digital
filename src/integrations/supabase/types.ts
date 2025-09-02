@@ -1144,6 +1144,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      bootstrap_first_admin: {
+        Args: { admin_email: string }
+        Returns: boolean
+      }
       get_admin_download_logs: {
         Args: { limit_count?: number }
         Returns: {
@@ -1176,6 +1180,10 @@ export type Database = {
       is_admin: {
         Args: { user_id?: string }
         Returns: boolean
+      }
+      log_admin_access: {
+        Args: { action_type: string; admin_user_id: string; details?: string }
+        Returns: undefined
       }
       update_user_role: {
         Args: { new_role: string; target_user_id: string }
