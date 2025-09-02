@@ -2,6 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import HeroSlidesAdmin from "@/pages/admin/HeroSlides";
+import EventsAdmin from "@/pages/admin/Events";
+import ContentAdmin from "@/pages/admin/Content";
+import NavigationAdmin from "@/pages/admin/Navigation";
+import ReadingPlansAdmin from "@/pages/admin/ReadingPlans";
+import UsersAdmin from "@/pages/admin/Users";
+import SettingsAdmin from "@/pages/admin/Settings";
 
 export default function AdminPage() {
   return (
@@ -9,7 +15,12 @@ export default function AdminPage() {
       <Routes>
         <Route path="/" element={<AdminDashboard />} />
         <Route path="/slides" element={<HeroSlidesAdmin />} />
-        {/* Adicionar mais rotas conforme necessário */}
+        <Route path="/events" element={<EventsAdmin />} />
+        <Route path="/content" element={<ContentAdmin />} />
+        <Route path="/navigation" element={<NavigationAdmin />} />
+        <Route path="/reading-plans" element={<ReadingPlansAdmin />} />
+        <Route path="/users" element={<UsersAdmin />} />
+        <Route path="/settings" element={<SettingsAdmin />} />
       </Routes>
     </AdminLayout>
   );
