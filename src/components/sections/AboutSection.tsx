@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Users, BookOpen } from "lucide-react";
+import { EditableText } from "@/components/LiveEditor";
 
 type SiteContent = {
   [key: string]: string | undefined;
@@ -26,19 +27,31 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <h2 className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight">
-                Nossa{" "}
+              <EditableText
+                content="Nossa História"
+                sectionKey="about_title"
+                label="Título da Seção Sobre"
+                className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight"
+              >
+                <span>Nossa{" "}</span>
                 <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   História
                 </span>
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                {siteContent?.about_description || 
-                  "Somos uma comunidade de fé comprometida em viver e compartilhar o amor de Cristo. Nosso propósito é ser uma igreja que transforma vidas através da palavra de Deus, do amor genuíno e do serviço ao próximo."}
-              </p>
-              <p className="text-lg text-gray-500 leading-relaxed">
-                Acreditamos que cada pessoa é única e especial aos olhos de Deus, e nossa missão é criar um ambiente onde todos possam crescer espiritualmente e encontrar seu propósito em Cristo.
-              </p>
+              </EditableText>
+              <EditableText
+                content={siteContent?.about_description || "Somos uma comunidade de fé comprometida em viver e compartilhar o amor de Cristo. Nosso propósito é ser uma igreja que transforma vidas através da palavra de Deus, do amor genuíno e do serviço ao próximo."}
+                sectionKey="about_description"
+                label="Descrição Principal"
+                multiline
+                className="text-xl text-gray-600 leading-relaxed"
+              />
+              <EditableText
+                content={siteContent?.about_secondary || "Acreditamos que cada pessoa é única e especial aos olhos de Deus, e nossa missão é criar um ambiente onde todos possam crescer espiritualmente e encontrar seu propósito em Cristo."}
+                sectionKey="about_secondary"
+                label="Descrição Secundária"
+                multiline
+                className="text-lg text-gray-500 leading-relaxed"
+              />
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -88,15 +101,24 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
         {/* Values section */}
         <div className="mt-32">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold font-heading text-gray-900 mb-6">
-              Nossos{" "}
+            <EditableText
+              content="Nossos Valores"
+              sectionKey="values_title"
+              label="Título dos Valores"
+              className="text-4xl font-bold font-heading text-gray-900 mb-6"
+            >
+              <span>Nossos{" "}</span>
               <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 Valores
               </span>
-            </h3>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Princípios que norteiam nossa caminhada e definem quem somos como comunidade de fé.
-            </p>
+            </EditableText>
+            <EditableText
+              content={siteContent?.values_description || "Princípios que norteiam nossa caminhada e definem quem somos como comunidade de fé."}
+              sectionKey="values_description"
+              label="Descrição dos Valores"
+              multiline
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+            />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

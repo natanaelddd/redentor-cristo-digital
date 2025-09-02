@@ -10,6 +10,8 @@ import { BibleReadingSection } from "@/components/sections/BibleReadingSection";
 import { EventsSection } from "@/components/sections/EventsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LiveEditor } from "@/components/LiveEditor";
+import { useAuth } from "@/hooks/useAuth";
 
 // Helper para formatar o conteúdo do site em um objeto chave-valor
 const formatSiteContent = (content: any[] | null) => {
@@ -21,6 +23,7 @@ const formatSiteContent = (content: any[] | null) => {
 };
 
 const Index = () => {
+  const { isAdmin, signOut } = useAuth();
   const { data: pageData, isLoading } = useQuery({
     queryKey: ["site_data"],
     queryFn: async () => {
@@ -102,7 +105,12 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-body">
-      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
+      <Header 
+        navLinks={pageData?.navLinks} 
+        logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png"
+        showAdminActions={isAdmin}
+        onLogout={signOut}
+      />
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />
@@ -111,6 +119,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer navLinks={pageData?.navLinks} siteContent={pageData?.siteContent} />
+      <LiveEditor isAdmin={isAdmin} />
     </div>
   );
 };
