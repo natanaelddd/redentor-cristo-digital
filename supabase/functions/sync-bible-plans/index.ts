@@ -21,97 +21,91 @@ serve(async (req) => {
 
     console.log('Iniciando sincronização de planos do Bible.com...');
 
-    // Planos bíblicos com imagens cristãs únicas e apropriadas
+    // Primeiro, limpar todos os planos existentes
+    const { error: deleteError } = await supabaseClient
+      .from('reading_plan_details')
+      .delete()
+      .neq('id', 0); // Delete all records
+
+    if (deleteError) {
+      console.error('Erro ao limpar planos existentes:', deleteError);
+    } else {
+      console.log('Planos existentes removidos com sucesso');
+    }
+
+    // Limpar leituras diárias existentes
+    const { error: deleteReadingsError } = await supabaseClient
+      .from('reading_plan_days')
+      .delete()
+      .neq('id', 0); // Delete all records
+
+    if (deleteReadingsError) {
+      console.error('Erro ao limpar leituras existentes:', deleteReadingsError);
+    } else {
+      console.log('Leituras existentes removidas com sucesso');
+    }
+
+    // Novos planos bíblicos com imagens cristãs únicas
     const biblePlans = [
       {
         plan_id: 1,
-        title: 'Pais de Fé: Criando Filhos que Conhecem a Deus',
-        image_url: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=2070&auto=format&fit=crop',
-        category: 'Pais',
-        description: 'Um plano de 7 dias para pais que desejam criar filhos que conhecem e amam a Deus.',
-        author: 'Dr. Tony Evans',
-        duration: '7 dias',
+        title: 'O Coração do Pastor',
+        image_url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop',
+        category: 'Liderança',
+        description: 'Aprenda os princípios de liderança cristã baseados no exemplo de Jesus.',
+        author: 'John MacArthur',
+        duration: '15 dias',
         order_position: 1
       },
       {
         plan_id: 2,
-        title: 'Família Abençoada: Princípios Bíblicos',
-        image_url: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2038&auto=format&fit=crop',
-        category: 'Pais',
-        description: 'Descubra como aplicar princípios bíblicos para construir uma família forte e unida.',
-        author: 'Joyce Meyer',
-        duration: '14 dias',
+        title: 'Caminhando na Fé',
+        image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop',
+        category: 'Crescimento',
+        description: 'Um guia prático para desenvolver uma fé madura e consistente.',
+        author: 'Charles Stanley',
+        duration: '21 dias',
         order_position: 2
       },
       {
         plan_id: 3,
-        title: 'Educando com Amor e Disciplina',
-        image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop',
-        category: 'Pais',
-        description: 'Aprenda a equilibrar amor e disciplina na educação dos seus filhos conforme a Palavra.',
-        author: 'James Dobson',
-        duration: '10 dias',
+        title: 'Oração que Transforma',
+        image_url: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop',
+        category: 'Oração',
+        description: 'Descubra o poder transformador da oração em sua vida diária.',
+        author: 'R.A. Torrey',
+        duration: '14 dias',
         order_position: 3
       },
       {
         plan_id: 4,
-        title: 'Primeiros Passos na Fé Cristã',
-        image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop',
-        category: 'Novo na Fé',
-        description: 'Um guia essencial para quem está começando sua jornada com Cristo.',
-        author: 'Rick Warren',
-        duration: '21 dias',
+        title: 'Sabedoria dos Provérbios',
+        image_url: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2086&auto=format&fit=crop',
+        category: 'Sabedoria',
+        description: 'Explore a sabedoria prática do livro de Provérbios para o dia a dia.',
+        author: 'Derek Kidner',
+        duration: '30 dias',
         order_position: 4
       },
       {
         plan_id: 5,
-        title: 'Fundamentos da Vida Cristã',
-        image_url: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2086&auto=format&fit=crop',
-        category: 'Novo na Fé',
-        description: 'Construa uma base sólida para sua caminhada cristã com verdades fundamentais.',
-        author: 'Billy Graham',
-        duration: '14 dias',
+        title: 'A Graça Suficiente',
+        image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop',
+        category: 'Graça',
+        description: 'Compreenda a profundidade da graça de Deus em sua vida.',
+        author: 'John Newton',
+        duration: '10 dias',
         order_position: 5
       },
       {
         plan_id: 6,
-        title: 'Conhecendo Jesus Pessoalmente',
+        title: 'Esperança Inabalável',
         image_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2125&auto=format&fit=crop',
-        category: 'Novo na Fé',
-        description: 'Desenvolva um relacionamento pessoal e profundo com Jesus Cristo.',
+        category: 'Esperança',
+        description: 'Encontre esperança verdadeira nas promessas de Deus.',
         author: 'Max Lucado',
         duration: '7 dias',
         order_position: 6
-      },
-      {
-        plan_id: 7,
-        title: 'Jovens de Propósito: Descobrindo Seu Chamado',
-        image_url: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop',
-        category: 'Juventude',
-        description: 'Descubra o propósito de Deus para sua vida e como viver com significado.',
-        author: 'Nick Vujicic',
-        duration: '21 dias',
-        order_position: 7
-      },
-      {
-        plan_id: 8,
-        title: 'Pureza e Santidade na Juventude',
-        image_url: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=2070&auto=format&fit=crop',
-        category: 'Juventude',
-        description: 'Aprenda a viver uma vida de pureza e santidade em meio aos desafios da juventude.',
-        author: 'Sean McDowell',
-        duration: '14 dias',
-        order_position: 8
-      },
-      {
-        plan_id: 9,
-        title: 'Liderança Cristã para Jovens',
-        image_url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=2070&auto=format&fit=crop',
-        category: 'Juventude',
-        description: 'Desenvolva habilidades de liderança baseadas em princípios bíblicos.',
-        author: 'John Maxwell',
-        duration: '10 dias',
-        order_position: 9
       }
     ];
 
