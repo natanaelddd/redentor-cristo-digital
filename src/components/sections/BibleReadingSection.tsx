@@ -146,29 +146,17 @@ export const BibleReadingSection = () => {
                   {categoryPlans.map((plan) => (
                     <Card 
                       key={plan.id} 
-                      className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group border-0 shadow-md"
+                      className="hover:shadow-lg transition-all duration-300 cursor-pointer group border-0 shadow-md"
                       onClick={() => handlePlanClick(plan.id)}
                     >
-                      <div className="relative h-48 overflow-hidden">
-                        <img
-                          src={plan.image}
-                          alt={plan.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          onError={(e) => {
-                            console.log('Erro ao carregar imagem:', plan.image);
-                            e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop";
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
-                          <div className="p-4 text-white w-full">
-                            <h4 className="font-bold text-lg mb-1 line-clamp-2">{plan.title}</h4>
-                            <p className="text-sm opacity-90">{plan.duration}</p>
-                          </div>
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <Book className="h-8 w-8 text-gray-500" />
+                          <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">{plan.duration}</span>
                         </div>
-                      </div>
-                      <CardContent className="p-4">
+                        <h4 className="font-bold text-lg mb-2 line-clamp-2">{plan.title}</h4>
                         <p className="text-gray-600 text-sm mb-2 line-clamp-2">{plan.description}</p>
-                        <p className="text-xs text-gray-500 mb-3">Por {plan.author}</p>
+                        <p className="text-xs text-gray-500 mb-4">Por {plan.author}</p>
                         <div className="flex items-center justify-between">
                           <span className="text-black text-sm font-medium">Começar Leitura</span>
                           <ArrowRight className="h-4 w-4 text-black group-hover:translate-x-1 transition-transform" />
