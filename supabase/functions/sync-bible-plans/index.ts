@@ -21,12 +21,12 @@ serve(async (req) => {
 
     console.log('Iniciando sincronização de planos do Bible.com...');
 
-    // Planos bíblicos com imagens válidas e únicas
+    // Planos bíblicos com imagens cristãs apropriadas
     const biblePlans = [
       {
         plan_id: 1,
         title: 'Pais de Fé: Criando Filhos que Conhecem a Deus',
-        image_url: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2070&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1606731834810-fb8f8adfd0e8?q=80&w=2071&auto=format&fit=crop',
         category: 'Pais',
         description: 'Um plano de 7 dias para pais que desejam criar filhos que conhecem e amam a Deus.',
         author: 'Dr. Tony Evans',
@@ -36,7 +36,7 @@ serve(async (req) => {
       {
         plan_id: 2,
         title: 'Família Abençoada: Princípios Bíblicos',
-        image_url: 'https://images.unsplash.com/photo-1606731834810-fb8f8adfd0e8?q=80&w=2071&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1544717684-d73c53d7df48?q=80&w=2069&auto=format&fit=crop',
         category: 'Pais',
         description: 'Descubra como aplicar princípios bíblicos para construir uma família forte e unida.',
         author: 'Joyce Meyer',
@@ -46,7 +46,7 @@ serve(async (req) => {
       {
         plan_id: 3,
         title: 'Educando com Amor e Disciplina',
-        image_url: 'https://images.unsplash.com/photo-1544717684-d73c53d7df48?q=80&w=2069&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2070&auto=format&fit=crop',
         category: 'Pais',
         description: 'Aprenda a equilibrar amor e disciplina na educação dos seus filhos conforme a Palavra.',
         author: 'James Dobson',
@@ -76,7 +76,7 @@ serve(async (req) => {
       {
         plan_id: 6,
         title: 'Conhecendo Jesus Pessoalmente',
-        image_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2125&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2086&auto=format&fit=crop',
         category: 'Novo na Fé',
         description: 'Desenvolva um relacionamento pessoal e profundo com Jesus Cristo.',
         author: 'Max Lucado',
@@ -86,7 +86,7 @@ serve(async (req) => {
       {
         plan_id: 7,
         title: 'Jovens de Propósito: Descobrindo Seu Chamado',
-        image_url: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop',
         category: 'Juventude',
         description: 'Descubra o propósito de Deus para sua vida e como viver com significado.',
         author: 'Nick Vujicic',
@@ -106,7 +106,7 @@ serve(async (req) => {
       {
         plan_id: 9,
         title: 'Liderança Cristã para Jovens',
-        image_url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=2070&auto=format&fit=crop',
+        image_url: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop',
         category: 'Juventude',
         description: 'Desenvolva habilidades de liderança baseadas em princípios bíblicos.',
         author: 'John Maxwell',
