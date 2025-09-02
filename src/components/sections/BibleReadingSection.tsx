@@ -18,18 +18,29 @@ export const BibleReadingSection = () => {
 
   const handleSyncPlans = async () => {
     setIsSyncing(true);
-    const result = await syncBiblePlans();
     
-    if (result.success) {
+    try {
+      const result = await syncBiblePlans();
+      
+      if (result.success) {
+        toast({
+          title: "Planos sincronizados!",
+          description: "Os planos de leitura foram carregados com sucesso.",
+        });
+        queryClient.invalidateQueries({ queryKey: ["reading_plans"] });
+      } else {
+        console.error('Erro na sincronização:', result.error);
+        toast({
+          title: "Erro na sincronização",
+          description: "Não foi possível carregar os planos. Tente novamente.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Erro inesperado:', error);
       toast({
-        title: "Planos sincronizados!",
-        description: "Os planos de leitura foram carregados com sucesso.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["reading_plans"] });
-    } else {
-      toast({
-        title: "Erro na sincronização",
-        description: "Não foi possível carregar os planos. Tente novamente.",
+        title: "Erro inesperado",
+        description: "Ocorreu um erro ao sincronizar os planos.",
         variant: "destructive",
       });
     }
