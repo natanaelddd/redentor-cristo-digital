@@ -135,46 +135,69 @@ export const BibleReadingSection = () => {
 
         <div className="space-y-16 mb-12">
           {categories.map((category) => {
-            const categoryPlans = readingPlans?.filter((plan) => plan.category === category) || [];
+            const categoryPlans = readingPlans?.filter((plan) => plan.category === category).slice(0, 3) || [];
             
             if (categoryPlans.length === 0) return null;
             
             return (
-              <div key={category}>
-                <h3 className="text-3xl font-bold mb-8 text-center">{category}</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {categoryPlans.map((plan) => (
+              <div key={category} className="space-y-8">
+                <div className="text-center">
+                  <h3 className="text-4xl font-bold mb-4 text-gray-900">{category}</h3>
+                  <div className="w-20 h-1 bg-gradient-to-r from-orange-600 to-red-600 mx-auto rounded-full"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                  {categoryPlans.map((plan, index) => (
                     <Card 
                       key={plan.id} 
-                      className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group border-0 shadow-md"
+                      className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-lg bg-white rounded-2xl"
                       onClick={() => handlePlanClick(plan.id)}
+                      style={{
+                        animationDelay: `${index * 100}ms`
+                      }}
                     >
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-56 overflow-hidden">
                         <img
                           src={plan.image}
                           alt={plan.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
                             console.log('Erro ao carregar imagem:', plan.image);
                             e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop";
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
-                          <div className="p-4 text-white w-full">
-                            <h4 className="font-bold text-lg mb-1 line-clamp-2">{plan.title}</h4>
-                            <p className="text-sm opacity-90">{plan.duration}</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                          <h4 className="font-bold text-xl mb-2 line-clamp-2 leading-tight">{plan.title}</h4>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                              {plan.duration}
+                            </span>
+                            <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <CardContent className="p-4">
-                        <p className="text-gray-600 text-sm mb-2 line-clamp-2">{plan.description}</p>
-                        <p className="text-xs text-gray-500 mb-3">Por {plan.author}</p>
+                      <CardContent className="p-6">
+                        <p className="text-gray-600 text-sm mb-3 line-clamp-3 leading-relaxed">{plan.description}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-black text-sm font-medium">Começar Leitura</span>
-                          <ArrowRight className="h-4 w-4 text-black group-hover:translate-x-1 transition-transform" />
+                          <p className="text-xs text-gray-500 font-medium">Por {plan.author}</p>
+                          <Book className="h-4 w-4 text-orange-600" />
                         </div>
                       </CardContent>
                     </Card>
+                  ))}
+                  
+                  {/* Fill empty slots if less than 3 plans */}
+                  {Array.from({ length: 3 - categoryPlans.length }).map((_, index) => (
+                    <div key={`empty-${index}`} className="invisible">
+                      <Card className="h-full">
+                        <div className="h-56"></div>
+                        <CardContent className="p-6">
+                          <div className="h-20"></div>
+                        </CardContent>
+                      </Card>
+                    </div>
                   ))}
                 </div>
               </div>
