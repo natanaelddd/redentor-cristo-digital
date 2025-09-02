@@ -34,7 +34,7 @@ const ReadingPlan = () => {
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen bg-white font-body">
-        <Header logoUrl="/lovable-uploads/church-logo-bw.png" />
+        <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <Loader2 className="h-16 w-16 text-gray-400 mx-auto mb-4 animate-spin" />
@@ -51,7 +51,7 @@ const ReadingPlan = () => {
     console.error('Erro ao carregar plano:', error);
     return (
       <div className="flex flex-col min-h-screen bg-white font-body">
-        <Header logoUrl="/lovable-uploads/church-logo-bw.png" />
+        <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <Book className="h-16 w-16 text-gray-400 mx-auto mb-4" />
@@ -69,7 +69,7 @@ const ReadingPlan = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-body">
-      <Header logoUrl="/lovable-uploads/church-logo-bw.png" />
+      <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
       <main className="flex-grow py-16">
         <div className="container mx-auto px-8 max-w-4xl">
           <div className="mb-8">
