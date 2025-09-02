@@ -46,7 +46,7 @@ const Index = () => {
         {
           id: '1',
           title: 'Culto de Domingo',
-          image_url: '/lovable-uploads/8f26c45c-7c10-4b49-ae6c-955370e66511.png',
+          image_url: '/lovable-uploads/church-service-bw.png',
           day_of_week: 'Todos os Domingos',
           time: '19h',
           description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
@@ -54,7 +54,7 @@ const Index = () => {
         {
           id: '2',
           title: 'Estudo Bíblico',
-          image_url: '/lovable-uploads/2ec1f073-a0ea-4dcf-969b-ab19f3b541b4.png',
+          image_url: '/lovable-uploads/bible-study-bw.png',
           day_of_week: 'Todas as Quartas',
           time: '20h',
           description: 'Aprofunde seu conhecimento nas escrituras sagradas conosco.'
@@ -62,7 +62,7 @@ const Index = () => {
         {
           id: '3',
           title: 'Reunião de Oração',
-          image_url: '/lovable-uploads/850f1e45-963d-4719-a2ac-7ba152fd8f99.png',
+          image_url: '/lovable-uploads/prayer-hands-bw.png',
           day_of_week: 'Todas as Sextas',
           time: '20h',
           description: 'Um momento especial de oração e comunhão com Deus.'
@@ -102,7 +102,7 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-body">
-      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
+      <Header navLinks={pageData?.navLinks} logoUrl="/lovable-uploads/church-logo-bw.png" />
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />

@@ -63,7 +63,7 @@ export const AboutSection = ({ siteContent = {} }: AboutSectionProps) => {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <img
-                src="/lovable-uploads/326e9cbc-61c9-469a-a8fe-76d7ead588bd.png"
+                src="/lovable-uploads/church-community-bw.png"
                 alt="Nossa Igreja"
                 className="w-full h-96 object-cover"
               />

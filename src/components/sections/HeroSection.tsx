@@ -9,10 +9,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
-import churchExterior from '@/assets/church-exterior.jpg';
-import crossSunset from '@/assets/cross-sunset.jpg';
-import churchInterior from '@/assets/church-interior.jpg';
-import stainedGlass from '@/assets/stained-glass.jpg';
+import churchExterior from '@/assets/church-exterior-bw.jpg';
+import crossSunset from '@/assets/cross-sunset-bw.jpg';
+import churchInterior from '@/assets/church-interior-bw.jpg';
+import stainedGlass from '@/assets/stained-glass-bw.jpg';
 
 type CarouselItemData = {
   id: string;
