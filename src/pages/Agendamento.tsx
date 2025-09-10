@@ -86,6 +86,27 @@ const Agendamento = () => {
   // Load booked times and total appointments for the event date
   useEffect(() => {
     loadBookedTimes();
+    
+    // Set up real-time updates for appointments
+    const channel = supabase
+      .channel('appointment-updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'event_appointments',
+          filter: `appointment_date=eq.${format(eventDate, 'yyyy-MM-dd')}`
+        },
+        () => {
+          loadBookedTimes();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const loadBookedTimes = async () => {
@@ -236,25 +257,50 @@ const Agendamento = () => {
                 <div>
                   <Label>Horários Disponíveis</Label>
                   <div className="grid grid-cols-4 gap-2 mt-2">
-                    {timeSlots.map((time) => (
-                      <Button
-                        key={time}
-                        type="button"
-                        variant={selectedTime === time ? "default" : "outline"}
-                        size="sm"
-                        disabled={bookedTimes.includes(time) || totalAppointments >= 70}
-                        onClick={() => setSelectedTime(time)}
-                        className="text-xs"
-                      >
-                        {time}
-                      </Button>
-                    ))}
+                    {timeSlots.map((time) => {
+                      const isBooked = bookedTimes.includes(time);
+                      const isSelected = selectedTime === time;
+                      const isDisabled = isBooked || totalAppointments >= 70;
+                      
+                      return (
+                        <Button
+                          key={time}
+                          type="button"
+                          variant={isSelected ? "default" : "outline"}
+                          size="sm"
+                          disabled={isDisabled}
+                          onClick={() => setSelectedTime(time)}
+                          className={`text-xs ${
+                            isBooked 
+                              ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90 border-destructive' 
+                              : ''
+                          }`}
+                        >
+                          {time}
+                        </Button>
+                      );
+                    })}
                   </div>
-                  {bookedTimes.length > 0 && (
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Horários em cinza já estão ocupados
-                    </p>
-                  )}
+                  
+                  {/* Legenda */}
+                  <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+                    <h4 className="text-sm font-semibold mb-2">Legenda:</h4>
+                    <div className="space-y-1 text-xs">
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-background border border-input rounded"></div>
+                        <span>Horários disponíveis</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-destructive rounded"></div>
+                        <span>Horários ocupados</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-primary rounded"></div>
+                        <span>Horário selecionado</span>
+                      </div>
+                    </div>
+                  </div>
+                  
                   {totalAppointments >= 70 && (
                     <p className="text-xs text-destructive mt-2 font-semibold">
                       ⚠️ Todas as vagas foram preenchidas
