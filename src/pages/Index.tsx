@@ -116,20 +116,30 @@ const Index = () => {
       />
       
       {/* Event Banner */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-4">
-        <div className="container mx-auto px-4">
+      <div className="bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
+        {/* Animated background effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-50 animate-[pulse_2s_ease-in-out_infinite]"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Eye className="h-6 w-6" />
+              <div className="bg-white/20 p-2 rounded-full animate-bounce">
+                <Eye className="h-6 w-6" />
+              </div>
               <div>
-                <h3 className="font-bold text-lg">Dia da Saúde Ocular - 13/09</h3>
-                <p className="text-sm opacity-90">Exames grátis + armações e lentes com super desconto</p>
+                <h3 className="font-bold text-lg drop-shadow-md">
+                  🚨 Dia da Saúde Ocular - 13/09 🚨
+                </h3>
+                <p className="text-sm opacity-90 drop-shadow-sm">Exames grátis + armações e lentes com super desconto</p>
               </div>
             </div>
             <Link to="/agendamento">
-              <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+              <Button variant="secondary" size="lg" className="bg-white text-emerald-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse border-2 border-emerald-200">
                 <Calendar className="h-4 w-4 mr-2" />
-                Agendar Exame
+                ⚡ Agendar Exame GRÁTIS ⚡
               </Button>
             </Link>
           </div>
