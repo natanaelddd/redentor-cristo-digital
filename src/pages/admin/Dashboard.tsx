@@ -26,7 +26,7 @@ export default function AdminDashboard() {
         { count: contentCount },
         { count: usersCount }
       ] = await Promise.all([
-        supabase.from("hero_slides").select("*", { count: "exact", head: true }),
+        supabase.from("church_hero_slides").select("*", { count: "exact", head: true }),
         supabase.from("events").select("*", { count: "exact", head: true }),
         supabase.from("site_content").select("*", { count: "exact", head: true }),
         supabase.from("profiles").select("*", { count: "exact", head: true })
@@ -46,7 +46,7 @@ export default function AdminDashboard() {
     queryKey: ["active-slides"],
     queryFn: async () => {
       const { data } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .select("*")
         .eq("is_active", true)
         .order("order");
