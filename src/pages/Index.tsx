@@ -123,7 +123,7 @@ const Index = () => {
               <Eye className="h-6 w-6" />
               <div>
                 <h3 className="font-bold text-lg">Dia da Saúde Ocular - 13/09</h3>
-                <p className="text-sm opacity-90">Exames grátis de vista, armações e lentes</p>
+                <p className="text-sm opacity-90">Exames grátis + armações e lentes com super desconto</p>
               </div>
             </div>
             <Link to="/agendamento">

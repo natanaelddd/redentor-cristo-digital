@@ -152,7 +152,7 @@ const Agendamento = () => {
                 Dia da Saúde Ocular
               </CardTitle>
               <CardDescription className="text-lg">
-                Exames de Vista, Armações & Lentes - GRÁTIS!
+                Exames de Vista GRATUITOS + Armações e Lentes com SUPER DESCONTO!
               </CardDescription>
               <div className="flex justify-center items-center gap-4 mt-4">
                 <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg">
