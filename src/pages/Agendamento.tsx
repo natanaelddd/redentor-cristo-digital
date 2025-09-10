@@ -26,8 +26,8 @@ const Agendamento = () => {
     address: ''
   });
 
-  // Data fixa do evento - 13 de setembro de 2024
-  const eventDate = new Date(2024, 8, 13);
+  // Data fixa do evento - 13 de setembro de 2025 (sábado)
+  const eventDate = new Date(2025, 8, 13);
 
   // Generate time slots from 9:00 to 16:00 every 10 minutes
   const generateTimeSlots = () => {
