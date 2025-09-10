@@ -12,6 +12,9 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LiveEditor } from "@/components/LiveEditor";
 import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Calendar, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // Helper para formatar o conteúdo do site em um objeto chave-valor
 const formatSiteContent = (content: any[] | null) => {
@@ -111,6 +114,28 @@ const Index = () => {
         showAdminActions={isAdmin}
         onLogout={signOut}
       />
+      
+      {/* Event Banner */}
+      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Eye className="h-6 w-6" />
+              <div>
+                <h3 className="font-bold text-lg">Dia da Saúde Ocular - 13/09</h3>
+                <p className="text-sm opacity-90">Exames grátis de vista, armações e lentes</p>
+              </div>
+            </div>
+            <Link to="/agendamento">
+              <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+                <Calendar className="h-4 w-4 mr-2" />
+                Agendar Exame
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
         <AboutSection siteContent={pageData?.siteContent} />

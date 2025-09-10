@@ -11,7 +11,8 @@ import {
   Menu,
   X,
   Church,
-  BookOpen
+  BookOpen,
+  Clock
 } from "lucide-react";
 import {
   Sidebar,
@@ -30,6 +31,7 @@ const adminItems = [
   { title: "Dashboard", url: "/admin", icon: Home },
   { title: "Hero Slides", url: "/admin/slides", icon: Image },
   { title: "Eventos", url: "/admin/events", icon: Calendar },
+  { title: "Agendamentos", url: "/admin/event-appointments", icon: Clock },
   { title: "Conteúdo", url: "/admin/content", icon: FileText },
   { title: "Navegação", url: "/admin/navigation", icon: Link },
   { title: "Planos de Leitura", url: "/admin/reading-plans", icon: BookOpen },
