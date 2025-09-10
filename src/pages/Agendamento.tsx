@@ -15,9 +15,9 @@ import { Footer } from '@/components/Footer';
 
 const Agendamento = () => {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [bookedTimes, setBookedTimes] = useState<string[]>([]);
+  const [totalAppointments, setTotalAppointments] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -25,6 +25,9 @@ const Agendamento = () => {
     phone: '',
     address: ''
   });
+
+  // Data fixa do evento - 13 de setembro de 2024
+  const eventDate = new Date(2024, 8, 13);
 
   // Generate time slots from 9:00 to 16:00 every 10 minutes
   const generateTimeSlots = () => {
@@ -40,20 +43,16 @@ const Agendamento = () => {
 
   const timeSlots = generateTimeSlots();
 
-  // Load booked times for selected date
+  // Load booked times and total appointments for the event date
   useEffect(() => {
-    if (selectedDate) {
-      loadBookedTimes();
-    }
-  }, [selectedDate]);
+    loadBookedTimes();
+  }, []);
 
   const loadBookedTimes = async () => {
-    if (!selectedDate) return;
-
     const { data, error } = await supabase
       .from('event_appointments')
       .select('appointment_time')
-      .eq('appointment_date', format(selectedDate, 'yyyy-MM-dd'));
+      .eq('appointment_date', format(eventDate, 'yyyy-MM-dd'));
 
     if (error) {
       console.error('Error loading booked times:', error);
@@ -62,15 +61,16 @@ const Agendamento = () => {
 
     const times = data.map(item => item.appointment_time);
     setBookedTimes(times);
+    setTotalAppointments(data.length);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedDate || !selectedTime) {
+    if (!selectedTime) {
       toast({
         title: "Erro",
-        description: "Por favor, selecione uma data e horário.",
+        description: "Por favor, selecione um horário.",
         variant: "destructive"
       });
       return;
@@ -80,6 +80,15 @@ const Agendamento = () => {
       toast({
         title: "Erro",
         description: "Todos os campos são obrigatórios.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (totalAppointments >= 70) {
+      toast({
+        title: "Vagas esgotadas",
+        description: "Todas as 70 vagas para o evento já foram preenchidas.",
         variant: "destructive"
       });
       return;
@@ -95,7 +104,7 @@ const Agendamento = () => {
           email: formData.email,
           phone: formData.phone,
           address: formData.address,
-          appointment_date: format(selectedDate, 'yyyy-MM-dd'),
+          appointment_date: format(eventDate, 'yyyy-MM-dd'),
           appointment_time: selectedTime
         });
 
@@ -114,7 +123,7 @@ const Agendamento = () => {
 
       toast({
         title: "Agendamento confirmado!",
-        description: `Seu agendamento foi realizado para ${format(selectedDate, 'dd/MM/yyyy')} às ${selectedTime}.`
+        description: `Seu agendamento foi realizado para ${format(eventDate, 'dd/MM/yyyy')} às ${selectedTime}.`
       });
 
       // Reset form
@@ -134,11 +143,7 @@ const Agendamento = () => {
     }
   };
 
-  // Set default date to September 13, 2024
-  useEffect(() => {
-    const eventDate = new Date(2024, 8, 13); // September 13, 2024
-    setSelectedDate(eventDate);
-  }, []);
+  const remainingSlots = 70 - totalAppointments;
 
   return (
     <div className="min-h-screen bg-background">
@@ -161,6 +166,7 @@ const Agendamento = () => {
                 <div className="text-sm text-muted-foreground">
                   <p>📍 Av Pedro Abrahão Além Neto, 520</p>
                   <p>🕘 9h às 16h</p>
+                  <p className="font-semibold text-primary">📊 {remainingSlots} vagas restantes de 70</p>
                 </div>
               </div>
             </CardHeader>
@@ -176,47 +182,42 @@ const Agendamento = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label>Data do Evento</Label>
-                  <div className="mt-2">
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={setSelectedDate}
-                      disabled={(date) => {
-                        const eventDate = new Date(2024, 8, 13);
-                        return date.getTime() !== eventDate.getTime();
-                      }}
-                      locale={ptBR}
-                      className="rounded-md border"
-                    />
+                  <Label>Data do Evento (Fixa)</Label>
+                  <div className="mt-2 p-3 bg-muted rounded-md">
+                    <p className="font-semibold text-center">
+                      {format(eventDate, 'EEEE, dd/MM/yyyy', { locale: ptBR })}
+                    </p>
                   </div>
                 </div>
 
-                {selectedDate && (
-                  <div>
-                    <Label>Horários Disponíveis</Label>
-                    <div className="grid grid-cols-4 gap-2 mt-2">
-                      {timeSlots.map((time) => (
-                        <Button
-                          key={time}
-                          type="button"
-                          variant={selectedTime === time ? "default" : "outline"}
-                          size="sm"
-                          disabled={bookedTimes.includes(time)}
-                          onClick={() => setSelectedTime(time)}
-                          className="text-xs"
-                        >
-                          {time}
-                        </Button>
-                      ))}
-                    </div>
-                    {bookedTimes.length > 0 && (
-                      <p className="text-xs text-muted-foreground mt-2">
-                        Horários em cinza já estão ocupados
-                      </p>
-                    )}
+                <div>
+                  <Label>Horários Disponíveis</Label>
+                  <div className="grid grid-cols-4 gap-2 mt-2">
+                    {timeSlots.map((time) => (
+                      <Button
+                        key={time}
+                        type="button"
+                        variant={selectedTime === time ? "default" : "outline"}
+                        size="sm"
+                        disabled={bookedTimes.includes(time) || totalAppointments >= 70}
+                        onClick={() => setSelectedTime(time)}
+                        className="text-xs"
+                      >
+                        {time}
+                      </Button>
+                    ))}
                   </div>
-                )}
+                  {bookedTimes.length > 0 && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Horários em cinza já estão ocupados
+                    </p>
+                  )}
+                  {totalAppointments >= 70 && (
+                    <p className="text-xs text-destructive mt-2 font-semibold">
+                      ⚠️ Todas as vagas foram preenchidas
+                    </p>
+                  )}
+                </div>
               </CardContent>
             </Card>
 
@@ -276,7 +277,7 @@ const Agendamento = () => {
                   <Button 
                     type="submit" 
                     className="w-full" 
-                    disabled={loading || !selectedDate || !selectedTime}
+                    disabled={loading || !selectedTime || totalAppointments >= 70}
                   >
                     {loading ? 'Agendando...' : 'Confirmar Agendamento'}
                   </Button>
