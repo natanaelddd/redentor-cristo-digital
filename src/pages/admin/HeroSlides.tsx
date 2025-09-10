@@ -32,7 +32,7 @@ export default function HeroSlidesAdmin() {
     queryKey: ["admin-hero-slides"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .select("*")
         .order("order");
       
@@ -44,7 +44,7 @@ export default function HeroSlidesAdmin() {
   const createSlideMutation = useMutation({
     mutationFn: async (slide: Omit<HeroSlide, "id">) => {
       const { data, error } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .insert([slide])
         .select()
         .single();
@@ -66,7 +66,7 @@ export default function HeroSlidesAdmin() {
   const updateSlideMutation = useMutation({
     mutationFn: async (slide: HeroSlide) => {
       const { data, error } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .update(slide)
         .eq("id", slide.id)
         .select()
@@ -89,7 +89,7 @@ export default function HeroSlidesAdmin() {
   const deleteSlideMutation = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .delete()
         .eq("id", id);
       
@@ -107,7 +107,7 @@ export default function HeroSlidesAdmin() {
   const updateOrderMutation = useMutation({
     mutationFn: async ({ id, newOrder }: { id: string; newOrder: number }) => {
       const { error } = await supabase
-        .from("hero_slides")
+        .from("church_hero_slides")
         .update({ order: newOrder })
         .eq("id", id);
       

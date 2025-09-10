@@ -33,7 +33,7 @@ const Index = () => {
         { data: navLinks, error: navLinksError },
         { data: events, error: eventsError },
       ] = await Promise.all([
-        supabase.from("hero_slides").select("*").order("order").eq('is_active', true),
+        supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
         supabase.from("site_content").select("*"),
         supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
         supabase.from("events").select("*").order("order").eq('is_active', true),

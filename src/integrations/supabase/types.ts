@@ -244,6 +244,78 @@ export type Database = {
         }
         Relationships: []
       }
+      church_hero_slides: {
+        Row: {
+          animation_duration: number | null
+          animation_type: string | null
+          background_color: string | null
+          button_color: string | null
+          button_hover_color: string | null
+          button_link: string | null
+          button_text: string
+          category: string
+          created_at: string | null
+          description: string | null
+          display_duration: number | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          order: number | null
+          overlay_opacity: number | null
+          subtitle: string | null
+          text_alignment: string | null
+          text_color: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          animation_duration?: number | null
+          animation_type?: string | null
+          background_color?: string | null
+          button_color?: string | null
+          button_hover_color?: string | null
+          button_link?: string | null
+          button_text: string
+          category: string
+          created_at?: string | null
+          description?: string | null
+          display_duration?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          order?: number | null
+          overlay_opacity?: number | null
+          subtitle?: string | null
+          text_alignment?: string | null
+          text_color?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          animation_duration?: number | null
+          animation_type?: string | null
+          background_color?: string | null
+          button_color?: string | null
+          button_hover_color?: string | null
+          button_link?: string | null
+          button_text?: string
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          display_duration?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          order?: number | null
+          overlay_opacity?: number | null
+          subtitle?: string | null
+          text_alignment?: string | null
+          text_color?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       data_sources: {
         Row: {
           active: boolean | null
