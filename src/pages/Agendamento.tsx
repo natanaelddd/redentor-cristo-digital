@@ -266,14 +266,16 @@ const Agendamento = () => {
                         <Button
                           key={time}
                           type="button"
-                          variant={isSelected ? "default" : "outline"}
+                          variant={isBooked ? "destructive" : (isSelected ? "default" : "outline")}
                           size="sm"
                           disabled={isDisabled}
-                          onClick={() => setSelectedTime(time)}
+                          onClick={() => !isBooked ? setSelectedTime(time) : null}
                           className={`text-xs ${
                             isBooked 
-                              ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90 border-destructive' 
-                              : ''
+                              ? 'bg-red-600 text-white hover:bg-red-700 border-red-600 cursor-not-allowed' 
+                              : isSelected
+                              ? 'bg-primary text-primary-foreground'
+                              : 'hover:bg-accent hover:text-accent-foreground'
                           }`}
                         >
                           {time}
