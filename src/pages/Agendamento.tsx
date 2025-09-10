@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -28,6 +29,45 @@ const Agendamento = () => {
 
   // Data fixa do evento - 13 de setembro de 2025 (sábado)
   const eventDate = new Date(2025, 8, 13);
+
+  // Load navigation links for header
+  const { data: navData } = useQuery({
+    queryKey: ["nav_data"],
+    queryFn: async () => {
+      const [
+        { data: navLinks, error: navLinksError },
+        { data: siteContent, error: siteContentError },
+      ] = await Promise.all([
+        supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
+        supabase.from("site_content").select("*"),
+      ]);
+
+      if (navLinksError) throw new Error(navLinksError.message);
+      if (siteContentError) throw new Error(siteContentError.message);
+
+      // Links de navegação padrão
+      const staticNavLinks = [
+        { title: 'INÍCIO', href: '/' },
+        { title: 'SOBRE', href: '/#sobre' },
+        { title: 'EVENTOS', href: '/#eventos' },
+        { title: 'CONTATO', href: '/#contato' }
+      ];
+
+      // Helper para formatar o conteúdo do site
+      const formatSiteContent = (content: any[] | null) => {
+        if (!content) return {};
+        return content.reduce((acc, item) => {
+          acc[item.section_key] = item.content_value;
+          return acc;
+        }, {} as { [key: string]: string });
+      };
+
+      return {
+        navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
+        siteContent: formatSiteContent(siteContent),
+      };
+    },
+  });
 
   // Generate time slots from 9:00 to 16:00 every 10 minutes
   const generateTimeSlots = () => {
@@ -147,7 +187,10 @@ const Agendamento = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
+      <Header 
+        logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" 
+        navLinks={navData?.navLinks}
+      />
       
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
@@ -288,7 +331,7 @@ const Agendamento = () => {
         </div>
       </main>
 
-      <Footer />
+      <Footer navLinks={navData?.navLinks} siteContent={navData?.siteContent} />
     </div>
   );
 };
