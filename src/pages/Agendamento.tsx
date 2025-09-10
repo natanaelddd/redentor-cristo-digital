@@ -142,7 +142,7 @@ const Agendamento = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
       
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
