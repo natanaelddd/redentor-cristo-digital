@@ -116,9 +116,9 @@ const Index = () => {
       />
       
       {/* Event Banner */}
-      <div className="bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
+      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-800 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
         {/* Animated background effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-50 animate-[pulse_2s_ease-in-out_infinite]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-700 opacity-50 animate-[pulse_2s_ease-in-out_infinite]"></div>
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]"></div>
         </div>
@@ -137,7 +137,7 @@ const Index = () => {
               </div>
             </div>
             <Link to="/agendamento">
-              <Button variant="secondary" size="lg" className="bg-white text-emerald-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse border-2 border-emerald-200">
+              <Button variant="secondary" size="lg" className="bg-white text-orange-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-[pulse_4s_ease-in-out_infinite] border-2 border-orange-200">
                 <Calendar className="h-4 w-4 mr-2" />
                 ⚡ Agendar Exame GRÁTIS ⚡
               </Button>
