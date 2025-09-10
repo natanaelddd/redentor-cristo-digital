@@ -137,7 +137,7 @@ const Index = () => {
               </div>
             </div>
             <Link to="/agendamento">
-              <Button variant="secondary" size="lg" className="bg-white text-orange-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-[pulse_4s_ease-in-out_infinite] border-2 border-orange-200">
+              <Button variant="secondary" size="lg" className="bg-white text-orange-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
                 <Calendar className="h-4 w-4 mr-2" />
                 ⚡ Agendar Exame GRÁTIS ⚡
               </Button>
