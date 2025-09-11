@@ -157,12 +157,12 @@ export const BibleReadingSection = () => {
                     >
                       <div className="relative h-56 overflow-hidden">
                         <img
-                          src={plan.image}
+                          src={plan.image || "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2074&auto=format&fit=crop"}
                           alt={plan.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
                             console.log('Erro ao carregar imagem:', plan.image);
-                            e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop";
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2074&auto=format&fit=crop";
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
