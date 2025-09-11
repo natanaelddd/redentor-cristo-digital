@@ -69,10 +69,10 @@ const Agendamento = () => {
     },
   });
 
-  // Generate time slots from 9:00 to 16:00 every 10 minutes
+  // Generate time slots from 9:00 to 18:00 every 10 minutes
   const generateTimeSlots = () => {
     const slots = [];
-    for (let hour = 9; hour < 16; hour++) {
+    for (let hour = 9; hour < 18; hour++) {
       for (let minute = 0; minute < 60; minute += 10) {
         const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
         slots.push(time);
@@ -127,7 +127,7 @@ const Agendamento = () => {
     setBookedTimes(times);
     setTotalAppointments(data.length);
     console.log('Total de agendamentos:', data.length);
-    console.log('Vagas restantes:', 70 - data.length);
+    console.log('Vagas restantes:', 54 - data.length);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -151,10 +151,10 @@ const Agendamento = () => {
       return;
     }
 
-    if (totalAppointments >= 70) {
+    if (totalAppointments >= 54) {
       toast({
         title: "Vagas esgotadas",
-        description: "Todas as 70 vagas para o evento já foram preenchidas.",
+        description: "Todas as 54 vagas para o evento já foram preenchidas.",
         variant: "destructive"
       });
       return;
@@ -209,7 +209,7 @@ const Agendamento = () => {
     }
   };
 
-  const remainingSlots = 70 - totalAppointments;
+  const remainingSlots = 54 - totalAppointments;
   console.log('Estado atual - totalAppointments:', totalAppointments, 'remainingSlots:', remainingSlots);
 
   return (
@@ -235,8 +235,8 @@ const Agendamento = () => {
                 </div>
                 <div className="text-sm text-muted-foreground">
                   <p>📍 Av Pedro Abrahão Além Neto, 520</p>
-                  <p>🕘 9h às 16h</p>
-                  <p className="font-semibold text-primary">📊 {remainingSlots} vagas restantes de 70</p>
+                  <p>🕘 9h às 18h</p>
+                  <p className="font-semibold text-primary">📊 {remainingSlots} vagas restantes de 54</p>
                 </div>
               </div>
             </CardHeader>
@@ -266,7 +266,7 @@ const Agendamento = () => {
                     {timeSlots.map((time) => {
                       const isBooked = bookedTimes.includes(time);
                       const isSelected = selectedTime === time;
-                      const isDisabled = isBooked || totalAppointments >= 70;
+                      const isDisabled = isBooked || totalAppointments >= 54;
                       
                       return (
                         <Button
@@ -316,7 +316,7 @@ const Agendamento = () => {
                     </div>
                   </div>
                   
-                  {totalAppointments >= 70 && (
+                  {totalAppointments >= 54 && (
                     <p className="text-xs text-destructive mt-2 font-semibold">
                       ⚠️ Todas as vagas foram preenchidas
                     </p>
@@ -381,7 +381,7 @@ const Agendamento = () => {
                   <Button 
                     type="submit" 
                     className="w-full" 
-                    disabled={loading || !selectedTime || totalAppointments >= 70}
+                    disabled={loading || !selectedTime || totalAppointments >= 54}
                   >
                     {loading ? 'Agendando...' : 'Confirmar Agendamento'}
                   </Button>
