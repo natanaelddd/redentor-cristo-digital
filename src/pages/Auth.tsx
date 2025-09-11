@@ -55,12 +55,24 @@ const AuthPage = () => {
           variant: "destructive",
         });
       } else {
+        // Check if user is admin and redirect accordingly
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+
         toast({
           title: "Login realizado com sucesso!",
           description: "Redirecionando...",
         });
-        // Force page reload for clean auth state
-        window.location.href = "/";
+        
+        // Redirect to admin if user is admin, otherwise to home
+        if (profile?.role === "admin") {
+          window.location.href = "/admin";
+        } else {
+          window.location.href = "/";
+        }
       }
     } catch (error) {
       toast({

@@ -272,7 +272,7 @@ const Agendamento = () => {
                           onClick={() => !isBooked ? setSelectedTime(time) : null}
                           className={`text-xs ${
                             isBooked 
-                              ? 'bg-red-600 text-white hover:bg-red-700 border-red-600 cursor-not-allowed' 
+                              ? 'bg-red-600 text-white hover:bg-red-600 border-red-600 cursor-not-allowed opacity-90 font-medium' 
                               : isSelected
                               ? 'bg-primary text-primary-foreground'
                               : 'hover:bg-accent hover:text-accent-foreground'
