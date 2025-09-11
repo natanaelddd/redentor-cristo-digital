@@ -1249,7 +1249,14 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      appointment_availability: {
+        Row: {
+          appointment_date: string | null
+          appointment_time: string | null
+          booked_slots: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       bootstrap_first_admin: {
