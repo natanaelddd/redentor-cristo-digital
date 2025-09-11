@@ -145,7 +145,7 @@ export const BibleReadingSection = () => {
                   <h3 className="text-4xl font-bold mb-4 text-gray-900">{category}</h3>
                   <div className="w-20 h-1 bg-gradient-to-r from-orange-600 to-red-600 mx-auto rounded-full"></div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                   {categoryPlans.map((plan, index) => (
                     <Card 
                       key={plan.id} 
@@ -157,12 +157,12 @@ export const BibleReadingSection = () => {
                     >
                       <div className="relative h-56 overflow-hidden">
                         <img
-                          src={plan.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop"}
+                          src={plan.image || "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"}
                           alt={plan.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
                             console.log('Erro ao carregar imagem:', plan.image);
-                            e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop";
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3";
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
