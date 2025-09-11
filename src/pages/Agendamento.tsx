@@ -269,16 +269,21 @@ const Agendamento = () => {
                           variant={isBooked ? "destructive" : (isSelected ? "default" : "outline")}
                           size="sm"
                           disabled={isDisabled}
-                          onClick={() => !isBooked ? setSelectedTime(time) : null}
-                          className={`text-xs ${
+                          onClick={() => !isDisabled ? setSelectedTime(time) : null}
+                          className={`text-xs transition-all duration-200 ${
                             isBooked 
-                              ? 'bg-red-600 text-white hover:bg-red-600 border-red-600 cursor-not-allowed opacity-90 font-medium' 
+                              ? 'bg-red-600 text-white hover:bg-red-600 border-red-600 cursor-not-allowed opacity-75 font-medium relative' 
                               : isSelected
-                              ? 'bg-primary text-primary-foreground'
+                              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
                               : 'hover:bg-accent hover:text-accent-foreground'
                           }`}
                         >
-                          {time}
+                          {isBooked && (
+                            <span className="absolute inset-0 flex items-center justify-center">
+                              <span className="text-[10px] font-bold">OCUPADO</span>
+                            </span>
+                          )}
+                          <span className={isBooked ? 'opacity-0' : ''}>{time}</span>
                         </Button>
                       );
                     })}
@@ -293,8 +298,10 @@ const Agendamento = () => {
                         <span>Horários disponíveis</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-destructive rounded"></div>
-                        <span>Horários ocupados</span>
+                        <div className="w-4 h-4 bg-red-600 rounded opacity-75 flex items-center justify-center">
+                          <span className="text-[6px] text-white font-bold">X</span>
+                        </div>
+                        <span>Horários ocupados (indisponíveis)</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 bg-primary rounded"></div>
