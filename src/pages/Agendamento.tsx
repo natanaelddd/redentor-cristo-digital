@@ -97,6 +97,20 @@ const Agendamento = () => {
           filter: `appointment_date=eq.${format(eventDate, 'yyyy-MM-dd')}`
         },
         () => {
+          console.log('New appointment added - refreshing slots');
+          loadBookedTimes();
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'event_appointments',
+          filter: `appointment_date=eq.${format(eventDate, 'yyyy-MM-dd')}`
+        },
+        () => {
+          console.log('Appointment deleted - refreshing slots');
           loadBookedTimes();
         }
       )

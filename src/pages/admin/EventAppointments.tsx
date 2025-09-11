@@ -3,11 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Download, FileText, Calendar } from 'lucide-react';
+import { Download, FileText, Calendar, Trash2 } from 'lucide-react';
 
 interface Appointment {
   id: string;
@@ -68,6 +69,32 @@ const EventAppointments = () => {
       today: todayCount,
       upcoming
     });
+  };
+
+  const deleteAppointment = async (appointmentId: string, appointmentTime: string, fullName: string) => {
+    try {
+      const { error } = await supabase
+        .from('event_appointments')
+        .delete()
+        .eq('id', appointmentId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Agendamento excluído",
+        description: `Agendamento de ${fullName} (${appointmentTime}) foi excluído com sucesso.`,
+      });
+
+      // Reload appointments to update the list
+      loadAppointments();
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao excluir agendamento. Tente novamente.",
+        variant: "destructive"
+      });
+    }
   };
 
   const exportToCSV = () => {
@@ -229,6 +256,7 @@ const EventAppointments = () => {
                     <TableHead>Data</TableHead>
                     <TableHead>Horário</TableHead>
                     <TableHead>Status</TableHead>
+                    <TableHead>Ações</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -247,6 +275,44 @@ const EventAppointments = () => {
                         <Badge variant="default">
                           Confirmado
                         </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Tem certeza que deseja excluir o agendamento de{' '}
+                                <strong>{appointment.full_name}</strong> para o horário{' '}
+                                <strong>{appointment.appointment_time}</strong>?
+                                <br /><br />
+                                Esta ação não pode ser desfeita e o horário ficará disponível novamente para outros agendamentos.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => deleteAppointment(
+                                  appointment.id, 
+                                  appointment.appointment_time, 
+                                  appointment.full_name
+                                )}
+                                className="bg-red-600 hover:bg-red-700"
+                              >
+                                Excluir
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </TableCell>
                     </TableRow>
                   ))}
