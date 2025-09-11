@@ -110,6 +110,8 @@ const Agendamento = () => {
   }, []);
 
   const loadBookedTimes = async () => {
+    console.log('Carregando horários agendados para a data:', format(eventDate, 'yyyy-MM-dd'));
+    
     const { data, error } = await supabase
       .from('event_appointments')
       .select('appointment_time')
@@ -120,9 +122,12 @@ const Agendamento = () => {
       return;
     }
 
+    console.log('Agendamentos encontrados:', data);
     const times = data.map(item => item.appointment_time);
     setBookedTimes(times);
     setTotalAppointments(data.length);
+    console.log('Total de agendamentos:', data.length);
+    console.log('Vagas restantes:', 70 - data.length);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -205,6 +210,7 @@ const Agendamento = () => {
   };
 
   const remainingSlots = 70 - totalAppointments;
+  console.log('Estado atual - totalAppointments:', totalAppointments, 'remainingSlots:', remainingSlots);
 
   return (
     <div className="min-h-screen bg-background">
