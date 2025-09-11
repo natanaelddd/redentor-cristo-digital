@@ -28,7 +28,7 @@ const Agendamento = () => {
   });
 
   // Data fixa do evento - 13 de setembro de 2025 (sábado)
-  const eventDate = new Date(2025, 8, 13);
+  const eventDate = new Date(2025, 8, 13); // Mês 8 = setembro (0-indexado)
 
   // Load navigation links for header
   const { data: navData } = useQuery({
@@ -48,12 +48,10 @@ const Agendamento = () => {
       // Links de navegação padrão
       const staticNavLinks = [
         { title: 'INÍCIO', href: '/' },
-        { title: 'SOBRE', href: '/#sobre' },
-        { title: 'EVENTOS', href: '/#eventos' },
-        { title: 'CONTATO', href: '/#contato' }
+        { title: 'AGENDAMENTO', href: '/agendamento' },
       ];
 
-      // Helper para formatar o conteúdo do site
+      // Helper para formatar o conteúdo do site em um objeto chave-valor
       const formatSiteContent = (content: any[] | null) => {
         if (!content) return {};
         return content.reduce((acc, item) => {
@@ -110,8 +108,6 @@ const Agendamento = () => {
   }, []);
 
   const loadBookedTimes = async () => {
-    console.log('Carregando horários agendados para a data:', format(eventDate, 'yyyy-MM-dd'));
-    
     const { data, error } = await supabase
       .from('event_appointments')
       .select('appointment_time')
@@ -122,12 +118,9 @@ const Agendamento = () => {
       return;
     }
 
-    console.log('Agendamentos encontrados:', data);
     const times = data.map(item => item.appointment_time);
     setBookedTimes(times);
     setTotalAppointments(data.length);
-    console.log('Total de agendamentos:', data.length);
-    console.log('Vagas restantes:', 54 - data.length);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -174,27 +167,23 @@ const Agendamento = () => {
           appointment_time: selectedTime
         });
 
-      if (error) {
-        if (error.code === '23505') {
-          toast({
-            title: "Horário indisponível",
-            description: "Este horário já foi reservado. Por favor, escolha outro.",
-            variant: "destructive"
-          });
-          loadBookedTimes(); // Refresh booked times
-          return;
-        }
-        throw error;
-      }
+      if (error) throw error;
 
       toast({
-        title: "Agendamento confirmado!",
-        description: `Seu agendamento foi realizado para ${format(eventDate, 'dd/MM/yyyy')} às ${selectedTime}.`
+        title: "Agendamento realizado!",
+        description: `Seu horário ${selectedTime} foi confirmado para ${format(eventDate, 'dd/MM/yyyy')}.`
       });
 
       // Reset form
-      setFormData({ fullName: '', email: '', phone: '', address: '' });
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        address: ''
+      });
       setSelectedTime('');
+      
+      // Reload booked times
       loadBookedTimes();
 
     } catch (error) {
@@ -210,7 +199,6 @@ const Agendamento = () => {
   };
 
   const remainingSlots = 54 - totalAppointments;
-  console.log('Estado atual - totalAppointments:', totalAppointments, 'remainingSlots:', remainingSlots);
 
   return (
     <div className="min-h-screen bg-background">
@@ -338,9 +326,9 @@ const Agendamento = () => {
                     <Label htmlFor="fullName">Nome Completo *</Label>
                     <Input
                       id="fullName"
-                      type="text"
                       value={formData.fullName}
                       onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                      placeholder="Digite seu nome completo"
                       required
                     />
                   </div>
@@ -352,17 +340,18 @@ const Agendamento = () => {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      placeholder="seu@email.com"
                       required
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="phone">Telefone *</Label>
+                    <Label htmlFor="phone">Telefone/WhatsApp *</Label>
                     <Input
                       id="phone"
-                      type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      placeholder="(00) 00000-0000"
                       required
                     />
                   </div>
@@ -373,6 +362,7 @@ const Agendamento = () => {
                       id="address"
                       value={formData.address}
                       onChange={(e) => setFormData({...formData, address: e.target.value})}
+                      placeholder="Rua, número, bairro, cidade - CEP"
                       required
                       rows={3}
                     />
