@@ -21,6 +21,8 @@ interface ReadingPlan {
   duration: string;
   is_active: boolean;
   order_position: number;
+  link_url?: string;
+  external_link_text?: string;
 }
 
 export default function ReadingPlansAdmin() {
@@ -105,26 +107,43 @@ export default function ReadingPlansAdmin() {
 
   const updatePlanMutation = useMutation({
     mutationFn: async (plan: Partial<ReadingPlan>) => {
-      const { error } = await supabase
-        .from('reading_plan_details')
-        .update(plan)
-        .eq('id', plan.id);
-      
-      if (error) throw error;
+      if (isCreating && plan.id === 0) {
+        // Create new plan
+        const { id, ...newPlan } = plan;
+        // Ensure required fields are present
+        const planToInsert = {
+          ...newPlan,
+          title: newPlan.title || '',
+          category: newPlan.category || '',
+          plan_id: newPlan.plan_id || Date.now()
+        };
+        const { error } = await supabase
+          .from('reading_plan_details')
+          .insert([planToInsert]);
+        if (error) throw error;
+      } else {
+        // Update existing plan
+        const { error } = await supabase
+          .from('reading_plan_details')
+          .update(plan)
+          .eq('id', plan.id);
+        if (error) throw error;
+      }
     },
     onSuccess: () => {
       toast({
         title: "Sucesso",
-        description: "Plano atualizado com sucesso",
+        description: isCreating ? "Plano criado com sucesso" : "Plano atualizado com sucesso",
       });
       queryClient.invalidateQueries({ queryKey: ['admin_reading_plans'] });
       queryClient.invalidateQueries({ queryKey: ['reading_plans'] });
       setEditingPlan(null);
+      setIsCreating(false);
     },
     onError: (error) => {
       toast({
         title: "Erro",
-        description: "Falha ao atualizar: " + error.message,
+        description: `Falha ao ${isCreating ? 'criar' : 'atualizar'}: ` + error.message,
         variant: "destructive",
       });
     }
@@ -173,12 +192,17 @@ export default function ReadingPlansAdmin() {
   const handleSavePlan = (formData: FormData) => {
     const updatedPlan = {
       id: editingPlan?.id,
+      plan_id: editingPlan?.plan_id,
       title: formData.get('title') as string,
       description: formData.get('description') as string,
       author: formData.get('author') as string,
       duration: formData.get('duration') as string,
       category: formData.get('category') as string,
       image_url: editingPlan?.image_url,
+      link_url: formData.get('link_url') as string,
+      external_link_text: formData.get('external_link_text') as string,
+      is_active: editingPlan?.is_active,
+      order_position: parseInt(formData.get('order_position') as string) || editingPlan?.order_position || 0,
     };
 
     updatePlanMutation.mutate(updatedPlan);
@@ -209,6 +233,28 @@ export default function ReadingPlansAdmin() {
         <TabsContent value="plans" className="space-y-4">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Planos de Leitura</h2>
+            <Button
+              onClick={() => {
+                setEditingPlan({
+                  id: 0,
+                  plan_id: Date.now(),
+                  title: '',
+                  image_url: '',
+                  category: '',
+                  description: '',
+                  author: '',
+                  duration: '',
+                  is_active: true,
+                  order_position: 0,
+                  link_url: '',
+                  external_link_text: 'Ver Plano'
+                });
+                setIsCreating(true);
+              }}
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              Novo Plano
+            </Button>
           </div>
 
           <div className="grid gap-4">
@@ -298,7 +344,7 @@ export default function ReadingPlansAdmin() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <CardHeader>
-              <CardTitle>Editar Plano</CardTitle>
+              <CardTitle>{isCreating ? 'Criar Novo Plano' : 'Editar Plano'}</CardTitle>
             </CardHeader>
             <CardContent>
               <form
@@ -362,11 +408,26 @@ export default function ReadingPlansAdmin() {
                   <label className="block text-sm font-medium mb-1">Categoria</label>
                   <Input name="category" defaultValue={editingPlan.category} />
                 </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Link Externo</label>
+                  <Input name="link_url" type="url" defaultValue={editingPlan.link_url} placeholder="https://..." />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Texto do Link</label>
+                  <Input name="external_link_text" defaultValue={editingPlan.external_link_text || 'Ver Plano'} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Posição (ordem)</label>
+                  <Input name="order_position" type="number" defaultValue={editingPlan.order_position} />
+                </div>
                 <div className="flex justify-end space-x-2">
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => setEditingPlan(null)}
+                    onClick={() => {
+                      setEditingPlan(null);
+                      setIsCreating(false);
+                    }}
                   >
                     Cancelar
                   </Button>
@@ -374,7 +435,7 @@ export default function ReadingPlansAdmin() {
                     {updatePlanMutation.isPending ? (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                     ) : null}
-                    Salvar
+                    {isCreating ? 'Criar' : 'Salvar'}
                   </Button>
                 </div>
               </form>

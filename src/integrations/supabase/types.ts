@@ -385,6 +385,57 @@ export type Database = {
         }
         Relationships: []
       }
+      event_announcements: {
+        Row: {
+          background_color: string | null
+          created_at: string | null
+          end_date: string | null
+          id: string
+          is_active: boolean | null
+          link_text: string | null
+          link_url: string | null
+          message: string
+          order_position: number | null
+          start_date: string | null
+          text_color: string | null
+          title: string
+          type: string
+          updated_at: string | null
+        }
+        Insert: {
+          background_color?: string | null
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          link_text?: string | null
+          link_url?: string | null
+          message: string
+          order_position?: number | null
+          start_date?: string | null
+          text_color?: string | null
+          title: string
+          type?: string
+          updated_at?: string | null
+        }
+        Update: {
+          background_color?: string | null
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          link_text?: string | null
+          link_url?: string | null
+          message?: string
+          order_position?: number | null
+          start_date?: string | null
+          text_color?: string | null
+          title?: string
+          type?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       event_appointments: {
         Row: {
           address: string
@@ -1012,9 +1063,11 @@ export type Database = {
           created_at: string | null
           description: string | null
           duration: string | null
+          external_link_text: string | null
           id: number
           image_url: string | null
           is_active: boolean | null
+          link_url: string | null
           order_position: number | null
           plan_id: number
           title: string
@@ -1026,9 +1079,11 @@ export type Database = {
           created_at?: string | null
           description?: string | null
           duration?: string | null
+          external_link_text?: string | null
           id?: number
           image_url?: string | null
           is_active?: boolean | null
+          link_url?: string | null
           order_position?: number | null
           plan_id: number
           title: string
@@ -1040,9 +1095,11 @@ export type Database = {
           created_at?: string | null
           description?: string | null
           duration?: string | null
+          external_link_text?: string | null
           id?: number
           image_url?: string | null
           is_active?: boolean | null
+          link_url?: string | null
           order_position?: number | null
           plan_id?: number
           title?: string

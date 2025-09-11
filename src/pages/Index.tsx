@@ -10,6 +10,7 @@ import { EventsSection } from "@/components/sections/EventsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LiveEditor } from "@/components/LiveEditor";
+import { EventAnnouncements } from "@/components/EventAnnouncements";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye } from "lucide-react";
@@ -149,6 +150,13 @@ const Index = () => {
         showAdminActions={isAdmin}
         onLogout={signOut}
       />
+      
+      {/* Dynamic Event Announcements */}
+      <div className="bg-background">
+        <div className="container mx-auto px-4 py-2">
+          <EventAnnouncements />
+        </div>
+      </div>
       
       {/* Event Banner */}
       <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-800 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
