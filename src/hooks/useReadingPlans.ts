@@ -34,16 +34,50 @@ export const useReadingPlans = () => {
 
       if (error) {
         console.error('Erro ao buscar planos:', error);
-        throw error;
       }
 
       console.log('Planos encontrados:', plans);
+
+      // Se não há dados no banco, usar dados estáticos de fallback
+      if (!plans || plans.length === 0) {
+        const fallbackPlans: ReadingPlan[] = [
+          {
+            id: 1,
+            title: "Família Cristã",
+            image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+            category: "Pais",
+            description: "Construa uma família sólida baseada nos valores cristãos.",
+            author: "Charles Stanley",
+            duration: "21 dias"
+          },
+          {
+            id: 2,
+            title: "Fundamentos da Fé",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+            category: "Novo na Fé",
+            description: "Descubra os pilares essenciais da vida cristã.",
+            author: "Rick Warren",
+            duration: "30 dias"
+          },
+          {
+            id: 3,
+            title: "Propósito e Chamado",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+            category: "Juventude",
+            description: "Encontre seu propósito e chamado em Deus.",
+            author: "Joyce Meyer",
+            duration: "14 dias"
+          }
+        ];
+        
+        return fallbackPlans;
+      }
 
       // Transformar dados do banco para o formato esperado
       const readingPlans: ReadingPlan[] = plans?.map(plan => ({
         id: plan.plan_id,
         title: plan.title,
-        image: plan.image_url || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+        image: plan.image_url || "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
         category: plan.category,
         description: plan.description || "",
         author: plan.author || "",
