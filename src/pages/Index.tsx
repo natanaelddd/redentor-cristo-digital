@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -28,29 +27,11 @@ const formatSiteContent = (content: any[] | null) => {
 const Index = () => {
   const { isAdmin, signOut } = useAuth();
   
-  const { data: pageData, isLoading, error } = useQuery({
+  const { data: pageData, isLoading } = useQuery({
     queryKey: ["site_data"],
     queryFn: async () => {
       try {
-        const [
-          { data: heroSlides, error: heroSlidesError },
-          { data: siteContent, error: siteContentError },
-          { data: navLinks, error: navLinksError },
-          { data: events, error: eventsError },
-        ] = await Promise.all([
-          supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
-          supabase.from("site_content").select("*"),
-          supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
-          supabase.from("events").select("*").order("order").eq('is_active', true),
-        ]);
-
-        // Log errors but don't throw them to avoid breaking the page
-        if (heroSlidesError) console.error('Hero slides error:', heroSlidesError);
-        if (siteContentError) console.error('Site content error:', siteContentError);
-        if (navLinksError) console.error('Nav links error:', navLinksError);
-        if (eventsError) console.error('Events error:', eventsError);
-
-        // Dados dos eventos padrão
+        // Dados estáticos de fallback para garantir que a página sempre carregue
         const staticEvents = [
           {
             id: '1',
@@ -78,7 +59,6 @@ const Index = () => {
           }
         ];
 
-        // Links de navegação padrão
         const staticNavLinks = [
           { title: 'INÍCIO', href: '/' },
           { title: 'SOBRE', href: '/#sobre' },
@@ -86,15 +66,39 @@ const Index = () => {
           { title: 'CONTATO', href: '/#contato' }
         ];
 
-        return {
-          heroSlides: heroSlides || [],
-          siteContent: formatSiteContent(siteContent),
-          navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
-          events: (events && events.length > 0) ? events : staticEvents,
-        };
+        try {
+          // Tenta carregar dados do Supabase
+          const [
+            { data: heroSlides },
+            { data: siteContent },
+            { data: navLinks },
+            { data: events },
+          ] = await Promise.all([
+            supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
+            supabase.from("site_content").select("*"),
+            supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
+            supabase.from("events").select("*").order("order").eq('is_active', true),
+          ]);
+
+          return {
+            heroSlides: heroSlides || [],
+            siteContent: formatSiteContent(siteContent),
+            navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
+            events: (events && events.length > 0) ? events : staticEvents,
+          };
+        } catch (dbError) {
+          console.error('Database error, using fallback data:', dbError);
+          // Em caso de erro do banco, usa dados estáticos
+          return {
+            heroSlides: [],
+            siteContent: {},
+            navLinks: staticNavLinks,
+            events: staticEvents,
+          };
+        }
       } catch (error) {
-        console.error('Error loading site data:', error);
-        // Return fallback data to prevent the page from breaking
+        console.error('Error in query function:', error);
+        // Fallback completo em caso de qualquer erro
         return {
           heroSlides: [],
           siteContent: {},
@@ -116,7 +120,11 @@ const Index = () => {
           ]
         };
       }
-    }
+    },
+    // Configurações para tornar a query mais robusta
+    retry: 2,
+    retryDelay: 1000,
+    staleTime: 30000, // 30 segundos
   });
 
   if (isLoading) {
