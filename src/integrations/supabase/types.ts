@@ -1249,18 +1249,15 @@ export type Database = {
       }
     }
     Views: {
-      appointment_availability: {
-        Row: {
-          appointment_date: string | null
-          appointment_time: string | null
-          booked_slots: number | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       bootstrap_first_admin: {
         Args: { admin_email: string }
+        Returns: boolean
+      }
+      check_appointment_availability: {
+        Args: { check_date: string; check_time: string }
         Returns: boolean
       }
       check_appointment_slot_availability: {
