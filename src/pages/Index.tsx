@@ -27,69 +27,96 @@ const formatSiteContent = (content: any[] | null) => {
 
 const Index = () => {
   const { isAdmin, signOut } = useAuth();
-  const { data: pageData, isLoading } = useQuery({
+  
+  const { data: pageData, isLoading, error } = useQuery({
     queryKey: ["site_data"],
     queryFn: async () => {
-      const [
-        { data: heroSlides, error: heroSlidesError },
-        { data: siteContent, error: siteContentError },
-        { data: navLinks, error: navLinksError },
-        { data: events, error: eventsError },
-      ] = await Promise.all([
-        supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
-        supabase.from("site_content").select("*"),
-        supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
-        supabase.from("events").select("*").order("order").eq('is_active', true),
-      ]);
+      try {
+        const [
+          { data: heroSlides, error: heroSlidesError },
+          { data: siteContent, error: siteContentError },
+          { data: navLinks, error: navLinksError },
+          { data: events, error: eventsError },
+        ] = await Promise.all([
+          supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
+          supabase.from("site_content").select("*"),
+          supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
+          supabase.from("events").select("*").order("order").eq('is_active', true),
+        ]);
 
-      if (heroSlidesError) throw new Error(heroSlidesError.message);
-      if (siteContentError) throw new Error(siteContentError.message);
-      if (navLinksError) throw new Error(navLinksError.message);
-      if (eventsError) throw new Error(eventsError.message);
+        // Log errors but don't throw them to avoid breaking the page
+        if (heroSlidesError) console.error('Hero slides error:', heroSlidesError);
+        if (siteContentError) console.error('Site content error:', siteContentError);
+        if (navLinksError) console.error('Nav links error:', navLinksError);
+        if (eventsError) console.error('Events error:', eventsError);
 
-      // Dados dos eventos atualizados com a nova imagem para reunião de oração
-      const staticEvents = [
-        {
-          id: '1',
-          title: 'Culto de Domingo',
-          image_url: '/lovable-uploads/8f26c45c-7c10-4b49-ae6c-955370e66511.png',
-          day_of_week: 'Todos os Domingos',
-          time: '19h',
-          description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
-        },
-        {
-          id: '2',
-          title: 'Estudo Bíblico',
-          image_url: '/lovable-uploads/2ec1f073-a0ea-4dcf-969b-ab19f3b541b4.png',
-          day_of_week: 'Todas as Quartas',
-          time: '20h',
-          description: 'Aprofunde seu conhecimento nas escrituras sagradas conosco.'
-        },
-        {
-          id: '3',
-          title: 'Reunião de Oração',
-          image_url: '/lovable-uploads/850f1e45-963d-4719-a2ac-7ba152fd8f99.png',
-          day_of_week: 'Todas as Sextas',
-          time: '20h',
-          description: 'Um momento especial de oração e comunhão com Deus.'
-        }
-      ];
+        // Dados dos eventos padrão
+        const staticEvents = [
+          {
+            id: '1',
+            title: 'Culto de Domingo',
+            image_url: '/lovable-uploads/8f26c45c-7c10-4b49-ae6c-955370e66511.png',
+            day_of_week: 'Todos os Domingos',
+            time: '19h',
+            description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
+          },
+          {
+            id: '2',
+            title: 'Estudo Bíblico',
+            image_url: '/lovable-uploads/2ec1f073-a0ea-4dcf-969b-ab19f3b541b4.png',
+            day_of_week: 'Todas as Quartas',
+            time: '20h',
+            description: 'Aprofunde seu conhecimento nas escrituras sagradas conosco.'
+          },
+          {
+            id: '3',
+            title: 'Reunião de Oração',
+            image_url: '/lovable-uploads/850f1e45-963d-4719-a2ac-7ba152fd8f99.png',
+            day_of_week: 'Todas as Sextas',
+            time: '20h',
+            description: 'Um momento especial de oração e comunhão com Deus.'
+          }
+        ];
 
-      // Links de navegação padrão
-      const staticNavLinks = [
-        { title: 'INÍCIO', href: '#' },
-        { title: 'SOBRE', href: '#sobre' },
-        { title: 'EVENTOS', href: '#eventos' },
-        { title: 'CONTATO', href: '#contato' }
-      ];
+        // Links de navegação padrão
+        const staticNavLinks = [
+          { title: 'INÍCIO', href: '/' },
+          { title: 'SOBRE', href: '/#sobre' },
+          { title: 'EVENTOS', href: '/#eventos' },
+          { title: 'CONTATO', href: '/#contato' }
+        ];
 
-      return {
-        heroSlides,
-        siteContent: formatSiteContent(siteContent),
-        navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
-        events: (events && events.length > 0) ? events : staticEvents,
-      };
-    },
+        return {
+          heroSlides: heroSlides || [],
+          siteContent: formatSiteContent(siteContent),
+          navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
+          events: (events && events.length > 0) ? events : staticEvents,
+        };
+      } catch (error) {
+        console.error('Error loading site data:', error);
+        // Return fallback data to prevent the page from breaking
+        return {
+          heroSlides: [],
+          siteContent: {},
+          navLinks: [
+            { title: 'INÍCIO', href: '/' },
+            { title: 'SOBRE', href: '/#sobre' },
+            { title: 'EVENTOS', href: '/#eventos' },
+            { title: 'CONTATO', href: '/#contato' }
+          ],
+          events: [
+            {
+              id: '1',
+              title: 'Culto de Domingo',
+              image_url: '/lovable-uploads/8f26c45c-7c10-4b49-ae6c-955370e66511.png',
+              day_of_week: 'Todos os Domingos',
+              time: '19h',
+              description: 'Um tempo de louvor, adoração e palavra de Deus para toda família.'
+            }
+          ]
+        };
+      }
+    }
   });
 
   if (isLoading) {
