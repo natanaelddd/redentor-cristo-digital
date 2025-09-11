@@ -108,29 +108,50 @@ const Agendamento = () => {
   }, []);
 
   const loadBookedTimes = async () => {
-    const { data, error } = await supabase
-      .from('event_appointments')
-      .select('appointment_time')
-      .eq('appointment_date', format(eventDate, 'yyyy-MM-dd'));
+    try {
+      // Use the secure function to get total appointment count
+      const { data: countData, error: countError } = await supabase.rpc(
+        'get_appointment_count_for_date', 
+        { check_date: format(eventDate, 'yyyy-MM-dd') }
+      );
 
-    if (error) {
-      console.error('Error loading booked times:', error);
-      return;
-    }
-
-    // Convert times from HH:MM:SS format to HH:MM format to match our time slots
-    const times = data.map(item => {
-      if (item.appointment_time.includes(':')) {
-        return item.appointment_time.substring(0, 5); // Get only HH:MM part
+      if (countError) {
+        console.error('Error loading appointment count:', countError);
+        return;
       }
-      return item.appointment_time;
-    });
-    
-    console.log('Booked times from DB:', data.map(item => item.appointment_time));
-    console.log('Converted times for comparison:', times);
-    
-    setBookedTimes(times);
-    setTotalAppointments(data.length);
+
+      setTotalAppointments(countData || 0);
+
+      // Check each time slot availability
+      const availabilityPromises = timeSlots.map(async (time) => {
+        const { data: isAvailable, error } = await supabase.rpc(
+          'check_appointment_slot_availability', 
+          { 
+            check_date: format(eventDate, 'yyyy-MM-dd'),
+            check_time: time
+          }
+        );
+        
+        if (error) {
+          console.error('Error checking slot availability:', error);
+          return { time, isBooked: false };
+        }
+        
+        return { time, isBooked: !isAvailable };
+      });
+
+      const availabilityResults = await Promise.all(availabilityPromises);
+      const bookedTimesList = availabilityResults
+        .filter(result => result.isBooked)
+        .map(result => result.time);
+
+      console.log('Booked times:', bookedTimesList);
+      console.log('Total appointments:', countData);
+      
+      setBookedTimes(bookedTimesList);
+    } catch (error) {
+      console.error('Error in loadBookedTimes:', error);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -167,14 +188,25 @@ const Agendamento = () => {
 
     try {
       // Check if time slot is still available before inserting
-      const { data: existingAppointment } = await supabase
-        .from('event_appointments')
-        .select('appointment_time')
-        .eq('appointment_date', format(eventDate, 'yyyy-MM-dd'))
-        .eq('appointment_time', selectedTime)
-        .single();
+      const { data: isAvailable, error: availabilityError } = await supabase.rpc(
+        'check_appointment_slot_availability', 
+        { 
+          check_date: format(eventDate, 'yyyy-MM-dd'),
+          check_time: selectedTime
+        }
+      );
 
-      if (existingAppointment) {
+      if (availabilityError) {
+        console.error('Error checking availability:', availabilityError);
+        toast({
+          title: "Erro",
+          description: "Erro ao verificar disponibilidade. Tente novamente.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      if (!isAvailable) {
         toast({
           title: "Horário indisponível",
           description: "Este horário já foi reservado. Por favor, escolha outro.",

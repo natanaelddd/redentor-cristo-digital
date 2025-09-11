@@ -1256,6 +1256,10 @@ export type Database = {
         Args: { admin_email: string }
         Returns: boolean
       }
+      check_appointment_slot_availability: {
+        Args: { check_date: string; check_time: string }
+        Returns: boolean
+      }
       get_admin_download_logs: {
         Args: { limit_count?: number }
         Returns: {
@@ -1276,6 +1280,10 @@ export type Database = {
           premium: number
           total: number
         }[]
+      }
+      get_appointment_count_for_date: {
+        Args: { check_date: string }
+        Returns: number
       }
       get_or_create_chat_session: {
         Args: { requesting_user_id?: string; session_id: string }
