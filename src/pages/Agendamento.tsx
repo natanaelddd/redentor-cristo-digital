@@ -118,7 +118,17 @@ const Agendamento = () => {
       return;
     }
 
-    const times = data.map(item => item.appointment_time);
+    // Convert times from HH:MM:SS format to HH:MM format to match our time slots
+    const times = data.map(item => {
+      if (item.appointment_time.includes(':')) {
+        return item.appointment_time.substring(0, 5); // Get only HH:MM part
+      }
+      return item.appointment_time;
+    });
+    
+    console.log('Booked times from DB:', data.map(item => item.appointment_time));
+    console.log('Converted times for comparison:', times);
+    
     setBookedTimes(times);
     setTotalAppointments(data.length);
   };
@@ -156,6 +166,24 @@ const Agendamento = () => {
     setLoading(true);
 
     try {
+      // Check if time slot is still available before inserting
+      const { data: existingAppointment } = await supabase
+        .from('event_appointments')
+        .select('appointment_time')
+        .eq('appointment_date', format(eventDate, 'yyyy-MM-dd'))
+        .eq('appointment_time', selectedTime)
+        .single();
+
+      if (existingAppointment) {
+        toast({
+          title: "Horário indisponível",
+          description: "Este horário já foi reservado. Por favor, escolha outro.",
+          variant: "destructive"
+        });
+        loadBookedTimes(); // Refresh booked times
+        return;
+      }
+
       const { error } = await supabase
         .from('event_appointments')
         .insert({
