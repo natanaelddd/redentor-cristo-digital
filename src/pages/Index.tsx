@@ -74,18 +74,26 @@ const Index = () => {
             { data: siteContent },
             { data: navLinks },
             { data: events },
+            { data: adminSettings },
           ] = await Promise.all([
             supabase.from("church_hero_slides").select("*").order("order").eq('is_active', true),
             supabase.from("site_content").select("*"),
             supabase.from("navigation_links").select("*").order("order").eq('is_active', true),
             supabase.from("events").select("*").order("order").eq('is_active', true),
+            supabase.from("admin_settings").select("*"),
           ]);
+
+          // Verificar se o agendamento de eventos está habilitado
+          const eventRegistrationEnabled = adminSettings?.find(
+            setting => setting.setting_key === 'event_registration_enabled'
+          )?.setting_value === 'true';
 
           return {
             heroSlides: heroSlides || [],
             siteContent: formatSiteContent(siteContent),
             navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
             events: (events && events.length > 0) ? events : staticEvents,
+            eventRegistrationEnabled,
           };
         } catch (dbError) {
           console.error('Database error, using fallback data:', dbError);
@@ -95,6 +103,7 @@ const Index = () => {
             siteContent: {},
             navLinks: staticNavLinks,
             events: staticEvents,
+            eventRegistrationEnabled: false,
           };
         }
       } catch (error) {
@@ -109,6 +118,7 @@ const Index = () => {
             { title: 'EVENTOS', href: '/#eventos' },
             { title: 'CONTATO', href: '/#contato' }
           ],
+          eventRegistrationEnabled: false,
           events: [
             {
               id: '1',
@@ -158,36 +168,38 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Event Banner */}
-      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-800 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
-        {/* Animated background effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-700 opacity-50 animate-[pulse_2s_ease-in-out_infinite]"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-white/20 p-2 rounded-full animate-bounce">
-                <Eye className="h-6 w-6" />
+      {/* Event Banner - Exibido condicionalmente */}
+      {pageData?.eventRegistrationEnabled && (
+        <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-800 text-white py-4 relative overflow-hidden animate-pulse shadow-lg">
+          {/* Animated background effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-700 opacity-50 animate-[pulse_2s_ease-in-out_infinite]"></div>
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/20 p-2 rounded-full animate-bounce">
+                  <Eye className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg drop-shadow-md">
+                    🚨 Dia da Saúde Ocular - 13/09 🚨
+                  </h3>
+                  <p className="text-sm opacity-90 drop-shadow-sm">Exames grátis + armações e lentes com super desconto</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-lg drop-shadow-md">
-                  🚨 Dia da Saúde Ocular - 13/09 🚨
-                </h3>
-                <p className="text-sm opacity-90 drop-shadow-sm">Exames grátis + armações e lentes com super desconto</p>
-              </div>
+              <Link to="/agendamento">
+                <Button variant="secondary" size="lg" className="bg-white text-orange-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  ⚡ Agendar Exame GRÁTIS ⚡
+                </Button>
+              </Link>
             </div>
-            <Link to="/agendamento">
-              <Button variant="secondary" size="lg" className="bg-white text-orange-700 hover:bg-gray-100 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
-                <Calendar className="h-4 w-4 mr-2" />
-                ⚡ Agendar Exame GRÁTIS ⚡
-              </Button>
-            </Link>
           </div>
         </div>
-      </div>
+      )}
 
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />

@@ -187,6 +187,52 @@ export default function SettingsAdmin() {
           </CardContent>
         </Card>
 
+        {/* Controle de Funcionalidades */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Controle de Funcionalidades
+            </CardTitle>
+            <CardDescription>
+              Ativar ou desativar funcionalidades do site
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const eventRegistrationEnabled = formData.get("event_registration_enabled") === "on" ? "true" : "false";
+              
+              updateSettingMutation.mutateAsync({ 
+                key: "event_registration_enabled", 
+                value: eventRegistrationEnabled 
+              });
+            }} className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="event_registration_enabled"
+                  name="event_registration_enabled"
+                  defaultChecked={getSetting("event_registration_enabled") === "true"}
+                  className="h-4 w-4 rounded border-gray-300"
+                />
+                <Label htmlFor="event_registration_enabled" className="text-sm font-medium">
+                  Habilitar sistema de agendamento de eventos
+                </Label>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Quando ativado, exibe a barra de evento especial na página inicial com link para agendamento. Desative para remover completamente da página inicial.
+              </p>
+              
+              <Button type="submit" className="w-full">
+                <Save className="h-4 w-4 mr-2" />
+                Salvar Configuração de Eventos
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
         {/* Operações do Sistema */}
         <Card>
           <CardHeader>
