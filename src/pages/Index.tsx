@@ -28,7 +28,7 @@ const formatSiteContent = (content: any[] | null) => {
 const Index = () => {
   const { isAdmin, signOut } = useAuth();
   
-  const { data: pageData, isLoading } = useQuery({
+  const { data: pageData, isLoading, error } = useQuery({
     queryKey: ["site_data"],
     queryFn: async () => {
       try {
@@ -136,7 +136,14 @@ const Index = () => {
     retry: 2,
     retryDelay: 1000,
     staleTime: 30000, // 30 segundos
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
   });
+
+  // Adicionar logs para debug
+  if (error) {
+    console.error('Erro ao carregar dados da página:', error);
+  }
 
   if (isLoading) {
     return (
