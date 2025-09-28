@@ -10,6 +10,7 @@ import AuthPage from "./pages/Auth";
 import ReadingPlan from "./pages/ReadingPlan";
 import AdminPage from "./pages/AdminPage";
 import Agendamento from "./pages/Agendamento";
+import InscricaoEncontro from "./pages/InscricaoEncontro";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/plano-leitura/:id" element={<ReadingPlan />} />
           <Route path="/agendamento" element={<Agendamento />} />
+          <Route path="/inscricao-encontro" element={<InscricaoEncontro />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

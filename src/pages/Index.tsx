@@ -11,6 +11,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LiveEditor } from "@/components/LiveEditor";
 import { EventAnnouncements } from "@/components/EventAnnouncements";
+import { EventInscriptionAlert } from "@/components/EventInscriptionAlert";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye } from "lucide-react";
@@ -167,6 +168,9 @@ const Index = () => {
         showAdminActions={isAdmin}
         onLogout={signOut}
       />
+      
+      {/* Event Inscription Alert */}
+      <EventInscriptionAlert />
       
       {/* Dynamic Event Announcements */}
       <div className="bg-background">

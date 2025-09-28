@@ -14,7 +14,8 @@ import {
   BookOpen,
   Clock,
   Megaphone,
-  FormInput
+  FormInput,
+  UserCheck
 } from "lucide-react";
 import {
   Sidebar,
@@ -35,6 +36,7 @@ const adminItems = [
   { title: "Eventos", url: "/admin/events", icon: Calendar },
   { title: "Formulários", url: "/admin/forms", icon: FormInput },
   { title: "Agendamentos", url: "/admin/event-appointments", icon: Clock },
+  { title: "Inscrições Encontro", url: "/admin/event-inscriptions", icon: UserCheck },
   { title: "Avisos", url: "/admin/announcements", icon: Megaphone },
   { title: "Conteúdo", url: "/admin/content", icon: FileText },
   { title: "Navegação", url: "/admin/navigation", icon: Link },

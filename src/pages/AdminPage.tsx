@@ -12,6 +12,7 @@ import SettingsAdmin from "@/pages/admin/Settings";
 import EventAppointments from "@/pages/admin/EventAppointments";
 import FormsAdmin from "@/pages/admin/Forms";
 import FormBuilder from "@/pages/admin/FormBuilder";
+import EventInscriptions from "@/pages/admin/EventInscriptions";
 
 export default function AdminPage() {
   return (
@@ -30,6 +31,7 @@ export default function AdminPage() {
         <Route path="/forms" element={<FormsAdmin />} />
         <Route path="/forms/new" element={<FormBuilder />} />
         <Route path="/forms/:id/builder" element={<FormBuilder />} />
+        <Route path="/event-inscriptions" element={<EventInscriptions />} />
       </Routes>
     </AdminLayout>
   );
