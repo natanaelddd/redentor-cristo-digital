@@ -90,20 +90,31 @@ const FormBuilder = () => {
 
   const saveFormMutation = useMutation({
     mutationFn: async () => {
+      // Validate form data
+      if (!form.name?.trim()) {
+        throw new Error('Nome do formulário é obrigatório');
+      }
+      if (!form.slug?.trim()) {
+        throw new Error('URL (slug) é obrigatório');
+      }
+
       if (isNew) {
         // Create new form
+        const formData = {
+          name: form.name.trim(),
+          description: form.description?.trim() || null,
+          slug: form.slug.trim(),
+          banner_title: form.banner_title?.trim() || null,
+          banner_description: form.banner_description?.trim() || null,
+          page_title: form.page_title?.trim() || null,
+          page_description: form.page_description?.trim() || null,
+          is_active: false,
+          created_by: null
+        };
+
         const { data: newForm, error: formError } = await supabase
           .from('event_forms')
-          .insert([{
-            name: form.name,
-            description: form.description,
-            slug: form.slug,
-            banner_title: form.banner_title,
-            banner_description: form.banner_description,
-            page_title: form.page_title,
-            page_description: form.page_description,
-            created_by: null // Explicitly set to null instead of undefined
-          }])
+          .insert([formData])
           .select()
           .single();
 
@@ -133,18 +144,20 @@ const FormBuilder = () => {
         return newForm;
       } else {
         // Update existing form
+        const formData = {
+          name: form.name.trim(),
+          description: form.description?.trim() || null,
+          slug: form.slug.trim(),
+          banner_title: form.banner_title?.trim() || null,
+          banner_description: form.banner_description?.trim() || null,
+          page_title: form.page_title?.trim() || null,
+          page_description: form.page_description?.trim() || null,
+          updated_at: new Date().toISOString()
+        };
+
         const { error: formError } = await supabase
           .from('event_forms')
-          .update({
-            name: form.name,
-            description: form.description,
-            slug: form.slug,
-            banner_title: form.banner_title,
-            banner_description: form.banner_description,
-            page_title: form.page_title,
-            page_description: form.page_description,
-            created_by: null // Explicitly set to null instead of undefined
-          })
+          .update(formData)
           .eq('id', id);
 
         if (formError) throw formError;

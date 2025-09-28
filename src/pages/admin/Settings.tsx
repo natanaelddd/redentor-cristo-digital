@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Settings, Save, Database, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { syncBiblePlans } from "@/utils/syncBiblePlans";
-import { clearBrowserCache } from "@/utils/cacheUtils";
+import { clearBrowserCache, forceReload } from "@/utils/cacheUtils";
 
 interface AdminSetting {
   id: string;
@@ -275,20 +275,34 @@ export default function SettingsAdmin() {
               <p className="text-sm text-muted-foreground mb-4">
                 Limpe o cache do navegador para resolver problemas de carregamento.
               </p>
-              <Button 
-                onClick={() => {
-                  if (clearBrowserCache()) {
-                    toast.success("Cache limpo com sucesso! Recarregue a página.");
-                  } else {
-                    toast.error("Erro ao limpar cache");
-                  }
-                }}
-                variant="outline"
-                className="w-full"
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Limpar Cache do Navegador
-              </Button>
+              <div className="space-y-2">
+                <Button 
+                  onClick={() => {
+                    if (clearBrowserCache()) {
+                      toast.success("Cache limpo com sucesso! Recarregue a página.");
+                    } else {
+                      toast.error("Erro ao limpar cache");
+                    }
+                  }}
+                  variant="outline"
+                  className="w-full"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Limpar Cache do Navegador
+                </Button>
+                
+                <Button 
+                  onClick={() => {
+                    toast.info("Forçando recarregamento completo...");
+                    setTimeout(() => forceReload(), 1000);
+                  }}
+                  variant="destructive"
+                  className="w-full"
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Força Recarregamento Total
+                </Button>
+              </div>
             </div>
 
             <div>
