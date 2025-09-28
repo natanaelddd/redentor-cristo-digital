@@ -28,6 +28,7 @@ export default function AdminPage() {
         <Route path="/users" element={<UsersAdmin />} />
         <Route path="/settings" element={<SettingsAdmin />} />
         <Route path="/forms" element={<FormsAdmin />} />
+        <Route path="/forms/new" element={<FormBuilder />} />
         <Route path="/forms/:id/builder" element={<FormBuilder />} />
       </Routes>
     </AdminLayout>
