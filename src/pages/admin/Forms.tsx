@@ -58,7 +58,10 @@ const FormsAdmin = () => {
     mutationFn: async ({ formId, isActive }: { formId: string; isActive: boolean }) => {
       const { error } = await supabase
         .from('event_forms')
-        .update({ is_active: !isActive })
+        .update({ 
+          is_active: !isActive,
+          updated_at: new Date().toISOString()
+        })
         .eq('id', formId);
       
       if (error) throw error;
@@ -68,6 +71,7 @@ const FormsAdmin = () => {
       queryClient.invalidateQueries({ queryKey: ['event_forms'] });
     },
     onError: (error) => {
+      console.error('Erro ao ativar/desativar formulário:', error);
       toast.error('Erro ao atualizar status: ' + error.message);
     }
   });

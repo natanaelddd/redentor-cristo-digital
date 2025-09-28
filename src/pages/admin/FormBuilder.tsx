@@ -125,12 +125,12 @@ const FormBuilder = () => {
           const fieldsToInsert = fields.map((field, index) => ({
             form_id: newForm.id,
             field_type: field.field_type as FieldType,
-            field_name: field.field_name,
-            label: field.label,
-            placeholder: field.placeholder || null,
+            field_name: field.field_name.trim(),
+            label: field.label.trim(),
+            placeholder: field.placeholder?.trim() || null,
             is_required: field.is_required,
-            options: JSON.stringify(field.options),
-            validation_rules: JSON.stringify(field.validation_rules),
+            options: field.options || [],
+            validation_rules: field.validation_rules || {},
             order_position: index
           }));
 
@@ -172,12 +172,12 @@ const FormBuilder = () => {
           const fieldsToInsert = fields.map((field, index) => ({
             form_id: id as string,
             field_type: field.field_type as FieldType,
-            field_name: field.field_name,
-            label: field.label,
-            placeholder: field.placeholder || null,
+            field_name: field.field_name.trim(),
+            label: field.label.trim(),
+            placeholder: field.placeholder?.trim() || null,
             is_required: field.is_required,
-            options: JSON.stringify(field.options),
-            validation_rules: JSON.stringify(field.validation_rules),
+            options: field.options || [],
+            validation_rules: field.validation_rules || {},
             order_position: index
           }));
 
