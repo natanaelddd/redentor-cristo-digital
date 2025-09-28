@@ -10,6 +10,7 @@ import { Settings, Save, Database, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { syncBiblePlans } from "@/utils/syncBiblePlans";
 import { clearBrowserCache, forceReload } from "@/utils/cacheUtils";
+import { CacheManager } from "@/components/CacheManager";
 
 interface AdminSetting {
   id: string;
@@ -271,41 +272,6 @@ export default function SettingsAdmin() {
             </div>
 
             <div>
-              <h4 className="font-medium mb-2">Limpeza de Cache</h4>
-              <p className="text-sm text-muted-foreground mb-4">
-                Limpe o cache do navegador para resolver problemas de carregamento.
-              </p>
-              <div className="space-y-2">
-                <Button 
-                  onClick={() => {
-                    if (clearBrowserCache()) {
-                      toast.success("Cache limpo com sucesso! Recarregue a página.");
-                    } else {
-                      toast.error("Erro ao limpar cache");
-                    }
-                  }}
-                  variant="outline"
-                  className="w-full"
-                >
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Limpar Cache do Navegador
-                </Button>
-                
-                <Button 
-                  onClick={() => {
-                    toast.info("Forçando recarregamento completo...");
-                    setTimeout(() => forceReload(), 1000);
-                  }}
-                  variant="destructive"
-                  className="w-full"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  Força Recarregamento Total
-                </Button>
-              </div>
-            </div>
-
-            <div>
               <h4 className="font-medium mb-2">Estatísticas do Sistema</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -326,6 +292,9 @@ export default function SettingsAdmin() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Gerenciador de Cache Avançado */}
+      <CacheManager />
 
       {/* Configurações Avançadas */}
       <Card>
