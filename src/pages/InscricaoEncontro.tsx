@@ -25,7 +25,7 @@ type InscriptionData = z.infer<typeof inscriptionSchema>;
 const formatSiteContent = (content: any[] | null) => {
   if (!content) return {};
   return content.reduce((acc, item) => {
-    acc[item.key] = item.value;
+    acc[item.section_key] = item.content_value;
     return acc;
   }, {} as Record<string, string>);
 };
@@ -38,11 +38,15 @@ export default function InscricaoEncontro() {
     queryKey: ["site-data"],
     queryFn: async () => {
       const [
+        { data: heroSlides },
         { data: siteContent },
-        { data: navLinks }
+        { data: navLinks },
+        { data: events }
       ] = await Promise.all([
+        supabase.from("church_hero_slides").select("*").eq("is_active", true).order("order"),
         supabase.from("site_content").select("*"),
-        supabase.from("navigation_links").select("*").order("order_index")
+        supabase.from("navigation_links").select("*").order("order_index"),
+        supabase.from("events").select("*").eq("is_active", true).order("order")
       ]);
 
       return {
@@ -128,15 +132,15 @@ export default function InscricaoEncontro() {
   if (isSuccess) {
     return (
       <div className="flex flex-col min-h-screen bg-background">
-        <Header 
-          navLinks={navLinks.length > 0 ? navLinks : [
-            { title: 'INÍCIO', href: '/' },
-            { title: 'SOBRE', href: '/#sobre' },
-            { title: 'EVENTOS', href: '/#eventos' },
-            { title: 'CONTATO', href: '/#contato' }
-          ]}
-          logoUrl={siteContent.logo_url}
-        />
+      <Header 
+        navLinks={navLinks.length > 0 ? navLinks : [
+          { title: 'INÍCIO', href: '/' },
+          { title: 'SOBRE', href: '/#sobre' },
+          { title: 'EVENTOS', href: '/#eventos' },
+          { title: 'CONTATO', href: '/#contato' }
+        ]}
+        logoUrl={siteContent.logo_url}
+      />
         
         <main className="flex-grow flex items-center justify-center p-8">
           <Card className="w-full max-w-md text-center">
