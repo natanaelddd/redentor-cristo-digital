@@ -88,10 +88,10 @@ const Index = () => {
             setting => setting.setting_key === 'event_registration_enabled'
           )?.setting_value === 'true';
 
-          // Verificar se o banner do encontro está habilitado
+          // Verificar se o banner do encontro está habilitado (ativo por padrão)
           const encontroBannerEnabled = adminSettings?.find(
             setting => setting.setting_key === 'encontro_banner_enabled'
-          )?.setting_value === 'true';
+          )?.setting_value !== 'false'; // Ativo por padrão, desativado apenas se explicitamente definido como 'false'
 
           return {
             heroSlides: heroSlides || [],
@@ -125,8 +125,8 @@ const Index = () => {
             { title: 'EVENTOS', href: '/#eventos' },
             { title: 'CONTATO', href: '/#contato' }
           ],
-          eventRegistrationEnabled: false,
-          encontroBannerEnabled: false,
+            eventRegistrationEnabled: false,
+            encontroBannerEnabled: true, // Ativo por padrão em caso de erro
           events: [
             {
               id: '1',
