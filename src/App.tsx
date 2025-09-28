@@ -10,8 +10,6 @@ import AuthPage from "./pages/Auth";
 import ReadingPlan from "./pages/ReadingPlan";
 import AdminPage from "./pages/AdminPage";
 import Agendamento from "./pages/Agendamento";
-import { EmergencyRecovery } from "./components/EmergencyRecovery";
-import { PreviewGuard } from "./components/PreviewGuard";
 
 const queryClient = new QueryClient();
 
@@ -20,8 +18,6 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <PreviewGuard />
-      <EmergencyRecovery />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

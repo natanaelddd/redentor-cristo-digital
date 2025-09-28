@@ -1147,9 +1147,6 @@ export type Database = {
       }
       profiles: {
         Row: {
-          admin_permission_level:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at: string
           display_name: string | null
           email: string | null
@@ -1158,9 +1155,6 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          admin_permission_level?:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at?: string
           display_name?: string | null
           email?: string | null
@@ -1169,9 +1163,6 @@ export type Database = {
           updated_at?: string
         }
         Update: {
-          admin_permission_level?:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at?: string
           display_name?: string | null
           email?: string | null
@@ -1495,24 +1486,6 @@ export type Database = {
         Args: { check_date: string; check_time: string }
         Returns: boolean
       }
-      encrypt_sensitive_field: {
-        Args: { encryption_key?: string; field_value: string }
-        Returns: string
-      }
-      get_admin_appointments_view: {
-        Args: { requesting_admin_id: string }
-        Returns: {
-          address: string
-          appointment_date: string
-          appointment_time: string
-          created_at: string
-          email: string
-          full_name: string
-          id: string
-          phone: string
-          updated_at: string
-        }[]
-      }
       get_admin_download_logs: {
         Args: { limit_count?: number }
         Returns: {
@@ -1538,30 +1511,6 @@ export type Database = {
         Args: { check_date: string }
         Returns: number
       }
-      get_appointment_summary: {
-        Args: { requesting_admin_id: string }
-        Returns: {
-          appointment_date: string
-          appointment_time: string
-          contact_info: string
-          created_at: string
-          id: string
-        }[]
-      }
-      get_masked_appointment_data: {
-        Args: { appointment_id: string; requesting_admin_id: string }
-        Returns: {
-          address: string
-          appointment_date: string
-          appointment_time: string
-          created_at: string
-          email: string
-          full_name: string
-          id: string
-          phone: string
-          updated_at: string
-        }[]
-      }
       get_or_create_chat_session: {
         Args: { requesting_user_id?: string; session_id: string }
         Returns: string
@@ -1578,20 +1527,12 @@ export type Database = {
         Args: { action_type: string; admin_user_id: string; details?: string }
         Returns: undefined
       }
-      update_admin_permission_level: {
-        Args: {
-          new_permission_level: Database["public"]["Enums"]["admin_permission_level"]
-          target_admin_id: string
-        }
-        Returns: boolean
-      }
       update_user_role: {
         Args: { new_role: string; target_user_id: string }
         Returns: boolean
       }
     }
     Enums: {
-      admin_permission_level: "viewer" | "editor" | "full_access"
       field_type:
         | "text"
         | "email"
@@ -1734,7 +1675,6 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      admin_permission_level: ["viewer", "editor", "full_access"],
       field_type: [
         "text",
         "email",

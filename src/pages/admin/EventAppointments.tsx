@@ -37,14 +37,11 @@ const EventAppointments = () => {
   const loadAppointments = async () => {
     setLoading(true);
     try {
-      // Get current user ID for secure function call
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error('Usuário não autenticado');
-
-      // Use the secure function instead of direct table access
-      const { data, error } = await supabase.rpc('get_admin_appointments_view', {
-        requesting_admin_id: user.id
-      });
+      const { data, error } = await supabase
+        .from('event_appointments')
+        .select('*')
+        .order('appointment_date', { ascending: true })
+        .order('appointment_time', { ascending: true });
 
       if (error) throw error;
 

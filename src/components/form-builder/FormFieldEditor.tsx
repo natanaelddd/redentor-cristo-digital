@@ -27,8 +27,8 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
     setLocalField(field);
   }, [field]);
 
-  const handleUpdate = (updates: Partial<FormField>) => {
-    const updatedField = { ...localField, ...updates };
+  const handleChange = (key: string, value: any) => {
+    const updatedField = { ...localField, [key]: value };
     setLocalField(updatedField);
     onUpdate(updatedField);
   };
@@ -36,14 +36,14 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
   const addOption = () => {
     if (newOption.trim()) {
       const newOptions = [...localField.options, { value: newOption.trim(), label: newOption.trim() }];
-      handleUpdate({ options: newOptions });
+      handleChange('options', newOptions);
       setNewOption('');
     }
   };
 
   const removeOption = (index: number) => {
     const newOptions = localField.options.filter((_, i) => i !== index);
-    handleUpdate({ options: newOptions });
+    handleChange('options', newOptions);
   };
 
   const generateFieldName = (label: string) => {
@@ -58,10 +58,8 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
   };
 
   const handleLabelChange = (label: string) => {
-    handleUpdate({
-      label: label,
-      field_name: generateFieldName(label)
-    });
+    handleChange('label', label);
+    handleChange('field_name', generateFieldName(label));
   };
 
   const requiresOptions = ['select', 'checkbox', 'radio'].includes(localField.field_type);
@@ -101,7 +99,7 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
           <Input
             id="field_name"
             value={localField.field_name}
-            onChange={(e) => handleUpdate({ field_name: e.target.value })}
+            onChange={(e) => handleChange('field_name', e.target.value)}
             placeholder="nome_completo"
           />
           <p className="text-xs text-muted-foreground mt-1">
@@ -114,7 +112,7 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
           <Input
             id="placeholder"
             value={localField.placeholder || ''}
-            onChange={(e) => handleUpdate({ placeholder: e.target.value })}
+            onChange={(e) => handleChange('placeholder', e.target.value)}
             placeholder="Texto de exemplo..."
           />
         </div>
@@ -124,7 +122,7 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
           <Switch
             id="required"
             checked={localField.is_required}
-            onCheckedChange={(checked) => handleUpdate({ is_required: checked })}
+            onCheckedChange={(checked) => handleChange('is_required', checked)}
           />
         </div>
 
@@ -139,7 +137,7 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
                     onChange={(e) => {
                       const newOptions = [...localField.options];
                       newOptions[index] = { ...option, label: e.target.value, value: e.target.value };
-                      handleUpdate({ options: newOptions });
+                      handleChange('options', newOptions);
                     }}
                   />
                   <Button
@@ -181,11 +179,9 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
                   id="min"
                   type="number"
                   value={localField.validation_rules?.min || ''}
-                  onChange={(e) => handleUpdate({
-                    validation_rules: {
-                      ...localField.validation_rules,
-                      min: e.target.value ? parseInt(e.target.value) : undefined
-                    }
+                  onChange={(e) => handleChange('validation_rules', {
+                    ...localField.validation_rules,
+                    min: e.target.value ? parseInt(e.target.value) : undefined
                   })}
                 />
               </div>
@@ -195,11 +191,9 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
                   id="max"
                   type="number"
                   value={localField.validation_rules?.max || ''}
-                  onChange={(e) => handleUpdate({
-                    validation_rules: {
-                      ...localField.validation_rules,
-                      max: e.target.value ? parseInt(e.target.value) : undefined
-                    }
+                  onChange={(e) => handleChange('validation_rules', {
+                    ...localField.validation_rules,
+                    max: e.target.value ? parseInt(e.target.value) : undefined
                   })}
                 />
               </div>
@@ -214,11 +208,9 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
               id="maxLength"
               type="number"
               value={localField.validation_rules?.maxLength || ''}
-              onChange={(e) => handleUpdate({
-                validation_rules: {
-                  ...localField.validation_rules,
-                  maxLength: e.target.value ? parseInt(e.target.value) : undefined
-                }
+              onChange={(e) => handleChange('validation_rules', {
+                ...localField.validation_rules,
+                maxLength: e.target.value ? parseInt(e.target.value) : undefined
               })}
               placeholder="Ex: 100"
             />
@@ -231,11 +223,9 @@ export const FormFieldEditor: React.FC<FormFieldEditorProps> = ({
             <Input
               id="acceptedTypes"
               value={localField.validation_rules?.acceptedTypes || ''}
-              onChange={(e) => handleUpdate({
-                validation_rules: {
-                  ...localField.validation_rules,
-                  acceptedTypes: e.target.value
-                }
+              onChange={(e) => handleChange('validation_rules', {
+                ...localField.validation_rules,
+                acceptedTypes: e.target.value
               })}
               placeholder="Ex: .pdf,.doc,.jpg,.png"
             />
