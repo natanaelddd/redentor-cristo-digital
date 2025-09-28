@@ -14,8 +14,29 @@ import {
   TrendingUp
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SecurityStatus } from "@/components/admin/SecurityStatus";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminDashboard() {
+  const { user } = useAuth();
+  
+  // Get current user's admin permission level
+  const { data: userProfile } = useQuery({
+    queryKey: ["user-profile", user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("admin_permission_level")
+        .eq("id", user.id)
+        .single();
+      
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!user?.id
+  });
+
   // Estatísticas gerais
   const { data: stats } = useQuery({
     queryKey: ["admin-stats"],
@@ -107,6 +128,9 @@ export default function AdminDashboard() {
           Painel administrativo da Igreja Missionária Cristo Redentor
         </p>
       </div>
+
+      {/* Security Status */}
+      <SecurityStatus userPermissionLevel={userProfile?.admin_permission_level} />
 
       {/* Estatísticas */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

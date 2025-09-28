@@ -1472,30 +1472,7 @@ export type Database = {
       }
     }
     Views: {
-      appointment_summary: {
-        Row: {
-          appointment_date: string | null
-          appointment_time: string | null
-          contact_info: string | null
-          created_at: string | null
-          id: string | null
-        }
-        Insert: {
-          appointment_date?: string | null
-          appointment_time?: string | null
-          contact_info?: never
-          created_at?: string | null
-          id?: string | null
-        }
-        Update: {
-          appointment_date?: string | null
-          appointment_time?: string | null
-          contact_info?: never
-          created_at?: string | null
-          id?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       anonymize_appointment_data: {
@@ -1560,6 +1537,16 @@ export type Database = {
       get_appointment_count_for_date: {
         Args: { check_date: string }
         Returns: number
+      }
+      get_appointment_summary: {
+        Args: { requesting_admin_id: string }
+        Returns: {
+          appointment_date: string
+          appointment_time: string
+          contact_info: string
+          created_at: string
+          id: string
+        }[]
       }
       get_masked_appointment_data: {
         Args: { appointment_id: string; requesting_admin_id: string }

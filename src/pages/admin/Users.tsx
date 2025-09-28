@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Users, UserCheck, Shield } from "lucide-react";
 import { toast } from "sonner";
@@ -13,6 +14,7 @@ interface Profile {
   email?: string;
   display_name?: string;
   role: string;
+  admin_permission_level?: 'viewer' | 'editor' | 'full_access';
   created_at: string;
   updated_at: string;
 }
@@ -52,8 +54,34 @@ export default function UsersAdmin() {
     },
   });
 
+  const updatePermissionMutation = useMutation({
+    mutationFn: async ({ userId, newPermissionLevel }: { 
+      userId: string; 
+      newPermissionLevel: 'viewer' | 'editor' | 'full_access'
+    }) => {
+      const { data, error } = await supabase.rpc('update_admin_permission_level', {
+        target_admin_id: userId,
+        new_permission_level: newPermissionLevel
+      });
+      
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-users"] });
+      toast.success("Nível de permissão atualizado com sucesso!");
+    },
+    onError: (error) => {
+      toast.error("Erro ao atualizar permissão: " + error.message);
+    },
+  });
+
   const handleRoleChange = (userId: string, newRole: string) => {
     updateRoleMutation.mutate({ userId, newRole });
+  };
+
+  const handlePermissionChange = (userId: string, newPermissionLevel: 'viewer' | 'editor' | 'full_access') => {
+    updatePermissionMutation.mutate({ userId, newPermissionLevel });
   };
 
   const getRoleBadge = (role: string) => {
@@ -67,17 +95,37 @@ export default function UsersAdmin() {
     }
   };
 
+  const getPermissionBadge = (permissionLevel?: string) => {
+    switch (permissionLevel) {
+      case "full_access":
+        return <Badge className="bg-red-500 text-white">Acesso Total</Badge>;
+      case "editor":
+        return <Badge className="bg-yellow-500 text-white">Editor</Badge>;
+      case "viewer":
+        return <Badge variant="secondary">Visualizador</Badge>;
+      default:
+        return <Badge variant="outline">N/A</Badge>;
+    }
+  };
+
   if (isLoading) {
     return <div>Carregando...</div>;
   }
 
   return (
     <div className="space-y-6">
+      <Alert>
+        <Shield className="h-4 w-4" />
+        <AlertDescription>
+          Sistema de segurança aprimorado ativo. Administradores têm diferentes níveis de acesso aos dados sensíveis.
+        </AlertDescription>
+      </Alert>
+      
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Usuários</h1>
           <p className="text-muted-foreground">
-            Gerencie os usuários e suas permissões
+            Gerencie os usuários e suas permissões de segurança
           </p>
         </div>
       </div>
@@ -127,26 +175,48 @@ export default function UsersAdmin() {
                   <CardTitle className="flex items-center gap-2">
                     {user.display_name || user.email || "Usuário sem nome"}
                     {getRoleBadge(user.role)}
+                    {user.role === 'admin' && getPermissionBadge(user.admin_permission_level)}
                   </CardTitle>
                   <CardDescription>
                     {user.email}
                   </CardDescription>
                 </div>
                 
-                <div className="flex gap-2 items-center">
-                  <span className="text-sm text-muted-foreground mr-2">Role:</span>
-                  <Select
-                    value={user.role}
-                    onValueChange={(newRole) => handleRoleChange(user.id, newRole)}
-                  >
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">Usuário</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="flex gap-4 items-center">
+                  <div className="flex gap-2 items-center">
+                    <span className="text-sm text-muted-foreground">Role:</span>
+                    <Select
+                      value={user.role}
+                      onValueChange={(newRole) => handleRoleChange(user.id, newRole)}
+                    >
+                      <SelectTrigger className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">Usuário</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {user.role === 'admin' && (
+                    <div className="flex gap-2 items-center">
+                      <span className="text-sm text-muted-foreground">Nível:</span>
+                      <Select
+                        value={user.admin_permission_level || 'viewer'}
+                        onValueChange={(newLevel: 'viewer' | 'editor' | 'full_access') => handlePermissionChange(user.id, newLevel)}
+                      >
+                        <SelectTrigger className="w-40">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="viewer">Visualizador</SelectItem>
+                          <SelectItem value="editor">Editor</SelectItem>
+                          <SelectItem value="full_access">Acesso Total</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardHeader>
