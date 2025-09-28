@@ -13,7 +13,8 @@ import {
   Church,
   BookOpen,
   Clock,
-  Megaphone
+  Megaphone,
+  FormInput
 } from "lucide-react";
 import {
   Sidebar,
@@ -32,6 +33,7 @@ const adminItems = [
   { title: "Dashboard", url: "/admin", icon: Home },
   { title: "Hero Slides", url: "/admin/slides", icon: Image },
   { title: "Eventos", url: "/admin/events", icon: Calendar },
+  { title: "Formulários", url: "/admin/forms", icon: FormInput },
   { title: "Agendamentos", url: "/admin/event-appointments", icon: Clock },
   { title: "Avisos", url: "/admin/announcements", icon: Megaphone },
   { title: "Conteúdo", url: "/admin/content", icon: FileText },

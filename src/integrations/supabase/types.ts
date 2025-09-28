@@ -472,6 +472,163 @@ export type Database = {
         }
         Relationships: []
       }
+      event_form_fields: {
+        Row: {
+          created_at: string
+          field_name: string
+          field_type: Database["public"]["Enums"]["field_type"]
+          form_id: string
+          id: string
+          is_active: boolean | null
+          is_required: boolean | null
+          label: string
+          options: Json | null
+          order_position: number
+          placeholder: string | null
+          updated_at: string
+          validation_rules: Json | null
+        }
+        Insert: {
+          created_at?: string
+          field_name: string
+          field_type: Database["public"]["Enums"]["field_type"]
+          form_id: string
+          id?: string
+          is_active?: boolean | null
+          is_required?: boolean | null
+          label: string
+          options?: Json | null
+          order_position?: number
+          placeholder?: string | null
+          updated_at?: string
+          validation_rules?: Json | null
+        }
+        Update: {
+          created_at?: string
+          field_name?: string
+          field_type?: Database["public"]["Enums"]["field_type"]
+          form_id?: string
+          id?: string
+          is_active?: boolean | null
+          is_required?: boolean | null
+          label?: string
+          options?: Json | null
+          order_position?: number
+          placeholder?: string | null
+          updated_at?: string
+          validation_rules?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_form_fields_form_id_fkey"
+            columns: ["form_id"]
+            isOneToOne: false
+            referencedRelation: "event_forms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      event_forms: {
+        Row: {
+          banner_button_text: string | null
+          banner_description: string | null
+          banner_title: string | null
+          confirmation_email_body: string | null
+          confirmation_email_subject: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          max_registrations: number | null
+          name: string
+          page_description: string | null
+          page_title: string | null
+          registration_count: number | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          banner_button_text?: string | null
+          banner_description?: string | null
+          banner_title?: string | null
+          confirmation_email_body?: string | null
+          confirmation_email_subject?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_registrations?: number | null
+          name: string
+          page_description?: string | null
+          page_title?: string | null
+          registration_count?: number | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          banner_button_text?: string | null
+          banner_description?: string | null
+          banner_title?: string | null
+          confirmation_email_body?: string | null
+          confirmation_email_subject?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_registrations?: number | null
+          name?: string
+          page_description?: string | null
+          page_title?: string | null
+          registration_count?: number | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      event_registrations: {
+        Row: {
+          created_at: string
+          form_id: string
+          id: string
+          ip_address: unknown | null
+          registration_data: Json
+          status: Database["public"]["Enums"]["registration_status"] | null
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          form_id: string
+          id?: string
+          ip_address?: unknown | null
+          registration_data?: Json
+          status?: Database["public"]["Enums"]["registration_status"] | null
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          form_id?: string
+          id?: string
+          ip_address?: unknown | null
+          registration_data?: Json
+          status?: Database["public"]["Enums"]["registration_status"] | null
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_registrations_form_id_fkey"
+            columns: ["form_id"]
+            isOneToOne: false
+            referencedRelation: "event_forms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
           created_at: string | null
@@ -1368,7 +1525,21 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      field_type:
+        | "text"
+        | "email"
+        | "phone"
+        | "number"
+        | "textarea"
+        | "select"
+        | "checkbox"
+        | "radio"
+        | "date"
+        | "file"
+        | "address"
+        | "cpf"
+        | "rg"
+      registration_status: "pending" | "confirmed" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1495,6 +1666,23 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      field_type: [
+        "text",
+        "email",
+        "phone",
+        "number",
+        "textarea",
+        "select",
+        "checkbox",
+        "radio",
+        "date",
+        "file",
+        "address",
+        "cpf",
+        "rg",
+      ],
+      registration_status: ["pending", "confirmed", "cancelled"],
+    },
   },
 } as const

@@ -10,6 +10,8 @@ import AnnouncementsAdmin from "@/pages/admin/Announcements";
 import UsersAdmin from "@/pages/admin/Users";
 import SettingsAdmin from "@/pages/admin/Settings";
 import EventAppointments from "@/pages/admin/EventAppointments";
+import FormsAdmin from "@/pages/admin/Forms";
+import FormBuilder from "@/pages/admin/FormBuilder";
 
 export default function AdminPage() {
   return (
@@ -25,6 +27,8 @@ export default function AdminPage() {
         <Route path="/reading-plans" element={<ReadingPlansAdmin />} />
         <Route path="/users" element={<UsersAdmin />} />
         <Route path="/settings" element={<SettingsAdmin />} />
+        <Route path="/forms" element={<FormsAdmin />} />
+        <Route path="/forms/:id/builder" element={<FormBuilder />} />
       </Routes>
     </AdminLayout>
   );
