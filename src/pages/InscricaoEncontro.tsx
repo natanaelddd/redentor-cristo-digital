@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -21,8 +21,39 @@ const inscriptionSchema = z.object({
 
 type InscriptionData = z.infer<typeof inscriptionSchema>;
 
+// Helper function to format site content
+const formatSiteContent = (content: any[] | null) => {
+  if (!content) return {};
+  return content.reduce((acc, item) => {
+    acc[item.key] = item.value;
+    return acc;
+  }, {} as Record<string, string>);
+};
+
 export default function InscricaoEncontro() {
   const { toast } = useToast();
+  
+  // Fetch site data to maintain consistency with the main site
+  const { data: siteData } = useQuery({
+    queryKey: ["site-data"],
+    queryFn: async () => {
+      const [
+        { data: siteContent },
+        { data: navLinks }
+      ] = await Promise.all([
+        supabase.from("site_content").select("*"),
+        supabase.from("navigation_links").select("*").order("order_index")
+      ]);
+
+      return {
+        siteContent: formatSiteContent(siteContent),
+        navLinks: navLinks || []
+      };
+    },
+  });
+
+  const siteContent = siteData?.siteContent || {};
+  const navLinks = siteData?.navLinks || [];
   const [formData, setFormData] = useState<InscriptionData>({
     full_name: "",
     address: "",
@@ -98,12 +129,13 @@ export default function InscricaoEncontro() {
     return (
       <div className="flex flex-col min-h-screen bg-background">
         <Header 
-          navLinks={[
+          navLinks={navLinks.length > 0 ? navLinks : [
             { title: 'INÍCIO', href: '/' },
             { title: 'SOBRE', href: '/#sobre' },
             { title: 'EVENTOS', href: '/#eventos' },
             { title: 'CONTATO', href: '/#contato' }
-          ]} 
+          ]}
+          logoUrl={siteContent.logo_url}
         />
         
         <main className="flex-grow flex items-center justify-center p-8">
@@ -129,7 +161,15 @@ export default function InscricaoEncontro() {
           </Card>
         </main>
         
-        <Footer />
+        <Footer 
+          navLinks={navLinks.length > 0 ? navLinks : [
+            { title: 'INÍCIO', href: '/' },
+            { title: 'SOBRE', href: '/#sobre' },
+            { title: 'EVENTOS', href: '/#eventos' },
+            { title: 'CONTATO', href: '/#contato' }
+          ]}
+          siteContent={siteContent}
+        />
       </div>
     );
   }
@@ -137,12 +177,13 @@ export default function InscricaoEncontro() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header 
-        navLinks={[
+        navLinks={navLinks.length > 0 ? navLinks : [
           { title: 'INÍCIO', href: '/' },
           { title: 'SOBRE', href: '/#sobre' },
           { title: 'EVENTOS', href: '/#eventos' },
           { title: 'CONTATO', href: '/#contato' }
-        ]} 
+        ]}
+        logoUrl={siteContent.logo_url}
       />
       
       <main className="flex-grow py-12">
@@ -253,7 +294,15 @@ export default function InscricaoEncontro() {
         </div>
       </main>
       
-      <Footer />
+      <Footer 
+        navLinks={navLinks.length > 0 ? navLinks : [
+          { title: 'INÍCIO', href: '/' },
+          { title: 'SOBRE', href: '/#sobre' },
+          { title: 'EVENTOS', href: '/#eventos' },
+          { title: 'CONTATO', href: '/#contato' }
+        ]}
+        siteContent={siteContent}
+      />
     </div>
   );
 }
