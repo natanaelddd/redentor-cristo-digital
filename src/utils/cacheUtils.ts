@@ -187,8 +187,17 @@ export const emergencyReload = () => {
     console.error('Error in emergency clear:', e);
   }
   
-  // Force hard reload
-  window.location.href = window.location.href.split('?')[0] + '?cache_bust=' + Date.now();
+  // Force hard reload with cache busting
+  const baseUrl = window.location.href.split('?')[0];
+  const timestamp = Date.now();
+  
+  // If it's a preview URL that's having issues, try to redirect to stable
+  if (window.location.hostname.includes('preview--')) {
+    const stableUrl = baseUrl.replace('preview--', '');
+    window.location.href = `${stableUrl}?cache_bust=${timestamp}`;
+  } else {
+    window.location.href = `${baseUrl}?cache_bust=${timestamp}`;
+  }
 };
 
 export const initCacheHealthCheck = () => {
