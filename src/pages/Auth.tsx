@@ -20,9 +20,33 @@ const AuthPage = () => {
   useEffect(() => {
     // Check if user is already authenticated
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        navigate("/");
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          // Check if admin redirect is requested
+          const urlParams = new URLSearchParams(window.location.search);
+          const adminRedirect = urlParams.get('admin_redirect');
+          
+          if (adminRedirect === 'true') {
+            const { data: profile } = await supabase
+              .from("profiles")
+              .select("role")
+              .eq("id", session.user.id)
+              .single();
+            
+            if (profile?.role === "admin") {
+              navigate("/admin");
+            } else {
+              navigate("/");
+            }
+          } else {
+            navigate("/");
+          }
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        // Mark cache error for emergency recovery
+        sessionStorage.setItem('cache_error_count', '1');
       }
     };
     checkAuth();

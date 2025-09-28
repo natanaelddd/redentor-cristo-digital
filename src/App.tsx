@@ -10,6 +10,7 @@ import AuthPage from "./pages/Auth";
 import ReadingPlan from "./pages/ReadingPlan";
 import AdminPage from "./pages/AdminPage";
 import Agendamento from "./pages/Agendamento";
+import { EmergencyRecovery } from "./components/EmergencyRecovery";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <EmergencyRecovery />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
