@@ -23,23 +23,39 @@ const AuthPage = () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
+          console.log('User already authenticated:', session.user.email);
+          
           // Check if admin redirect is requested
           const urlParams = new URLSearchParams(window.location.search);
           const adminRedirect = urlParams.get('admin_redirect');
           
           if (adminRedirect === 'true') {
-            const { data: profile } = await supabase
-              .from("profiles")
-              .select("role")
-              .eq("id", session.user.id)
-              .single();
-            
-            if (profile?.role === "admin") {
-              navigate("/admin");
-            } else {
+            try {
+              const { data: profile, error } = await supabase
+                .from("profiles")
+                .select("role")
+                .eq("id", session.user.id)
+                .single();
+              
+              console.log('Profile check result:', { profile, error });
+              
+              if (error) {
+                console.error('Profile check error:', error);
+                // If no profile exists, redirect to home
+                navigate("/");
+              } else if (profile?.role === "admin") {
+                console.log('Redirecting to admin...');
+                navigate("/admin");
+              } else {
+                console.log('User is not admin, redirecting to home...');
+                navigate("/");
+              }
+            } catch (profileError) {
+              console.error('Profile fetch failed:', profileError);
               navigate("/");
             }
           } else {
+            console.log('No admin redirect requested, going to home...');
             navigate("/");
           }
         }
@@ -79,23 +95,38 @@ const AuthPage = () => {
           variant: "destructive",
         });
       } else {
-        // Check if user is admin and redirect accordingly
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", data.user.id)
-          .single();
-
+        console.log('Login successful for user:', data.user.email);
+        
         toast({
           title: "Login realizado com sucesso!",
           description: "Redirecionando...",
         });
-        
-        // Redirect to admin if user is admin, otherwise to home
-        if (profile?.role === "admin") {
-          window.location.href = "/admin";
-        } else {
-          window.location.href = "/";
+
+        // Check if user is admin and redirect accordingly
+        try {
+          const { data: profile, error } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", data.user.id)
+            .single();
+
+          console.log('Login profile check:', { profile, error });
+
+          // Use navigate instead of window.location to avoid page reload
+          if (error) {
+            console.error('Profile check error during login:', error);
+            // If no profile exists, redirect to home
+            setTimeout(() => navigate("/"), 1000);
+          } else if (profile?.role === "admin") {
+            console.log('Admin login detected, redirecting to admin...');
+            setTimeout(() => navigate("/admin"), 1000);
+          } else {
+            console.log('Regular user login, redirecting to home...');
+            setTimeout(() => navigate("/"), 1000);
+          }
+        } catch (profileError) {
+          console.error('Profile fetch failed during login:', profileError);
+          setTimeout(() => navigate("/"), 1000);
         }
       }
     } catch (error) {

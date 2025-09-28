@@ -24,34 +24,61 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     },
   });
 
-  const { data: profile } = useQuery({
+  const { data: profile, isLoading: profileLoading, error: profileError } = useQuery({
     queryKey: ["admin-profile", session?.user?.id],
     queryFn: async () => {
       if (!session?.user?.id) return null;
+      
+      console.log('Checking admin profile for user:', session.user.id);
+      
       const { data, error } = await supabase
         .from("profiles")
         .select("role")
         .eq("id", session.user.id)
         .single();
       
-      if (error) throw error;
+      console.log('Profile query result:', { data, error });
+      
+      if (error) {
+        // If no profile exists, return null instead of throwing
+        if (error.code === 'PGRST116') {
+          console.log('No profile found for user');
+          return null;
+        }
+        throw error;
+      }
       return data;
     },
     enabled: !!session?.user?.id,
+    retry: false, // Don't retry on profile errors
   });
 
   useEffect(() => {
     if (!isLoading && !session) {
+      console.log('No session found, redirecting to auth');
       navigate("/auth");
       return;
     }
 
-    if (profile && profile.role !== "admin") {
-      toast.error("Acesso negado. Você precisa ser administrador.");
-      navigate("/");
-      return;
+    // Wait for profile loading to complete
+    if (session && !profileLoading) {
+      if (profileError || !profile) {
+        console.log('No admin profile found or error:', profileError);
+        toast.error("Acesso negado. Você precisa ser administrador.");
+        navigate("/");
+        return;
+      }
+
+      if (profile.role !== "admin") {
+        console.log('User is not admin:', profile.role);
+        toast.error("Acesso negado. Você precisa ser administrador.");
+        navigate("/");
+        return;
+      }
+      
+      console.log('Admin access granted');
     }
-  }, [session, profile, isLoading, navigate]);
+  }, [session, profile, profileError, isLoading, profileLoading, navigate]);
 
   const handleLogout = async () => {
     try {
@@ -76,7 +103,17 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     }
   };
 
-  if (isLoading || !session || !profile || profile.role !== "admin") {
+  // Show loading while checking authentication
+  if (isLoading || profileLoading || !session) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  // Don't render if user is not admin (will be redirected by useEffect)
+  if (!profile || profile.role !== "admin") {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
