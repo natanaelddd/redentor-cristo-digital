@@ -9,10 +9,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
-import churchExterior from "@/assets/church-exterior.jpg";
-import crossSunset from "@/assets/cross-sunset.jpg";
-import churchInterior from "@/assets/church-interior.jpg";
-import stainedGlass from "@/assets/stained-glass.jpg";
+import landscapeHills from "@/assets/landscape-hills.jpg";
+import landscapeLake from "@/assets/landscape-lake.jpg";
+import landscapeForest from "@/assets/landscape-forest.jpg";
+import landscapeMeadow from "@/assets/landscape-meadow.jpg";
 
 type HeroSlide = {
   id: string;
@@ -49,12 +49,12 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
 
-    // Imagens específicas para Igreja Cristã - geradas com IA
+    // Imagens de paisagens naturais leves - geradas com IA
     const backgroundImages = [
-      churchExterior,
-      crossSunset,
-      churchInterior,
-      stainedGlass
+      landscapeHills,
+      landscapeLake,
+      landscapeForest,
+      landscapeMeadow
     ];
 
     // Seleciona uma imagem aleatória a cada refresh
