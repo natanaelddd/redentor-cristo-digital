@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -8,18 +8,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { type CarouselApi } from "@/components/ui/carousel";
-import churchExterior from '@/assets/church-exterior.jpg';
-import crossSunset from '@/assets/cross-sunset.jpg';
-import churchInterior from '@/assets/church-interior.jpg';
-import stainedGlass from '@/assets/stained-glass.jpg';
+import type { CarouselApi } from "@/components/ui/carousel";
+import churchExterior from "@/assets/church-exterior.jpg";
+import crossSunset from "@/assets/cross-sunset.jpg";
+import churchInterior from "@/assets/church-interior.jpg";
+import stainedGlass from "@/assets/stained-glass.jpg";
 
-type CarouselItemData = {
+type HeroSlide = {
   id: string;
-  category: string;
+  image_url: string | null;
   title: string;
+  subtitle: string | null;
   description: string | null;
   button_text: string;
+  button_link: string | null;
+  text_color: string | null;
+  background_color: string | null;
+  overlay_opacity: number | null;
+  text_alignment: string | null;
+  button_color: string | null;
+  button_hover_color: string | null;
+  animation_type: string | null;
+  animation_duration: number | null;
+  display_duration: number | null;
+  order: number | null;
+  is_active: boolean | null;
 };
 
 type SiteContent = {
@@ -27,14 +40,14 @@ type SiteContent = {
 };
 
 interface HeroSectionProps {
-  slides?: CarouselItemData[];
+  slides?: HeroSlide[];
   siteContent?: SiteContent;
 }
 
 export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps) => {
-    const [api, setApi] = React.useState<CarouselApi>();
-    const [current, setCurrent] = React.useState(0);
-    const [count, setCount] = React.useState(0);
+    const [api, setApi] = useState<CarouselApi>();
+    const [current, setCurrent] = useState(0);
+    const [count, setCount] = useState(0);
 
     // Imagens específicas para Igreja Cristã - geradas com IA
     const backgroundImages = [
@@ -45,12 +58,12 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
     ];
 
     // Seleciona uma imagem aleatória a cada refresh
-    const [selectedImage] = React.useState(() => {
+    const [selectedImage] = useState(() => {
       const randomIndex = Math.floor(Math.random() * backgroundImages.length);
       return backgroundImages[randomIndex];
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!api) {
         return;
         }
@@ -61,153 +74,170 @@ export const HeroSection = ({ slides = [], siteContent = {} }: HeroSectionProps)
         api.on("select", () => {
         setCurrent(api.selectedScrollSnap());
         });
-    }, [api, slides]);
+    }, [api]);
 
-    // Conteúdo exclusivo da Igreja Missionária Cristo Redentor - Ribeirão Preto
-    const defaultSlides = [
-      {
-        id: "1",
-        category: "COMUNIDADE CRISTÃ EM RIBEIRÃO PRETO",
-        title: "IGREJA MISSIONÁRIA CRISTO REDENTOR",
-        description: "Há mais de 20 anos transformando vidas através do amor de Cristo em Ribeirão Preto. Uma família de fé que acolhe a todos.",
-        button_text: "CONHEÇA NOSSA IGREJA"
-      },
-      {
-        id: "2", 
-        category: "CULTOS E ADORAÇÃO",
-        title: "VENHA ADORAR CONOSCO",
-        description: "Cultos dominicais às 19h com louvor, palavra e comunhão. Estudo bíblico quartas 20h. Oração sextas 20h.",
-        button_text: "PARTICIPE DOS CULTOS"
-      },
-      {
-        id: "3",
-        category: "MINISTÉRIOS E AÇÕES SOCIAIS",
-        title: "SERVINDO A COMUNIDADE",
-        description: "Através de nossos ministérios alcançamos famílias, jovens e crianças. Ações sociais que demonstram o amor de Cristo.",
-        button_text: "CONHEÇA NOSSOS MINISTÉRIOS"
-      }
-    ];
-
-    const slidesToShow = slides.length > 0 ? slides : defaultSlides;
-
-    return (
-        <section
-          id="#"
-          className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center overflow-hidden"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('${selectedImage}')`
-          }}
-        >
-          
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center min-h-screen z-10">
-            <Carousel setApi={setApi} className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
-              <CarouselContent>
-                {slidesToShow.map((item) => (
-                  <CarouselItem key={item.id}>
-                    <div className="p-4 sm:p-6 lg:p-8">
-                      <div className="bg-white/10 backdrop-blur-md text-white p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 relative text-center overflow-hidden">
-                        {/* Elementos decorativos */}
-                        <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-400 to-red-400 rounded-full opacity-20 -translate-y-12 translate-x-12 sm:-translate-y-16 sm:translate-x-16"></div>
-                        <div className="absolute bottom-0 left-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-tr from-blue-400 to-teal-400 rounded-full opacity-20 translate-y-10 -translate-x-10 sm:translate-y-12 sm:-translate-x-12"></div>
-                        
-                        <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/80 mb-6 sm:mb-8 font-medium">{item.category}</p>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading mb-8 sm:mb-10 leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{item.title}</h1>
-                        <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4">{item.description}</p>
-                        
-                        <Button size="lg" className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 rounded-full px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg tracking-[0.1em] font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                          {item.button_text}
-                          <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5" />
+    // Se houver slides customizados do admin, use-os; senão, use o conteúdo padrão
+    if (slides && slides.length > 0) {
+        return (
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <Carousel setApi={setApi} className="w-full h-full">
+            <CarouselContent>
+                {slides.map((slide, index) => (
+                <CarouselItem key={slide.id || index} className="relative h-screen">
+                    <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                        backgroundImage: slide.image_url ? `url(${slide.image_url})` : `url(${selectedImage})`,
+                        backgroundColor: slide.background_color || '#000000'
+                    }}
+                    />
+                    <div 
+                    className="absolute inset-0 bg-black"
+                    style={{ opacity: slide.overlay_opacity || 0.5 }}
+                    />
+                    <div className="container mx-auto h-full flex items-center relative z-10 px-4">
+                    <div 
+                        className={`max-w-2xl ${
+                        slide.text_alignment === 'center' ? 'mx-auto text-center' :
+                        slide.text_alignment === 'right' ? 'ml-auto text-right' :
+                        'text-left'
+                        }`}
+                    >
+                        <h1 
+                        className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg"
+                        style={{ color: slide.text_color || '#ffffff' }}
+                        >
+                        {slide.title}
+                        </h1>
+                        {slide.subtitle && (
+                        <h2 
+                            className="text-xl md:text-2xl mb-6 opacity-90 drop-shadow-md"
+                            style={{ color: slide.text_color || '#ffffff' }}
+                        >
+                            {slide.subtitle}
+                        </h2>
+                        )}
+                        {slide.description && (
+                        <p 
+                            className="text-lg md:text-xl mb-8 opacity-80 drop-shadow-sm"
+                            style={{ color: slide.text_color || '#ffffff' }}
+                        >
+                            {slide.description}
+                        </p>
+                        )}
+                        {slide.button_text && (
+                        <Button
+                            size="lg"
+                            className="text-lg px-8 py-6 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                            style={{
+                            backgroundColor: slide.button_color || '#6366f1',
+                            color: '#ffffff'
+                            }}
+                            onMouseEnter={(e) => {
+                            if (slide.button_hover_color) {
+                                e.currentTarget.style.backgroundColor = slide.button_hover_color;
+                            }
+                            }}
+                            onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = slide.button_color || '#6366f1';
+                            }}
+                            onClick={() => {
+                            if (slide.button_link) {
+                                if (slide.button_link.startsWith('#')) {
+                                const element = document.querySelector(slide.button_link);
+                                element?.scrollIntoView({ behavior: 'smooth' });
+                                } else {
+                                window.open(slide.button_link, '_blank');
+                                }
+                            }
+                            }}
+                        >
+                            {slide.button_text}
+                            <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                        
-                        {/* Pontos de navegação */}
-                        <div className="flex justify-center gap-2 sm:gap-3 mt-8 sm:mt-12">
-                          {Array.from({ length: count }).map((_, i) => (
-                            <button
-                              key={i}
-                              onClick={() => api?.scrollTo(i)}
-                              className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-all duration-300 ${current === i ? "bg-white w-6 sm:w-10 shadow-lg" : "bg-white/40 hover:bg-white/60"}`}
-                            >
-                              <span className="sr-only">Slide {i + 1}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                        )}
                     </div>
-                  </CarouselItem>
+                    </div>
+                </CarouselItem>
                 ))}
-              </CarouselContent>
-              
-              {/* Setas de navegação customizadas */}
-              <button 
-                onClick={() => api?.scrollPrev()}
-                className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
-              >
-                <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
-              </button>
-              <button 
-                onClick={() => api?.scrollNext()}
-                className="hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 items-center justify-center shadow-lg transition-all duration-300 z-10 border border-white/20"
-              >
-                <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
-              </button>
+            </CarouselContent>
+            {slides.length > 1 && (
+                <>
+                <CarouselPrevious className="left-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
+                <CarouselNext className="right-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
+                </>
+            )}
             </Carousel>
-          </div>
-
-          {/* Forma curva inferior */}
-          <div className="absolute bottom-0 left-0 w-full">
-            <svg className="w-full h-24 sm:h-32" preserveAspectRatio="none" viewBox="0 0 1200 120" fill="none">
-              <path d="M0,120 C150,20 350,120 600,70 C850,20 1050,120 1200,70 L1200,120 Z" fill="white"/>
-            </svg>
-          </div>
-
-          {/* Barra de informações da igreja */}
-          <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md text-white py-4 sm:py-6 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center z-20 text-xs sm:text-sm border-t border-white/10 gap-4 sm:gap-0">
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 uppercase font-medium tracking-wider text-center sm:text-left">
-              <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold text-sm sm:text-base">CULTOS DE DOMINGO</span>
-              <div className="hidden md:flex items-center gap-8">
-                  <span className="text-gray-400">|</span>
-                  <span>19H</span>
-                  <span className="text-gray-400">|</span>
-                  <span>QUARTA - ESTUDO BÍBLICO - 20H</span>
-                  <span className="text-gray-400">|</span>
-                  <span>SEXTA - ORAÇÃO - 20H</span>
-              </div>
-              <div className="flex md:hidden items-center gap-4 text-xs">
-                <span>DOM 19H</span>
-                <span className="text-gray-400">|</span>
-                <span>QUA 20H</span>
-                <span className="text-gray-400">|</span>
-                <span>SEX 20H</span>
-              </div>
-              <span className="hidden sm:inline text-gray-400">|</span>
-              <a href="#contato" className="flex items-center gap-2 hover:text-orange-300 transition-colors text-xs sm:text-sm">
-                <span>ENTRE EM CONTATO</span>
-                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
-              </a>
+            
+            {/* Indicadores de slide */}
+            {slides.length > 1 && (
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+                {slides.map((_, index) => (
+                <button
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    current === index ? 'bg-white' : 'bg-white/50'
+                    }`}
+                    onClick={() => api?.scrollTo(index)}
+                />
+                ))}
             </div>
+            )}
+        </section>
+        );
+    }
 
-            {/* Texto rolante */}
-            <div className="flex-1 mx-8 overflow-hidden hidden lg:block">
-              <div className="flex animate-marquee">
-                <p className="whitespace-nowrap uppercase font-medium px-4 tracking-wider">
-                  VENHA CONHECER NOSSA IGREJA - FÉ, ESPERANÇA E AMOR - RIBEIRÃO PRETO -&nbsp;
-                </p>
-                <p className="whitespace-nowrap uppercase font-medium px-4 tracking-wider" aria-hidden="true">
-                  VENHA CONHECER NOSSA IGREJA - FÉ, ESPERANÇA E AMOR - RIBEIRÃO PRETO -&nbsp;
-                </p>
-              </div>
+    // Layout padrão quando não há slides customizados
+    return (
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background com overlay */}
+        <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+            backgroundImage: `url(${selectedImage})`
+            }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Conteúdo */}
+        <div className="container mx-auto text-center relative z-10 px-4">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Redentor Cristo Digital
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md">
+                Um lugar de fé, esperança e amor. Junte-se à nossa comunidade cristã.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+                size="lg" 
+                className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-8 py-6 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                onClick={() => {
+                const aboutSection = document.getElementById('sobre');
+                aboutSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+            >
+                Conhecer Nossa Igreja
+                <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-6 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                onClick={() => {
+                const contactSection = document.getElementById('contato');
+                contactSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+            >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Fale Conosco
+            </Button>
             </div>
-
-            <div className="flex items-center gap-4">
-              <a href="#sobre" className="hidden lg:flex items-center gap-2 uppercase font-medium tracking-wider hover:text-orange-300 transition-colors">
-                <span>Saiba mais</span>
-                <ArrowDown className="h-4 w-4" />
-              </a>
-              <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 w-10 h-10 sm:w-12 sm:h-12 border-0 shadow-lg">
-                <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
-              </Button>
-            </div>
-          </div>
+        </div>
+        
+        {/* Seta para baixo animada */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <ArrowDown className="h-8 w-8" />
+        </div>
         </section>
     );
 };

@@ -1,5 +1,4 @@
 
-import React from "react";
 import { MapPin, Church, Phone, Clock, Mail, ArrowRight } from "lucide-react";
 
 export const ContactSection = () => {
