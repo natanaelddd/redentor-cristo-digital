@@ -101,7 +101,8 @@ const FormBuilder = () => {
             banner_title: form.banner_title,
             banner_description: form.banner_description,
             page_title: form.page_title,
-            page_description: form.page_description
+            page_description: form.page_description,
+            created_by: null // Explicitly set to null instead of undefined
           }])
           .select()
           .single();
@@ -141,7 +142,8 @@ const FormBuilder = () => {
             banner_title: form.banner_title,
             banner_description: form.banner_description,
             page_title: form.page_title,
-            page_description: form.page_description
+            page_description: form.page_description,
+            created_by: null // Explicitly set to null instead of undefined
           })
           .eq('id', id);
 
