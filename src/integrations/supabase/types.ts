@@ -1466,12 +1466,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      anonymize_appointment_data: {
+        Args: { appointment_data: Json }
+        Returns: Json
+      }
       bootstrap_first_admin: {
         Args: { admin_email: string }
         Returns: boolean
       }
       check_appointment_availability: {
         Args: { check_date: string; check_time: string }
+        Returns: boolean
+      }
+      check_appointment_rate_limit: {
+        Args: { client_email: string; client_ip?: unknown }
         Returns: boolean
       }
       check_appointment_slot_availability: {

@@ -226,7 +226,21 @@ const Agendamento = () => {
           description: "Este horário já foi reservado. Por favor, escolha outro.",
           variant: "destructive"
         });
-        loadBookedTimes(); // Refresh booked times
+        loadBookedTimes();
+        return;
+      }
+
+      // Verificar rate limiting
+      const { data: rateLimitOk } = await supabase.rpc('check_appointment_rate_limit', {
+        client_email: formData.email
+      });
+
+      if (!rateLimitOk) {
+        toast({
+          title: "Limite de agendamentos atingido",
+          description: "Você já atingiu o limite de 3 agendamentos por dia. Tente novamente amanhã.",
+          variant: "destructive"
+        });
         return;
       }
 
