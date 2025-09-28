@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Settings, Save, Database, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { syncBiblePlans } from "@/utils/syncBiblePlans";
-import { clearBrowserCache } from "@/utils/cacheUtils";
+import { clearBrowserCache, cache, forceRefresh } from "@/utils/cacheUtils";
 
 interface AdminSetting {
   id: string;
@@ -229,6 +229,52 @@ export default function SettingsAdmin() {
               <Button type="submit" className="w-full">
                 <Save className="h-4 w-4 mr-2" />
                 Salvar Configuração de Eventos
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        {/* Configuração do Banner Encontro com Deus */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Banner Encontro com Deus
+            </CardTitle>
+            <CardDescription>
+              Controle a exibição do banner de inscrição para o Encontro com Deus
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const bannerEnabled = formData.get("encontro_banner_enabled") === "on" ? "true" : "false";
+              
+              updateSettingMutation.mutateAsync({ 
+                key: "encontro_banner_enabled", 
+                value: bannerEnabled 
+              });
+            }} className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="encontro_banner_enabled"
+                  name="encontro_banner_enabled"
+                  defaultChecked={getSetting("encontro_banner_enabled") === "true"}
+                  className="h-4 w-4 rounded border-gray-300"
+                />
+                <Label htmlFor="encontro_banner_enabled" className="text-sm font-medium">
+                  Exibir banner "Encontro com Deus"
+                </Label>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Quando ativado, exibe o banner de inscrição para o Encontro com Deus na página inicial. Desative para ocultar o banner.
+              </p>
+              
+              <Button type="submit" className="w-full">
+                <Save className="h-4 w-4 mr-2" />
+                Salvar Configuração do Banner
               </Button>
             </form>
           </CardContent>

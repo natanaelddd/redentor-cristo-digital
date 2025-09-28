@@ -88,12 +88,18 @@ const Index = () => {
             setting => setting.setting_key === 'event_registration_enabled'
           )?.setting_value === 'true';
 
+          // Verificar se o banner do encontro está habilitado
+          const encontroBannerEnabled = adminSettings?.find(
+            setting => setting.setting_key === 'encontro_banner_enabled'
+          )?.setting_value === 'true';
+
           return {
             heroSlides: heroSlides || [],
             siteContent: formatSiteContent(siteContent),
             navLinks: (navLinks && navLinks.length > 0) ? navLinks : staticNavLinks,
             events: (events && events.length > 0) ? events : staticEvents,
             eventRegistrationEnabled,
+            encontroBannerEnabled,
           };
         } catch (dbError) {
           console.error('Database error, using fallback data:', dbError);
@@ -104,6 +110,7 @@ const Index = () => {
             navLinks: staticNavLinks,
             events: staticEvents,
             eventRegistrationEnabled: false,
+            encontroBannerEnabled: false,
           };
         }
       } catch (error) {
@@ -119,6 +126,7 @@ const Index = () => {
             { title: 'CONTATO', href: '/#contato' }
           ],
           eventRegistrationEnabled: false,
+          encontroBannerEnabled: false,
           events: [
             {
               id: '1',
@@ -168,8 +176,8 @@ const Index = () => {
         onLogout={signOut}
       />
       
-      {/* Event Inscription Alert */}
-      <EventInscriptionAlert />
+      {/* Event Inscription Alert - Só exibe se habilitado no admin */}
+      {pageData?.encontroBannerEnabled && <EventInscriptionAlert />}
       
       {/* Dynamic Event Announcements */}
       <div className="bg-background">
