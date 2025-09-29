@@ -204,7 +204,7 @@ export default function InscricaoEncontro() {
             </h1>
             <div className="flex items-center justify-center gap-2 text-lg text-muted-foreground mb-4">
               <Calendar className="h-5 w-5" />
-              <span>08 e 09 de Novembro de 2024</span>
+              <span>08 e 09 de Novembro de 2025</span>
             </div>
             <p className="text-lg text-muted-foreground max-w-md mx-auto">
               Participe conosco deste momento especial de comunhão, adoração e crescimento espiritual.
