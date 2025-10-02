@@ -1,14 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, Users, Calendar, RefreshCw } from "lucide-react";
+import { Download, Users, Calendar, RefreshCw, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
 import jsPDF from "jspdf";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
 
 interface Inscription {
   id: string;
@@ -22,6 +34,8 @@ interface Inscription {
 
 export default function EventInscriptions() {
   const { toast } = useToast();
+  const queryClient = useQueryClient();
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const { data: inscriptions, isLoading, refetch } = useQuery({
     queryKey: ["event_inscriptions"],
@@ -35,6 +49,37 @@ export default function EventInscriptions() {
       return data as Inscription[];
     },
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from("event_inscriptions")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["event_inscriptions"] });
+      toast({
+        title: "Inscrição excluída",
+        description: "A inscrição foi removida com sucesso.",
+      });
+      setDeleteId(null);
+    },
+    onError: (error) => {
+      toast({
+        title: "Erro ao excluir",
+        description: "Não foi possível excluir a inscrição. Tente novamente.",
+        variant: "destructive",
+      });
+      console.error("Delete error:", error);
+    },
+  });
+
+  const handleDelete = (id: string) => {
+    deleteMutation.mutate(id);
+  };
 
   const generatePDF = () => {
     if (!inscriptions || inscriptions.length === 0) {
@@ -226,6 +271,7 @@ export default function EventInscriptions() {
                     <TableHead>Telefone</TableHead>
                     <TableHead>Endereço</TableHead>
                     <TableHead>Data de Inscrição</TableHead>
+                    <TableHead className="text-right">Ações</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -241,6 +287,37 @@ export default function EventInscriptions() {
                       </TableCell>
                       <TableCell>
                         {format(new Date(inscription.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Confirmar exclusão</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Tem certeza que deseja excluir a inscrição de{" "}
+                                <strong>{inscription.full_name}</strong>? Esta ação não pode ser desfeita.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => handleDelete(inscription.id)}
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                              >
+                                Excluir
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </TableCell>
                     </TableRow>
                   ))}
