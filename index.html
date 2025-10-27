@@ -4,10 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Cache Control Headers para resolver problemas do Chrome -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="max-age=3600" />
+    <meta http-equiv="Pragma" content="public" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/lovable-uploads/52bb9865-eabf-4a7f-aee6-c64d183500e9.png" type="image/png">
@@ -78,71 +77,6 @@
   </head>
 
   <body>
-    <!-- Performance & Cache Script -->
-    <script>
-      // Sistema robusto de detecção e correção de problemas de cache
-      (function() {
-        'use strict';
-        
-        const CACHE_VERSION = '1.0.1';
-        const PERFORMANCE_THRESHOLD = 3000; // 3 segundos
-        
-        function clearProblematicCache() {
-          try {
-            // Limpar localStorage problemático
-            const keysToRemove = [];
-            for (let i = 0; i < localStorage.length; i++) {
-              const key = localStorage.key(i);
-              if (key && (localStorage.getItem(key) === 'undefined' || localStorage.getItem(key) === null)) {
-                keysToRemove.push(key);
-              }
-            }
-            keysToRemove.forEach(key => localStorage.removeItem(key));
-            
-            // Marcar versão do cache
-            localStorage.setItem('cache_version', CACHE_VERSION);
-            
-            console.log('Cache problemático limpo:', keysToRemove.length + ' itens');
-            return keysToRemove.length > 0;
-          } catch (e) {
-            console.warn('Erro ao limpar cache:', e);
-            return false;
-          }
-        }
-        
-        // Verificar versão do cache ao carregar
-        const currentVersion = localStorage.getItem('cache_version');
-        if (currentVersion !== CACHE_VERSION) {
-          console.log('Nova versão detectada, limpando cache...');
-          clearProblematicCache();
-        }
-        
-        // Service Worker cleanup para Chrome
-        if ('serviceWorker' in navigator && navigator.userAgent.includes('Chrome')) {
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            if (registrations.length > 0) {
-              console.log('Limpando service workers antigos...');
-              registrations.forEach(registration => registration.unregister());
-            }
-          });
-        }
-        
-        // Auto-detecção de problemas de cache
-        window.addEventListener('load', function() {
-          // Se a página demorar muito para carregar, sugerir limpeza
-          if (performance.now() > PERFORMANCE_THRESHOLD) {
-            const lastSlowLoad = localStorage.getItem('last_slow_load');
-            const now = Date.now();
-            
-            if (lastSlowLoad && (now - parseInt(lastSlowLoad)) < 300000) { // 5 minutos
-              console.warn('Problemas persistentes de cache detectados');
-            } else {
-              localStorage.setItem('last_slow_load', now.toString());
-            }
-          }
-        });
-      })();
-    </script>
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
