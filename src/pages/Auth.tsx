@@ -56,11 +56,8 @@ const AuthPage = () => {
         });
       } else {
         // Check if user is admin and redirect accordingly
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", data.user.id)
-          .single();
+        const { data: isAdminUser } = await supabase
+          .rpc("is_admin", { user_id: data.user.id });
 
         toast({
           title: "Login realizado com sucesso!",
@@ -68,7 +65,7 @@ const AuthPage = () => {
         });
         
         // Redirect to admin if user is admin, otherwise to home
-        if (profile?.role === "admin") {
+        if (isAdminUser) {
           window.location.href = "/admin";
         } else {
           window.location.href = "/";

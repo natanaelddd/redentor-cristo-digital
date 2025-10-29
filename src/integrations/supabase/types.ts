@@ -354,7 +354,7 @@ export type Database = {
           created_at: string
           download_type: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           product_id: string
           product_title: string
           user_agent: string | null
@@ -365,7 +365,7 @@ export type Database = {
           created_at?: string
           download_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           product_id: string
           product_title: string
           user_agent?: string | null
@@ -376,7 +376,7 @@ export type Database = {
           created_at?: string
           download_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           product_id?: string
           product_title?: string
           user_agent?: string | null
@@ -447,6 +447,7 @@ export type Database = {
           id: string
           phone: string
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           address: string
@@ -458,6 +459,7 @@ export type Database = {
           id?: string
           phone: string
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           address?: string
@@ -469,6 +471,7 @@ export type Database = {
           id?: string
           phone?: string
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -623,7 +626,7 @@ export type Database = {
           created_at: string
           form_id: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           registration_data: Json
           status: Database["public"]["Enums"]["registration_status"] | null
           updated_at: string
@@ -633,7 +636,7 @@ export type Database = {
           created_at?: string
           form_id: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           registration_data?: Json
           status?: Database["public"]["Enums"]["registration_status"] | null
           updated_at?: string
@@ -643,7 +646,7 @@ export type Database = {
           created_at?: string
           form_id?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           registration_data?: Json
           status?: Database["public"]["Enums"]["registration_status"] | null
           updated_at?: string
@@ -869,6 +872,27 @@ export type Database = {
         }
         Relationships: []
       }
+      hero_settings: {
+        Row: {
+          created_at: string
+          id: string
+          is_hero_enabled: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_hero_enabled?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_hero_enabled?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       hero_slides: {
         Row: {
           animation_duration: number | null
@@ -938,6 +962,39 @@ export type Database = {
           text_color?: string | null
           title?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          ip_address: unknown
+          phone: string
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          ip_address?: unknown
+          phone: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          ip_address?: unknown
+          phone?: string
+          updated_at?: string
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -1177,36 +1234,24 @@ export type Database = {
       }
       profiles: {
         Row: {
-          admin_permission_level:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at: string
           display_name: string | null
           email: string | null
           id: string
-          role: string
           updated_at: string
         }
         Insert: {
-          admin_permission_level?:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at?: string
           display_name?: string | null
           email?: string | null
           id: string
-          role?: string
           updated_at?: string
         }
         Update: {
-          admin_permission_level?:
-            | Database["public"]["Enums"]["admin_permission_level"]
-            | null
           created_at?: string
           display_name?: string | null
           email?: string | null
           id?: string
-          role?: string
           updated_at?: string
         }
         Relationships: []
@@ -1500,6 +1545,30 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -1509,10 +1578,7 @@ export type Database = {
         Args: { appointment_data: Json }
         Returns: Json
       }
-      bootstrap_first_admin: {
-        Args: { admin_email: string }
-        Returns: boolean
-      }
+      bootstrap_first_admin: { Args: { admin_email: string }; Returns: boolean }
       check_appointment_availability: {
         Args: { check_date: string; check_time: string }
         Returns: boolean
@@ -1525,23 +1591,13 @@ export type Database = {
         Args: { check_date: string; check_time: string }
         Returns: boolean
       }
+      check_lead_rate_limit: {
+        Args: { client_email: string }
+        Returns: boolean
+      }
       encrypt_sensitive_field: {
         Args: { encryption_key?: string; field_value: string }
         Returns: string
-      }
-      get_admin_appointments_view: {
-        Args: { requesting_admin_id: string }
-        Returns: {
-          address: string
-          appointment_date: string
-          appointment_time: string
-          created_at: string
-          email: string
-          full_name: string
-          id: string
-          phone: string
-          updated_at: string
-        }[]
       }
       get_admin_download_logs: {
         Args: { limit_count?: number }
@@ -1556,7 +1612,7 @@ export type Database = {
         }[]
       }
       get_admin_download_stats: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           free: number
           paid: number
@@ -1568,52 +1624,22 @@ export type Database = {
         Args: { check_date: string }
         Returns: number
       }
-      get_appointment_summary: {
-        Args: { requesting_admin_id: string }
-        Returns: {
-          appointment_date: string
-          appointment_time: string
-          contact_info: string
-          created_at: string
-          id: string
-        }[]
-      }
-      get_masked_appointment_data: {
-        Args: { appointment_id: string; requesting_admin_id: string }
-        Returns: {
-          address: string
-          appointment_date: string
-          appointment_time: string
-          created_at: string
-          email: string
-          full_name: string
-          id: string
-          phone: string
-          updated_at: string
-        }[]
-      }
       get_or_create_chat_session: {
         Args: { requesting_user_id?: string; session_id: string }
         Returns: string
       }
-      get_user_role: {
-        Args: { user_id: string }
-        Returns: string
-      }
-      is_admin: {
-        Args: { user_id?: string }
+      get_user_role: { Args: { user_id: string }; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
         Returns: boolean
       }
+      is_admin: { Args: { user_id?: string }; Returns: boolean }
       log_admin_access: {
         Args: { action_type: string; admin_user_id: string; details?: string }
         Returns: undefined
-      }
-      update_admin_permission_level: {
-        Args: {
-          new_permission_level: Database["public"]["Enums"]["admin_permission_level"]
-          target_admin_id: string
-        }
-        Returns: boolean
       }
       update_user_role: {
         Args: { new_role: string; target_user_id: string }
@@ -1622,6 +1648,7 @@ export type Database = {
     }
     Enums: {
       admin_permission_level: "viewer" | "editor" | "full_access"
+      app_role: "admin" | "moderator" | "user"
       field_type:
         | "text"
         | "email"
@@ -1765,6 +1792,7 @@ export const Constants = {
   public: {
     Enums: {
       admin_permission_level: ["viewer", "editor", "full_access"],
+      app_role: ["admin", "moderator", "user"],
       field_type: [
         "text",
         "email",

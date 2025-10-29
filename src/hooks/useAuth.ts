@@ -14,14 +14,11 @@ export const useAuth = () => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        // Check if user is admin
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('id', session.user.id)
-          .single();
+        // Check if user is admin using the secure function
+        const { data: isAdminUser } = await supabase
+          .rpc('is_admin', { user_id: session.user.id });
         
-        setIsAdmin(profile?.role === 'admin');
+        setIsAdmin(isAdminUser || false);
       }
       
       setLoading(false);
@@ -35,14 +32,11 @@ export const useAuth = () => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Check if user is admin
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', session.user.id)
-            .single();
+          // Check if user is admin using the secure function
+          const { data: isAdminUser } = await supabase
+            .rpc('is_admin', { user_id: session.user.id });
           
-          setIsAdmin(profile?.role === 'admin');
+          setIsAdmin(isAdminUser || false);
         } else {
           setIsAdmin(false);
         }

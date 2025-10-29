@@ -13,9 +13,11 @@ import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { useAuth } from '@/hooks/useAuth';
 
 const Agendamento = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [bookedTimes, setBookedTimes] = useState<string[]>([]);
   const [totalAppointments, setTotalAppointments] = useState<number>(0);
@@ -26,6 +28,18 @@ const Agendamento = () => {
     phone: '',
     address: ''
   });
+
+  // Redirect to auth if not logged in
+  useEffect(() => {
+    if (!user) {
+      toast({
+        title: "Autenticação necessária",
+        description: "Você precisa estar logado para fazer um agendamento.",
+        variant: "destructive"
+      });
+      navigate('/auth');
+    }
+  }, [user, navigate]);
 
   // Data fixa do evento - 13 de setembro de 2025 (sábado)
   const eventDate = new Date(2025, 8, 13); // Mês 8 = setembro (0-indexado)
@@ -247,6 +261,7 @@ const Agendamento = () => {
       const { error } = await supabase
         .from('event_appointments')
         .insert({
+          user_id: user?.id,
           full_name: formData.fullName,
           email: formData.email,
           phone: formData.phone,

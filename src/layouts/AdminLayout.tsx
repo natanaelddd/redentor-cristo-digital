@@ -24,18 +24,14 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     },
   });
 
-  const { data: profile } = useQuery({
-    queryKey: ["admin-profile", session?.user?.id],
+  const { data: isAdminUser } = useQuery({
+    queryKey: ["admin-check", session?.user?.id],
     queryFn: async () => {
-      if (!session?.user?.id) return null;
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", session.user.id)
-        .single();
+      if (!session?.user?.id) return false;
+      const { data } = await supabase
+        .rpc("is_admin", { user_id: session.user.id });
       
-      if (error) throw error;
-      return data;
+      return data || false;
     },
     enabled: !!session?.user?.id,
   });
@@ -46,12 +42,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       return;
     }
 
-    if (profile && profile.role !== "admin") {
+    if (isAdminUser === false) {
       toast.error("Acesso negado. Você precisa ser administrador.");
       navigate("/");
       return;
     }
-  }, [session, profile, isLoading, navigate]);
+  }, [session, isAdminUser, isLoading, navigate]);
 
   const handleLogout = async () => {
     try {
@@ -76,7 +72,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     }
   };
 
-  if (isLoading || !session || !profile || profile.role !== "admin") {
+  if (isLoading || !session || isAdminUser === undefined || isAdminUser === false) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
