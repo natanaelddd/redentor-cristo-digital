@@ -322,7 +322,7 @@ const FormBuilder = () => {
                           slug: generateSlug(name)
                         }));
                       }}
-                      placeholder="Ex: Encontro com Deus 2024"
+                      placeholder="Ex: Encontro com Deus 2025"
                     />
                   </div>
                   
@@ -332,7 +332,7 @@ const FormBuilder = () => {
                       id="slug"
                       value={form.slug}
                       onChange={(e) => setForm(prev => ({ ...prev, slug: e.target.value }))}
-                      placeholder="encontro-com-deus-2024"
+                      placeholder="encontro-com-deus-2025"
                     />
                   </div>
                 </div>

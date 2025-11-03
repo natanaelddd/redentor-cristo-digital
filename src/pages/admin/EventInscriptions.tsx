@@ -173,7 +173,7 @@ export default function EventInscriptions() {
     doc.setFontSize(20);
     doc.text("Inscrições - Encontro com Deus", 20, 30);
     doc.setFontSize(14);
-    doc.text("08 e 09 de Novembro de 2024", 20, 45);
+    doc.text("08 e 09 de Novembro de 2025", 20, 45);
     
     // Data de geração
     doc.setFontSize(10);
@@ -369,7 +369,7 @@ export default function EventInscriptions() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Inscrições - Encontro com Deus</h1>
-          <p className="text-muted-foreground">08 e 09 de Novembro de 2024</p>
+          <p className="text-muted-foreground">08 e 09 de Novembro de 2025</p>
         </div>
         <div className="flex gap-2">
           <Button onClick={() => refetch()} variant="outline" size="sm">
