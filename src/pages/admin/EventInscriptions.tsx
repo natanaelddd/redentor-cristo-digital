@@ -4,7 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, Users, Calendar, RefreshCw, Trash2 } from "lucide-react";
+import { Download, Users, Calendar, RefreshCw, Trash2, Edit } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
@@ -21,6 +24,14 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Inscription {
   id: string;
@@ -37,6 +48,12 @@ export default function EventInscriptions() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [editingInscription, setEditingInscription] = useState<Inscription | null>(null);
+  const [downloadDialogOpen, setDownloadDialogOpen] = useState(false);
+  const [downloadFilters, setDownloadFilters] = useState({
+    includeEncontristas: true,
+    includeTrabalhadores: true,
+  });
 
   const { data: inscriptions, isLoading, refetch } = useQuery({
     queryKey: ["event_inscriptions"],
@@ -78,8 +95,44 @@ export default function EventInscriptions() {
     },
   });
 
+  const updateTypeMutation = useMutation({
+    mutationFn: async ({ id, participant_type }: { id: string; participant_type: "encontrista" | "trabalhador" }) => {
+      const { error } = await supabase
+        .from("event_inscriptions")
+        .update({ participant_type })
+        .eq("id", id);
+
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["event_inscriptions"] });
+      toast({
+        title: "Tipo atualizado",
+        description: "O tipo de participante foi atualizado com sucesso.",
+      });
+      setEditingInscription(null);
+    },
+    onError: (error) => {
+      toast({
+        title: "Erro ao atualizar",
+        description: "Não foi possível atualizar o tipo. Tente novamente.",
+        variant: "destructive",
+      });
+      console.error("Update error:", error);
+    },
+  });
+
   const handleDelete = (id: string) => {
     deleteMutation.mutate(id);
+  };
+
+  const handleUpdateType = (newType: "encontrista" | "trabalhador") => {
+    if (editingInscription) {
+      updateTypeMutation.mutate({
+        id: editingInscription.id,
+        participant_type: newType,
+      });
+    }
   };
 
   const generatePDF = () => {
@@ -92,9 +145,27 @@ export default function EventInscriptions() {
       return;
     }
 
+    // Filtrar baseado nas seleções
+    let filteredInscriptions = inscriptions;
+    
+    if (!downloadFilters.includeEncontristas && !downloadFilters.includeTrabalhadores) {
+      toast({
+        title: "Selecione ao menos um tipo",
+        description: "Você precisa selecionar pelo menos um tipo de participante.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!downloadFilters.includeEncontristas) {
+      filteredInscriptions = inscriptions.filter(i => i.participant_type === "trabalhador");
+    } else if (!downloadFilters.includeTrabalhadores) {
+      filteredInscriptions = inscriptions.filter(i => i.participant_type === "encontrista");
+    }
+
     // Separar por tipo
-    const encontristas = inscriptions.filter(i => i.participant_type === "encontrista");
-    const trabalhadores = inscriptions.filter(i => i.participant_type === "trabalhador");
+    const encontristas = filteredInscriptions.filter(i => i.participant_type === "encontrista");
+    const trabalhadores = filteredInscriptions.filter(i => i.participant_type === "trabalhador");
 
     const doc = new jsPDF();
     
@@ -289,6 +360,8 @@ export default function EventInscriptions() {
       title: "PDF gerado com sucesso!",
       description: "O arquivo foi baixado para seu computador.",
     });
+    
+    setDownloadDialogOpen(false);
   };
 
   return (
@@ -303,12 +376,86 @@ export default function EventInscriptions() {
             <RefreshCw className="h-4 w-4 mr-2" />
             Atualizar
           </Button>
-          <Button onClick={generatePDF} variant="default" size="sm">
+          <Button onClick={() => setDownloadDialogOpen(true)} variant="default" size="sm">
             <Download className="h-4 w-4 mr-2" />
             Baixar PDF
           </Button>
         </div>
       </div>
+
+      {/* Dialog de Download */}
+      <Dialog open={downloadDialogOpen} onOpenChange={setDownloadDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Opções de Download</DialogTitle>
+            <DialogDescription>
+              Selecione quais tipos de participantes incluir no PDF
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="encontristas"
+                checked={downloadFilters.includeEncontristas}
+                onCheckedChange={(checked) =>
+                  setDownloadFilters({ ...downloadFilters, includeEncontristas: checked as boolean })
+                }
+              />
+              <Label htmlFor="encontristas" className="cursor-pointer">
+                Incluir Encontristas ({inscriptions?.filter(i => i.participant_type === "encontrista").length || 0})
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="trabalhadores"
+                checked={downloadFilters.includeTrabalhadores}
+                onCheckedChange={(checked) =>
+                  setDownloadFilters({ ...downloadFilters, includeTrabalhadores: checked as boolean })
+                }
+              />
+              <Label htmlFor="trabalhadores" className="cursor-pointer">
+                Incluir Trabalhadores ({inscriptions?.filter(i => i.participant_type === "trabalhador").length || 0})
+              </Label>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDownloadDialogOpen(false)}>
+              Cancelar
+            </Button>
+            <Button onClick={generatePDF}>
+              <Download className="h-4 w-4 mr-2" />
+              Gerar PDF
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog de Edição de Tipo */}
+      <Dialog open={!!editingInscription} onOpenChange={(open) => !open && setEditingInscription(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Editar Tipo de Participante</DialogTitle>
+            <DialogDescription>
+              Altere o tipo de participação de {editingInscription?.full_name}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <Label htmlFor="participant_type">Tipo de Participante</Label>
+            <Select
+              value={editingInscription?.participant_type}
+              onValueChange={(value) => handleUpdateType(value as "encontrista" | "trabalhador")}
+            >
+              <SelectTrigger className="w-full mt-2">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="encontrista">Encontrista</SelectItem>
+                <SelectItem value="trabalhador">Trabalhador</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Estatísticas */}
       <div className="grid gap-4 md:grid-cols-4">
@@ -410,35 +557,45 @@ export default function EventInscriptions() {
                         {format(new Date(inscription.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}
                       </TableCell>
                       <TableCell className="text-right">
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Confirmar exclusão</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                Tem certeza que deseja excluir a inscrição de{" "}
-                                <strong>{inscription.full_name}</strong>? Esta ação não pode ser desfeita.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={() => handleDelete(inscription.id)}
-                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        <div className="flex gap-2 justify-end">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setEditingInscription(inscription)}
+                            className="text-primary hover:text-primary hover:bg-primary/10"
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-destructive hover:text-destructive hover:bg-destructive/10"
                               >
-                                Excluir
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Confirmar exclusão</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Tem certeza que deseja excluir a inscrição de{" "}
+                                  <strong>{inscription.full_name}</strong>? Esta ação não pode ser desfeita.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => handleDelete(inscription.id)}
+                                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                >
+                                  Excluir
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
