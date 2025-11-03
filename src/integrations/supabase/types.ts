@@ -385,6 +385,39 @@ export type Database = {
         }
         Relationships: []
       }
+      epc_leads: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          ip_address: unknown
+          phone: string
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          ip_address?: unknown
+          phone: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          ip_address?: unknown
+          phone?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       event_announcements: {
         Row: {
           background_color: string | null
@@ -598,6 +631,7 @@ export type Database = {
           email: string
           full_name: string
           id: string
+          participant_type: string
           phone: string
           updated_at: string
         }
@@ -607,6 +641,7 @@ export type Database = {
           email: string
           full_name: string
           id?: string
+          participant_type?: string
           phone: string
           updated_at?: string
         }
@@ -616,6 +651,7 @@ export type Database = {
           email?: string
           full_name?: string
           id?: string
+          participant_type?: string
           phone?: string
           updated_at?: string
         }
@@ -1106,6 +1142,42 @@ export type Database = {
           status?: string | null
           updated_at?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      pixel_events: {
+        Row: {
+          created_at: string
+          description: string | null
+          event_name: string
+          event_parameters: Json | null
+          event_type: string
+          id: string
+          is_active: boolean
+          trigger_location: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          event_name: string
+          event_parameters?: Json | null
+          event_type?: string
+          id?: string
+          is_active?: boolean
+          trigger_location: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          event_name?: string
+          event_parameters?: Json | null
+          event_type?: string
+          id?: string
+          is_active?: boolean
+          trigger_location?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -1642,6 +1714,10 @@ export type Database = {
         Returns: undefined
       }
       make_user_admin: { Args: { target_email: string }; Returns: boolean }
+      set_user_as_admin_by_email: {
+        Args: { user_email: string }
+        Returns: undefined
+      }
       update_user_role: {
         Args: { new_role: string; target_user_id: string }
         Returns: boolean

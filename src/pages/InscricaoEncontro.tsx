@@ -9,14 +9,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Users, MapPin, Mail, Phone, User, CheckCircle, Calendar } from "lucide-react";
+import { Users, MapPin, Mail, Phone, User, CheckCircle, Calendar, Briefcase } from "lucide-react";
 import { z } from "zod";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const inscriptionSchema = z.object({
   full_name: z.string().trim().nonempty({ message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
   address: z.string().trim().nonempty({ message: "Endereço é obrigatório" }).max(200, { message: "Endereço deve ter menos de 200 caracteres" }),
   email: z.string().trim().email({ message: "Email inválido" }).max(255, { message: "Email deve ter menos de 255 caracteres" }),
-  phone: z.string().trim().nonempty({ message: "Telefone é obrigatório" }).max(20, { message: "Telefone deve ter menos de 20 caracteres" })
+  phone: z.string().trim().nonempty({ message: "Telefone é obrigatório" }).max(20, { message: "Telefone deve ter menos de 20 caracteres" }),
+  participant_type: z.enum(["encontrista", "trabalhador"], { message: "Selecione o tipo de participação" })
 });
 
 type InscriptionData = z.infer<typeof inscriptionSchema>;
@@ -62,7 +64,8 @@ export default function InscricaoEncontro() {
     full_name: "",
     address: "",
     email: "",
-    phone: ""
+    phone: "",
+    participant_type: "encontrista"
   });
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -76,7 +79,8 @@ export default function InscricaoEncontro() {
           full_name: validatedData.full_name,
           address: validatedData.address,
           email: validatedData.email,
-          phone: validatedData.phone
+          phone: validatedData.phone,
+          participant_type: validatedData.participant_type
         }]);
 
       if (error) throw error;
@@ -91,7 +95,8 @@ export default function InscricaoEncontro() {
         full_name: "",
         address: "",
         email: "",
-        phone: ""
+        phone: "",
+        participant_type: "encontrista"
       });
     },
     onError: (error) => {
@@ -283,6 +288,33 @@ export default function InscricaoEncontro() {
                     required
                     maxLength={20}
                   />
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="flex items-center gap-2">
+                    <Briefcase className="h-4 w-4" />
+                    Tipo de Participação
+                  </Label>
+                  <RadioGroup
+                    value={formData.participant_type}
+                    onValueChange={(value) => handleInputChange("participant_type", value as "encontrista" | "trabalhador")}
+                    className="flex flex-col space-y-2"
+                  >
+                    <div className="flex items-center space-x-2 border rounded-lg p-3 hover:bg-accent/50 cursor-pointer">
+                      <RadioGroupItem value="encontrista" id="encontrista" />
+                      <Label htmlFor="encontrista" className="flex-1 cursor-pointer font-normal">
+                        <div className="font-medium">Encontrista</div>
+                        <div className="text-sm text-muted-foreground">Participante do encontro</div>
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 border rounded-lg p-3 hover:bg-accent/50 cursor-pointer">
+                      <RadioGroupItem value="trabalhador" id="trabalhador" />
+                      <Label htmlFor="trabalhador" className="flex-1 cursor-pointer font-normal">
+                        <div className="font-medium">Trabalhador</div>
+                        <div className="text-sm text-muted-foreground">Ajudar na organização do encontro</div>
+                      </Label>
+                    </div>
+                  </RadioGroup>
                 </div>
 
                 <Button

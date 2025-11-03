@@ -28,6 +28,7 @@ interface Inscription {
   address: string;
   email: string;
   phone: string;
+  participant_type: "encontrista" | "trabalhador";
   created_at: string;
   updated_at: string;
 }
@@ -91,6 +92,10 @@ export default function EventInscriptions() {
       return;
     }
 
+    // Separar por tipo
+    const encontristas = inscriptions.filter(i => i.participant_type === "encontrista");
+    const trabalhadores = inscriptions.filter(i => i.participant_type === "trabalhador");
+
     const doc = new jsPDF();
     
     // Título
@@ -106,80 +111,177 @@ export default function EventInscriptions() {
     // Estatísticas
     doc.setFontSize(12);
     doc.text(`Total de inscrições: ${inscriptions.length}`, 20, 70);
+    doc.text(`Encontristas: ${encontristas.length}`, 20, 78);
+    doc.text(`Trabalhadores: ${trabalhadores.length}`, 20, 86);
     
-    let yPosition = 90;
+    let yPosition = 100;
     
-    // Cabeçalhos
-    doc.setFontSize(10);
-    doc.text("Nome", 20, yPosition);
-    doc.text("Email", 80, yPosition);
-    doc.text("Telefone", 140, yPosition);
-    doc.text("Data", 180, yPosition);
-    
-    yPosition += 10;
-    
-    // Linha separadora
-    doc.line(20, yPosition - 5, 200, yPosition - 5);
-    
-    // Dados das inscrições
-    inscriptions.forEach((inscription, index) => {
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 30;
-        
-        // Repetir cabeçalhos na nova página
-        doc.setFontSize(10);
-        doc.text("Nome", 20, yPosition);
-        doc.text("Email", 80, yPosition);
-        doc.text("Telefone", 140, yPosition);
-        doc.text("Data", 180, yPosition);
-        yPosition += 10;
-        doc.line(20, yPosition - 5, 200, yPosition - 5);
-      }
-      
-      doc.setFontSize(8);
-      
-      // Truncar textos longos
-      const name = inscription.full_name.length > 25 ? inscription.full_name.substring(0, 22) + "..." : inscription.full_name;
-      const email = inscription.email.length > 20 ? inscription.email.substring(0, 17) + "..." : inscription.email;
-      const phone = inscription.phone;
-      const date = format(new Date(inscription.created_at), "dd/MM/yy", { locale: ptBR });
-      
-      doc.text(name, 20, yPosition);
-      doc.text(email, 80, yPosition);
-      doc.text(phone, 140, yPosition);
-      doc.text(date, 180, yPosition);
-      
-      yPosition += 8;
-    });
-    
-    // Adicionar página com detalhes completos
-    doc.addPage();
-    doc.setFontSize(16);
-    doc.text("Detalhes Completos das Inscrições", 20, 30);
-    
-    yPosition = 50;
-    
-    inscriptions.forEach((inscription, index) => {
-      if (yPosition > 250) {
-        doc.addPage();
-        yPosition = 30;
-      }
-      
-      doc.setFontSize(12);
-      doc.text(`${index + 1}. ${inscription.full_name}`, 20, yPosition);
-      yPosition += 10;
-      
-      doc.setFontSize(10);
-      doc.text(`Email: ${inscription.email}`, 25, yPosition);
-      yPosition += 7;
-      doc.text(`Telefone: ${inscription.phone}`, 25, yPosition);
-      yPosition += 7;
-      doc.text(`Endereço: ${inscription.address}`, 25, yPosition);
-      yPosition += 7;
-      doc.text(`Data de inscrição: ${format(new Date(inscription.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}`, 25, yPosition);
+    // === SEÇÃO ENCONTRISTAS ===
+    if (encontristas.length > 0) {
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text("ENCONTRISTAS", 20, yPosition);
+      doc.setFont(undefined, 'normal');
       yPosition += 15;
-    });
+      
+      // Cabeçalhos
+      doc.setFontSize(10);
+      doc.text("Nome", 20, yPosition);
+      doc.text("Email", 80, yPosition);
+      doc.text("Telefone", 140, yPosition);
+      doc.text("Data", 180, yPosition);
+      yPosition += 5;
+      doc.line(20, yPosition, 200, yPosition);
+      yPosition += 5;
+      
+      // Dados dos encontristas
+      encontristas.forEach((inscription) => {
+        if (yPosition > 270) {
+          doc.addPage();
+          yPosition = 30;
+          
+          doc.setFontSize(10);
+          doc.text("Nome", 20, yPosition);
+          doc.text("Email", 80, yPosition);
+          doc.text("Telefone", 140, yPosition);
+          doc.text("Data", 180, yPosition);
+          yPosition += 5;
+          doc.line(20, yPosition, 200, yPosition);
+          yPosition += 5;
+        }
+        
+        doc.setFontSize(8);
+        const name = inscription.full_name.length > 25 ? inscription.full_name.substring(0, 22) + "..." : inscription.full_name;
+        const email = inscription.email.length > 20 ? inscription.email.substring(0, 17) + "..." : inscription.email;
+        const phone = inscription.phone;
+        const date = format(new Date(inscription.created_at), "dd/MM/yy", { locale: ptBR });
+        
+        doc.text(name, 20, yPosition);
+        doc.text(email, 80, yPosition);
+        doc.text(phone, 140, yPosition);
+        doc.text(date, 180, yPosition);
+        yPosition += 8;
+      });
+      
+      yPosition += 15;
+    }
+    
+    // === SEÇÃO TRABALHADORES ===
+    if (trabalhadores.length > 0) {
+      if (yPosition > 200) {
+        doc.addPage();
+        yPosition = 30;
+      }
+      
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text("TRABALHADORES", 20, yPosition);
+      doc.setFont(undefined, 'normal');
+      yPosition += 15;
+      
+      // Cabeçalhos
+      doc.setFontSize(10);
+      doc.text("Nome", 20, yPosition);
+      doc.text("Email", 80, yPosition);
+      doc.text("Telefone", 140, yPosition);
+      doc.text("Data", 180, yPosition);
+      yPosition += 5;
+      doc.line(20, yPosition, 200, yPosition);
+      yPosition += 5;
+      
+      // Dados dos trabalhadores
+      trabalhadores.forEach((inscription) => {
+        if (yPosition > 270) {
+          doc.addPage();
+          yPosition = 30;
+          
+          doc.setFontSize(10);
+          doc.text("Nome", 20, yPosition);
+          doc.text("Email", 80, yPosition);
+          doc.text("Telefone", 140, yPosition);
+          doc.text("Data", 180, yPosition);
+          yPosition += 5;
+          doc.line(20, yPosition, 200, yPosition);
+          yPosition += 5;
+        }
+        
+        doc.setFontSize(8);
+        const name = inscription.full_name.length > 25 ? inscription.full_name.substring(0, 22) + "..." : inscription.full_name;
+        const email = inscription.email.length > 20 ? inscription.email.substring(0, 17) + "..." : inscription.email;
+        const phone = inscription.phone;
+        const date = format(new Date(inscription.created_at), "dd/MM/yy", { locale: ptBR });
+        
+        doc.text(name, 20, yPosition);
+        doc.text(email, 80, yPosition);
+        doc.text(phone, 140, yPosition);
+        doc.text(date, 180, yPosition);
+        yPosition += 8;
+      });
+    }
+    
+    // Adicionar página com detalhes completos dos Encontristas
+    if (encontristas.length > 0) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text("Detalhes Completos - ENCONTRISTAS", 20, 30);
+      doc.setFont(undefined, 'normal');
+      
+      yPosition = 50;
+      
+      encontristas.forEach((inscription, index) => {
+        if (yPosition > 250) {
+          doc.addPage();
+          yPosition = 30;
+        }
+        
+        doc.setFontSize(12);
+        doc.text(`${index + 1}. ${inscription.full_name}`, 20, yPosition);
+        yPosition += 10;
+        
+        doc.setFontSize(10);
+        doc.text(`Email: ${inscription.email}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Telefone: ${inscription.phone}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Endereço: ${inscription.address}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Data de inscrição: ${format(new Date(inscription.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}`, 25, yPosition);
+        yPosition += 15;
+      });
+    }
+    
+    // Adicionar página com detalhes completos dos Trabalhadores
+    if (trabalhadores.length > 0) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text("Detalhes Completos - TRABALHADORES", 20, 30);
+      doc.setFont(undefined, 'normal');
+      
+      yPosition = 50;
+      
+      trabalhadores.forEach((inscription, index) => {
+        if (yPosition > 250) {
+          doc.addPage();
+          yPosition = 30;
+        }
+        
+        doc.setFontSize(12);
+        doc.text(`${index + 1}. ${inscription.full_name}`, 20, yPosition);
+        yPosition += 10;
+        
+        doc.setFontSize(10);
+        doc.text(`Email: ${inscription.email}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Telefone: ${inscription.phone}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Endereço: ${inscription.address}`, 25, yPosition);
+        yPosition += 7;
+        doc.text(`Data de inscrição: ${format(new Date(inscription.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}`, 25, yPosition);
+        yPosition += 15;
+      });
+    }
     
     doc.save(`inscricoes-encontro-com-deus-${format(new Date(), "dd-MM-yyyy")}.pdf`);
     
@@ -209,7 +311,7 @@ export default function EventInscriptions() {
       </div>
 
       {/* Estatísticas */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total de Inscrições</CardTitle>
@@ -217,6 +319,30 @@ export default function EventInscriptions() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{inscriptions?.length || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Encontristas</CardTitle>
+            <Users className="h-4 w-4 text-blue-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {inscriptions?.filter(i => i.participant_type === "encontrista").length || 0}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Trabalhadores</CardTitle>
+            <Users className="h-4 w-4 text-green-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {inscriptions?.filter(i => i.participant_type === "trabalhador").length || 0}
+            </div>
           </CardContent>
         </Card>
 
@@ -231,17 +357,6 @@ export default function EventInscriptions() {
                 ? format(new Date(inscriptions[0].created_at), "dd/MM/yyyy", { locale: ptBR })
                 : "Nenhuma"}
             </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Status</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Badge variant="secondary">
-              {inscriptions && inscriptions.length > 0 ? "Ativo" : "Sem inscrições"}
-            </Badge>
           </CardContent>
         </Card>
       </div>
@@ -267,6 +382,7 @@ export default function EventInscriptions() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Nome</TableHead>
+                    <TableHead>Tipo</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Telefone</TableHead>
                     <TableHead>Endereço</TableHead>
@@ -279,6 +395,11 @@ export default function EventInscriptions() {
                     <TableRow key={inscription.id}>
                       <TableCell className="font-medium">
                         {inscription.full_name}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={inscription.participant_type === "trabalhador" ? "default" : "secondary"}>
+                          {inscription.participant_type === "trabalhador" ? "Trabalhador" : "Encontrista"}
+                        </Badge>
                       </TableCell>
                       <TableCell>{inscription.email}</TableCell>
                       <TableCell>{inscription.phone}</TableCell>
