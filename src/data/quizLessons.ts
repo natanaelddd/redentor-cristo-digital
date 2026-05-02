@@ -180,160 +180,130 @@ export const quizLessons: QuizLesson[] = [
   },
   {
     number: 4,
-    title: "A Igreja",
+    title: "Batismo nas Águas",
     questions: [
       {
         id: 1,
-        question: "O que é a Igreja segundo a Bíblia?",
+        question: "O que é o batismo? É o primeiro passo que a pessoa que recebeu a Cristo tem que dar em sua nova vida.",
         bibleRef: {
-          reference: "1 Coríntios 12:27",
-          text: "Ora, vós sois o corpo de Cristo e seus membros em particular."
+          reference: "Marcos 16:16; Atos 2:38",
+          text: "Quem crer e for batizado será salvo, mas quem não crer será condenado. (Marcos 16:16)"
         }
       },
       {
         id: 2,
-        question: "Quais são os tipos de oração mencionados na Bíblia?",
+        question: "Quem deve ser batizado nas águas?",
         bibleRef: {
-          reference: "1 Timóteo 2:1",
-          text: "Admoesto-te, pois, antes de tudo, que se façam deprecações, orações, intercessões e ações de graças por todos os homens."
+          reference: "Marcos 16:15-16",
+          text: "Ide por todo o mundo, e pregai o evangelho a toda criatura. Quem crer e for batizado será salvo, mas quem não crer será condenado."
         }
       },
       {
         id: 3,
-        question: "Em nome de quem devemos orar?",
+        question: "Por que devemos ser batizados?",
         bibleRef: {
-          reference: "João 14:13-14",
-          text: "E tudo quanto pedirdes em meu nome, eu o farei, para que o Pai seja glorificado no Filho. Se pedirdes alguma coisa em meu nome, eu o farei."
+          reference: "1 Pedro 3:20-21; Romanos 6:3-4; Colossenses 2:12",
+          text: "O batismo simboliza que estamos salvos e limpos do pecado, com uma consciência pura. É um testemunho público, sepultamento do velho homem e declaração de vitória."
         }
       },
       {
         id: 4,
-        question: "O que pode impedir as nossas orações?",
+        question: "O que simboliza o batismo?",
         bibleRef: {
-          reference: "Isaías 59:2",
-          text: "Mas as vossas iniquidades fazem separação entre vós e o vosso Deus; e os vossos pecados encobrem o seu rosto de vós, para que vos não ouça."
+          reference: "Romanos 6:4; Colossenses 2:12",
+          text: "De sorte que fomos sepultados com ele pelo batismo na morte; para que, como Cristo ressuscitou dos mortos pela glória do Pai, assim andemos nós também em novidade de vida."
         }
       },
       {
         id: 5,
-        question: "Quando devemos orar?",
+        question: "Quando devemos ser batizados?",
         bibleRef: {
-          reference: "1 Tessalonicenses 5:17",
-          text: "Orai sem cessar."
+          reference: "Atos 22:16; Atos 17:30; 2 Coríntios 6:2",
+          text: "E agora por que te deténs? Levanta-te e batiza-te... (Atos 22:16)"
         }
       },
       {
         id: 6,
-        question: "Qual é o modelo de oração que Jesus ensinou?",
+        question: "Qual a nova identidade que recebemos ao ser batizados?",
         bibleRef: {
-          reference: "Mateus 6:9-13",
-          text: "Portanto, vós orareis assim: Pai nosso, que estás nos céus, santificado seja o teu nome. Venha o teu reino. Seja feita a tua vontade, tanto na terra como no céu. O pão nosso de cada dia dá-nos hoje. Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. E não nos induzas à tentação, mas livra-nos do mal; porque teu é o Reino, e o poder, e a glória, para sempre. Amém!"
-        }
-      }
-    ]
-  },
-  {
-    number: 4,
-    title: "A Igreja",
-    questions: [
-      {
-        id: 1,
-        question: "O que é a Igreja segundo a Bíblia?",
-        bibleRef: {
-          reference: "1 Coríntios 12:27",
-          text: "Ora, vós sois o corpo de Cristo e seus membros em particular."
+          reference: "Gálatas 3:27-28",
+          text: "Porque todos quantos fostes batizados em Cristo já vos revestistes de Cristo. Nisto não há judeu nem grego; não há servo nem livre; não há macho nem fêmea; porque todos vós sois um em Cristo Jesus."
         }
       },
       {
-        id: 2,
-        question: "Quem é o fundamento da Igreja?",
+        id: 7,
+        question: "Dê alguns exemplos de batismo da Bíblia",
         bibleRef: {
-          reference: "1 Coríntios 3:11",
-          text: "Porque ninguém pode pôr outro fundamento, além do que já está posto, o qual é Jesus Cristo."
-        }
-      },
-      {
-        id: 3,
-        question: "Quem é o cabeça da Igreja?",
-        bibleRef: {
-          reference: "Efésios 1:22-23",
-          text: "E sujeitou todas as coisas a seus pés e, sobre todas as coisas, o constituiu como cabeça da igreja, que é o seu corpo, a plenitude daquele que cumpre tudo em todos."
-        }
-      },
-      {
-        id: 4,
-        question: "Qual a missão da Igreja?",
-        bibleRef: {
-          reference: "Mateus 28:19-20",
-          text: "Portanto, ide, ensinai todas as nações, batizando-as em nome do Pai, e do Filho, e do Espírito Santo; ensinando-as a guardar todas as coisas que eu vos tenho mandado; e eis que eu estou convosco todos os dias, até à consumação dos séculos. Amém!"
-        }
-      },
-      {
-        id: 5,
-        question: "Por que devemos congregar?",
-        bibleRef: {
-          reference: "Hebreus 10:25",
-          text: "Não deixando a nossa congregação, como é costume de alguns; antes, admoestando-nos uns aos outros; e tanto mais quanto vedes que se vai aproximando aquele Dia."
+          reference: "Atos 2:37-41; Atos 8:35-38; Atos 9:17-18",
+          text: "O dia do Pentecostes (Atos 2:37,38,41), O eunuco Etíope (Atos 8:35-38), Saulo de Tarso (Atos 9:17,18), Os Coríntios (Atos 18:8)"
         }
       }
     ]
   },
   {
     number: 5,
-    title: "O Batismo",
+    title: "Batismo no Espírito Santo",
     questions: [
       {
         id: 1,
-        question: "O que é o batismo?",
+        question: "Quem é o Espírito Santo?",
         bibleRef: {
-          reference: "Romanos 6:4",
-          text: "De sorte que fomos sepultados com ele pelo batismo na morte; para que, como Cristo ressuscitou dos mortos pela glória do Pai, assim andemos nós também em novidade de vida."
+          reference: "João 16:13-14; 1 Coríntios 2:9-11",
+          text: "O Espírito Santo é uma pessoa, não uma mera influência ou poder. (João 16:13,14). Ele possui inteligência, sentimentos e vontade."
         }
       },
       {
         id: 2,
-        question: "O batismo é necessário para a salvação?",
+        question: "O que é batismo no Espírito Santo?",
         bibleRef: {
-          reference: "Efésios 2:8-9",
-          text: "Porque pela graça sois salvos, por meio da fé; e isso não vem de vós; é dom de Deus. Não vem das obras, para que ninguém se glorie."
+          reference: "Atos 2:38-39; Atos 1:4-5",
+          text: "É uma experiência distinta do arrependimento, da conversão e batismo na água. É uma promessa e mandamento. (Atos 1:4-5)"
         }
       },
       {
         id: 3,
-        question: "Quem pode ser batizado?",
+        question: "Por que Cristo quer nos batizar no Espírito Santo?",
         bibleRef: {
-          reference: "Atos 8:36-37",
-          text: "E, indo eles caminhando, chegaram ao pé de alguma água, e disse o eunuco: Eis aqui água; que impede que eu seja batizado? E disse Filipe: É lícito, se crês de todo o coração. E, respondendo ele, disse: Creio que Jesus Cristo é o Filho de Deus."
+          reference: "Atos 1:8",
+          text: "Mas recebereis poder, ao descer sobre vós o Espírito Santo, e sereis minhas testemunhas, tanto em Jerusalém como em toda a Judéia e Samaria, e até os confins da terra."
         }
       },
       {
         id: 4,
-        question: "Em nome de quem somos batizados?",
+        question: "Que poder Deus nos concede através do batismo no Espírito Santo?",
         bibleRef: {
-          reference: "Mateus 28:19",
-          text: "Portanto, ide, ensinai todas as nações, batizando-as em nome do Pai, e do Filho, e do Espírito Santo."
+          reference: "Romanos 8:3-4; Filipenses 4:13; 2 Coríntios 3:18",
+          text: "Poder para fazermos toda a vontade de Deus. Poder para orar, amar, louvar, perdoar, suportar, obedecer a Deus. Poder para sermos transformados à imagem de Cristo."
         }
       },
       {
         id: 5,
-        question: "Qual a forma correta do batismo?",
+        question: "Como receber o batismo no Espírito Santo?",
         bibleRef: {
-          reference: "Atos 8:38-39",
-          text: "E mandou parar o carro, e desceram ambos à água, tanto Filipe como o eunuco, e o batizou. E, quando saíram da água, o Espírito do Senhor arrebatou a Filipe, e não o viu mais o eunuco; e, jubiloso, continuou o seu caminho."
+          reference: "Atos 2:38-39; João 7:37-39; Lucas 11:9-13",
+          text: "Precisamos de fé; crer que a promessa é para todos nós; ouvir com fé; receber com fé; deixar fluir os rios com fé."
+        }
+      },
+      {
+        id: 6,
+        question: "O que é falar em línguas?",
+        bibleRef: {
+          reference: "Atos 2:4; 1 Coríntios 14:2,4",
+          text: "Todos ficaram cheios do Espírito e passaram falar em outras línguas. (Atos 2:4)\nÉ uma consequência e evidência do batismo no Espírito Santo."
         }
       }
     ]
   },
   {
     number: 6,
-    title: "A Ceia do Senhor",
+    title: "Ceia do Senhor",
     questions: [
       {
         id: 1,
         question: "Quem instituiu a Ceia do Senhor?",
         bibleRef: {
-          reference: "1 Coríntios 11:23-24",
-          text: "Porque eu recebi do Senhor o que também vos ensinei: que o Senhor Jesus, na noite em que foi traído, tomou o pão; e, tendo dado graças, o partiu e disse: Tomai, comei; isto é o meu corpo que é partido por vós; fazei isto em memória de mim."
+          reference: "1 Coríntios 11:23-26",
+          text: "Porque eu recebi do Senhor o que também vos entreguei: que o Senhor Jesus, na noite em que foi traído, tomou o pão; e tendo dado graças, o partiu e disse; isto é o meu corpo, que é dado por vós; fazei isto em memória de mim."
         }
       },
       {
@@ -341,7 +311,7 @@ export const quizLessons: QuizLesson[] = [
         question: "O que o pão e o vinho representam na Ceia?",
         bibleRef: {
           reference: "1 Coríntios 11:24-25",
-          text: "E, tendo dado graças, o partiu e disse: Tomai, comei; isto é o meu corpo que é partido por vós; fazei isto em memória de mim. Semelhantemente também, depois de cear, tomou o cálice, dizendo: Este cálice é o Novo Testamento no meu sangue; fazei isto, todas as vezes que beberdes, em memória de mim."
+          text: "Isto é o meu corpo, que é dado por vós; fazei isto em memória de mim. Este cálice é a nova aliança no meu sangue; fazei isto, todas as vezes que o beberdes, em memória de mim."
         }
       },
       {
@@ -357,15 +327,15 @@ export const quizLessons: QuizLesson[] = [
         question: "O que devemos fazer antes de participar da Ceia?",
         bibleRef: {
           reference: "1 Coríntios 11:27-29",
-          text: "Portanto, qualquer que comer este pão ou beber o cálice do Senhor, indignamente, será culpado do corpo e do sangue do Senhor. Examine-se, pois, o homem a si mesmo, e, assim, coma deste pão, e beba deste cálice. Porque o que come e bebe indignamente come e bebe para sua própria condenação, não discernindo o corpo do Senhor."
+          text: "Portanto, qualquer que comer este pão ou beber o cálice do Senhor, indignamente, será culpado do corpo e do sangue do Senhor. Examine-se, pois, o homem a si mesmo."
         }
       },
       {
         id: 5,
         question: "A Ceia é um sacramento ou uma ordenança?",
         bibleRef: {
-          reference: "Lucas 22:19",
-          text: "E, tomando o pão, e havendo dado graças, partiu-o e deu-lho, dizendo: Isto é o meu corpo, que por vós é dado; fazei isto em memória de mim."
+          reference: "Lucas 22:19; 1 Coríntios 11:26",
+          text: "Fazei isto em memória de mim. (Lucas 22:19)\nPorque todas as vezes que comerdes este pão e beberdes o cálice, anunciais a morte do Senhor, até que Ele venha. (1 Coríntios 11:26)"
         }
       }
     ]
