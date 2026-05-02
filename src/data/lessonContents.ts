@@ -89,103 +89,89 @@ export const lessonContents: LessonContent[] = [
   },
   {
     number: 4,
-    title: "A Igreja",
+    title: "Batismo nas Águas",
     sections: [
       {
         title: "Introdução",
-        content: "A palavra \"Igreja\" vem do grego \"ekklesia\", que significa \"chamados para fora\" ou \"assembleia dos chamados\". A Igreja não é um prédio, mas um povo – o povo de Deus, reunido em torno de Jesus Cristo."
+        content: "O batismo é o próximo passo importante que a pessoa que recebeu a Cristo tem que dar. Ele não é apenas uma forma de cerimônia sem sentido, mas uma experiência definida na vida do crente, uma ordem de Cristo: \"Quem crê e for batizado será salvo\". (Marcos 16:16)\n\nTodo aquele que recebeu a Cristo tem de obedecer esta ordem: \"seja batizado\" (At. 2:38) é fundamental obedecê-la da maneira bíblica."
       },
       {
-        title: "1 – O que é a Igreja?",
-        content: "A Igreja é o corpo de Cristo na terra (1 Coríntios 12:27). É composta por todos aqueles que receberam a Jesus como Salvador e Senhor. A Igreja não é uma organização humana, mas um organismo vivo, formado por Cristo."
+        title: "1 – Quem deve se batizado nas águas?",
+        content: "Antes de subir ao céu, o Senhor Jesus Cristo ordenou aos seus discípulos: \"Ide por todo o mundo, e pregai o evangelho a toda criatura. Quem crer e for batizado será salvo, mas quem não crer será condenado.\" Marcos 16:15,16\nPodemos ver a ordem bem clara do Senhor Jesus, \"Quem Crer\". O batismo não depende do conhecimento Bíblico que a pessoa tem, nem tão pouco, de quanto tempo ela vai à igreja, mas sim de um verdadeiro arrependimento e fé no Senhor Jesus. Somente aqueles que se tornaram verdadeiros crentes devem ser batizados."
       },
       {
-        title: "2 – Quem fundou a Igreja?",
-        content: "Jesus Cristo é o fundador e fundamento da Igreja: \"Sobre esta pedra edificarei a minha igreja\" (Mateus 16:18). \"Ninguém pode pôr outro fundamento, além do que já está posto, o qual é Jesus Cristo\" (1 Coríntios 3:11)."
+        title: "2 – Com que idade deve batizar?",
+        content: "Entendemos que para pessoa batizar, ela tem que ter idade suficiente para tomar a sua decisão pessoal por Cristo. A Bíblia parece se referir a uma idade de responsabilidade. Esta idade chega quando a criança sabe a diferença entre o certo e o errado \"antes que este menino saiba rejeitar o mal e escolher o bem\" (Isaías 7:16).\n\nNOTA: A Igreja Missionária Unida de Ribeirão Preto, por decisão do Presbitério Local, só batiza crianças, a partir dos doze anos de idade, não que isto seja o certo, mas por achar difícil julgar de criança para criança esta idade de responsabilidade. Por que doze anos? Nós nos baseamos num costume judeu de considerar a criança \"filho da lei\" aos doze anos de idade. (Lucas 2:42)"
       },
       {
-        title: "3 – Quem é o cabeça da Igreja?",
-        content: "Cristo é o cabeça da Igreja: \"E sujeitou todas as coisas a seus pés e, sobre todas as coisas, o constituiu como cabeça da igreja, que é o seu corpo\" (Efésios 1:22-23). Nenhum homem é cabeça da Igreja universal."
+        title: "3 – Exemplos bíblicos de batismo",
+        content: "Em cada escritura abaixo veremos que as pessoas ouviram, creram, receberam a Palavra e então foram batizadas.\n\nA – O dia do Pentecostes: Atos 2:37,38,41\nB – Os Samaritanos: Atos 8:12-15\nC – O eunuco Etíope: Atos 8:35-38\nD – Saulo de Tarso (O Apóstolo Paulo) Atos 9:17,18\nE – Pedro ordenou que os Gentios fossem batizados: Atos 10:47-48\nF – Os Coríntios: Atos 18:8\nG – Os Discípulos em Éfeso: Atos 19:4,5"
       },
       {
-        title: "4 – A missão da Igreja",
-        content: "a) Evangelizar: \"Ide por todo o mundo, pregai o evangelho a toda criatura\" (Marcos 16:15)\nb) Fazer discípulos: \"Ensinai todas as nações\" (Mateus 28:19-20)\nc) Adorar a Deus (João 4:23-24)\nd) Edificar os santos (Efésios 4:11-12)\ne) Servir ao próximo (Gálatas 6:10)"
+        title: "4 – Como e onde devemos ser batizados?",
+        content: "Batismo ou batizar quer dizer, \"Mergulhar, submergir, imergir. Por definição e uso, a palavra que dizer, \"colocar em água ou debaixo dela de modo a inteiramente imergir ou submergir\". Então devemos mergulhar a pessoa totalmente na água para que não haja dúvida de seu batismo.\n\nOnde? De preferência num lugar que tenha água suficiente para mergulhar a pessoa, olhando os exemplos Bíblicos as pessoas eram batizadas onde havia muita água. Pode ser num rio, no mar, na piscina, num tanque etc... desde que tenha água suficiente para ser mergulhada."
       },
       {
-        title: "5 – Por que devemos congregar?",
-        content: "\"Não deixando a nossa congregação, como é costume de alguns\" (Hebreus 10:25). Devemos congregar para:\n- Adorar juntos\n- Ouvir a Palavra\n- Ter comunhão uns com os outros\n- Ser edificados e fortalecidos\n- Participar das ordenanças (Batismo e Ceia)"
+        title: "5 – Por que devemos ser batizados?",
+        content: "Porque além de ser uma ordenança do Senhor Jesus e o segundo passo da vida Cristã, existem muitos significados no batismo na água. Vamos considerar apenas alguns:\n\nA – Uma consciência Pura: 1 Pedro 3:20,21\nO batismo simboliza que estamos salvos e limpo do pecado, com uma consciência pura. Em Hebreus 9:14 diz que nossa consciência foi purificada pelo sangue de Jesus, é um ato de fé, que evidenciamos através do batismo.\n\nB – Um Testemunho Público: Rm 6.3,4\nToda vez que alguém é batizado na maneira Bíblica, está testemunhando ao mundo que o Filho de Deus veio, foi crucificado, derramou seu sangue para nos salvar e ressuscitou. O batismo na água é algo visível, é uma das evidências que realmente a pessoa crê. É como um sinal de limpeza de nossos pecados (Atos 22:16)\n\nC – Sepultamento do velho homem: Col. 2:12\nO batismo é um experiência na vida do crente. Mostra exteriormente algo que está acontecendo interiormente. No batismo o velho homem é sepultado, ressurgindo um novo homem. (Rm 6:6,7,12,15).\n\nD – Declaração de Vitória: (Cl. 2:12,15)\nO batismo mostra que Jesus libertou o crente do Reino das trevas e dos poderes malignos.\n\nE – Confissão de Fé: (Mt. 10:32,33)\nO Novo Testamento ensina que o primeiro caminho de um novo crente é confessar a sua recém encontrada fé em Cristo, sendo publicamente batizado na água. Mostrando a todos os seus amigos, parentes e conhecidos, que agora segue a Jesus e não se envergonha disto. O Senhor não tem discípulos secretos, fracos e medrosos. Essa é a razão porque Ele ordenou aos crentes para \"serem batizados\" para que O confessem perante aos homens.\n\nF – Identificação com Cristo: (Gl. 3:27,28)\nO batismo nos dá uma nova identidade, filhos de Deus. Também testificamos que somos iguais e um com todos os crentes em Cristo.\n\nG – O Mandamento de Deus: (Marcos 16:16, Jo 14:21)\nO batismo é um passo fundamental nos planos de Deus para nossas vidas. Nele identificamos com Cristo em sua morte e ressurreição. Mas acima de tudo o batismo é uma ordem de Deus, mesmo que não compreendamos todas as razões e significados espirituais do batismo na água, este é um fato que deve nos obrigar a obedecer ao Senhor: \"é uma ordem d'Ele.\""
       },
       {
-        title: "Conclusão",
-        content: "A Igreja é o corpo de Cristo. Todo crente deve fazer parte de uma igreja local, congregando fielmente, servindo e sendo edificado na fé."
+        title: "6 – Quando devemos ser batizados?",
+        content: "\"E agora por que te deténs? Levanta-te e batiza-te...\" (Atos 22:16)\n\nA resposta para a pergunta é óbvia. Quando devemos ser batizados na água? \"Tão logo nos arrependamos dos nossos pecados e creiamos no Evangelho, recebendo o Senhor Jesus Cristo em nossos corações\".\nA palavra para agir sobre arrependimento e salvação é \"agora\"! \"Mas Deus... anuncia agora a todos os homens e em todo lugar, que se arrependam\" (Atos 17:30) \"...eis aqui agora o tempo aceitável, eis agora o dia da salvação\" (2 Co 6:2)\nA Bíblia nada conhece sobre aulas de ensinamentos, experiência, ficar pronto, esperar um tempo, ou qualquer coisa assim. Todos os exemplos Bíblicos mostram que a pessoa ao aceitar a Cristo, era batizada.\n\nSe você se arrependeu e creu no Senhor Jesus Cristo como o seu Salvador e acredita, de coração, que você é filho d'ele, então obedeça ao mandamento de Deus. Aja agora mesmo sobre a Palavra d'Ele."
       }
     ]
   },
   {
     number: 5,
-    title: "O Batismo",
+    title: "Batismo no Espírito Santo",
     sections: [
       {
-        title: "Introdução",
-        content: "O batismo é uma das ordenanças de Cristo para a Sua Igreja. É um ato de obediência e testemunho público da fé em Jesus Cristo. Não é um sacramento que salva, mas uma demonstração exterior de uma transformação interior."
+        content: "Vivemos na era do Espírito Santo. Deus determinou que tudo na Igreja fosse feito pelo ministério do Espírito Santo. O derramamento do Espírito Santo nos últimos dias foi predito pelos profetas do Velho Testamento. Isaías 28:11,12; Joel 2:28; Ezequiel 11:19,20; 36:26,27"
       },
       {
-        title: "1 – O que é o batismo?",
-        content: "Batismo significa \"imersão\" ou \"mergulho\". É o ato de ser mergulhado nas águas, simbolizando a morte, sepultamento e ressurreição com Cristo: \"Fomos sepultados com ele pelo batismo na morte; para que, como Cristo ressuscitou dos mortos pela glória do Pai, assim andemos nós também em novidade de vida\" (Romanos 6:4)."
+        title: "1 – Quem é o Espírito Santo?",
+        content: "O Espírito Santo é uma pessoa, não uma mera influência ou poder. (João 16:13,14). Ainda que Ele não possua um corpo físico Ele é uma personalidade, por ter individualidade consciente e que possui inteligência, sentimentos e vontade. E quando um ser possui as características, propriedades e qualidades de personalidade, então esta personalidade pode ser atribuída a este ser. Nós temos dificuldade para entender a pessoa do Espírito Santo, porque associamos pessoa com corpo físico, e os seres divinos não podem ser medidos por padrões humanos.\n\nQuais são as evidências da pessoa do Espírito Santo?\na) Conhecimento – 1 Co 2:9-11\nb) Vontade – 1 Co 12:11\nc) Mente – Romanos 8:27\nd) Amor – Romanos 15:30\ne) Inteligência – Neemias 9:20\nf) Tristeza – Efésios 4:30\n\nTodas estas características são próprias de uma pessoa."
       },
       {
-        title: "2 – O batismo salva?",
-        content: "Não. A salvação é pela graça, mediante a fé (Efésios 2:8-9). O batismo é um ato de obediência após a salvação. O ladrão na cruz foi salvo sem ser batizado (Lucas 23:43). O batismo é o primeiro passo de obediência do novo convertido."
+        title: "2 – O que é batismo no Espírito Santo?",
+        content: "É uma experiência distinta do arrependimento, da conversão e batismo na água (Atos 2:38-39). Podemos dizer que o Batismo do Espírito Santo é geralmente subsequente ao arrependimento, batismo na água e remissão de pecados.\nÉ uma promessa e mandamento (Atos 1:4-5)\nÉ um dom, um presente. Não é um prêmio recebido por esforço ou recompensa. O dom é dado pela virtude do doador.\nÉ uma experiência definida, pessoal, consciente e transformadora.\nÉ para todos os filhos de Deus (Lc 11:9-13; Gl 4:6)\nCristo é o batizador, o meio é o Espírito Santo e o candidato é o Crente (Mat. 3:11). Cristo que está em nós quer nos batizar no Espírito Santo, encher, inundar, nos derramar poder."
       },
       {
-        title: "3 – Quem pode ser batizado?",
-        content: "Somente aqueles que creram em Jesus Cristo. \"Quem crer e for batizado será salvo\" (Marcos 16:16). Filipe disse ao eunuco: \"É lícito, se crês de todo o coração\" (Atos 8:37). O batismo é para quem já é salvo pela fé, não para bebês ou crianças que ainda não podem exercer fé pessoal."
+        title: "3 – Por que Cristo quer nos batizar no Espírito Santo?",
+        content: "Para nos dar poder, unção, força, virtude, dinamismo e graça.\n\n\"Mas recebereis poder, ao descer sobre vós o Espírito Santo, e sereis minhas testemunhas, tanto em Jerusalém como em toda a Judéia e Samaria, e até os confins da terra.\" Atos 1:8\n\na) Poder para fazermos toda a vontade de Deus. Isto é possível, andando no Espírito (Rm 8:3-4; Fl 4:13)\nb) Poder para orar, amar, louvar, perdoar, suportar, obedecer a Deus.\nc) Poder para sermos transformados à imagem de Cristo (2 Co 3:18)\nd) Poder para sermos testemunhas, dando-nos ousadia para falar palavras de amor pelas vidas."
       },
       {
-        title: "4 – Em nome de quem somos batizados?",
-        content: "\"Em nome do Pai, e do Filho, e do Espírito Santo\" (Mateus 28:19). Isso mostra a doutrina da Trindade: um só Deus em três pessoas."
+        title: "4 – Como receber o batismo no Espírito Santo?",
+        content: "a) Para sermos batizados no Espírito Santo, precisamos de fé\nb) Crer que a promessa é para todos nós (Atos 2:38,39).\nc) Ouvir com Fé (Lc. 11:9-13). Receber com fé (Jo 7:37-39).\nd) Deixar fluir os rios com fé (Jo 7:38)."
       },
       {
-        title: "5 – A forma do batismo",
-        content: "O batismo bíblico é por imersão: \"Desceram ambos à água, tanto Filipe como o eunuco, e o batizou\" (Atos 8:38). A palavra grega \"baptizo\" significa mergulhar, imergir. Aspersão ou derramamento não representam o significado bíblico de morte, sepultamento e ressurreição."
+        title: "5 – O falar em outras línguas",
+        content: "\"...Todos ficaram cheios do Espírito e passaram falar em outras línguas\" (Atos 2:4)\n\n\"Dizendo Pedro ainda estas palavras, caiu o Espírito Santo sobre todos os que o ouviam. Os fiéis que eram da circuncisão, que tinham vindo com Pedro, Maravilharam-se de que o dom do Espírito Santo se derramasse também sobre os gentios. Pois os ouviam falar em línguas, e engrandecer a Deus. ...\" Atos 10:44-46\n\n\"Impondo-lhes Paulo as mãos, veio sobre eles o Espírito Santo, e falavam em línguas, e profetizavam.\" Atos 19:6"
+      },
+      {
+        title: "O que é falar em línguas?",
+        content: "a) É uma consequência e evidência (não absolutamente obrigatória) do batismo no Espírito Santo.\nb) Jesus disse: \"do seu interior fluirão rios de água viva\"; \"a boca fala do que o coração está cheio\". Esta experiência é o transbordar pela boca o rios de água viva.\nc) É uma oração, um louvor inexprimível.\nd) É falar com Deus numa linguagem incompreensível para os homens (1 Co 14:2)\ne) É para edificação própria. (1 Co 14:4)\nf) É orar com o Espírito de Deus (1 Co 14:14,15)\n\nNestes dias a Igreja está sendo restaurada pelo Senhor, e nós não podemos permitir a negligência para com este dom."
       },
       {
         title: "Conclusão",
-        content: "O batismo é uma ordenança de Cristo, não um sacramento. É um ato de obediência e testemunho público. Deve ser por imersão, em nome do Pai, do Filho e do Espírito Santo, e somente para quem já creu em Jesus como Salvador."
+        content: "Jesus Cristo não faria nada sem os dons e o poder do Espírito Santo; Os apóstolos não fariam nada sem os dons e o Poder do Espírito Santo; e nós sem os dons e o Poder do Espírito Santo, não faremos nada.\nO Espírito Santo que foi derramado no pentecostes, continua sendo derramado, pois a promessa era para aqueles dias e também para hoje. (Atos 2:39). Se você já recebeu a Cristo como o seu Senhor, busque esta promessa, pois ela é para VOCÊ."
       }
     ]
   },
   {
     number: 6,
-    title: "A Ceia do Senhor",
+    title: "Ceia do Senhor",
     sections: [
       {
-        title: "Introdução",
-        content: "A Ceia do Senhor é a segunda ordenança deixada por Cristo à Sua Igreja. Foi instituída na noite em que Jesus foi traído, como um memorial do Seu sacrifício na cruz."
+        content: "A Ceia do Senhor, ou Santa Ceia foi instituída pelo Senhor Jesus no dia em que ceava pela última vez com Seus discípulos. A Ceia é a Segunda ordenança Bíblica deixada pelo Senhor à Igreja. A primeira como já vimos é o batismo na água. O Cristianismo não é uma religião ritualista, mas existem estas duas ordenanças divinas deixadas pelo Senhor Jesus, que devem ser praticadas por aqueles que receberam a Jesus Cristo como Senhor."
       },
       {
-        title: "1 – Quem instituiu a Ceia?",
-        content: "Jesus Cristo instituiu a Ceia na noite em que foi traído: \"O Senhor Jesus, na noite em que foi traído, tomou o pão; e, tendo dado graças, o partiu\" (1 Coríntios 11:23-24)."
+        title: "1 – Porque da Ceia do Senhor?",
+        content: "\"porque eu recebi do Senhor o que também vos entreguei: que o Senhor Jesus, na noite em que foi traído, tomou o pão; e tendo dado graças, o partiu e disse; isto é o meu corpo, que é dado por vós; fazei isto em memória de mim. Por semelhante modo, depois de haver ceado, tomou também o cálice, dizendo: este cálice é a nova aliança no meu sangue; fazei isto, todas as vezes que o beberdes, em memória de mim. Porque todas as vezes que comerdes este pão e beberdes o cálice, anunciais a morte do Senhor, até que Ele venha.\" (1 Coríntios 11:23 a 26)"
       },
       {
-        title: "2 – O que o pão e o vinho representam?",
-        content: "O pão representa o corpo de Cristo, partido por nós na cruz: \"Isto é o meu corpo que é partido por vós\" (1 Coríntios 11:24). O vinho (cálice) representa o sangue de Cristo, derramado para remissão dos nossos pecados: \"Este cálice é o Novo Testamento no meu sangue\" (1 Coríntios 11:25). São símbolos, não se transformam literalmente no corpo e sangue de Cristo."
-      },
-      {
-        title: "3 – Quem pode participar da Ceia?",
-        content: "Somente os crentes batizados e em comunhão com Deus e com a Igreja. \"Examine-se, pois, o homem a si mesmo, e, assim, coma deste pão, e beba deste cálice\" (1 Coríntios 11:28)."
-      },
-      {
-        title: "4 – O que devemos fazer antes de participar?",
-        content: "Devemos nos examinar: \"Qualquer que comer este pão ou beber o cálice do Senhor, indignamente, será culpado do corpo e do sangue do Senhor\" (1 Coríntios 11:27). Isso significa confessar pecados, perdoar ofensas, e estar em paz com os irmãos antes de participar."
-      },
-      {
-        title: "5 – A Ceia é sacramento ou ordenança?",
-        content: "É uma ordenança, não um sacramento. Ordenança é algo que Jesus ordenou que fizéssemos: \"Fazei isto em memória de mim\" (Lucas 22:19). Não é um meio de graça salvadora, mas um ato de obediência e memorial. A Ceia aponta para trás (a cruz) e para frente (a volta de Cristo): \"Todas as vezes que comerdes este pão e beberdes este cálice, anunciais a morte do Senhor, até que venha\" (1 Coríntios 11:26)."
-      },
-      {
-        title: "Conclusão",
-        content: "A Ceia do Senhor é um memorial do sacrifício de Cristo. Devemos participar dela com reverência, examinando nosso coração, em memória do que Jesus fez por nós na cruz."
+        title: "Lembrar da morte do Senhor",
+        content: "A Ceia do Senhor foi instituída na noite que Ele foi traído, isto é, a noite antes de sua morte. Ele disse: \"isto é o meu corpo, que é dado por vós; fazei isto em memória de mim\".\n\nEntão ao participar da ceia, lembramos desse acontecimento, isto é, da morte do Senhor Jesus.\n\nEle usou dois símbolos visíveis para nos deixar claro em nossa memória este grande acontecimento:"
       }
     ]
   },
