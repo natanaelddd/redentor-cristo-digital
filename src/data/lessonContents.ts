@@ -12,107 +12,78 @@ export interface LessonContent {
 export const lessonContents: LessonContent[] = [
   {
     number: 1,
-    title: "Certeza da Salvação",
+    title: "Salvação",
     sections: [
       {
-        title: "Introdução",
-        content: "A maior necessidade do ser humano é a salvação da sua alma. Vivemos num mundo cheio de pecado e maldade, e somente Deus pode nos dar a verdadeira salvação. Mas como podemos ter certeza de que somos salvos? A Bíblia nos dá essa resposta com toda clareza."
+        title: "1 – Por que o homem precisa ser salvo?",
+        content: "Porque o homem no estado em que se encontra, está separado de Deus por causa de seus delitos e pecados. Estando separado de Deus, nossa situação é de morte espiritual, por isso precisamos de salvação. \"Ele vos vivificou, estando vós mortos (separados) nos vossos delitos e pecados.\" Efésios 2:1 (Rm 3:23)"
       },
       {
-        title: "1 – O que é Salvação?",
-        content: "Salvação é o ato de Deus pelo qual Ele livra o homem da condenação eterna do pecado. \"Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna, por Cristo Jesus, nosso Senhor.\" (Romanos 6:23). Todos pecaram (Romanos 3:23), e por isso todos precisam de salvação."
+        title: "Como o homem ficou separado de Deus?",
+        content: "Deus criou o homem a sua imagem e semelhança (Gn 1:26), porque tinha um objetivo para sua criação. O homem deveria dominar sobre toda criação de Deus. Mas Deus deu uma ordem ao homem em Gênesis 2:17, leia. Ele não poderia desobedecer, porque o resultado seria a morte (separação), infelizmente foi o que o homem escolheu e com resultado veio a morte espiritual (separação de Deus) e morte natural (separação da vida). Gn 3:1-24, Leia."
       },
       {
-        title: "2 – Como recebemos a Salvação?",
-        content: "A salvação é recebida pela fé em Jesus Cristo. \"Crê no Senhor Jesus Cristo e serás salvo\" (Atos 16:31). Não é pelas obras: \"Porque pela graça sois salvos, por meio da fé; e isso não vem de vós; é dom de Deus. Não vem das obras, para que ninguém se glorie.\" (Efésios 2:8-9). É necessário:\n\na) Reconhecer que é pecador (Romanos 3:23)\nb) Arrepender-se dos pecados (Atos 3:19)\nc) Confessar a Jesus como Senhor (Romanos 10:9-10)\nd) Crer de todo coração (João 3:16)"
+        title: "2 – Como pode o homem ser salvo?",
+        content: "A – POR MEIO DO SENHOR JESUS CRISTO.\n\nNenhuma pessoa pode salvar-se por meios próprios, nem com ajuda de outra criatura, seja no céu ou na terra. Só Jesus Cristo salva. \"E em nenhum outro há salvação, porque também debaixo do céu nenhum outro nome há, dado entre os homens, pelo qual devamos ser salvos.\" Atos 4:12\n\nB – DUAS CONDIÇÕES: ARREPENDIMENTO E FÉ\n\nB1 – Arrependimento: O arrependimento nos leva a confessar os nossos pecados e buscar uma mudança de vida, uma vida que agrada a Deus. \"Arrependei-vos, pois, e convertei-vos, para que sejam apagados os vossos pecados,...\" Atos 3:19\n\nB2 – Fé: A fé evangélica há de acompanhar o arrependimento. A fé é o ato da vontade pelo qual o homem abraça as promessas de Deus e apropria para si as provisões da sua graça. \"Creia no Senhor Jesus e você será salvo. Você e a sua família.\" Atos 16:31"
       },
       {
-        title: "3 – Podemos ter certeza da Salvação?",
-        content: "Sim! A Bíblia afirma: \"Estas coisas vos escrevi, para que saibais que tendes a vida eterna e para que creiais no nome do Filho de Deus.\" (1 João 5:13). Jesus disse: \"Na verdade, na verdade vos digo que quem ouve a minha palavra e crê naquele que me enviou tem a vida eterna e não entrará em condenação, mas passou da morte para a vida.\" (João 5:24)"
+        title: "3 – O que acontece ao homem salvo?",
+        content: "A – JUSTIFICADO: A palavra \"justificar\" é termo judicial que significa absolver, declarar justo ou pronunciar a sentença de aceitação. O Réu está perante Deus, o justo Juiz, mas, ao invés de receber a sentença condenatória, ele recebe a sentença de absolvição. Justificação é um ato da livre graça de Deus, pelo qual Ele perdoa todos os nossos pecados e nos aceita como justo aos seus olhos somente por nos ser atribuída a justiça de Cristo que se recebe pela fé. (1 Jo 1:9; Rom 1:17, 3:21)\n\nB – REGENERADO: Significa a mudança da natureza do pecador, através da obra vicária de Cristo. (2Pe 1:4; 2 Co 5:17) Regeneração é uma ressurreição espiritual, um novo nascimento. (Jo 3:3-5; Jo 5:21) Esta experiência é confirmada pelo Espírito Santo e produz no coração o desejo de fazer a vontade de Deus. (Rm 8:16).\n\nC – SANTIFICAÇÃO: É a obra de Deus para que os homens tenham uma vida separada do pecado. (1 Ts. 5:23; Heb. 12:24) É a vontade de Deus. (1 Ts 4:3; 2 Ts 2:13) É provida na cruz e é experimentada por meio da fé, pela operação do Espírito Santo pela Palavra de Deus e o sangue de Cristo. (Jo 17:17; Ef. 5:26; 1Jo 5:6)\n\nD – RECEBE UMA GRANDE PROMESSA: Deus promete vida eterna aos que recebem a Cristo. \"E o testemunho é este, que Deus nos deu vida eterna; e esta vida está no seu Filho. Aquele que tem o Filho tem a vida; aquele que não tem o Filho de Deus não tem a vida. Estas cousas vos escrevi a fim de saberdes que tendes a vida eterna\" (1Jo 5:11-13).\n\nE – UM NOVO NASCIMENTO: A Bíblia tem uma outra maneira de descrever o que nos aconteceu. Chama-se \"Novo nascimento\". Certo homem veio até Jesus numa noite, ele era muito religioso, mas Jesus viu que lhe faltava a coisa mais importante de todas. \"Nicodemos\", disse Jesus, \"você precisa nascer de Novo!\" Nicodemos achou aquilo muito estranho, como sendo ele homem voltar ao ventre de sua mãe para nascer de novo? Jesus, então explicou: \"Na verdade, na verdade, te digo que aquele que não nascer da água e do espírito, não pode entrar no Reino de Deus\" (Jo 3:1-5)"
       },
       {
-        title: "4 – O que acontece quando somos salvos?",
-        content: "a) Somos feitos nova criatura: \"Se alguém está em Cristo, nova criatura é\" (2 Coríntios 5:17)\nb) Recebemos o Espírito Santo: \"O Espírito testifica com o nosso espírito que somos filhos de Deus\" (Romanos 8:16)\nc) Temos paz com Deus: \"Justificados pela fé, temos paz com Deus\" (Romanos 5:1)\nd) Nosso nome é escrito no Livro da Vida (Apocalipse 3:5)"
-      },
-      {
-        title: "5 – Se o crente pecar, perde a salvação?",
-        content: "Não. A salvação é eterna. Porém, quando pecamos, perdemos a comunhão com Deus. Devemos confessar nossos pecados: \"Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar os pecados e nos purificar de toda injustiça.\" (1 João 1:9). Jesus disse: \"As minhas ovelhas ouvem a minha voz, e eu conheço-as, e elas me seguem; e dou-lhes a vida eterna, e nunca hão de perecer, e ninguém as arrebatará da minha mão.\" (João 10:27-28)"
-      },
-      {
-        title: "Conclusão",
-        content: "A salvação é um dom de Deus, recebido pela fé. Podemos ter plena certeza dela, pois a Palavra de Deus é verdadeira e suas promessas são fiéis. Se você já entregou sua vida a Jesus, alegre-se! Você tem a vida eterna."
+        title: "Observação",
+        content: "Depois de ter estudado este assunto, talvez você esteja pensando em receber a Cristo como seu único Senhor e Salvador, se ainda não vez, converse com seu discipulador para que ore com você a oração de confissão. \"Pois com o coração se crê para justiça, e com a boca se faz confissão para salvação\". Rm 10:10."
       }
     ]
   },
   {
     number: 2,
-    title: "A Bíblia – Palavra de Deus",
+    title: "Arrependimento",
     sections: [
       {
-        title: "Introdução",
-        content: "A Bíblia é o livro mais lido, mais traduzido e mais distribuído em todo o mundo. Ela é a Palavra de Deus escrita para nós. Através dela conhecemos a Deus, Seus planos e Sua vontade para as nossas vidas."
+        content: "\"O tempo está cumprido, e o reino de Deus está próximo. Arrependei-vos e crede no evangelho\". Marcos 1:15\n\nNa primeira lição, você viu a importância da salvação e que para ser salvo precisa \"arrepender-se\", nesta lição vamos esclarecer este assunto tão importante na Bíblia."
       },
       {
-        title: "1 – A inspiração da Bíblia",
-        content: "A Bíblia foi escrita por aproximadamente 40 homens, num período de 1600 anos. Porém, o verdadeiro autor é Deus: \"Toda Escritura é divinamente inspirada\" (2 Timóteo 3:16). \"Homens santos de Deus falaram inspirados pelo Espírito Santo\" (2 Pedro 1:21). Apesar de ter sido escrita por muitos autores diferentes, em épocas diferentes, a Bíblia não se contradiz."
+        title: "1 – Mudança de Atitude",
+        content: "A definição básica de arrependimento é: \"uma mudança de atitude, ou uma mudança de mente ou de coração\". O homem sem Deus tem uma atitude interior independente (faço o que quero, sou dono da minha vida. Ef.2:3; Col. 1:21), é claro que esta atitude não vai agradar a Deus. O objetivo de Deus é atingir a raiz do problema: que o homem mude de atitude. De uma atitude de independência para uma atitude de dependência; de uma atitude de rebelião (faço o que me dá na cabeça), para uma atitude de submissão (estou sujeito a Cristo em tudo)."
       },
       {
-        title: "2 – As divisões da Bíblia",
-        content: "A Bíblia divide-se em duas partes:\n\na) Antigo Testamento – 39 livros (de Gênesis a Malaquias)\n- Lei (Pentateuco): 5 livros\n- Históricos: 12 livros\n- Poéticos: 5 livros\n- Profetas Maiores: 5 livros\n- Profetas Menores: 12 livros\n\nb) Novo Testamento – 27 livros (de Mateus a Apocalipse)\n- Evangelhos: 4 livros\n- Histórico: 1 livro (Atos)\n- Epístolas Paulinas: 13 cartas\n- Epístolas Gerais: 8 cartas\n- Profético: 1 livro (Apocalipse)\n\nTotal: 66 livros"
-      },
-      {
-        title: "3 – O assunto principal da Bíblia",
-        content: "O assunto principal da Bíblia é Jesus Cristo. Ele disse: \"Examinais as Escrituras, porque vós cuidais ter nelas a vida eterna, e são elas que de mim testificam\" (João 5:39). No Antigo Testamento, Jesus é profetizado; no Novo Testamento, Ele é revelado."
-      },
-      {
-        title: "4 – Para que serve a Bíblia?",
-        content: "a) Para ensinar o caminho da salvação (2 Timóteo 3:15)\nb) Para guiar nossa vida: \"Lâmpada para os meus pés é a tua palavra\" (Salmos 119:105)\nc) Para nos alimentar espiritualmente (1 Pedro 2:2)\nd) Para nos corrigir e instruir (2 Timóteo 3:16)\ne) Para fortalecer nossa fé (Romanos 10:17)"
-      },
-      {
-        title: "5 – A permanência da Bíblia",
-        content: "A Bíblia é eterna e imutável: \"O céu e a terra passarão, mas as minhas palavras não hão de passar\" (Mateus 24:35). Ninguém pode alterar a Palavra de Deus (Apocalipse 22:18-19)."
-      },
-      {
-        title: "Conclusão",
-        content: "A Bíblia é a Palavra de Deus inspirada, completa e suficiente. Devemos lê-la, estudá-la e praticá-la diariamente. Ela é nosso manual de vida e fé."
+        title: "2 – Frutos de Arrependimento",
+        content: "a – Quais são as respostas a alguns falsos conceitos a respeito do arrependimento?\n\na1 – Não é convicção de pecado – A convicção precede ao arrependimento, mas nem todos que são convencidos do pecado se arrependem. (Atos 24:24-25)\n\na2 – Não é tristeza do mundo – A tristeza do mundo simplesmente é um lamento por ter sido pego, mas não é um arrependimento por ter cometido algo errado.\n\na3 – Não é ser religioso – Os fariseus nos dias de Cristo eram extremamente religiosos, no entanto eram hipócritas. Nunca experimentaram o arrependimento. (Mat. 3:7-12).\n\na4 – Não é só crendice ou fé mental – O reconhecimento de um conjunto de credo ou doutrinas, sem mudança de vida, não é arrependimento, e sim fé morta (Tiago 2:19-20)\n\nb – Quais são as provas de um verdadeiro arrependimento?\n\nb1 – Tristeza pelo pecado (Atos 2:37) – Não uma tristeza por ter sido \"pego\" cometendo algo errado, mas triste por ter pecado e procurar ter uma atitude diferente com relação ao erro cometido.\n\nb2 – Confissão do pecado (Salmo 32:1-5; 1 João 1:9). Confessar significa que reconheceu o erro cometido, assumindo sua responsabilidade e disposição para corrigir se possível.\n\nb3 – Renúncia do pecado (Prov. 28:13). Não basta confessar é preciso deixar o pecado, renúncia significa que você vai abandonar aquela atitude por compreender que é errado.\n\nb4 – Restituição (Lev. 6:1-7). Nem sempre é possível a restituição, mas quando for, ela é uma forte evidência de arrependimento.\n\nb5 – Uma vida diferente. \"provém que vocês abandonaram o pecado, praticando obras dignas\" (Mat. 3:8 Novo testamento vivo.) Estes pontos somados vão provar que houve um genuíno arrependimento, que houve uma total mudança interior, e uma disposição para viver uma nova vida. Uma vida que agrada a Deus."
       }
     ]
   },
   {
     number: 3,
-    title: "A Oração",
+    title: "Fé",
     sections: [
       {
-        title: "Introdução",
-        content: "Oração é conversar com Deus. É o meio pelo qual nos comunicamos com nosso Pai Celestial. A oração é essencial na vida do crente, pois é através dela que mantemos comunhão com Deus."
+        title: "1 – A Bíblia ensina para todos:",
+        content: "\"...Devem se converter a Deus, arrepender-se e ter fé em nosso Senhor Jesus Cristo.\" Atos 20:21\nEste versículo nos ensina duas coisas acerca daqueles que se converteram; tem que se arrepender (mudança de atitude) e ter fé. Neste lição vamos estudar sobre este importante assunto, que é uns dos fundamentos da doutrina de Cristo. (Hebreus 6:1)"
       },
       {
-        title: "1 – O que é orar?",
-        content: "Orar é falar com Deus. É abrir o coração diante dEle: \"Não estejais inquietos por coisa alguma; antes, as vossas petições sejam em tudo conhecidas diante de Deus, pela oração e súplicas, com ação de graças\" (Filipenses 4:6). Oração não é repetição de palavras vãs (Mateus 6:7), mas uma conversa sincera com o Pai."
+        title: "2 – Qual é a importância da fé?",
+        content: "A – PARA PERDÃO DOS PECADOS – \"...de que todos os que nele crêem receberão o perdão dos pecados pelo seu nome\" Atos 10:43.\nA fé em que Jesus morreu pelo nossos pecados, nos leva a certeza do perdão de Deus. \"Mas Deus prova o seu amor para conosco, em que Cristo morreu por nós, sendo nós ainda pecadores.\" Rm 5:8\n\nB – PARA SALVAÇÃO – \"Se com tua boca confessares a Jesus como Senhor, e em teu coração creres que Deus o ressuscitou dentre os mortos, serás salvo.\" Rm 10:9\nO Apóstolo Paulo Diz: \"...A Palavra da fé que pregamos...\" Rm 10:8; que palavra? Que Jesus é Senhor e ressuscitou. Para ser salvo você tem que crer nesta palavra, para estar certo da sua salvação.\n\nC – A FÉ É UM FUNDAMENTO DA VIDA CRISTÃ – \"É necessário que aquele que se aproxima de Deus creia...\" Hebreus 11:6\nO homem nada pode conhecer ou receber de Deus sem que primeiro creia na Sua existência, e, em segundo lugar, que Deus Se revela na Sua Palavra, a Bíblia. \"O justo viverá por fé\" Rm 1:17"
       },
       {
-        title: "2 – Tipos de oração",
-        content: "a) Adoração – Louvar a Deus por quem Ele é\nb) Ação de graças – Agradecer pelo que Ele faz\nc) Confissão – Reconhecer nossos pecados\nd) Súplica – Pedir por nossas necessidades\ne) Intercessão – Orar pelos outros (1 Timóteo 2:1)"
+        title: "A melhor definição de fé:",
+        content: "\"Ora, a fé é a certeza (confirmação, documento de posse) das coisas que esperamos, é a convicção de fatos que não vemos\" Hb 11:1.\nA fé, percebe como fato real, aquilo que ainda não percebemos com o nosso sentido natural. Este versículo na tradução Novo Testamento vivo ficou assim: \"Que é fé? É a certeza de que alguma coisa que nós queremos vai acontecer. É a convicção segura de que o que nos esperamos está nos aguardando, ainda que não possamos ver adiante de nós.\"\n\nA – Fé (substantivo) – crença, certeza, firme convicção, firme persuasão, veracidade, fidelidade\n\nB – CRER (verbo) – confiar em; por fé; acreditar em; contar com uma pessoa ou coisa; encarregar, entregar aos cuidados ou poder."
       },
       {
-        title: "3 – Em nome de quem devemos orar?",
-        content: "Devemos orar em nome de Jesus: \"E tudo quanto pedirdes em meu nome, eu o farei, para que o Pai seja glorificado no Filho\" (João 14:13). Jesus é nosso mediador: \"Há um só Deus e um só mediador entre Deus e os homens, Jesus Cristo\" (1 Timóteo 2:5)."
+        title: "2 – Qual a fonte da verdadeira fé?",
+        content: "A única fonte da verdadeira fé Bíblica é a Palavra de Deus. \"A fé vem pela pregação... pela Palavra de Cristo\" (Rm 10:17)\nA Palavra de Deus vem de várias maneiras:\nA – A Palavra falada na Criação. Gn 1; João 1:1-3\nB – A Palavra Profética. 2Pe 1:20-21\nC – A Palavra Escrita. Lucas 24:44\nD – A Palavra Viva (Jesus Cristo). João 1:1-3,14"
       },
       {
-        title: "4 – O que pode impedir nossas orações?",
-        content: "a) Pecados não confessados (Isaías 59:2)\nb) Falta de fé (Tiago 1:6-7)\nc) Motivações erradas (Tiago 4:3)\nd) Desobediência à Palavra de Deus (Provérbios 28:9)\ne) Falta de perdão (Marcos 11:25-26)"
+        title: "3 – Há diferentes níveis de fé",
+        content: "Sim, a Bíblia ensina que há vários níveis de fé.\nA – Deus dá a cada crente a medida de fé. Romanos 12:3-6\nFé é comparado a uma semente. Uma semente tem potencial para crescer.\n\nExemplos:\n(1) Pequena fé. Mateus 6:30\n(2) Grande fé. Mateus 8:10\n(3) Perfeita fé. Tiago 2:22"
       },
       {
-        title: "5 – Quando devemos orar?",
-        content: "\"Orai sem cessar\" (1 Tessalonicenses 5:17). Devemos ter uma vida de oração constante. Daniel orava três vezes ao dia (Daniel 6:10). Jesus orava de madrugada (Marcos 1:35). Podemos orar em todo tempo e lugar."
-      },
-      {
-        title: "6 – O modelo de oração",
-        content: "Jesus ensinou o \"Pai Nosso\" como modelo (Mateus 6:9-13):\n- \"Pai nosso, que estás nos céus\" – Reconhecimento\n- \"Santificado seja o teu nome\" – Adoração\n- \"Venha o teu reino\" – Submissão\n- \"O pão nosso de cada dia\" – Petição\n- \"Perdoa-nos as nossas dívidas\" – Confissão\n- \"Não nos induzas à tentação\" – Proteção"
+        title: "4 – Apossando-se da Palavra de Deus pela fé:",
+        content: "A – Localize a promessa na Palavra de Deus que supre a necessidade. Fil. 4:19; 2 Co 1:20\n\nB – Cumpra todas as condições ligadas àquela necessidade. Isaías 1:19-20; Salmo 37:5\n\nC – Aceite com paciência a provação de sua fé. Hb 6:12-15; Salmo 105:19; Tg 1:3-4\n\nD – Devemos, firme e positivamente, reivindicar o cumprimento da promessa. A nossa confissão deve estar em harmonia com a Palavra de Deus. 2 Pe 1:3-4; Hb 3:1; 1 Jo 5:14"
       },
       {
         title: "Conclusão",
-        content: "A oração é o nosso canal de comunicação com Deus. Devemos orar com fé, em nome de Jesus, com um coração sincero e limpo. Deus ouve e responde as orações dos seus filhos."
+        content: "APROPRIAR-SE ATIVAMENTE DA FÉ É UMA DAS CHAVES PARA UMA VIDA CRISTÃ VITORIOSA.\n\n\"OLHANDO FIRMEMENTE PARA O AUTOR E CONSUMADOR DA FÉ, JESUS\" HEBREUS 12:2"
       }
     ]
   },

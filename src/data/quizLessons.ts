@@ -18,122 +18,176 @@ export interface QuizLesson {
 export const quizLessons: QuizLesson[] = [
   {
     number: 1,
-    title: "Certeza da Salvação",
+    title: "Salvação",
     questions: [
       {
         id: 1,
-        question: "Qual é a condição que Deus requer para recebermos a salvação?",
+        question: "Em que estado o homem se encontra? Explique",
         bibleRef: {
-          reference: "Atos 16:31",
-          text: "E eles disseram: Crê no Senhor Jesus Cristo e serás salvo, tu e a tua casa."
+          reference: "Efésios 2:1; Romanos 3:23",
+          text: "Ele vos vivificou, estando vós mortos nos vossos delitos e pecados. (Efésios 2:1)\nPorque todos pecaram e destituídos estão da glória de Deus. (Romanos 3:23)"
         }
       },
       {
         id: 2,
-        question: "Quem nos garante a salvação?",
+        question: "Pode o homem sair desse estado? De que maneira?",
         bibleRef: {
-          reference: "1 João 5:11-13",
-          text: "E o testemunho é este: que Deus nos deu a vida eterna; e esta vida está no seu Filho. Quem tem o Filho tem a vida; quem não tem o Filho de Deus não tem a vida. Estas coisas vos escrevi, para que saibais que tendes a vida eterna e para que creiais no nome do Filho de Deus."
+          reference: "Atos 3:19; Atos 16:31",
+          text: "Arrependei-vos, pois, e convertei-vos, para que sejam apagados os vossos pecados. (Atos 3:19)\nCreia no Senhor Jesus e você será salvo. Você e a sua família. (Atos 16:31)"
         }
       },
       {
         id: 3,
-        question: "Quando alguém crê no Senhor, o que acontece em sua vida?",
+        question: "Posso alcançar a salvação através de boas obras? Explique",
         bibleRef: {
-          reference: "2 Coríntios 5:17",
-          text: "Assim que, se alguém está em Cristo, nova criatura é: as coisas velhas já passaram; eis que tudo se fez novo."
+          reference: "Efésios 2:8-9; João 3:16",
+          text: "Porque pela graça sois salvos, por meio da fé; e isso não vem de vós; é dom de Deus. Não vem das obras, para que ninguém se glorie. (Efésios 2:8-9)"
         }
       },
       {
         id: 4,
-        question: "A vida eterna depende das nossas obras?",
+        question: "Existe alguma pré-condição para que o homem possa ser salvo? Explique",
         bibleRef: {
-          reference: "Efésios 2:8-9",
-          text: "Porque pela graça sois salvos, por meio da fé; e isso não vem de vós; é dom de Deus. Não vem das obras, para que ninguém se glorie."
+          reference: "Atos 3:19; Atos 16:31",
+          text: "Arrependei-vos, pois, e convertei-vos, para que sejam apagados os vossos pecados. (Atos 3:19)\nCreia no Senhor Jesus e você será salvo. (Atos 16:31)"
         }
       },
       {
         id: 5,
-        question: "O que Jesus disse sobre quem nEle crê?",
+        question: "O que é a vida eterna?",
         bibleRef: {
-          reference: "João 5:24",
-          text: "Na verdade, na verdade vos digo que quem ouve a minha palavra e crê naquele que me enviou tem a vida eterna e não entrará em condenação, mas passou da morte para a vida."
+          reference: "1 João 5:11-13",
+          text: "E o testemunho é este: que Deus nos deu a vida eterna; e esta vida está no seu Filho. Aquele que tem o Filho tem a vida; aquele que não tem o Filho de Deus não tem a vida."
         }
       },
       {
         id: 6,
-        question: "Se um crente pecar, ele perde a salvação?",
+        question: "O que é um novo nascimento?",
         bibleRef: {
-          reference: "1 João 1:9",
-          text: "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar os pecados e nos purificar de toda injustiça."
+          reference: "João 3:1-5; 2 Coríntios 5:17",
+          text: "Na verdade, na verdade, te digo que aquele que não nascer da água e do espírito, não pode entrar no Reino de Deus. (João 3:5)\nSe alguém está em Cristo, nova criatura é. (2 Coríntios 5:17)"
         }
       }
     ]
   },
   {
     number: 2,
-    title: "A Bíblia - Palavra de Deus",
+    title: "Arrependimento",
     questions: [
       {
         id: 1,
-        question: "Quem é o autor da Bíblia?",
+        question: "Defina com suas próprias palavras o que é arrependimento.",
         bibleRef: {
-          reference: "2 Timóteo 3:16",
-          text: "Toda Escritura é divinamente inspirada e proveitosa para ensinar, para redarguir, para corrigir, para instruir em justiça."
+          reference: "Marcos 1:15",
+          text: "O tempo está cumprido, e o reino de Deus está próximo. Arrependei-vos e crede no evangelho."
         }
       },
       {
         id: 2,
-        question: "Em quantas partes se divide a Bíblia?",
+        question: "O arrependimento implica em uma real mudança de atitude? Explique. Dê um exemplo.",
         bibleRef: {
-          reference: "Lucas 24:44",
-          text: "E disse-lhes: São estas as palavras que vos disse estando ainda convosco: convinha que se cumprisse tudo o que de mim estava escrito na Lei de Moisés, e nos Profetas, e nos Salmos."
+          reference: "Efésios 2:3; Colossenses 1:21",
+          text: "Entre os quais todos nós também antes andávamos nos desejos da nossa carne, fazendo a vontade da carne e dos pensamentos. (Efésios 2:3)"
         }
       },
       {
         id: 3,
-        question: "Quantos livros tem o Antigo Testamento e o Novo Testamento?",
+        question: "Quais os frutos do arrependimento?",
         bibleRef: {
-          reference: "2 Pedro 1:21",
-          text: "Porque a profecia nunca foi produzida por vontade de homem algum, mas os homens santos de Deus falaram inspirados pelo Espírito Santo."
+          reference: "Mateus 3:8",
+          text: "Produzi, pois, frutos dignos de arrependimento."
         }
       },
       {
         id: 4,
-        question: "Para que serve a Palavra de Deus em nossa vida?",
+        question: "Quais são as provas de um verdadeiro arrependimento?",
         bibleRef: {
-          reference: "Salmos 119:105",
-          text: "Lâmpada para os meus pés é a tua palavra e luz para o meu caminho."
+          reference: "Atos 2:37; Salmo 32:1-5; Provérbios 28:13",
+          text: "Ouvindo eles isto, compungiram-se em seu coração. (Atos 2:37)\nO que encobre as suas transgressões nunca prosperará; mas o que as confessa e deixa alcançará misericórdia. (Provérbios 28:13)"
         }
       },
       {
         id: 5,
-        question: "A Bíblia pode ser mudada ou alterada?",
+        question: "Você se arrepende por ter sido surpreendido em pecado ou por que sabe que é pecado? Explique",
         bibleRef: {
-          reference: "Mateus 24:35",
-          text: "O céu e a terra passarão, mas as minhas palavras não hão de passar."
+          reference: "2 Coríntios 7:10",
+          text: "Porque a tristeza segundo Deus opera arrependimento para a salvação, da qual ninguém se arrepende; mas a tristeza do mundo opera a morte."
         }
       },
       {
         id: 6,
-        question: "Qual o assunto principal da Bíblia?",
+        question: "Apenas confessar o pecado é suficiente? Explique",
         bibleRef: {
-          reference: "João 5:39",
-          text: "Examinais as Escrituras, porque vós cuidais ter nelas a vida eterna, e são elas que de mim testificam."
+          reference: "Provérbios 28:13; 1 João 1:9",
+          text: "O que encobre as suas transgressões nunca prosperará; mas o que as confessa e deixa alcançará misericórdia. (Provérbios 28:13)"
         }
       }
     ]
   },
   {
     number: 3,
-    title: "A Oração",
+    title: "Fé",
     questions: [
       {
         id: 1,
-        question: "O que é orar?",
+        question: "O que é que a Bíblia ensina para todos?",
         bibleRef: {
-          reference: "Filipenses 4:6",
-          text: "Não estejais inquietos por coisa alguma; antes, as vossas petições sejam em tudo conhecidas diante de Deus, pela oração e súplicas, com ação de graças."
+          reference: "Atos 20:21",
+          text: "...Devem se converter a Deus, arrepender-se e ter fé em nosso Senhor Jesus Cristo."
+        }
+      },
+      {
+        id: 2,
+        question: "Quais as duas coisas que devem existir naquele que verdadeiramente se converte?",
+        bibleRef: {
+          reference: "Atos 20:21",
+          text: "...Devem se converter a Deus, arrepender-se e ter fé em nosso Senhor Jesus Cristo."
+        }
+      },
+      {
+        id: 3,
+        question: "Qual é a fonte da verdadeira fé? É a Palavra de Deus.",
+        bibleRef: {
+          reference: "Romanos 10:17",
+          text: "De sorte que a fé é pelo ouvir, e o ouvir pela palavra de Deus."
+        }
+      },
+      {
+        id: 4,
+        question: "O que desagrada a Deus; a fé sem obra ou a obra sem fé? Explique",
+        bibleRef: {
+          reference: "Tiago 2:26; Hebreus 11:6",
+          text: "Porque, assim como o corpo sem o espírito está morto, assim também a fé sem obras é morta. (Tiago 2:26)"
+        }
+      },
+      {
+        id: 5,
+        question: "Cite 3 exemplos de fé?",
+        bibleRef: {
+          reference: "Mateus 6:30; Mateus 8:10; Tiago 2:22",
+          text: "Pequena fé (Mateus 6:30)\nGrande fé (Mateus 8:10)\nPerfeita fé (Tiago 2:22)"
+        }
+      },
+      {
+        id: 6,
+        question: "Através de que adquirimos a fé? Explique",
+        bibleRef: {
+          reference: "Romanos 10:17",
+          text: "De sorte que a fé é pelo ouvir, e o ouvir pela palavra de Deus."
+        }
+      }
+    ]
+  },
+  {
+    number: 4,
+    title: "A Igreja",
+    questions: [
+      {
+        id: 1,
+        question: "O que é a Igreja segundo a Bíblia?",
+        bibleRef: {
+          reference: "1 Coríntios 12:27",
+          text: "Ora, vós sois o corpo de Cristo e seus membros em particular."
         }
       },
       {
