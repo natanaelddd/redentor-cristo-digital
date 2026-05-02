@@ -5,32 +5,47 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BibleVersePopup } from "@/components/BibleVersePopup";
 import { quizLessons } from "@/data/quizLessons";
+import { lessonContents } from "@/data/lessonContents";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { BookOpen, ChevronRight, ChevronLeft, User, Send, CheckCircle } from "lucide-react";
+import { BookOpen, ChevronRight, ChevronLeft, User, Send, CheckCircle, FileText } from "lucide-react";
+
+type Step = "name" | "selectLesson" | "reading" | "quiz";
 
 export default function QuizPage() {
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const [studentName, setStudentName] = useState("");
-  const [nameConfirmed, setNameConfirmed] = useState(false);
-  const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
+  const [step, setStep] = useState<Step>("name");
+  const [selectedLessonNumber, setSelectedLessonNumber] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const lesson = selectedLesson !== null ? quizLessons.find(l => l.number === selectedLesson) : null;
+  const lesson = selectedLessonNumber !== null ? quizLessons.find(l => l.number === selectedLessonNumber) : null;
+  const lessonContent = selectedLessonNumber !== null ? lessonContents.find(l => l.number === selectedLessonNumber) : null;
 
   const handleConfirmName = () => {
     if (studentName.trim().length < 3) {
       toast({ title: "Nome obrigatório", description: "Por favor, insira seu nome completo.", variant: "destructive" });
       return;
     }
-    setNameConfirmed(true);
+    setStep("selectLesson");
+  };
+
+  const handleSelectLesson = (num: number) => {
+    setSelectedLessonNumber(num);
+    setStep("reading");
+    window.scrollTo(0, 0);
+  };
+
+  const handleStartQuiz = () => {
+    setStep("quiz");
+    window.scrollTo(0, 0);
   };
 
   const handleAnswerChange = (questionId: number, value: string) => {
@@ -75,9 +90,10 @@ export default function QuizPage() {
   };
 
   const handleReset = () => {
-    setSelectedLesson(null);
+    setSelectedLessonNumber(null);
     setAnswers({});
     setSubmitted(false);
+    setStep("selectLesson");
   };
 
   // Success screen
@@ -111,7 +127,7 @@ export default function QuizPage() {
 
       <main className="flex-grow container mx-auto px-4 py-8 max-w-3xl">
         {/* Step 1: Name */}
-        {!nameConfirmed && (
+        {step === "name" && (
           <Card className="max-w-md mx-auto">
             <CardHeader className="text-center">
               <BookOpen className="h-12 w-12 text-primary mx-auto mb-2" />
@@ -140,18 +156,18 @@ export default function QuizPage() {
         )}
 
         {/* Step 2: Select Lesson */}
-        {nameConfirmed && !selectedLesson && (
+        {step === "selectLesson" && (
           <div className="space-y-6">
             <div className="text-center">
               <h1 className="text-2xl font-bold">Olá, {studentName}!</h1>
-              <p className="text-muted-foreground mt-1">Escolha uma lição para responder o questionário</p>
+              <p className="text-muted-foreground mt-1">Escolha uma lição para ler e responder o questionário</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {quizLessons.map(l => (
                 <Card
                   key={l.number}
                   className="cursor-pointer hover:shadow-md transition-shadow hover:border-primary"
-                  onClick={() => setSelectedLesson(l.number)}
+                  onClick={() => handleSelectLesson(l.number)}
                 >
                   <CardContent className="p-4 flex items-center gap-3">
                     <div className="bg-primary text-primary-foreground rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg shrink-0">
@@ -169,22 +185,75 @@ export default function QuizPage() {
           </div>
         )}
 
-        {/* Step 3: Answer Questions */}
-        {nameConfirmed && lesson && !submitted && (
+        {/* Step 3: Reading Material */}
+        {step === "reading" && lessonContent && (
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" onClick={() => { setSelectedLesson(null); setAnswers({}); }}>
+              <Button variant="ghost" size="sm" onClick={() => { setSelectedLessonNumber(null); setStep("selectLesson"); }}>
                 <ChevronLeft className="h-4 w-4 mr-1" /> Voltar
               </Button>
             </div>
 
-            <div className="text-center">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                <FileText className="h-4 w-4" />
+                Etapa 1 de 2 — Leitura
+              </div>
+              <h1 className="text-2xl font-bold">Lição {lessonContent.number} — {lessonContent.title}</h1>
+              <p className="text-muted-foreground text-sm">
+                Leia o conteúdo abaixo com atenção antes de responder o questionário
+              </p>
+            </div>
+
+            <Card className="overflow-hidden">
+              <CardContent className="p-6 sm:p-8 space-y-6">
+                {lessonContent.sections.map((section, idx) => (
+                  <div key={idx} className="space-y-2">
+                    {section.title && (
+                      <h2 className="text-lg font-bold text-primary border-b pb-1">
+                        {section.title}
+                      </h2>
+                    )}
+                    <div className="text-gray-700 leading-relaxed whitespace-pre-line text-[15px]">
+                      {section.content}
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            <div className="text-center pb-8 space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Terminou a leitura? Agora responda o questionário!
+              </p>
+              <Button size="lg" onClick={handleStartQuiz} className="min-w-[250px]">
+                <BookOpen className="h-4 w-4 mr-2" /> Ir para o Questionário
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 4: Answer Questions */}
+        {step === "quiz" && lesson && (
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setStep("reading")}>
+                <ChevronLeft className="h-4 w-4 mr-1" /> Voltar à Leitura
+              </Button>
+            </div>
+
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                <FileText className="h-4 w-4" />
+                Etapa 2 de 2 — Questionário
+              </div>
               <h1 className="text-2xl font-bold">Lição {lesson.number} — {lesson.title}</h1>
-              <p className="text-muted-foreground text-sm mt-1">
+              <p className="text-muted-foreground text-sm">
                 Respondendo como: <strong>{studentName}</strong>
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                💡 Clique nos links bíblicos para ler o versículo antes de responder
+              <p className="text-xs text-muted-foreground">
+                💡 Clique nos links bíblicos para reler o versículo
               </p>
             </div>
 
