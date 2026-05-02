@@ -131,8 +131,11 @@ export default function QuizPage() {
           <Card className="max-w-md mx-auto">
             <CardHeader className="text-center">
               <BookOpen className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-2xl">Questionário Bíblico</CardTitle>
+              <CardTitle className="text-2xl">Curso Preparatório para Batismo</CardTitle>
               <p className="text-muted-foreground mt-2">
+                Igreja Missionária Unida do Campos Elíseos
+              </p>
+              <p className="text-sm text-muted-foreground">
                 Antes de começar, informe seu nome completo
               </p>
             </CardHeader>
@@ -159,6 +162,7 @@ export default function QuizPage() {
         {step === "selectLesson" && (
           <div className="space-y-6">
             <div className="text-center">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Curso Preparatório para Batismo</p>
               <h1 className="text-2xl font-bold">Olá, {studentName}!</h1>
               <p className="text-muted-foreground mt-1">Escolha uma lição para ler e responder o questionário</p>
             </div>
