@@ -300,42 +300,50 @@ export const quizLessons: QuizLesson[] = [
     questions: [
       {
         id: 1,
-        question: "Quem instituiu a Ceia do Senhor?",
+        question: "Quem instituiu a Santa Ceia, e em que dia?",
         bibleRef: {
           reference: "1 Coríntios 11:23-26",
-          text: "Porque eu recebi do Senhor o que também vos entreguei: que o Senhor Jesus, na noite em que foi traído, tomou o pão; e tendo dado graças, o partiu e disse; isto é o meu corpo, que é dado por vós; fazei isto em memória de mim."
+          text: "O Senhor Jesus, na noite em que foi traído, tomou o pão; e tendo dado graças, o partiu e disse; isto é o meu corpo, que é dado por vós; fazei isto em memória de mim."
         }
       },
       {
         id: 2,
-        question: "O que o pão e o vinho representam na Ceia?",
+        question: "Qual o motivo da Ceia do Senhor?",
         bibleRef: {
           reference: "1 Coríntios 11:24-25",
-          text: "Isto é o meu corpo, que é dado por vós; fazei isto em memória de mim. Este cálice é a nova aliança no meu sangue; fazei isto, todas as vezes que o beberdes, em memória de mim."
+          text: "Fazei isto em memória de mim. Porque todas as vezes que comerdes este pão e beberdes o cálice, anunciais a morte do Senhor, até que Ele venha."
         }
       },
       {
         id: 3,
-        question: "Quem pode participar da Ceia do Senhor?",
+        question: "Quais os elementos principais da Ceia?",
         bibleRef: {
-          reference: "1 Coríntios 11:28",
-          text: "Examine-se, pois, o homem a si mesmo, e, assim, coma deste pão, e beba deste cálice."
+          reference: "1 Coríntios 11:23-25",
+          text: "Tomou o pão... tomou também o cálice. O pão representa o corpo de Cristo e o vinho (cálice) representa a nova aliança no sangue de Cristo."
         }
       },
       {
         id: 4,
-        question: "O que devemos fazer antes de participar da Ceia?",
+        question: "O que significa o pão? O que significa o vinho?",
         bibleRef: {
-          reference: "1 Coríntios 11:27-29",
-          text: "Portanto, qualquer que comer este pão ou beber o cálice do Senhor, indignamente, será culpado do corpo e do sangue do Senhor. Examine-se, pois, o homem a si mesmo."
+          reference: "1 Coríntios 11:24-25",
+          text: "Isto é o meu corpo, que é dado por vós. (O Pão)\nEste cálice é a nova aliança no meu sangue. (O Vinho)"
         }
       },
       {
         id: 5,
-        question: "A Ceia é um sacramento ou uma ordenança?",
+        question: "Quais são os outros títulos dados a esta ordenação?",
         bibleRef: {
-          reference: "Lucas 22:19; 1 Coríntios 11:26",
-          text: "Fazei isto em memória de mim. (Lucas 22:19)\nPorque todas as vezes que comerdes este pão e beberdes o cálice, anunciais a morte do Senhor, até que Ele venha. (1 Coríntios 11:26)"
+          reference: "1 Coríntios 10:16,21",
+          text: "A Mesa do Senhor (1 Co 10:21) e A Comunhão (1 Co 10:16)"
+        }
+      },
+      {
+        id: 6,
+        question: "Com que atitude devemos chegar à mesa do Senhor?",
+        bibleRef: {
+          reference: "Lucas 22:14-15; Hebreus 11:6; 1 Coríntios 11:24-25",
+          text: "Com desejo de participar (Lucas 22:14,15), em fé crendo (Hebreus 11:6), lembrando – memorial (1 Co 11:24-25)"
         }
       }
     ]

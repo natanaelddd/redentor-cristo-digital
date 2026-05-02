@@ -171,7 +171,15 @@ export const lessonContents: LessonContent[] = [
       },
       {
         title: "Lembrar da morte do Senhor",
-        content: "A Ceia do Senhor foi instituída na noite que Ele foi traído, isto é, a noite antes de sua morte. Ele disse: \"isto é o meu corpo, que é dado por vós; fazei isto em memória de mim\".\n\nEntão ao participar da ceia, lembramos desse acontecimento, isto é, da morte do Senhor Jesus.\n\nEle usou dois símbolos visíveis para nos deixar claro em nossa memória este grande acontecimento:"
+        content: "A Ceia do Senhor foi instituída na noite que Ele foi traído, isto é, a noite antes de sua morte. Ele disse: \"isto é o meu corpo, que é dado por vós; fazei isto em memória de mim\".\n\nEntão ao participar da ceia, lembramos desse acontecimento, isto é, da morte do Senhor Jesus.\n\nEle usou dois símbolos visíveis para nos deixar claro em nossa memória este grande acontecimento:\n\nA) O PÃO – \"tomou o pão e tendo dado graças o partiu e disse: Isto é o meu corpo, que é dado por vós; fazei isto em memória de mim\"\n\nO VINHO – Este cálice é a Nova Aliança no meu sangue; fazei isto todas as vezes que beberdes em memória de mim."
+      },
+      {
+        title: "2 – Quais são outros títulos dados a esta ordenação?",
+        content: "Além de Ceia do Senhor, existem mais dois títulos dados a esta ordenação:\n\nA) A MESA DO SENHOR. \"Não podeis beber o cálice do Senhor e o cálice dos demônios; não podeis participar da mesa do Senhor e da mesa dos demônios.\" (1 Co 10:21)\nA mesa é um lugar de amor e comunhão.\n\nB) A COMUNHÃO. \"Não é o cálice de bênção, que abençoamos, a comunhão do sangue de Cristo? E não é o pão que partimos a comunhão do corpo de Cristo?\" (1 Co 10:16)"
+      },
+      {
+        title: "3 – Com que atitude devemos chegar à mesa do Senhor?",
+        content: "A) COM DESEJO DE PARTICIPAR. (Lucas 22:14,15)\nB) EM FÉ, CRENDO. (Hebreus 11:06; Romanos 14:23)\nC) LEMBRANDO (MEMORIAL). (1 CO 11:24-25)"
       }
     ]
   },
@@ -181,27 +189,23 @@ export const lessonContents: LessonContent[] = [
     sections: [
       {
         title: "Introdução",
-        content: "A Bíblia usa a figura do corpo humano para descrever a Igreja. Assim como um corpo tem muitos membros e cada um tem uma função, assim é a Igreja de Cristo."
+        content: "A Bíblia diz: \"Cristo é o cabeça da igreja, sendo este mesmo salvador do corpo\". (Efésios 5:23)\nA palavra igreja aqui não significa edifício onde nos reunimos, mas nós mesmos, os crentes no Senhor Jesus.\nAssim concluímos que sendo Cristo o cabeça da Igreja, a igreja o corpo de Cristo, somos o corpo de Cristo aqui na terra."
       },
       {
-        title: "1 – O que é o corpo de Cristo?",
-        content: "O corpo de Cristo é a Igreja, representada aqui na terra: \"Vós sois o corpo de Cristo e seus membros em particular\" (1 Coríntios 12:27). Cristo é a cabeça e nós somos os membros."
+        title: "1 – Duplo aspecto da Igreja",
+        content: "1 – A IGREJA UNIVERSAL (Mateus 16:13-19)\nA Igreja Universal é o corpo de Cristo no mundo, não se trata de uma denominação em particular, mas todos os salvos em Cristo Jesus, que estão congregando em uma igreja Local em alguma parte cumprindo os propósitos de Deus andando em sua Palavra.\n\n2 – A IGREJA LOCAL (Mateus 18:16-18)\nNós não fomos convertidos para vivermos nossa vida cristã sozinhos. Devemos ser juntamente edificados em Cristo. Somos colocados em Sua Igreja Universal pelo fato de sermos agregados a uma Igreja local. Quando estamos em uma relação de vida com Cristo, nós devemos também estar em um novo caminho de vida em comunhão uns com os outros.\nVocê recebeu a Cristo como Senhor de sua vida, agora você faz parte do Corpo de Cristo aqui na terra, por isso deve estar ligado à Igreja Local."
       },
       {
-        title: "2 – A Igreja Universal",
-        content: "A Igreja Universal (invisível) é o corpo de Cristo no mundo, composta por todos os salvos de todos os tempos e lugares: \"Há um só corpo e um só Espírito\" (Efésios 4:4)."
+        title: "A importância da reunião local do povo de Deus",
+        content: "a – Havia um lugar para reunir – \"toda a Igreja se reunia no mesmo lugar\" (1 Co 14:23).\nb – Eles participavam da ceia – \"quando vós reunis para comer\" (1 Co 11:33).\nc – Para disciplinar – \"reunidos vós e o meu espírito\" (1 Co 5:4)\nd – Para oração – \"tendo eles orado, tremeu o lugar onde estavam reunidos\" (Atos 4:31)\ne – Para ouvir a Palavra – \"Os que de bom grado receberam a sua palavra foram batizados\" (Atos 2:41)\nf – Para ofertar – \"cada um contribua segundo tiver proposto no coração\" (2 Co 9:7)\ng – Para ministrar uns aos outros – \"Quando vos reunis, cada um de vós tem salmo, tem doutrina, tem língua, tem interpretação. Faça tudo para edificação.\" (1 Co 14:26)\nh – Para receber a ministração – \"Ele mesmo deu uns para apóstolos, profetas, evangelista, pastores e mestre, tendo em vista o aperfeiçoamento dos santos\" (Efésios 4:11,12)"
       },
       {
-        title: "3 – A Igreja Local",
-        content: "A Igreja Local é onde congregamos, onde temos comunhão uns com os outros. É o corpo de Cristo reunido em um lugar específico para adorar, aprender, servir e ter comunhão (Atos 2:46-47)."
-      },
-      {
-        title: "4 – A importância de congregar",
-        content: "É ter lugar para reunir, participar da Ceia, para disciplina, para oração, ouvir a Palavra, para ofertar, para ministrar uns nos outros e receber ministração. \"Não deixando a nossa congregação\" (Hebreus 10:25)."
+        title: "A congregação local não deve ser negligenciada",
+        content: "Muitos cristãos cometem um erro fundamental ao rejeitarem a oportunidade de se envolverem na reunião, em um só corpo, com o povo de Deus. Esta rejeição, que é comum entre alguns cristãos, resulta em uma vida espiritual imatura.\nVeja o que a Bíblia diz a este respeito:\n\"Não deixemos de congregar-nos, como é costume de alguns, mas façamos admoestações, avisos, insistamos e nos encorajamos mutuamente, tanto mais quanto vedes que o dia se aproxima...\" Hebreus 10:25"
       },
       {
         title: "As desculpas mais comuns",
-        content: "a) \"Nós podemos ter de Deus o mesmo tanto a sós em nosso quarto quanto na congregação local.\"\nb) \"O que importa não é onde nos encontramos com Deus, mas como encontramos.\"\nc) \"Nossa família é tão ocupada com tantas atividades que não há tempo suficiente na semana para irmos à Igreja.\"\nd) \"Envolver com pessoas traz muitas decepções, é melhor estar sozinho com Deus, Ele me entende melhor.\""
+        content: "a) \"Nós podemos ter de Deus o mesmo tanto a sós em nosso quarto quanto na congregação local\".\nb) \"O que importa não é onde nos encontramos com Deus, mas como encontramos\".\nc) \"Nossa família é tão ocupada com tantas atividades que não há tempo suficiente na semana para irmos à Igreja\"\nd) \"Envolver com pessoas traz muitas decepções, é melhor estar sozinho com Deus, Ele me entende melhor\""
       },
       {
         title: "Conclusão",
