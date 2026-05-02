@@ -176,8 +176,7 @@ const Index = () => {
         onLogout={signOut}
       />
       
-      {/* Event Inscription Alert - Só exibe se habilitado no admin */}
-      {pageData?.encontroBannerEnabled && <EventInscriptionAlert />}
+      
       
       {/* Dynamic Event Announcements */}
       <div className="bg-background">
