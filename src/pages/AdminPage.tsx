@@ -13,6 +13,7 @@ import EventAppointments from "@/pages/admin/EventAppointments";
 import FormsAdmin from "@/pages/admin/Forms";
 import FormBuilder from "@/pages/admin/FormBuilder";
 import EventInscriptions from "@/pages/admin/EventInscriptions";
+import QuizResults from "@/pages/admin/QuizResults";
 
 export default function AdminPage() {
   return (
@@ -32,6 +33,7 @@ export default function AdminPage() {
         <Route path="/forms/new" element={<FormBuilder />} />
         <Route path="/forms/:id/builder" element={<FormBuilder />} />
         <Route path="/event-inscriptions" element={<EventInscriptions />} />
+        <Route path="/quiz-results" element={<QuizResults />} />
       </Routes>
     </AdminLayout>
   );

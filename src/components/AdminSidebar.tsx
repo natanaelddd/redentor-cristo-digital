@@ -35,6 +35,7 @@ const adminItems = [
   { title: "Hero Slides", url: "/admin/slides", icon: Image },
   { title: "Eventos", url: "/admin/events", icon: Calendar },
   { title: "Formulários", url: "/admin/forms", icon: FormInput },
+  { title: "Questionários", url: "/admin/quiz-results", icon: BookOpen },
   { title: "Agendamentos", url: "/admin/event-appointments", icon: Clock },
   { title: "Inscrições Encontro", url: "/admin/event-inscriptions", icon: UserCheck },
   { title: "Avisos", url: "/admin/announcements", icon: Megaphone },
