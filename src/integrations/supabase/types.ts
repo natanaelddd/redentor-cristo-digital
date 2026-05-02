@@ -2687,6 +2687,39 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_submissions: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          lesson_number: number
+          lesson_title: string
+          score: number | null
+          student_name: string
+          total_questions: number | null
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          lesson_number: number
+          lesson_title: string
+          score?: number | null
+          student_name: string
+          total_questions?: number | null
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          lesson_number?: number
+          lesson_title?: string
+          score?: number | null
+          student_name?: string
+          total_questions?: number | null
+        }
+        Relationships: []
+      }
       reading_plan_days: {
         Row: {
           content: string
