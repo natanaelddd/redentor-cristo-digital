@@ -73,16 +73,22 @@ export const useReadingPlans = () => {
         return fallbackPlans;
       }
 
-      // Transformar dados do banco para o formato esperado
-      const readingPlans: ReadingPlan[] = plans?.map(plan => ({
-        id: plan.plan_id,
-        title: plan.title,
-        image: plan.image_url || "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-        category: plan.category,
-        description: plan.description || "",
-        author: plan.author || "",
-        duration: plan.duration || ""
-      })) || [];
+      // Transformar dados do banco para o formato esperado e deduplicar por plan_id
+      const seen = new Set<number>();
+      const readingPlans: ReadingPlan[] = [];
+      for (const plan of plans || []) {
+        if (seen.has(plan.plan_id)) continue;
+        seen.add(plan.plan_id);
+        readingPlans.push({
+          id: plan.plan_id,
+          title: plan.title,
+          image: plan.image_url || "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+          category: plan.category,
+          description: plan.description || "",
+          author: plan.author || "",
+          duration: plan.duration || ""
+        });
+      }
 
       return readingPlans;
     },
