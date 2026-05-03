@@ -194,7 +194,7 @@ export default function QuizPage() {
   if (submitted) {
     return (
       <div className="flex flex-col min-h-screen bg-white">
-        <Header navLinks={[]} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
+        <Header navLinks={[{ title: "INÍCIO", href: "/" }]} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
         <main className="flex-grow flex items-center justify-center p-4">
           <Card className="max-w-md w-full text-center">
             <CardContent className="pt-8 pb-8 space-y-4">
@@ -217,7 +217,7 @@ export default function QuizPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header navLinks={[]} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
+      <Header navLinks={[{ title: "INÍCIO", href: "/" }]} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
 
       <main className="flex-grow container mx-auto px-4 py-8 max-w-3xl">
         {/* Welcome Back screen */}
