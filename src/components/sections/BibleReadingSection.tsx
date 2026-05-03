@@ -153,7 +153,7 @@ export const BibleReadingSection = () => {
                     <Card 
                       key={plan.id} 
                       className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-lg bg-white rounded-2xl"
-                      onClick={() => handlePlanClick(plan.id)}
+                      onClick={() => handlePlanClick(plan)}
                       style={{
                         animationDelay: `${index * 100}ms`
                       }}
