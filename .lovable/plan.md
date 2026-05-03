@@ -1,32 +1,56 @@
-## Plano: Salvar progresso do curso de batismo
 
-### Como vai funcionar para o aluno
+# Redesign do Curso Preparatório para Batismo
 
-1. Ao digitar o nome e começar o curso, o progresso é salvo automaticamente no navegador (localStorage)
-2. Se a pessoa fechar a aba ou o celular, ao voltar na página do curso, verá uma mensagem: **"Bem-vindo(a) de volta, [Nome]! Deseja continuar de onde parou?"**
-3. Ao clicar "Continuar", volta direto para a lição e etapa (leitura ou questionário) onde parou, com todas as respostas já preenchidas
-4. Ao clicar "Começar do zero", limpa tudo e recomeça
-5. Quando o aluno **envia** as respostas de uma lição, aquela lição aparece marcada com um check verde na lista, indicando que já foi concluída
-6. As respostas rascunho são salvas automaticamente a cada mudança de texto
+Vamos transformar a experiência do curso com um visual mais bonito, elementos de gamificação sutil e sensação de progresso e conquista.
 
-### Por que localStorage (e no banco de dados)
+---
 
-- Os alunos **no fazem login** -- so digitam o nome
-- localStorage funciona no mesmo dispositivo/navegador sem necessidade de autenticacao
-- Simples e imediato, sem complexidade extra
-- Tambem consultamos o banco (`quiz_submissions`) para marcar licoes ja enviadas
+## 1. Barra de Progresso Global
 
-### Mudancas tecnicas
+- Adicionar uma barra de progresso no topo da tela de seleção de lições mostrando "X de 8 lições concluídas"
+- Porcentagem visual com texto motivacional que muda conforme o progresso:
+  - 0%: "Sua jornada começa aqui!"
+  - 25%: "Ótimo começo, continue firme!"
+  - 50%: "Metade do caminho! Você está indo muito bem!"
+  - 75%: "Quase lá! Falta pouco!"
+  - 100%: "Parabéns! Curso completo!"
 
-**Arquivo: `src/pages/Quiz.tsx`**
+## 2. Visual Refinado
 
-- Ao confirmar o nome, salvar `studentName` no localStorage
-- Ao mudar de etapa ou lição, salvar `step`, `selectedLessonNumber` no localStorage  
-- Ao digitar respostas, salvar `answers` no localStorage (debounced ou onChange)
-- Ao carregar a página, verificar se existe progresso salvo no localStorage
-- Se existir, mostrar tela de "Continuar ou Começar do zero?" antes do fluxo normal
-- Ao enviar respostas com sucesso, limpar o progresso daquela lição do localStorage
-- Consultar `quiz_submissions` pelo nome do aluno para mostrar quais lições já foram enviadas (check verde na lista de lições)
-- Ao clicar "Responder outra lição", manter o nome salvo e ir para seleção
+- Gradiente suave no header da página (azul/dourado espiritual)
+- Cards de lição com ícones temáticos por lição (cruz, pomba, água, livro, etc.) usando Lucide icons
+- Fundo com gradiente sutil ao invés do cinza plano
+- Animações suaves de entrada nos cards (fade-in escalonado)
+- Tela de leitura com tipografia melhorada: versículos bíblicos destacados em caixas estilizadas com borda lateral colorida
 
-Nenhuma mudança no banco de dados e necessária.
+## 3. Gamificação Sutil
+
+- **Badges/Medalhas**: Ao concluir cada lição, mostrar uma mini-celebração com confetti sutil (CSS) e uma mensagem encorajadora
+- **Streak visual**: Na lista de lições, as concluídas ganham um "selo dourado" ao invés do simples check verde
+- **Tela de conclusão**: Quando todas as 8 lições forem concluídas, mostrar um certificado visual de conclusão com o nome do aluno, nome da igreja e do pastor
+- **Mensagens motivacionais**: Frases de encorajamento contextuais ao longo do fluxo
+
+## 4. Tela de Sucesso Aprimorada
+
+- Animação de celebração ao enviar respostas (confetti CSS simples)
+- Mensagem bíblica motivacional aleatória
+- Mostrar progresso atualizado: "Você completou X de 8 lições!"
+- Se for a última lição, mostrar tela especial de certificado
+
+## 5. Certificado de Conclusão
+
+- Card estilizado com bordas ornamentais
+- Nome do aluno, igreja, pastor
+- Data de conclusão
+- Botão para captura de tela / compartilhar
+
+---
+
+## Arquivos Modificados
+
+- `src/pages/Quiz.tsx` -- redesign completo da UI com todos os elementos acima
+- `src/components/ui/progress.tsx` -- já existe, será reutilizado
+- Possível criação de `src/components/CourseCompletionCertificate.tsx` para o certificado
+- Possível criação de `src/components/ConfettiEffect.tsx` para animação de celebração
+
+Nenhuma mudança no backend ou banco de dados. Tudo client-side.
