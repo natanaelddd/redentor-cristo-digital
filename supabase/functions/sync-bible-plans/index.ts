@@ -8,7 +8,6 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -21,95 +20,133 @@ serve(async (req) => {
 
     console.log('Iniciando sincronização de planos do Bible.com...');
 
-    // Primeiro, limpar todos os planos existentes
+    // Limpar planos existentes
     const { error: deleteError } = await supabaseClient
       .from('reading_plan_details')
       .delete()
-      .neq('id', 0); // Delete all records
+      .neq('id', 0);
 
     if (deleteError) {
       console.error('Erro ao limpar planos existentes:', deleteError);
-    } else {
-      console.log('Planos existentes removidos com sucesso');
     }
 
-    // Limpar leituras diárias existentes
     const { error: deleteReadingsError } = await supabaseClient
       .from('reading_plan_days')
       .delete()
-      .neq('id', 0); // Delete all records
+      .neq('id', 0);
 
     if (deleteReadingsError) {
       console.error('Erro ao limpar leituras existentes:', deleteReadingsError);
-    } else {
-      console.log('Leituras existentes removidas com sucesso');
     }
 
-    // Novos planos bíblicos com imagens cristãs únicas
+    // Planos reais do Bible.com organizados por categoria
     const biblePlans = [
+      // === PAIS (Família) ===
       {
         plan_id: 1,
-        title: 'Ensinar os Filhos',
-        image_url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop',
+        title: 'Relacionamentos Familiares Moldados pela Fé',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/70364/1280x720.jpg',
         category: 'Pais',
-        description: 'Aprenda os princípios bíblicos para ensinar e guiar seus filhos na fé.',
-        author: 'John MacArthur',
-        duration: '15 dias',
-        order_position: 1
+        description: 'A família é um dos maiores presentes de Deus ao ser humano. Reflita sobre princípios que fortalecem o casamento, a criação dos filhos e a convivência no lar.',
+        author: 'Medita na Palavra',
+        duration: '16 dias',
+        order_position: 1,
+        link_url: 'https://www.bible.com/pt/reading-plans/70364-relacionamentos-familiares-moldados-pela-fe'
       },
       {
         plan_id: 2,
-        title: 'Família Cristã',
-        image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop',
+        title: 'Como Ter Uma Família Inseparável',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/59941/1280x720.jpg',
         category: 'Pais',
-        description: 'Construa uma família sólida baseada nos valores cristãos.',
-        author: 'Charles Stanley',
-        duration: '21 dias',
-        order_position: 2
+        description: 'Em dias em que as famílias têm sido atacadas constantemente, ter uma família inseparável não é impossível, mas requer de cada um de nós um pequeno esforço.',
+        author: 'Robson Carlos Ferreira',
+        duration: '3 dias',
+        order_position: 2,
+        link_url: 'https://www.bible.com/pt/reading-plans/59941-como-ter-uma-familia-inseparavel'
       },
       {
         plan_id: 3,
-        title: 'Primeiros Passos na Fé',
-        image_url: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop',
-        category: 'Novo na Fé',
-        description: 'Um guia para quem está começando sua jornada cristã.',
-        author: 'R.A. Torrey',
-        duration: '14 dias',
-        order_position: 3
+        title: 'Como Ajudar Seu Milenial a Retornar à Fé',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/4260/1280x720.jpg',
+        category: 'Pais',
+        description: 'Orientações práticas e bíblicas para pais que desejam ajudar seus filhos a redescobrirem a fé cristã.',
+        author: 'Life.Church',
+        duration: '5 dias',
+        order_position: 3,
+        link_url: 'https://www.bible.com/pt/reading-plans/4260-how-to-help-your-millennial-return-to-faith'
       },
+
+      // === NOVO NA FÉ ===
       {
         plan_id: 4,
-        title: 'Fundamentos da Bíblia',
-        image_url: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2086&auto=format&fit=crop',
+        title: 'Começando um Relacionamento com Jesus',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/1594/1280x720.jpg',
         category: 'Novo na Fé',
-        description: 'Conheça os fundamentos essenciais da fé cristã.',
-        author: 'Derek Kidner',
-        duration: '30 dias',
-        order_position: 4
+        description: 'É um recém-convertido? Quer entender mais sobre o Cristianismo? Então este é o plano certo para você. Extraído do livro "Start Here".',
+        author: 'David Dwight & Nicole Unice',
+        duration: '7 dias',
+        order_position: 4,
+        link_url: 'https://www.bible.com/pt/reading-plans/1594-beginning-a-relationship-with-jesus'
       },
       {
         plan_id: 5,
-        title: 'Propósito na Juventude',
-        image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop',
-        category: 'Juventude',
-        description: 'Descubra o propósito de Deus para sua vida jovem.',
-        author: 'John Newton',
-        duration: '10 dias',
-        order_position: 5
+        title: 'Quem é Jesus?',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/9242/1280x720.jpg',
+        category: 'Novo na Fé',
+        description: 'Jesus é a figura central da fé cristã. Analise mais profundamente quem Ele é: perdoador de pecados, amigo, a luz, operador de milagres, Senhor ressuscitado.',
+        author: 'Alpha',
+        duration: '5 dias',
+        order_position: 5,
+        link_url: 'https://www.bible.com/pt/reading-plans/9242-who-is-jesus'
       },
       {
         plan_id: 6,
-        title: 'Jovens de Fé',
-        image_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2125&auto=format&fit=crop',
+        title: 'O Plano de Deus para sua Vida',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/1597/1280x720.jpg',
+        category: 'Novo na Fé',
+        description: 'Deus diz: "Você pode escolher o quanto eu abençoo sua vida. Você crê, e eu o farei." Junte-se ao Pastor Rick nesta série sobre acreditar e ser fiel ao sonho de Deus.',
+        author: 'Rick Warren',
+        duration: '19 dias',
+        order_position: 6,
+        link_url: 'https://www.bible.com/pt/reading-plans/1597-gods-dream-for-your-life'
+      },
+
+      // === JUVENTUDE ===
+      {
+        plan_id: 7,
+        title: 'Como Compartilhar Sua Fé',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/2881/1280x720.jpg',
         category: 'Juventude',
-        description: 'Fortaleça sua fé e identidade em Cristo na juventude.',
-        author: 'Max Lucado',
+        description: 'Quer ganhar coragem para compartilhar sua fé e aprender como fazer isso sem parecer estranho? Esse Plano é para você.',
+        author: 'Life.Church Switch',
         duration: '7 dias',
-        order_position: 6
+        order_position: 7,
+        link_url: 'https://www.bible.com/pt/reading-plans/2881-how-to-share-your-faith'
+      },
+      {
+        plan_id: 8,
+        title: 'Ansiedade, Medo, Preocupação e Jesus',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/47586/1280x720.jpg',
+        category: 'Juventude',
+        description: 'No meio de suas crises, conheça um Deus que recebe suas ansiedades, expulsa o medo e o convida a não se preocupar. Jesus é a resposta!',
+        author: 'João Marcus Fontenelli',
+        duration: '9 dias',
+        order_position: 8,
+        link_url: 'https://www.bible.com/pt/reading-plans/47586-ansiedade-medo-preocupacao-e-jesus'
+      },
+      {
+        plan_id: 9,
+        title: 'BibleProject | Encontrando Deus no Deserto',
+        image_url: 'https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/66786/1280x720.jpg',
+        category: 'Juventude',
+        description: 'Uma terra desolada que se torna um lugar de teste, preparação e restauração. Pense sobre o tema bíblico do deserto nesta jornada.',
+        author: 'BibleProject',
+        duration: '7 dias',
+        order_position: 9,
+        link_url: 'https://www.bible.com/pt/reading-plans/66786-bibleproject-encontrando-deus-no-deserto'
       }
     ];
 
-    // Inserir ou atualizar planos
     for (const plan of biblePlans) {
       const { error: upsertError } = await supabaseClient
         .from('reading_plan_details')
@@ -125,69 +162,7 @@ serve(async (req) => {
       }
     }
 
-    // Adicionar leituras diárias para alguns planos
-    const planReadings = [
-      // Plano 1: Pais de Fé
-      {
-        plan_id: 1,
-        day_number: 1,
-        title: 'O Coração do Pai',
-        passage: 'Deuteronômio 6:4-9',
-        content: 'Como pais, somos chamados a ensinar nossos filhos sobre Deus não apenas com palavras, mas com nosso exemplo de vida.'
-      },
-      {
-        plan_id: 1,
-        day_number: 2,
-        title: 'Disciplina com Amor',
-        passage: 'Provérbios 22:6',
-        content: 'A disciplina não é punição, mas direcionamento amoroso que ajuda nossos filhos a crescer no caminho correto.'
-      },
-      // Plano 4: Primeiros Passos
-      {
-        plan_id: 4,
-        day_number: 1,
-        title: 'O Amor de Deus',
-        passage: 'João 3:16',
-        content: 'Comece sua jornada cristã entendendo o imenso amor que Deus tem por você.'
-      },
-      {
-        plan_id: 4,
-        day_number: 2,
-        title: 'Nova Criatura',
-        passage: '2 Coríntios 5:17',
-        content: 'Quando você aceita Jesus, torna-se uma nova criatura. As coisas antigas já passaram.'
-      },
-      // Plano 7: Jovens de Propósito
-      {
-        plan_id: 7,
-        day_number: 1,
-        title: 'Criado com Propósito',
-        passage: 'Jeremias 29:11',
-        content: 'Deus tem planos específicos para sua vida. Descubra o propósito para o qual você foi criado.'
-      },
-      {
-        plan_id: 7,
-        day_number: 2,
-        title: 'Chamado para Grandeza',
-        passage: 'Efésios 2:10',
-        content: 'Você é obra de Deus, criado para boas obras que Ele preparou de antemão.'
-      }
-    ];
-
-    for (const reading of planReadings) {
-      const { error } = await supabaseClient
-        .from('reading_plan_days')
-        .upsert(reading, { 
-          onConflict: 'plan_id,day_number',
-          ignoreDuplicates: false 
-        });
-
-      if (error) {
-        console.error('Erro ao inserir leitura:', error);
-      }
-    }
-
-    // Atualizar timestamp da última sincronização
+    // Atualizar timestamp
     const { error: updateError } = await supabaseClient
       .from('site_content')
       .upsert({
@@ -205,23 +180,15 @@ serve(async (req) => {
         message: 'Planos sincronizados com sucesso',
         synced_plans: biblePlans.length 
       }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
     console.error('Erro na sincronização:', error);
     const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: errorMessage 
-      }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500
-      }
+      JSON.stringify({ success: false, error: errorMessage }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     );
   }
 });
