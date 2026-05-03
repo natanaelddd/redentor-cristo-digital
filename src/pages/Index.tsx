@@ -225,7 +225,7 @@ const Index = () => {
         {/* Banner sutil do Curso de Batismo */}
         <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border-y border-blue-100">
           <div className="container mx-auto px-4 py-4">
-            <Link to="/quiz" className="flex items-center justify-between gap-4 group">
+            <Link to="/questionario" className="flex items-center justify-between gap-4 group">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
                   <BookOpen className="h-5 w-5 text-white" />
