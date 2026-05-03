@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Book, ArrowRight, Loader2, RefreshCw } from "lucide-react";
-import { useReadingPlans } from "@/hooks/useReadingPlans";
+import { useReadingPlans, ReadingPlan } from "@/hooks/useReadingPlans";
 import { syncBiblePlans } from "@/utils/syncBiblePlans";
+import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
 
