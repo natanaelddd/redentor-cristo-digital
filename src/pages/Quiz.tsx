@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
@@ -11,9 +11,40 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { BookOpen, ChevronRight, ChevronLeft, User, Send, CheckCircle, FileText } from "lucide-react";
+import { BookOpen, ChevronRight, ChevronLeft, User, Send, CheckCircle, FileText, RotateCcw } from "lucide-react";
 
-type Step = "name" | "selectLesson" | "reading" | "quiz";
+type Step = "welcome_back" | "name" | "selectLesson" | "reading" | "quiz";
+
+const STORAGE_KEY = "batismo_curso_progress";
+
+interface SavedProgress {
+  studentName: string;
+  step: Exclude<Step, "welcome_back">;
+  selectedLessonNumber: number | null;
+  answers: Record<number, string>;
+}
+
+function loadProgress(): SavedProgress | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw) as SavedProgress;
+    if (data.studentName && data.step) return data;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function saveProgress(p: SavedProgress) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+  } catch { /* ignore quota errors */ }
+}
+
+function clearProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+}
 
 export default function QuizPage() {
   const { toast } = useToast();
@@ -25,20 +56,79 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [completedLessons, setCompletedLessons] = useState<number[]>([]);
+  const [initialized, setInitialized] = useState(false);
 
   const lesson = selectedLessonNumber !== null ? quizLessons.find(l => l.number === selectedLessonNumber) : null;
   const lessonContent = selectedLessonNumber !== null ? lessonContents.find(l => l.number === selectedLessonNumber) : null;
+
+  // Load saved progress on mount
+  useEffect(() => {
+    const saved = loadProgress();
+    if (saved && saved.studentName && saved.step !== "name") {
+      setStudentName(saved.studentName);
+      setSelectedLessonNumber(saved.selectedLessonNumber);
+      setAnswers(saved.answers || {});
+      setStep("welcome_back");
+    }
+    setInitialized(true);
+  }, []);
+
+  // Persist progress on every relevant change
+  useEffect(() => {
+    if (!initialized) return;
+    if (step === "welcome_back" || step === "name") return;
+    if (!studentName) return;
+    saveProgress({
+      studentName,
+      step: step as Exclude<Step, "welcome_back">,
+      selectedLessonNumber,
+      answers,
+    });
+  }, [studentName, step, selectedLessonNumber, answers, initialized]);
+
+  // Fetch completed lessons from DB when student name is confirmed
+  const fetchCompletedLessons = useCallback(async (name: string) => {
+    try {
+      const { data } = await supabase
+        .from("quiz_submissions")
+        .select("lesson_number")
+        .eq("student_name", name.trim());
+      if (data) {
+        setCompletedLessons([...new Set(data.map(d => d.lesson_number))]);
+      }
+    } catch { /* ignore */ }
+  }, []);
+
+  const handleContinue = () => {
+    const saved = loadProgress();
+    if (saved) {
+      setStep(saved.step);
+      fetchCompletedLessons(saved.studentName);
+    }
+  };
+
+  const handleStartFresh = () => {
+    clearProgress();
+    setStudentName("");
+    setSelectedLessonNumber(null);
+    setAnswers({});
+    setCompletedLessons([]);
+    setStep("name");
+  };
 
   const handleConfirmName = () => {
     if (studentName.trim().length < 3) {
       toast({ title: "Nome obrigatório", description: "Por favor, insira seu nome completo.", variant: "destructive" });
       return;
     }
+    fetchCompletedLessons(studentName);
     setStep("selectLesson");
   };
 
   const handleSelectLesson = (num: number) => {
     setSelectedLessonNumber(num);
+    setAnswers({});
     setStep("reading");
     window.scrollTo(0, 0);
   };
@@ -80,6 +170,8 @@ export default function QuizPage() {
 
       if (error) throw error;
 
+      // Mark lesson as completed locally
+      setCompletedLessons(prev => [...new Set([...prev, lesson.number])]);
       setSubmitted(true);
       toast({ title: "Respostas enviadas!", description: "Suas respostas foram salvas com sucesso." });
     } catch (err: any) {
@@ -95,6 +187,8 @@ export default function QuizPage() {
     setSubmitted(false);
     setStep("selectLesson");
   };
+
+  if (!initialized) return null;
 
   // Success screen
   if (submitted) {
@@ -126,6 +220,30 @@ export default function QuizPage() {
       <Header navLinks={[]} logoUrl="/lovable-uploads/db19ffc6-8337-43da-a20a-e0340ed44a7f.png" />
 
       <main className="flex-grow container mx-auto px-4 py-8 max-w-3xl">
+        {/* Welcome Back screen */}
+        {step === "welcome_back" && (
+          <Card className="max-w-md mx-auto">
+            <CardHeader className="text-center">
+              <BookOpen className="h-12 w-12 text-primary mx-auto mb-2" />
+              <CardTitle className="text-2xl">Bem-vindo(a) de volta!</CardTitle>
+              <p className="text-muted-foreground mt-2">
+                <strong>{studentName}</strong>, encontramos seu progresso salvo.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Deseja continuar de onde parou?
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Button className="w-full" onClick={handleContinue}>
+                <ChevronRight className="h-4 w-4 mr-2" /> Continuar de onde parei
+              </Button>
+              <Button variant="outline" className="w-full" onClick={handleStartFresh}>
+                <RotateCcw className="h-4 w-4 mr-2" /> Começar do zero
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Step 1: Name */}
         {step === "name" && (
           <Card className="max-w-md mx-auto">
@@ -167,24 +285,29 @@ export default function QuizPage() {
               <p className="text-muted-foreground mt-1">Escolha uma lição para ler e responder o questionário</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {quizLessons.map(l => (
-                <Card
-                  key={l.number}
-                  className="cursor-pointer hover:shadow-md transition-shadow hover:border-primary"
-                  onClick={() => handleSelectLesson(l.number)}
-                >
-                  <CardContent className="p-4 flex items-center gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg shrink-0">
-                      {l.number}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{l.title}</h3>
-                      <p className="text-xs text-muted-foreground">{l.questions.length} perguntas</p>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground ml-auto" />
-                  </CardContent>
-                </Card>
-              ))}
+              {quizLessons.map(l => {
+                const isCompleted = completedLessons.includes(l.number);
+                return (
+                  <Card
+                    key={l.number}
+                    className={`cursor-pointer hover:shadow-md transition-shadow ${isCompleted ? "border-green-300 bg-green-50" : "hover:border-primary"}`}
+                    onClick={() => handleSelectLesson(l.number)}
+                  >
+                    <CardContent className="p-4 flex items-center gap-3">
+                      <div className={`rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg shrink-0 ${isCompleted ? "bg-green-600 text-white" : "bg-primary text-primary-foreground"}`}>
+                        {isCompleted ? <CheckCircle className="h-5 w-5" /> : l.number}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">{l.title}</h3>
+                        <p className="text-xs text-muted-foreground">
+                          {isCompleted ? "✅ Concluída" : `${l.questions.length} perguntas`}
+                        </p>
+                      </div>
+                      <ChevronRight className="h-5 w-5 text-muted-foreground ml-auto" />
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         )}
