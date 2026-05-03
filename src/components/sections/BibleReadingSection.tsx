@@ -8,8 +8,6 @@ import { useReadingPlans, ReadingPlan } from "@/hooks/useReadingPlans";
 import { syncBiblePlans } from "@/utils/syncBiblePlans";
 import { useToast } from "@/hooks/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { useQueryClient } from "@tanstack/react-query";
 
 export const BibleReadingSection = () => {
   const navigate = useNavigate();
