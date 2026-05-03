@@ -48,7 +48,7 @@ export const BibleReadingSection = () => {
     setIsSyncing(false);
   };
 
-  const handlePlanClick = (plan: any) => {
+  const handlePlanClick = (plan: ReadingPlan) => {
     if (plan.link_url) {
       window.open(plan.link_url, '_blank');
     } else {
