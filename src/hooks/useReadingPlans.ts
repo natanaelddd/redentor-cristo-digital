@@ -17,6 +17,7 @@ export interface ReadingPlan {
   description: string;
   author: string;
   duration: string;
+  link_url?: string;
   readings?: ReadingPlanDay[];
 }
 
@@ -43,30 +44,33 @@ export const useReadingPlans = () => {
         const fallbackPlans: ReadingPlan[] = [
           {
             id: 1,
-            title: "Família Cristã",
-            image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+            title: "Relacionamentos Familiares Moldados pela Fé",
+            image: "https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/70364/1280x720.jpg",
             category: "Pais",
-            description: "Construa uma família sólida baseada nos valores cristãos.",
-            author: "Charles Stanley",
-            duration: "21 dias"
+            description: "Reflita sobre princípios que fortalecem o casamento, a criação dos filhos e a convivência no lar.",
+            author: "Medita na Palavra",
+            duration: "16 dias",
+            link_url: "https://www.bible.com/pt/reading-plans/70364-relacionamentos-familiares-moldados-pela-fe"
           },
           {
-            id: 2,
-            title: "Fundamentos da Fé",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+            id: 4,
+            title: "Começando um Relacionamento com Jesus",
+            image: "https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/1594/1280x720.jpg",
             category: "Novo na Fé",
-            description: "Descubra os pilares essenciais da vida cristã.",
-            author: "Rick Warren",
-            duration: "30 dias"
+            description: "É um recém-convertido? Quer entender mais sobre o Cristianismo? Então este é o plano certo para você.",
+            author: "David Dwight & Nicole Unice",
+            duration: "7 dias",
+            link_url: "https://www.bible.com/pt/reading-plans/1594-beginning-a-relationship-with-jesus"
           },
           {
-            id: 3,
-            title: "Propósito e Chamado",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2074&auto=format&fit=crop",
+            id: 7,
+            title: "Como Compartilhar Sua Fé",
+            image: "https://imageproxy.youversionapi.com/https://s3.amazonaws.com/yvplans/2881/1280x720.jpg",
             category: "Juventude",
-            description: "Encontre seu propósito e chamado em Deus.",
-            author: "Joyce Meyer",
-            duration: "14 dias"
+            description: "Quer ganhar coragem para compartilhar sua fé? Esse Plano é para você.",
+            author: "Life.Church Switch",
+            duration: "7 dias",
+            link_url: "https://www.bible.com/pt/reading-plans/2881-how-to-share-your-faith"
           }
         ];
         
@@ -86,7 +90,8 @@ export const useReadingPlans = () => {
           category: plan.category,
           description: plan.description || "",
           author: plan.author || "",
-          duration: plan.duration || ""
+          duration: plan.duration || "",
+          link_url: plan.link_url || ""
         });
       }
 

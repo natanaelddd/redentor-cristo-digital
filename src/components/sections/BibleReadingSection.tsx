@@ -48,9 +48,12 @@ export const BibleReadingSection = () => {
     setIsSyncing(false);
   };
 
-  const handlePlanClick = (planId: number) => {
-    console.log('Navegando para plano:', planId);
-    navigate(`/plano-leitura/${planId}`);
+  const handlePlanClick = (plan: any) => {
+    if (plan.link_url) {
+      window.open(plan.link_url, '_blank');
+    } else {
+      navigate(`/plano-leitura/${plan.id}`);
+    }
   };
 
   if (isLoading) {
@@ -150,7 +153,7 @@ export const BibleReadingSection = () => {
                     <Card 
                       key={plan.id} 
                       className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-lg bg-white rounded-2xl"
-                      onClick={() => handlePlanClick(plan.id)}
+                      onClick={() => handlePlanClick(plan)}
                       style={{
                         animationDelay: `${index * 100}ms`
                       }}
