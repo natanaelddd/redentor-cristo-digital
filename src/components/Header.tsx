@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogOut } from "lucide-react";
 
@@ -27,12 +28,39 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
 
   const linksToUse = navLinks.length > 0 ? navLinks : defaultNavLinks;
 
+  const isRouterLink = (href: string) => href.startsWith('/');
+
+  const renderLink = (link: NavLink, onClick?: () => void) => {
+    if (isRouterLink(link.href)) {
+      return (
+        <Link
+          key={link.title}
+          to={link.href}
+          className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
+          onClick={onClick}
+        >
+          {link.title}
+        </Link>
+      );
+    }
+    return (
+      <a
+        key={link.title}
+        href={link.href}
+        className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
+        onClick={onClick}
+      >
+        {link.title}
+      </a>
+    );
+  };
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="container-elegant">
         <div className="flex items-center justify-between py-8">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             {logoUrl ? (
               <img src={logoUrl} alt="Igreja Missionária Cristo Redentor" className="h-20 object-contain" />
             ) : (
@@ -40,19 +68,11 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
                 <span className="text-lg font-bold text-white">IC</span>
               </div>
             )}
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-12">
-            {linksToUse.map((link) => (
-              <a
-                key={link.title}
-                href={link.href}
-                className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
-              >
-                {link.title}
-              </a>
-            ))}
+            {linksToUse.map((link) => renderLink(link))}
             {showAdminActions && onLogout && (
               <Button
                 onClick={onLogout}
@@ -81,16 +101,7 @@ export const Header = ({ navLinks = [], logoUrl, showAdminActions = false, onLog
         {isMobileMenuOpen && (
           <nav className="md:hidden py-8 border-t border-gray-100">
             <div className="flex flex-col space-y-6">
-              {linksToUse.map((link) => (
-                <a
-                  key={link.title}
-                  href={link.href}
-                  className="nav-elegant text-gray-800 hover:text-gray-600 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.title}
-                </a>
-              ))}
+              {linksToUse.map((link) => renderLink(link, () => setIsMobileMenuOpen(false)))}
               {showAdminActions && onLogout && (
                 <Button
                   onClick={() => {
