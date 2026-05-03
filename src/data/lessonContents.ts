@@ -32,7 +32,7 @@ export const lessonContents: LessonContent[] = [
       },
       {
         title: "Observação",
-        content: "Depois de ter estudado este assunto, talvez você esteja pensando em receber a Cristo como seu único Senhor e Salvador, se ainda não vez, converse com seu discipulador para que ore com você a oração de confissão. \"Pois com o coração se crê para justiça, e com a boca se faz confissão para salvação\". Rm 10:10."
+        content: "Depois de ter estudado este assunto, talvez você esteja pensando em receber a Cristo como seu único Senhor e Salvador, se ainda não fez, converse com seu discipulador para que ore com você a oração de confissão. \"Pois com o coração se crê para justiça, e com a boca se faz confissão para salvação\". Rm 10:10."
       }
     ]
   },
@@ -59,7 +59,7 @@ export const lessonContents: LessonContent[] = [
     sections: [
       {
         title: "1 – A Bíblia ensina para todos:",
-        content: "\"...Devem se converter a Deus, arrepender-se e ter fé em nosso Senhor Jesus Cristo.\" Atos 20:21\nEste versículo nos ensina duas coisas acerca daqueles que se converteram; tem que se arrepender (mudança de atitude) e ter fé. Neste lição vamos estudar sobre este importante assunto, que é uns dos fundamentos da doutrina de Cristo. (Hebreus 6:1)"
+        content: "\"...Devem se converter a Deus, arrepender-se e ter fé em nosso Senhor Jesus Cristo.\" Atos 20:21\nEste versículo nos ensina duas coisas acerca daqueles que se converteram; tem que se arrepender (mudança de atitude) e ter fé. Nesta lição vamos estudar sobre este importante assunto, que é um dos fundamentos da doutrina de Cristo. (Hebreus 6:1)"
       },
       {
         title: "2 – Qual é a importância da fé?",
@@ -109,7 +109,7 @@ export const lessonContents: LessonContent[] = [
       },
       {
         title: "4 – Como e onde devemos ser batizados?",
-        content: "Batismo ou batizar quer dizer, \"Mergulhar, submergir, imergir. Por definição e uso, a palavra que dizer, \"colocar em água ou debaixo dela de modo a inteiramente imergir ou submergir\". Então devemos mergulhar a pessoa totalmente na água para que não haja dúvida de seu batismo.\n\nOnde? De preferência num lugar que tenha água suficiente para mergulhar a pessoa, olhando os exemplos Bíblicos as pessoas eram batizadas onde havia muita água. Pode ser num rio, no mar, na piscina, num tanque etc... desde que tenha água suficiente para ser mergulhada."
+        content: "Batismo ou batizar quer dizer, \"Mergulhar, submergir, imergir. Por definição e uso, a palavra quer dizer, \"colocar em água ou debaixo dela de modo a inteiramente imergir ou submergir\". Então devemos mergulhar a pessoa totalmente na água para que não haja dúvida de seu batismo.\n\nOnde? De preferência num lugar que tenha água suficiente para mergulhar a pessoa, olhando os exemplos Bíblicos as pessoas eram batizadas onde havia muita água. Pode ser num rio, no mar, na piscina, num tanque etc... desde que tenha água suficiente para ser mergulhada."
       },
       {
         title: "5 – Por que devemos ser batizados?",
@@ -219,7 +219,7 @@ export const lessonContents: LessonContent[] = [
     sections: [
       {
         title: "Introdução",
-        content: "A Bíblia diz: \"Senhor, ... teu é tudo quanto há nos céus e na terra\" (1 Crônicas 29:11). Deus é dono de todas as coisas e nós somos como um encarregado (mordomos) duma fazenda. O encarregado tem que administrar ou usar os bens da fazenda. Porém, a fazenda pertence a Deus. Outra vez a Bíblia diz: \"Tudo vem de Ti, e das Tuas mãos to damos.\" (1 Crônicas 29:14). Ser mordomos de Deus significa que todas as coisas pertecem a Ele e não a nós."
+        content: "A Bíblia diz: \"Senhor, ... teu é tudo quanto há nos céus e na terra\" (1 Crônicas 29:11). Deus é dono de todas as coisas e nós somos como um encarregado (mordomos) duma fazenda. O encarregado tem que administrar ou usar os bens da fazenda. Porém, a fazenda pertence a Deus. Outra vez a Bíblia diz: \"Tudo vem de Ti, e das Tuas mãos to damos.\" (1 Crônicas 29:14). Ser mordomos de Deus significa que todas as coisas pertencem a Ele e não a nós."
       },
       {
         title: "1 – Definição do que é mordomia cristã",
