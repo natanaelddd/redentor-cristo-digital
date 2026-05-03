@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { BookOpen } from "lucide-react";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { BibleReadingSection } from "@/components/sections/BibleReadingSection";
 import { EventsSection } from "@/components/sections/EventsSection";
