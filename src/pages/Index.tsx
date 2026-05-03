@@ -14,7 +14,7 @@ import { EventAnnouncements } from "@/components/EventAnnouncements";
 import { EventInscriptionAlert } from "@/components/EventInscriptionAlert";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye } from "lucide-react";
+import { Calendar, Eye, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Helper para formatar o conteúdo do site em um objeto chave-valor
