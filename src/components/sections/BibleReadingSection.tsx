@@ -145,7 +145,7 @@ export const BibleReadingSection = () => {
                   <h3 className="text-4xl font-bold mb-4 text-gray-900">{category}</h3>
                   <div className="w-20 h-1 bg-gradient-to-r from-orange-600 to-red-600 mx-auto rounded-full"></div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                   {categoryPlans.map((plan, index) => (
                     <Card 
                       key={plan.id} 
