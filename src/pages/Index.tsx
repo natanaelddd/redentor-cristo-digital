@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { BookOpen } from "lucide-react";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { BibleReadingSection } from "@/components/sections/BibleReadingSection";
 import { EventsSection } from "@/components/sections/EventsSection";
@@ -13,7 +14,7 @@ import { EventAnnouncements } from "@/components/EventAnnouncements";
 import { EventInscriptionAlert } from "@/components/EventInscriptionAlert";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye } from "lucide-react";
+import { Calendar, Eye, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Helper para formatar o conteúdo do site em um objeto chave-valor
@@ -220,6 +221,32 @@ const Index = () => {
 
       <main className="flex-grow">
         <HeroSection slides={pageData?.heroSlides} siteContent={pageData?.siteContent} />
+
+        {/* Banner sutil do Curso de Batismo */}
+        <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border-y border-blue-100">
+          <div className="container mx-auto px-4 py-4">
+            <Link to="/quiz" className="flex items-center justify-between gap-4 group">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm text-gray-800 group-hover:text-primary transition-colors">
+                    Curso Preparatório para Batismo
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    8 lições online • Salva seu progresso • Certificado ao concluir
+                  </p>
+                </div>
+              </div>
+              <Button size="sm" variant="outline" className="shrink-0 border-blue-200 text-blue-700 hover:bg-blue-100 hidden sm:flex">
+                Iniciar Curso <ChevronRight className="h-4 w-4 ml-1" />
+              </Button>
+              <ChevronRight className="h-5 w-5 text-blue-400 sm:hidden shrink-0 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+
         <AboutSection siteContent={pageData?.siteContent} />
         <BibleReadingSection />
         <EventsSection events={pageData?.events} />
