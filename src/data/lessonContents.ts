@@ -101,7 +101,7 @@ export const lessonContents: LessonContent[] = [
       },
       {
         title: "2 – Com que idade deve batizar?",
-        content: "Entendemos que para pessoa batizar, ela tem que ter idade suficiente para tomar a sua decisão pessoal por Cristo. A Bíblia parece se referir a uma idade de responsabilidade. Esta idade chega quando a criança sabe a diferença entre o certo e o errado \"antes que este menino saiba rejeitar o mal e escolher o bem\" (Isaías 7:16).\n\nNOTA: A Igreja Missionária Unida de Ribeirão Preto, por decisão do Presbitério Local, só batiza crianças, a partir dos doze anos de idade, não que isto seja o certo, mas por achar difícil julgar de criança para criança esta idade de responsabilidade. Por que doze anos? Nós nos baseamos num costume judeu de considerar a criança \"filho da lei\" aos doze anos de idade. (Lucas 2:42)"
+        content: "Entendemos que para pessoa batizar, ela tem que ter idade suficiente para tomar a sua decisão pessoal por Cristo. A Bíblia parece se referir a uma idade de responsabilidade. Esta idade chega quando a criança sabe a diferença entre o certo e o errado \"antes que este menino saiba rejeitar o mal e escolher o bem\" (Isaías 7:16).\n\nNOTA: Por decisão do Presbitério Local, só se batiza crianças a partir dos doze anos de idade, não que isto seja o certo, mas por achar difícil julgar de criança para criança esta idade de responsabilidade. Por que doze anos? Nós nos baseamos num costume judeu de considerar a criança \"filho da lei\" aos doze anos de idade. (Lucas 2:42)"
       },
       {
         title: "3 – Exemplos bíblicos de batismo",

@@ -133,7 +133,7 @@ export default function QuizPage() {
               <BookOpen className="h-12 w-12 text-primary mx-auto mb-2" />
               <CardTitle className="text-2xl">Curso Preparatório para Batismo</CardTitle>
               <p className="text-muted-foreground mt-2">
-                Igreja Missionária Unida do Campos Elíseos
+                Igreja Missionária do Cristo Redentor
               </p>
               <p className="text-sm text-muted-foreground">
                 Antes de começar, informe seu nome completo
