@@ -17,6 +17,7 @@ export interface ReadingPlan {
   description: string;
   author: string;
   duration: string;
+  link_url?: string;
   readings?: ReadingPlanDay[];
 }
 
