@@ -597,7 +597,7 @@ export default function QuizPage() {
                         </span>
                         <div className="space-y-2 flex-1">
                           <p className="font-medium">{q.question}</p>
-                          {q.bibleRef && <BibleVersePopup bibleRef={q.bibleRef} />}
+                          {q.bibleRef && <BibleVersePopup bibleRef={q.bibleRef} lessonContent={lessonContent || undefined} />}
                           <Textarea
                             placeholder="Digite sua resposta aqui..."
                             value={answers[q.id] || ""}
